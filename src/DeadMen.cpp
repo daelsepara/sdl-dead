@@ -902,7 +902,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
             putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
 
             putText(renderer, "Money", font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-            putText(renderer, (std::to_string(player.Money) + std::string(" scads")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+            putText(renderer, (std::to_string(player.Money) + std::string(" doubloons")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
 
             fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
 
@@ -1477,10 +1477,23 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
 
     auto name_string = player.Name;
 
+    if (player.Ship.Type != Ship::Type::NONE)
+    {
+        name_string += " (" + player.Ship.Name;
+
+        if (player.Ship.Stars > 0)
+        {
+            name_string += " [" + std::string(player.Ship.Stars, '#') + std::string(5 - player.Ship.Stars, '-') + "] ";
+
+        }
+
+        name_string += ")";
+    }
+
     // Fill the surface with background color
     fillWindow(renderer, intWH);
 
-    putText(renderer, name_string.c_str(), font, space, clrWH, intDB, TTF_STYLE_NORMAL, headerw, headerh, startx, starty);
+    putText(renderer, name_string.c_str(), font, space, clrWH, intDB, TTF_STYLE_NORMAL, (player.Ship.Type != Ship::Type::NONE) ? headerw * 3 : headerw, headerh, startx, starty);
     putText(renderer, player.Description.c_str(), font, space, clrBK, intBE, TTF_STYLE_NORMAL, profilew, profileh, startx, starty + headerh);
 
     putText(renderer, "Skills", font, space, clrWH, intDB, TTF_STYLE_NORMAL, headerw, headerh, startx, starty + profileh + headerh + marginh);
@@ -1490,7 +1503,7 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
     putText(renderer, std::to_string(player.Life).c_str(), font, space, clrBK, intBE, TTF_STYLE_NORMAL, boxw, boxh, startx, starty + profileh + 3 * headerh + 2 * marginh + boxh);
 
     putText(renderer, "Money", font, space, clrWH, intDB, TTF_STYLE_NORMAL, headerw, headerh, startx + boxw + marginw, starty + profileh + 2 * headerh + 2 * marginh + boxh);
-    putText(renderer, (std::to_string(player.Money) + " scads").c_str(), font, space, clrBK, intBE, TTF_STYLE_NORMAL, boxw, boxh, startx + boxw + marginw, starty + profileh + 3 * headerh + 2 * marginh + boxh);
+    putText(renderer, (std::to_string(player.Money) + " doubloons").c_str(), font, space, clrBK, intBE, TTF_STYLE_NORMAL, boxw, boxh, startx + boxw + marginw, starty + profileh + 3 * headerh + 2 * marginh + boxh);
 
     putText(renderer, "Possessions", font, space, clrWH, intDB, TTF_STYLE_NORMAL, headerw, headerh, startx, starty + profileh + 3 * headerh + 3 * marginh + 2 * boxh);
     putText(renderer, player.Items.size() > 0 ? possessions.c_str() : "(None)", font, space, clrBK, intBE, TTF_STYLE_NORMAL, profilew, profileh, startx, starty + profileh + 4 * headerh + 3 * marginh + 2 * boxh);
@@ -1733,7 +1746,6 @@ bool saveGame(Character::Base &player, const char *overwrite)
     data["lifeLimit"] = player.MAX_LIFE_LIMIT;
     data["skillsLimit"] = player.SKILLS_LIMIT;
     data["codewords"] = player.Codewords;
-    data["vehicle"] = player.Ship;
     data["epoch"] = player.Epoch;
 
     auto skills = std::vector<Skill::Type>();
@@ -1779,6 +1791,17 @@ bool saveGame(Character::Base &player, const char *overwrite)
         item.emplace("charge", player.LostItems[i].Charge);
 
         lostItems.push_back(item);
+    }
+
+    if (player.Ship.Type != Ship::Type::NONE)
+    {
+        nlohmann::json ship;
+
+        ship.emplace("name", player.Ship.Name);
+        ship.emplace("stars", player.Ship.Stars);
+        ship.emplace("type", player.Ship.Type);
+
+        data["ship"] = ship;
     }
 
     data["lostItems"] = lostItems;
@@ -1882,6 +1905,26 @@ Character::Base loadGame(std::string file_name)
         character.MAX_LIFE_LIMIT = (int)data["lifeLimit"];
         character.SKILLS_LIMIT = (int)data["skillsLimit"];
         character.StoryID = (int)data["storyID"];
+
+        try
+        {
+            if (!data["ship"].is_null())
+            {
+                auto ship_name = std::string(data["ship"]["name"]);
+                auto ship_stars = (int)(data["ship"]["stars"]);
+                auto ship_type = static_cast<Ship::Type>((int)(data["ship"]["type"]));
+
+                character.Ship = Ship::Base(ship_name.c_str(), ship_stars, ship_type);
+            }
+            else
+            {
+                character.Ship = Ship::NONE;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            character.Ship = Ship::NONE;
+        }
 
         try
         {
@@ -2372,7 +2415,7 @@ bool tradeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pl
             putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
 
             putText(renderer, "Money", font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-            putText(renderer, (std::to_string(player.Money) + std::string(" scads")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+            putText(renderer, (std::to_string(player.Money) + std::string(" doubloons")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
 
             fillRect(renderer, textwidth + arrow_size + button_space, text_bounds, textx, texty, intBE);
 
@@ -2470,7 +2513,7 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                 }
             }
 
-            choice += " (" + std::to_string(price) + " scads)";
+            choice += " (" + std::to_string(price) + " doubloons)";
 
             auto text = createText(choice.c_str(), FONT_FILE, 16, clrBK, textwidth + button_space, TTF_STYLE_NORMAL);
 
@@ -2554,7 +2597,7 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
             putText(renderer, (std::to_string(player.Items.size()) + std::string(" item(s)")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
 
             putText(renderer, "Money", font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-            putText(renderer, (std::to_string(player.Money) + std::string(" scads")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+            putText(renderer, (std::to_string(player.Money) + std::string(" doubloons")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
 
             fillRect(renderer, textwidth + arrow_size + button_space, text_bounds, textx, texty, intBE);
 
@@ -2634,7 +2677,7 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                             }
                             else
                             {
-                                message = "You do not have enough scads to buy that!";
+                                message = "You do not have enough doubloons to buy that!";
 
                                 start_ticks = SDL_GetTicks();
 
@@ -2750,7 +2793,7 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
         {
             // Fill the surface with background color
             fillWindow(renderer, intWH);
-            
+
             stretchImage(renderer, background, 0, 0, SCREEN_WIDTH, buttony - button_space);
 
             fitImage(renderer, splash, startx + offset_x, offset_y, marginw, text_bounds);
@@ -2878,7 +2921,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
             if (!story->Image || (splash && splash_h < text_bounds - (2 * (boxh + infoh) + box_space)))
             {
                 putText(renderer, "Money", font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-                putText(renderer, (std::to_string(player.Money) + std::string(" scads")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+                putText(renderer, (std::to_string(player.Money) + std::string(" doubloons")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
             }
 
             if (error)
@@ -3777,7 +3820,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 if (!story->Image || (splash && splash_h < text_bounds - (2 * (boxh + infoh) + box_space)))
                 {
                     putText(renderer, "Money", font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-                    putText(renderer, (std::to_string(player.Money) + std::string(" scads")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+                    putText(renderer, (std::to_string(player.Money) + std::string(" doubloons")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
                 }
 
                 fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);

@@ -13,8 +13,12 @@ namespace Item
         PISTOL,
         SWORD,
         FEATHER_SHIELD,
+        CRUCIFIX,
+        COMPASS,
+        PARROT,
+        THUNDERCLOUD_FAN,
         First = MAGIC_AMULET,
-        Last = FEATHER_SHIELD
+        Last = THUNDERCLOUD_FAN
     };
 
     class Base
@@ -52,6 +56,10 @@ namespace Item
     auto PISTOL = Item::Base("PISTOL", "PISTOL", Item::Type::PISTOL);
     auto SWORD = Item::Base("SWORD", "SWORD", Item::Type::SWORD);
     auto FEATHER_SHIELD = Item::Base("FEATHER SHIELD", "FEATHER SHIELD", Item::Type::FEATHER_SHIELD);
+    auto CRUCIFIX = Item::Base("CRUCIFIX", "CRUCIFIX", Item::Type::CRUCIFIX);
+    auto COMPASS = Item::Base("COMPASS", "COMPASS", Item::Type::COMPASS);
+    auto PARROT = Item::Base("PARROT", "PARROT", Item::Type::PARROT);
+    auto THUNDERCLOUD_FAN = Item::Base("THUNDERCLOUD FAN", "THUNDERCLOUD FAN", Item::Type::THUNDERCLOUD_FAN);
 
     // Item defaults
 

@@ -42,8 +42,6 @@ namespace Character
 
         int SKILLS_LIMIT = 4;
 
-        Ship::Type Ship = Ship::Type::NONE;
-
         std::vector<Skill::Base> Skills = std::vector<Skill::Base>();
 
         std::vector<Item::Base> Items = std::vector<Item::Base>();
@@ -53,6 +51,8 @@ namespace Character
         std::vector<Item::Base> LostItems = std::vector<Item::Base>();
 
         std::vector<Skill::Base> LostSkills = std::vector<Skill::Base>();
+
+        Ship::Base Ship = Ship::NONE;
 
         int LostMoney = 0;
 
@@ -100,7 +100,7 @@ namespace Character
         }
     };
 
-    auto ADVENTURER = Character::Base("The Adventurer", Character::Type::ADVENTURER, "You have explored haunted castles, ruined cities, dank crypts and desolate forests in your constant search for gold and glory. Now try your luck oon the high seas.", {Skill::FOLKLORE, Skill::ROGUERY, Skill::SEAFARING, Skill::SWORDPLAY}, {Item::SWORD}, 10);
+    auto ADVENTURER = Character::Base("The Adventurer", Character::Type::ADVENTURER, "You have explored haunted castles, ruined cities, dank crypts and desolate forests in your constant search for gold and glory. Now try your luck on the high seas.", {Skill::FOLKLORE, Skill::ROGUERY, Skill::SEAFARING, Skill::SWORDPLAY}, {Item::SWORD}, 10);
     auto BUCCANEER = Character::Base("The Buccaneer", Character::Type::BUCCANEER, "You're a clever and resourceful pirate, loyal to your comrades and a deadly foe to anyone who crosses you.", {Skill::CUNNING, Skill::MARKSMANSHIP, Skill::SEAFARING, Skill::SWORDPLAY}, {Item::PISTOL, Item::SWORD}, 10);
     auto CHANGELING = Character::Base("The Changeling", Character::Type::CHANGELING, "Your origins are shrouded in mystery. A misfit in your own homeland, you wander far and wide in search of the truth.", {Skill::AGILITY, Skill::CUNNING, Skill::SPELLS, Skill::WILDERNESS_LORE}, {Item::MAGIC_WAND}, 10);
     auto GYPSY = Character::Base("The Gypsy", Character::Type::GYPSY, "Fleeing persecution in the Old World, you have come to the colonies of the New World to carve a new life of fame and fortune.", {Skill::BRAWLING, Skill::CHARMS, Skill::FOLKLORE, Skill::ROGUERY}, {Item::MAGIC_AMULET}, 10);
@@ -493,6 +493,41 @@ namespace Character
         player.Money = 0;
 
         Character::LOSE_POSSESSIONS(player);
+    }
+
+    void TAKE_SHIP(Character::Base &player, Ship::Base ship)
+    {
+        player.Ship = ship;
+    }
+
+    void LOSE_SHIP(Character::Base &player)
+    {
+        player.Ship = Ship::NONE;
+    }
+
+    void DAMAGE_SHIP(Character::Base &player, int damage)
+    {
+        if (player.Ship.Type != Ship::Type::NONE)
+        {
+            player.Ship.Stars -= damage;
+
+            if (player.Ship.Stars < 0)
+            {
+                player.Ship.Stars = 0;
+            }
+        }
+    }
+
+    bool CHECK_SHIP(Character::Base &player)
+    {
+        auto condition = false;
+
+        if (player.Ship.Type != Ship::Type::NONE)
+        {
+            condition = player.Ship.Stars > 0;
+        }
+        
+        return condition;
     }
 
 } // namespace Character
