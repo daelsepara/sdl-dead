@@ -2013,7 +2013,7 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
 
         int limit = 4;
 
-        SDL_Surface *splash = createImage("images/filler1.png");
+        SDL_Surface *splash = createImage("images/filler1-green.png");
 
         auto saved_games = std::multimap<std::filesystem::file_time_type, std::string, std::greater<std::filesystem::file_time_type>>();
 
@@ -2744,15 +2744,18 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
         std::vector<Button> controls = {Button(0, "icons/back-button.png", 0, 0, 0, 0, (1 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK)};
 
         int offset_x = (marginw - (double)text_bounds / splash->h * splash->w) / 2;
+        int offset_y = ((buttony - button_space) - (double)text_bounds / splash->h * splash->h) / 2;
 
         while (!done)
         {
             // Fill the surface with background color
-            stretchImage(renderer, background, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            fillWindow(renderer, intWH);
+            
+            stretchImage(renderer, background, 0, 0, SCREEN_WIDTH, buttony - button_space);
 
-            fitImage(renderer, splash, startx + offset_x, starty, marginw, text_bounds);
+            fitImage(renderer, splash, startx + offset_x, offset_y, marginw, text_bounds);
 
-            renderButtons(renderer, controls, current, intWH, 8, 4);
+            renderButtons(renderer, controls, current, intGR, 8, 4);
 
             bool scrollUp = false;
             bool scrollDown = false;
