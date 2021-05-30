@@ -12,6 +12,7 @@ namespace Item
         MAGIC_WAND,
         PISTOL,
         SWORD,
+        SHARKS_TOOTH_SWORD,
         FEATHER_SHIELD,
         CRUCIFIX,
         COMPASS,
@@ -19,8 +20,16 @@ namespace Item
         THUNDERCLOUD_FAN,
         OBSIDIAN_NECKLACE,
         LETTER_OF_MARQUE,
+        CONCH_SHELL_HORN,
+        BAT_SHAPED_TALISMAN,
+        BRONZE_HELMET,
+        DRAGON_RING,
+        TOOLKIT,
+        BOOK_OF_CHARTS,
+        LODESTONE,
+        MONKEY,
         First = MAGIC_AMULET,
-        Last = LETTER_OF_MARQUE
+        Last = MONKEY
     };
 
     class Base
@@ -53,6 +62,8 @@ namespace Item
         }
     };
 
+    // Item defaults
+
     auto MAGIC_AMULET = Item::Base("MAGIC AMULET", "MAGIC AMULET", Item::Type::MAGIC_AMULET);
     auto MAGIC_WAND = Item::Base("MAGIC WAND", "MAGIC WAND", Item::Type::MAGIC_WAND);
     auto PISTOL = Item::Base("PISTOL", "PISTOL", Item::Type::PISTOL);
@@ -63,12 +74,19 @@ namespace Item
     auto PARROT = Item::Base("PARROT", "PARROT", Item::Type::PARROT);
     auto THUNDERCLOUD_FAN = Item::Base("THUNDERCLOUD FAN", "THUNDERCLOUD FAN", Item::Type::THUNDERCLOUD_FAN);
     auto OBSIDIAN_NECKLACE = Item::Base("OBSIDIAN NECKLACE", "OBSIDIAN NECKLACE", Item::Type::OBSIDIAN_NECKLACE);
-    auto SHARKS_TOOTH_SWORD = Item::Base("SHARK's TOOTH SWORD", "A blade of hard wood studded with shark's teeth", Item::Type::SWORD);
+    auto SHARKS_TOOTH_SWORD = Item::Base("SHARK's TOOTH SWORD", "A blade of hard wood studded with shark's teeth", Item::Type::SHARKS_TOOTH_SWORD);
     auto LETTER_OF_MARQUE = Item::Base("LETTER OF MARQUE", "LETTER OF MARQUE", Item::Type::LETTER_OF_MARQUE);
+    auto CONCH_SHELL_HORN = Item::Base("CONCH SHELL HORN", "CONCH SHELL HORN", Item::Type::CONCH_SHELL_HORN);
+    auto BAT_SHAPED_TALISMAN = Item::Base("BAT-SHAPED TALISMAN", "BAT-SHAPED TALISMAN", Item::Type::BAT_SHAPED_TALISMAN);
+    auto BRONZE_HELMET = Item::Base("BRONZE HELMET", "BRONZE HELMET", Item::Type::BRONZE_HELMET);
+    auto DRAGON_RING = Item::Base("DRAGON RING", "DRAGON RING", Item::Type::DRAGON_RING);
+    auto TOOLKIT = Item::Base("TOOLKIT", "TOOLKIT", Item::Type::TOOLKIT);
+    auto BOOK_OF_CHARTS = Item::Base("BOOK OF CHARTS", "BOOK OF CHARTS", Item::Type::BOOK_OF_CHARTS);
+    auto LODESTONE = Item::Base("LODESTONE", "LODESTONE", Item::Type::LODESTONE);
+    auto MONKEY = Item::Base("MONKEY", "MONKEY", Item::Type::MONKEY);
 
-    // Item defaults
-
-    std::vector<Item::Type> UniqueItems = {};
+    std::vector<Item::Type> UniqueItems = {
+        Item::Type::DRAGON_RING};
 
     bool IsUnique(Item::Type item)
     {

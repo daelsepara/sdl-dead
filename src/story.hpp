@@ -792,7 +792,7 @@ public:
 
         auto DAMAGE = -6;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+        if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
         {
             PreText += "[BRAWLING] ";
 
@@ -806,7 +806,7 @@ public:
             DAMAGE = -2;
         }
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
         {
             PreText += "[SWORDPLAY] ";
 
@@ -943,7 +943,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText += "Smoke-hazed flashes blister among the gunwales of the Moon Dog, followed by a sound like thunder that rolls across the water. Cannonballs crack against the timbers of your vessel. There is a cry of alarm as the mizzenmast splits, and you have to dodge to one side as the rigging comes crashing down. At least one of your crew is not so fortunate: you see him swept overboard by the broken boom as it falls.\n\nYou ship SUFFERS 2 damage.";
+        PreText = "Smoke-hazed flashes blister among the gunwales of the Moon Dog, followed by a sound like thunder that rolls across the water. Cannonballs crack against the timbers of your vessel. There is a cry of alarm as the mizzenmast splits, and you have to dodge to one side as the rigging comes crashing down. At least one of your crew is not so fortunate: you see him swept overboard by the broken boom as it falls.\n\nYou ship SUFFERS 2 damage.";
 
         Character::DAMAGE_SHIP(player, 2);
 
@@ -1097,7 +1097,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText += "With a groan of protesting timbers, your ship lurches to a dead halt as her prow smashes into the Moon Dog's side. Your sailors cast grappling-hooks, catching the other ship's rail and pulling them together for the final battle.\n\nYou ship SUFFERS 1 damage.";
+        PreText = "With a groan of protesting timbers, your ship lurches to a dead halt as her prow smashes into the Moon Dog's side. Your sailors cast grappling-hooks, catching the other ship's rail and pulling them together for the final battle.\n\nYou ship SUFFERS 1 damage.";
 
         Character::DAMAGE_SHIP(player, 1);
 
@@ -1215,6 +1215,228 @@ public:
     }
 };
 
+class Story030 : public Story::Base
+{
+public:
+    Story030()
+    {
+        ID = 30;
+
+        Text = "You've been on the island just a week, living in a lean-to on the beach. One morning Blutz comes chasing up the beach, waving his arms and shouting for all he's worth.\n\nGrimes, sprawled on the sand in the shade of a palm, puffs his pipe and remarks, \"It's a rare occurrence that stirs our Blutz to move faster than a trot. What's up, d'ye think, lads\"\n\nYou smile. \"Perhaps the sun has gone in front of a cloud? Or a fish caught a seagull?\"\n\n\"Or he found a pearl inside a coconut?\" chuckles Oakley.\n\nBut your smiles vanish when Blutz reaches you and blurts out his news: \"The Belle Dame's just coming around the headland. She'll be dropping anchor in the bay, and here's us like four turkeys at Yuletide.\"\n\nYou RECOVER 1 Life Point.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Run off to hide in the interior of the island until Skarvench departs", 49));
+        Choices.push_back(Choice::Base("First bribe the natives to say that you're not here", 68));
+        Choices.push_back(Choice::Base("Go boldly down to confront Skarvench when he comes ashore", 87));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 1);
+    }
+};
+
+class Story031 : public Story::Base
+{
+public:
+    Story031()
+    {
+        ID = 31;
+
+        Text = "In a small courtyard off the fish market lives Doctor Scriptor, a collector of magical curios. You have brought him items in the past, both for identification and to see if he would buy them from you. He looks up from his dusty manuscripts and takes what you have brought to show him, holding up a jeweller's glass and passing each item in turn under the sharp scrutiny of his beady old eyes.\n\n\"Well?\" you ask.\n\n\"One moment.\" Scriptor gives a dry cough, perching his glasses on his thin nose and consulting a dusty leatherbound book. \"Hmm. Ah yes, ah yes. Eureka!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask him about a CONCH SHELL HORN", 316, {Item::CONCH_SHELL_HORN}));
+        Choices.push_back(Choice::Base("... a BAT-SHAPED TALISMAN", 335, {Item::BAT_SHAPED_TALISMAN}));
+        Choices.push_back(Choice::Base("... a BRONZE HELMET", 354, {Item::BRONZE_HELMET}));
+        Choices.push_back(Choice::Base("... the DRAGON RING", 373, {Item::DRAGON_RING}));
+        Choices.push_back(Choice::Base("You don't have any of these. You may as well leave", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story032 : public Story::Base
+{
+public:
+    Story032()
+    {
+        ID = 32;
+
+        Text = "You explode into a sudden flurry of dazzling action. Pushing your friends back out of danger, you dive nimbly to one side as the chief ruffian's knife whistles through the air just a hand's breath above your scalp. Then, springing up onto the bar, you launch yourself forward, tumbling in midair so as to go careening against the ruffian's legs with the force of a rolling barrel. They are bowled over like so many skittles.\n\nJumping to your feet, you pause just long enough to check that Blutz and the others have safely made their getaway. It is your one mistake. A clumsily thrown knife catches you in the thing, laying open a nasty gash.\n\nYou LOSE 1 Life Point.";
+
+        Bye = "You limp hastily outside where your friends help you to get to safety. Only when you are sure there is no sound of pursuit do you slow to a walk.\n\n\"Well, that wasn't very successful,\" says Blutz, gasping for breath.\"\n\n\"What are you griping about, Mister Blutz?\" you say with a relieved grin. \"You've still got your health, and that's what counts.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 392; }
+};
+
+class Story033 : public Story::Base
+{
+public:
+    Story033()
+    {
+        ID = 33;
+
+        Text = "The sunlight, filtering weakly through tobacco-stained windows, makes his eyes shine like pearls as he turns to you. \"Pull up a pew, mates,\" he says, stifling a sodden belch. \"Ol' Greymalkin is always ready to swap stories with a fellow buccaneer.\"\n\n\"Here is a fearless warrior of the waves, indeed,\" says Grimes behind his hand. \"He's in full sail on a sea of wine, and that smell isn't salt spray billowing on the wind!\"\n\n\"I heard that!\" snaps Greymalkin drunkenly. \"Poke fun at ol' Greymalkin if you like, ye scurvy nobbler -- I'll wager I saw more action afore my lights were put out than ye'll see in your whole poxy life. Aye, an' I heard a few tales in my time, too.\"\n\n\"Heard anything recently?\" you ask.\n\n\"Heard a fair bit. Talkin' about it dries the tongue out, though.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Buy a drink (1 doubloon)", 90, Choice::Type::LOSE_MONEY, 1));
+        Choices.push_back(Choice::Base("Go over to the three bullies and the scholar", 52));
+        Choices.push_back(Choice::Base("Pay a visit to the shipyard", 374));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story034 : public Story::Base
+{
+public:
+    Story034()
+    {
+        ID = 34;
+
+        Text = "His eyes roll in their sockets, each an orb as big as a boulder. \"A ship, is it? Well, there are many moored in this harbour. More ships than you could dream of: all the ships of myth and legend! But do you not see this harbour chain?\" His hand dips into the dark water, jangling the massive links as a man might play with a watch-chain.\n\n\"Won't you lift it,\" you boldly ask him; \"allow us to enter and choose a vessel?\"\n\nHe booms his mirth to the sky. \"Hah! You're audacious enough to be a hero, at least. No, I won't help you -- but see this lock? You could open the chain yourself easily enough, except for the fact that no man can see or touch the key that fits it.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[CUNNING] Try something", 91, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("[SPELLS] Try unlocking the chain by magic", 110, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Try an item that you think might do the trick", 129));
+        Choices.push_back(Choice::Base("failing any of these, you must admit defeat", 72));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story035 : public Story::Base
+{
+public:
+    Story035()
+    {
+        ID = 35;
+
+        Text = "\"Sidonian men-o'-war hard astern! Three of of 'em!\" cries your lookout. The Gloriannic warship sees them too and alters course to engage the enemy. Forgotten for the time being, your own ship is able to slip away.\n\nOakley joins you on the poopdeck. \"They're almost over the horizon,\" he says, glancing back. \"A nice bit of luck, those Sidonian ships turning up just when they did. But I'm a bit surprised at you making a run for it, skipper. I'd have thought you'd order us to muck in and help the Gloriannic captain.\"\n\nYou smile and pat the wand tucked into your belt. \"Help him, Mister Oakley? Against what -- those magical mirages I conjured? They'll be fading like a morning haze as soon as we're out of sight.\"\n\nHe laughs heartily to hear this.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 16; }
+};
+
+class Story036 : public Story::Base
+{
+public:
+    Story036()
+    {
+        ID = 36;
+
+        Text = "Sailors are a superstitious lot, easily spooked by any overt display of sorcery. Because of this you are reluctant to unleash the full force of your magic in front of the crew. Luckily Blutz realises your dilemma and provides you with an excuse to slip away. \"When I was a lad, we always used to say you could get a wind by whistling for it,\" he declares loudly. \"Its worth a try now, ain't it, shipmates?\" Turning to you, he adds: \"Begging your pardon, skipper, but it's an ill wind you get if you whistle while the captain's on deck.\"\n\n\"Eh? Oh yes, of course; I've heard that legend. Well, anything's worth trying. Carry on, Mister Blutz.\"\n\nWhile the crew start whistling, you go below to your cabin and conjure a wind. Returning on deck a little while later, you see the sails billowing and the sailors dancing for joy. \"Quick thinking, Mister Blutz,\" you mutter as the Lady of Shalott clears the mouth of the bay.\n\n\"Just whistle anytime you need me, Cap'n\" he replies with a wink.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 396; }
+};
+
+class Story037 : public Story::Base
+{
+public:
+    Story037()
+    {
+        ID = 37;
+
+        Text = "The storm turns the sky to boiling pitch, and in your fancy it seems that you would be swamped by celestial fires if it were not that the sea now boils up to the edge of heaven, hissing those fires into smoky darkness. Your crew cling to whatever comes to hand as mighty waves come heaving over the side. You see one man lose his balance and go hurtling across the deck -- only saved at the last moment by catching hold of the mainsail shrouds.\n\n\"Cap'n!\" cries the helmsman, peering into the thundering curtains of rain. \"I cannot see to steer her!\"\n\nYou hold your amulet before his eyes. Its burnished gold surface sparkles in the flicker of lightning. \"Focus your gaze on this,\" you tell him. \"Have faith.\"\n\nHe stands fast as though entranced, turning the whipstaff to follow each swing of the amulet. The sails strain, drawing shrieks of protest from the masts, and high waves crash around your bows, but you plunge on directly for the heart of the storm.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 94; }
+};
+
+class Story038 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story038()
+    {
+        ID = 38;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            PreText = "You pull your ship deftly aft of the enemy ship without taking damage.";
+        }
+        else
+        {
+            PreText = "You are clipped by cannon-fire as you go in. Your ship SUFFERS 1 damage.";
+
+            Character::DAMAGE_SHIP(player, 1);
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::CHECK_SHIP(player))
+        {
+            return 415;
+        }
+        else
+        {
+            return 227;
+        }
+    }
+};
+
+class Story039 : public Story::Base
+{
+public:
+    Story039()
+    {
+        ID = 39;
+
+        Text = "The sailmaster is the officer in charge of day-to-day navigation of the ship. His tiny cabin is strewn about with papers, compasses, books and other maritime paraphernalia.\n\nA sound from the bunk directly by your shoulder makes you give a start of alarm. You thought the blasted cabin was empty! But just as you are lunging forward, the blanket is tossed aside and you have a clear view of the bunk's occupant -- not a sailor, but only the little monkey that serves as the ship's mascot. Mister Chatter is what the crew call him. He squats on the bunk and watches as you search around the rest of the cabin.\n\nYou have time to grab two items from the following: a TOOLKIT, a BOOK OF CHARTS, a CRUCIFIX, a LODESTONE and the MONKEY.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::TOOLKIT, Item::BOOK_OF_CHARTS, Item::CRUCIFIX, Item::LODESTONE, Item::MONKEY};
+
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -1245,13 +1467,24 @@ auto story026 = Story026();
 auto story027 = Story027();
 auto story028 = Story028();
 auto story029 = Story029();
+auto story030 = Story030();
+auto story031 = Story031();
+auto story032 = Story032();
+auto story033 = Story033();
+auto story034 = Story034();
+auto story035 = Story035();
+auto story036 = Story036();
+auto story037 = Story037();
+auto story038 = Story038();
+auto story039 = Story039();
 
 void InitializeStories()
 {
     Stories = {
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
-        &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029};
+        &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
+        &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039};
 }
 
 #endif
