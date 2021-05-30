@@ -17,8 +17,10 @@ namespace Item
         COMPASS,
         PARROT,
         THUNDERCLOUD_FAN,
+        OBSIDIAN_NECKLACE,
+        LETTER_OF_MARQUE,
         First = MAGIC_AMULET,
-        Last = THUNDERCLOUD_FAN
+        Last = LETTER_OF_MARQUE
     };
 
     class Base
@@ -60,6 +62,9 @@ namespace Item
     auto COMPASS = Item::Base("COMPASS", "COMPASS", Item::Type::COMPASS);
     auto PARROT = Item::Base("PARROT", "PARROT", Item::Type::PARROT);
     auto THUNDERCLOUD_FAN = Item::Base("THUNDERCLOUD FAN", "THUNDERCLOUD FAN", Item::Type::THUNDERCLOUD_FAN);
+    auto OBSIDIAN_NECKLACE = Item::Base("OBSIDIAN NECKLACE", "OBSIDIAN NECKLACE", Item::Type::OBSIDIAN_NECKLACE);
+    auto SHARKS_TOOTH_SWORD = Item::Base("SHARK's TOOTH SWORD", "A blade of hard wood studded with shark's teeth", Item::Type::SWORD);
+    auto LETTER_OF_MARQUE = Item::Base("LETTER OF MARQUE", "LETTER OF MARQUE", Item::Type::LETTER_OF_MARQUE);
 
     // Item defaults
 
