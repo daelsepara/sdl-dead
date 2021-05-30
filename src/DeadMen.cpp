@@ -30,6 +30,19 @@ namespace fs = std::filesystem;
 #include "character.hpp"
 #include "story.hpp"
 
+#if defined(_WIN32)
+
+#include <windows.h>
+#include <shlobj.h>
+
+#else
+
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
+
+#endif
+
 // forward declarations
 bool aboutScreen(SDL_Window *window, SDL_Renderer *renderer);
 bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story);
@@ -1722,7 +1735,39 @@ bool saveGame(Character::Base &player, const char *overwrite)
 
     std::ostringstream buffer;
 
-    fs::create_directory("save");
+#if defined(_WIN32)
+
+    PWSTR path_str;
+
+    SHGetKnownFolderPath(FOLDERID_Documents, KF_FLAG_DEFAULT, NULL, &path_str);
+
+    std::wstring wpath(path_str);
+
+    CoTaskMemFree(path_str);
+
+    std::string save(wpath.length(), ' ');
+
+    std::copy(wpath.begin(), wpath.end(), save.begin());
+
+    save += "/Saved Games/Down Among the Dead Men";
+
+    std::string path = save + "/";
+
+#else
+
+    const char *homedir;
+
+    if ((homedir = getenv("HOME")) == NULL)
+    {
+        homedir = getpwuid(getuid())->pw_dir;
+    }
+
+    std::string save = std::string(homedir) + "/Documents/Saved Games/Down Among the Dead Men";
+    std::string path = save + "/";
+
+#endif
+
+    fs::create_directories(save);
 
     if (overwrite != NULL)
     {
@@ -2048,9 +2093,35 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
 
     if (window && renderer)
     {
-        fs::create_directory("save");
+#if defined(_WIN32)
+        PWSTR path_str;
 
-        std::string path = "./save/";
+        SHGetKnownFolderPath(FOLDERID_Documents, KF_FLAG_DEFAULT, NULL, &path_str);
+
+        std::wstring wpath(path_str);
+
+        CoTaskMemFree(path_str);
+
+        std::string save(wpath.length(), ' ');
+
+        std::copy(wpath.begin(), wpath.end(), save.begin());
+
+        save += "/Saved Games/Down Among the Dead Men";
+
+        std::string path = save + "/";
+#else
+        const char *homedir;
+
+        if ((homedir = getenv("HOME")) == NULL)
+        {
+            homedir = getpwuid(getuid())->pw_dir;
+        }
+
+        std::string save = std::string(homedir) + "/Documents/Saved Games/Down Among the Dead Men";
+        std::string path = save + "/";
+#endif
+
+        fs::create_directories(save);
 
         std::vector<std::string> entries;
 
