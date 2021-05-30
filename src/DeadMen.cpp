@@ -1666,10 +1666,10 @@ bool aboutScreen(SDL_Window *window, SDL_Renderer *renderer)
         while (!done)
         {
             // Fill the surface with background color
-            fillWindow(renderer, intDB);
+            fillWindow(renderer, intGN);
 
             fitImage(renderer, splash, startx, starty, splashw, text_bounds);
-            renderText(renderer, text, intDB, startx * 2 + splashw, starty, SCREEN_HEIGHT * (1.0 - 2 * Margin), 0);
+            renderText(renderer, text, intGN, startx * 2 + splashw, starty, SCREEN_HEIGHT * (1.0 - 2 * Margin), 0);
             renderTextButtons(renderer, controls, FONT_FILE, current, clrWH, intBK, intRD, 20, TTF_STYLE_NORMAL);
 
             bool scrollUp = false;
@@ -1775,7 +1775,7 @@ bool saveGame(Character::Base &player, const char *overwrite)
     }
     else
     {
-        buffer << "save/" << std::to_string(seed) << ".save";
+        buffer << path << std::to_string(seed) << ".save";
     }
 
     nlohmann::json data;
@@ -4377,10 +4377,10 @@ bool mainScreen(SDL_Window *window, SDL_Renderer *renderer, int storyID)
         while (!done)
         {
             // Fill the surface with background
-            fillWindow(renderer, intDB);
+            fillWindow(renderer, intGN);
 
             fitImage(renderer, splash, startx, starty, splashw, text_bounds);
-            renderText(renderer, text, intDB, startx * 2 + splashw, starty, SCREEN_HEIGHT * (1.0 - 2 * Margin), 0);
+            renderText(renderer, text, intGN, startx * 2 + splashw, starty, SCREEN_HEIGHT * (1.0 - 2 * Margin), 0);
             renderTextButtons(renderer, controls, FONT_FILE, current, clrWH, intBK, intRD, font_size, TTF_STYLE_NORMAL);
 
             bool scrollUp = false;

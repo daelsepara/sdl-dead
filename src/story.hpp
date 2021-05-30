@@ -1248,9 +1248,10 @@ auto story029 = Story029();
 
 void InitializeStories()
 {
-    Stories = {&prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
-               &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
-               &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029};
+    Stories = {
+        &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
+        &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
+        &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029};
 }
 
 #endif
