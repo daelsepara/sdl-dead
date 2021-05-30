@@ -1313,7 +1313,7 @@ public:
         Choices.push_back(Choice::Base("[CUNNING] Try something", 91, Skill::Type::CUNNING));
         Choices.push_back(Choice::Base("[SPELLS] Try unlocking the chain by magic", 110, Skill::Type::SPELLS));
         Choices.push_back(Choice::Base("Try an item that you think might do the trick", 129));
-        Choices.push_back(Choice::Base("failing any of these, you must admit defeat", 72));
+        Choices.push_back(Choice::Base("Failing any of these, you must admit defeat", 72));
 
         Controls = Story::Controls::STANDARD;
     }
