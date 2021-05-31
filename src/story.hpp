@@ -2158,7 +2158,7 @@ public:
         {
             PreText += "\n\nBut you are unable to part with such items.";
         }
-        
+
         Choices.push_back(Choice::Base("Stay here to confront Skarvench", 87));
         Choices.push_back(Choice::Base("Run off into the jungle", 49));
 
@@ -2188,6 +2188,226 @@ public:
     }
 
     int Continue(Character::Base &player) { return 107; }
+};
+
+class Story070 : public Story::Base
+{
+public:
+    Story070()
+    {
+        ID = 70;
+
+        Text = "Most of the tavern's customers have scurried off into the night. Nursing your injuries, you stagger through the wreckage and take a stiff swig of rum from an overturned bottle on the bar.\n\nA weak bloody-mouthed spluttering comes from under broken trestle. Stepping over, you haul the chief cut-throat to his feet. With his teeth broken and his little close-set eyes swollen half closed, he doesn't look nearly so tough now -- like a lot of bullies you've known after the fight's been knocked out of them.\n\n\"Skarvench's new ship,\" you say, shaking him. \"What's it called?\"\n\nHis eyes flicker open. \"Can't tell you,\" he groans. \"He'd rip my lungs out.\"\n\nYou break the rum bottle against the wall and shove it towards his chest. \"He won't be able to find your lungs.\"\n\nThe threat breaks what's left of his nerve. In a panic stricken torrent, he blabbers about a ship called the Moon Dog which Skarvench is having built in Port Selenice.\n\nYou cast the lout back into the debris. As you go to leave you find the innkeeper, Drood, standing by the doorway, hopping from one foot to the other in agitation. \"Who's going to pay for this damage?\" he wails.\n\nBlutz pushes him aside. \"Don't think of it as damage. Think of it as a free redecoration.\"\n\nWith a laugh, the four of you set off along the street.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 392; }
+};
+
+class Story071 : public Story::Base
+{
+public:
+    Story071()
+    {
+        ID = 71;
+
+        Text = "The blind man is Greymalkin Smith. Once a pirate himself, he was blinded in powder keg explosion and now ekes out a living running errands around town and swapping gossip for drinks.\n\nYou have also seen the three ruffians before. In fact, just a few weeks ago you learned that the governor of Leshand has put a price on their heads.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Talk to Greymalkin", 33));
+        Choices.push_back(Choice::Base("Intervene to stop the ruffians bullying the scholar", 52));
+        Choices.push_back(Choice::Base("Go off to the shipyard", 374));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story072 : public Story::Base
+{
+public:
+    Story072()
+    {
+        ID = 72;
+
+        Image = "images/filler2-green.png";
+
+        Text = "His laughter is the peal of summer thunder. \"Scurry off then, little mice. I mistook you for a sea rats at least!\"\n\nThe dolphin and the shark convey you back to the beach where you blew the horn. In awed silence, still stunned by the uncanny adventure, you disembark uncertainly and stagger on weak knees up the shore.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 203; }
+};
+
+class Story073 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story073()
+    {
+        ID = 73;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Grappling hooks hug your vessel to the warship's flank, and marines come swarming over the rail with loud battle-cries. The fighting rages from stem to stern -- the clash of cutlasses, the bangs and acrid smoke of pistol shots, the screams of wounded men. Blood and gunpowder are the smells mingling on the briny breeze this afternoon.\n\nThe marines have numbers on their side, but they are pitched against some of the toughest buccaneers on the Carab Sea. Your men know they are fighting for their very lives, since almost every one of them has a price on his head.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            PreText += "[BRAWLING] ";
+
+            DAMAGE = -3;
+        }
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            PreText += "[SWORDPLAY] ";
+
+            DAMAGE = -2;
+        }
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+        {
+            PreText += "[MARKSMANSHIP] ";
+
+            DAMAGE = -2;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 225; }
+};
+
+class Story074 : public Story::Base
+{
+public:
+    Story074()
+    {
+        ID = 74;
+
+        Text = "It is only a matter of minutes before you hear the sound you were dreading: an ominous scraping as the ship lurches to a halt. \"That tears it!\" says Grimes. \"We've run aground.\"\n\nA hasty inspection reveals that you have run the keel onto a sandbank. There is no damage to the hull, but you will have to wait until high tide to get off again. By now the fog is closing tightly around the bay, blotting out any sight of the island.\n\n\"We may as well sit it out until dawn,\" you decide.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 366; }
+};
+
+class Story075 : public Story::Base
+{
+public:
+    Story075()
+    {
+        ID = 75;
+
+        Text = "The storm fills the sky and your ship is just a speck in its grip. The rain lashes down out of a darkness blacker than night, drumming the deck. Waves as high as cliffs sweep past, flooding over the side and forcing each man to cling on for dear life. Your orders are drowned out by the palpable roar of the wind, which strains the sails to bursting point. You take the whipstaff yourself and push the prow into the onrushing tumult, seeking the hurricane's heart.\n\nGrimes rushes back, his face contorted with fear. \"Skipper!\" he cries. \"The hurricane must have scattered the Queen's fleet! There's a Gloriannic warship dead across our bows, and the wind's sweeping her straight towards us!\"\n\nYou can see the ship between billowing sheets of rain. Her mast is broken and she is careening out of control towards you. You have only seconds in which to avoid a collision.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Tilt the whipstaff to port", 113));
+        Choices.push_back(Choice::Base("... to starboard", 132));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story076 : public Story::Base
+{
+public:
+    Story076()
+    {
+        ID = 76;
+
+        Text = "To your own amazement as much as your foe's, the weasel suddenly jumps out of your haversack and leaps across the deck to give him a painful bite on the hand. Skarvench drops the taper with a startled oath: \"Agh! Devil take the animal!\"\n\nHe seizes the weasel by its neck and casts it off over the side, but its attack has bought you the time you need to close in. Now you are face to face with Skarvench in a battle to the finish.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story077 : public Story::Base
+{
+public:
+    Story077()
+    {
+        ID = 77;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Skarvench gives a sharp cough as he swigs a shot of rum. \"Guarded?\" he snarls. \"Aye, she'll be guarded. But what if a storm scattered her escort fleet? What then, eh my lads?\n\n\"There'd still be her flagship to contend with, Cap'n\" objects the quartermaster. \"The Rose, I'm told it's called -- a ship of eighty cannon!\"\n\n\"It's possible to pluck a rose, me hearties!\" rejoins Skarvench with a peal of harsh laughter. \"Specially when she lies becalmed, shrouded in mist with no target for her guns.\"\n\n\"But what's this talk of mist and dead calm?\" queries Borograve the master gunner. \"I thought the plan rested on a storm?\"\n\n\"It all relies too much on chance, if you ask me,\" says the first mate.\n\nYou tend to agree -- although you never knew Skarvench to trust anything to luck before, not even when playing dice. You are itching to hear how he is going to justify his scheme, but every second you linger here increases the risk of discovery.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Continue to eavesdrop regardless of the danger", 115));
+        Choices.push_back(Choice::Base("Snatch a few supplies from the empty cabin opposite", 96));
+        Choices.push_back(Choice::Base("Go straight back on deck empty-handed", 172));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story078 : public Story::Base
+{
+public:
+    Story078()
+    {
+        ID = 78;
+
+        Text = "Two more boxes are swiftly opened, their lids splintering under hard shovel-blows. These also contain dead bodies lying on bars of silver. The third gives you particular cause to shudder -- a thin rill of blood has caked on its lips, just as a careless or gluttonous man might leave a dribble of gravy.\n\n\"Vampires!\" gasps Blutz. All together you turn to look at the sun, now almost drowned in the western sea. In mere moments the last of the daylight will have drained away.\n\nBlutz pulls a stick from his belt and thrusts it into your hand. It is the broken stool-leg he got clouted with back in the tavern in Selenice. The end has splintered to leave a sharp point. Sharp enough to pierce a heart, if driven down with courage and strength.\n\nThere is just time to impale one of the three corpses you've unearthed. You glance from one to other. Which will it be?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Choose the body with blood on its lips" , 169));
+        Choices.push_back(Choice::Base("... the one with a skull tattoo" , 188));
+        Choices.push_back(Choice::Base("... the one with ice-blue eyes", 150));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story079 : public Story::Base
+{
+public:
+    Story079()
+    {
+        ID = 79;
+
+        Text = "As the cannibals close in, things look bleak indeed. Can you possibly outrun them and get the jollyboat out to sea before you are overwhelmed? Then you remember seeing fragments of coloured chalk further up the beach. \"Come on,\" you say urgently, pulling your companions after you, \"I've got an idea.\"\n\nThe cannibals follow in sullen silence as you retreat along the beach. Pretending to stumble, you gather pieces of pink chalk as you go and use these to daub spots on your skin. At first the others think you've lost your wits, but then Blutz sees what you have in mind. \"They'll think we're plague ridden!\" he cries. \"They certainly won't want to eat us then!\"\n\nThe four of you crouch shivering beside your boat as he cannibals come striding up. At first the look on their faces is one of ravenous glee, but this soon changes to horror when they get close enough to see the ugly blotches on your skin. The shivering helps to make it look as though you have a fever, but in fact there is no need for pretence -- you really are quaking in fear by now.\n\nYou give a ghastly moan and start to foam convincingly at the mouth. This is more than enough for the cannibals. Flinging down their weapons, they run off. Once they are out of sight along the beach, you get up and examine what they have left behind. Along with a profusion of spears and clubs, you find a FEATHER SHIELD and a SHARK's TOOTH SWORD. The latter is a blade of hardwood edged with shark's teeth -- unconventional but it serves as well as a normal sword.";
+
+        Bye = "The others have lost no time getting the boat into the water. Hurrying in case the cannibals should realise they've been tricked and return, you put to sea.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::FEATHER_SHIELD, Item::SHARKS_TOOTH_SWORD};
+        
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player) { return 116; }
 };
 
 auto prologue = Prologue();
@@ -2261,6 +2481,16 @@ auto story066 = Story066();
 auto story067 = Story067();
 auto story068 = Story068();
 auto story069 = Story069();
+auto story070 = Story070();
+auto story071 = Story071();
+auto story072 = Story072();
+auto story073 = Story073();
+auto story074 = Story074();
+auto story075 = Story075();
+auto story076 = Story076();
+auto story077 = Story077();
+auto story078 = Story078();
+auto story079 = Story079();
 
 void InitializeStories()
 {
@@ -2272,7 +2502,8 @@ void InitializeStories()
         &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
         &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
         &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
-        &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069};
+        &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
+        &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079};
 }
 
 #endif
