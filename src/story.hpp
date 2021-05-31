@@ -756,7 +756,7 @@ public:
         Choices.clear();
         Choices.push_back(Choice::Base("Find someone to identify any unusual items you've come across", 31));
         Choices.push_back(Choice::Base("Listen for rumours", 88));
-        Choices.push_back(Choice::Base("Apply for a letter of marque", 409));
+        Choices.push_back(Choice::Base("Apply for a LETTER OF MARQUE", 409));
         Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
         Choices.push_back(Choice::Base("You have now completed all your business in Leshand", 107));
 
@@ -1361,7 +1361,7 @@ public:
     {
         ID = 36;
 
-        Text = "Sailors are a superstitious lot, easily spooked by any overt display of sorcery. Because of this you are reluctant to unleash the full force of your magic in front of the crew. Luckily Blutz realises your dilemma and provides you with an excuse to slip away. \"When I was a lad, we always used to say you could get a wind by whistling for it,\" he declares loudly. \"Its worth a try now, ain't it, shipmates?\" Turning to you, he adds: \"Begging your pardon, skipper, but it's an ill wind you get if you whistle while the captain's on deck.\"\n\n\"Eh? Oh yes, of course; I've heard that legend. Well, anything's worth trying. Carry on, Mister Blutz.\"\n\nWhile the crew start whistling, you go below to your cabin and conjure a wind. Returning on deck a little while later, you see the sails billowing and the sailors dancing for joy. \"Quick thinking, Mister Blutz,\" you mutter as the Lady of Shalott clears the mouth of the bay.\n\n\"Just whistle anytime you need me, Cap'n\" he replies with a wink.";
+        Text = "Sailors are a superstitious lot, easily spooked by any overt display of sorcery. Because of this you are reluctant to unleash the full force of your magic in front of the crew. Luckily Blutz realises your dilemma and provides you with an excuse to slip away. \"When I was a lad, we always used to say you could get a wind by whistling for it,\" he declares loudly. \"Its worth a try now, ain't it, shipmates?\" Turning to you, he adds: \"Begging your pardon, skipper, but it's an ill wind you get if you whistle while the captain's on deck.\"\n\n\"Eh? Oh yes, of course; I've heard that legend. Well, anything's worth trying. Carry on, Mister Blutz.\"\n\nWhile the crew start whistling, you go below to your cabin and conjure a wind. Returning on deck a little while later, you see the sails billowing and the sailors dancing for joy. \"Quick thinking, Mister Blutz,\" you mutter as the LADY OF SHALOTT clears the mouth of the bay.\n\n\"Just whistle anytime you need me, Cap'n\" he replies with a wink.";
 
         Choices.clear();
 
@@ -1599,7 +1599,7 @@ public:
     {
         ID = 44;
 
-        Text = "Blutz directs the crew to fetch up the cargo from the hold. At first you have no idea what he's talking about, then you remember the barrels of rock salt that the last owner of the Lady of Shalott left aboard when he sold her. The light begins to dawn when Blutz orders the cannons loaded with this salt. The first broadside scours the surface of the iceberg, and it is not long before water is trickling down in the hot noon sun.\n\n\"I remembered that salt can be used to melt ice and snow,\" explains Blutz, beaming with elation at the success of his plan. After two more broadsides the salt has etched its way deep into the ice and there comes a continuous crackling sound as the iceberg slowly breaks apart under the onslaught.\n\nAn attack with pickaxes completes the task. Soon the ice has been chipped away to leave a deep gouge, and the OCTAVIUS comes drifting forth gleaming into the full daylight. You board her, abandoning the sloop, and set a northward course.\n\nThe days pass and your new ship is a delight, handling better than any vessel you've ever sailed. You feel a glow of pride as you at last steer her through the harbour gate and up to the Selenice docks.";
+        Text = "Blutz directs the crew to fetch up the cargo from the hold. At first you have no idea what he's talking about, then you remember the barrels of rock salt that the last owner of the LADY OF SHALOTT left aboard when he sold her. The light begins to dawn when Blutz orders the cannons loaded with this salt. The first broadside scours the surface of the iceberg, and it is not long before water is trickling down in the hot noon sun.\n\n\"I remembered that salt can be used to melt ice and snow,\" explains Blutz, beaming with elation at the success of his plan. After two more broadsides the salt has etched its way deep into the ice and there comes a continuous crackling sound as the iceberg slowly breaks apart under the onslaught.\n\nAn attack with pickaxes completes the task. Soon the ice has been chipped away to leave a deep gouge, and the OCTAVIUS comes drifting forth gleaming into the full daylight. You board her, abandoning the sloop, and set a northward course.\n\nThe days pass and your new ship is a delight, handling better than any vessel you've ever sailed. You feel a glow of pride as you at last steer her through the harbour gate and up to the Selenice docks.";
 
         Choices.clear();
 
@@ -1740,6 +1740,236 @@ public:
     }
 };
 
+class Story050 : public Story::Base
+{
+public:
+    Story050()
+    {
+        ID = 50;
+
+        Text = "A LETTER OF MARQUE would allow you to indulge in a spot of honest piracy -- or rather privateering, as it is called. Such a letter licenses you to act as a private soldier of Her Majesty's navy, with full entitlement to plunder Sidonian treasure-ships.\n\n\"But we'll never be able to get one,\" says Blutz despondently after you have all spent some time discussing the idea.\n\n\"That's right,\" growls Oakley. \"It costs almost as much in bribes to get hold of a LETTER OF MARQUE as you're likely to bring in as profit.\"\n\n\"Aha,\" you say, pulling a furled-up document from your sleeve and tossing it onto the table. \"What's this?\"\n\nGrimes inspects it with mounting astonishment. \"Why, it's a LETTER OF MARQUE, establishing your right to act as privateers on the Carab Sea! How did you get --\" He pauses and a slow grin suffuses his face. \"The ink's still wet.\"\n\nYou retrieve the LETTER OF MARQUE, beaming with pride. It is a good a forgery as any you've ever done. When the ink dries up it will be indistinguishable from the real thing.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("(Marathon) Call on Master Capstick", 69, Codeword::Type::MARATHON));
+        Choices.push_back(Choice::Base("Otherwise", 107));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::LETTER_OF_MARQUE});
+    }
+};
+
+class Story051 : public Story::Base
+{
+public:
+    Story051()
+    {
+        ID = 51;
+
+        Text = "\"Fine,\" you say smartly. \"Go ahead and carve us up. Then see what Skarvench does to you when he hears about it.\"\n\nThe leader of the cut-throats replies with a scowl, but you see him hesitate. He's not sure. \"You're bluffing,\" he says. \"Skarvench said to deal with anyone who came around snooping after him.\"\n\n\"We're supposed to be with him,\" you say, adopting the tone you would use to a stupid child. You're push your luck, but that's how you like it.\n\n\"How do I know you're telling the truth..?\" he says, tiny eyes clouding with uncertainty. The knife point wavers.\n\nYou give a derisive snort. \"Would we be daft enough to just waltz in here asking questions if not?\"\n\n\"Get 'em to prove it, Cuss,\" prompts one of the other thugs.\n\nYou glare at them. \"Don't think we're going to start blabbing the details of the plan in a dump like this. Anyone might overhear. But, Cuss -- suffice it to say, there'll be a right royal fuss if we don't link up with the cap'n\"\n\n\"He's in Selenice by now, I should think,\" says Cuss, sheepishly putting away his knife. \n\n\"Uh, huh,\" you say nodding. \"We'll find him aboard --\"\n\n\"Aboard the Moon Dog,\" he supplies helpfully.\n\n\"That's the one. Be seeing you.\" You leave, waiting until you're around the corner to give a sigh of relief.\n\n\"What's this about the Moon Dog?\" Blutz wonders. \"Skarvench's ship was always the Belle Dame. Why change now?\"\n\n\"Perhaps we'll find out,\" you say. \"in Selenice.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 392; };
+};
+
+class Story052 : public Story::Base
+{
+public:
+    Story052()
+    {
+        ID = 52;
+
+        Text = "The elderly scholar makes another short-sighted lunge for his spectacles, only to trip over the outstretched leg of one of the ruffians and go sprawling. Their laughter is harsh and braying. The scholar gets to his feet and brushes the dust of his velvet robe. \"Please...\" he says, almost in tears. \"Give those back; I can't see without them.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try [CUNNING]", 128, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Use [STREETWISE]", 147, Skill::Type::STREETWISE));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Fight with a SWORD", 166, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 185, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("Fight with your bare hands", 204));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story053 : public Story::Base
+{
+public:
+    Story053()
+    {
+        ID = 53;
+
+        Image = "images/giant-green.png";
+
+        Text = "He places his hand to his jaw and squints his eyes in thought, smiling as he considers your request.\n\n\"Will you ponder the matter until the stars go out and the moon cracks in two?\" you cry boldly. \"Our foe is mortal like ourselves, and does not unfold his plans at the testudineous pace you seem to favour.\"\n\n\"Have a care!\" pleads Blutz. \"You'll anger him. He might be the very god Neptune himself.\"\n\nYou round on him with a blaze of anger. \"God or not, I'm your skipper, Mister Blutz! Now keep your counsel while I parley with yon giant.\"\n\nThe giant rumbles with laughter, amused by this exchange. There is a sparkle in his green marble eyes as he says, \"Well spoken, mortal. At sea a man should respect neither god nor titan, but only his captain. I'll help you right enough, since I now see you deserve it, but what help is it you want? Will it be wealth to buy a ship -- or the wisdom to sail her well?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Choose wealth", 148));
+        Choices.push_back(Choice::Base("Choose wisdom", 167));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story054 : public Story::Base
+{
+public:
+    Story054()
+    {
+        ID = 54;
+
+        Text = "The warship pulls alongside to windward, stealing the breath from your sails. Clambering into the rigging, you run along the mainyard to where the sails of the two ships are already touching. One of the enemy sailors sees you and comes swinging down from the crow's nest, knife in hand. You duck nimbly under his knife-thrust and a cheer goes up from the deck of the Lady of Shalott as your men see you stun your opponent with a sharp jab to the chin. He sags back, caught in the ratlines, and you grab the knife from his limp fingers. Climbing higher into the rigging of the enemy ship, with musket-shots whistling around your ears, you glance down to see the marines casting grappling hooks. Your own crew stand ready to repel boarders as two ships are pulled together.\n\nDigging your knife into the mainsail, you slide right down the billowing canvas, using deft twists of the blade to steer your descent. You land on the deck in front of the helmsman, the split canvas drooping above you. You raise the knife, but the helmsman has no stomach for a fight and runs off, allowing you to throw the whipstaff hard over. The two vessels begin to pull apart as the warship veers in response. Realising your plan too late, the marines make a dash back from the rail, but you have already jammed the whipstaff in position with the knife and swung up to the poopdeck rail out of reach. Running for the side, you launch yourself into space and catch hold of one of the grapple-lines, swiftly pulling yourself hand over hand back to the Lady of Shalott amid the delighted shouts of your crew.\n\nOakley and the rest lose no time in cutting the remaining lines, and the ships drift rapidly apart. On the deck of the warship you can see the marines struggling to free the jammed whipstaff. By the time they can do that and repair the mainsail you tore in half, you'll have made your getaway.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 16; };
+};
+
+class Story055 : public Story::Base
+{
+public:
+    Story055()
+    {
+        ID = 55;
+
+        Text = "The next half-hour gives you as gruelling a test of your ship-handling skills as you've ever faced. Taking constant depth reckoning with a lead line, you steer the Lady of Shalott slowly between reefs and sandbars until at last you are out of the bay in open waters.\n\nHere a light breeze ruffles the sails, but it is not enough to give you the headway you want. You order the rowboats lowered and commence kedging -- carrying the anchor as far ahead of the bows as possible and then dropping it so that you can winch the ship onwards. It is slow going, but at last you are well clear of Tortoise Island and the eldritch fog that surrounds it. Soon you pick up a decent wind and from then on it is plain sailing back to Selenice. But you make the voyage with bitter heart because you are returning empty-handed.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 396; };
+};
+
+class Story056 : public Story::Base
+{
+public:
+    Story056()
+    {
+        ID = 56;
+
+        Text = "Driven on by remorseless determination, you hardly notice the stirrings of mutiny. At all hours of the day and night you are to be seen pacing the deck, marking the wind and sea currents in you log-book or using a cross-staff to plot the position of the stars. The crew dare not question your judgement now -- they fear they would never get home without you.\n\nAt last your steadfastness is rewarded with a cry of \"Ice ho!\" from the deck. You race up the companion-way and give a great shout of triumph as you catch sight of the blow blue hump of an iceberg dead ahead.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 414; };
+};
+
+class Story057 : public Story::Base
+{
+public:
+    Story057()
+    {
+        ID = 57;
+
+        Text = "Despite having her sails in tatters from the storm earlier, the Rose is not quite out of the fight. Her crew realise the threat and man their cannons, bringing several telling shots. to bear on the Moon Dog. Once you are standing abaft your enemy, you add your own fire to that of the Rose. Raked by two foes, the Moon Dog shudders as her mainmast topples.\n\n\"She's dead in the water!\" you cry. \"Close for boarding!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 6; };
+};
+
+class Story058 : public Story::Base
+{
+public:
+    Story058()
+    {
+        ID = 58;
+
+        Image = "images/filler4-green.png";
+
+        Text = "According to the stories you have heard, Grimoire Island is inhabited not by a demon, but by a powerful witch called Ejada the Green. She is thought to be more than a thousand years old, and one legend is that she sealed a pact with an ancient earth god which guarantees her invulnerability so long as her feet remain on solid ground.\n\nBut, whether true or false, these folk-tales are not your first concern. Now you must sail on towards the first of the islands -- the one Oakley believes to be inhabited by savages.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 97; };
+};
+
+class Story059 : public Story::Base
+{
+public:
+    Story059()
+    {
+        ID = 59;
+
+        Text = "\"What is it you want of me? \"growls the god, fixing you in the sharp glare of his eyes.\n\n\"My Olympian lord,\" you begin, \"we are trapped on this ship...\"\n\n\"It's captain dared to pillage my shrine!\" Dionysus thunders. \"But we don't deserve this fate, lord,\" you protest.\n\nDionysus ponders your case. \"Perhaps not. If you were more my creature, I might be moved to mercy.\n\n\"Your creature, lord?\"\n\n\"The type of mortal I favour,\" continues Dionysus impatiently, \"is a roistering rowdy varlet, full of craziness and lusty with the more uproarious joys that life has to offer. Not for me these sober scholars with their books and scrolls.\"\n\n\"Not I, lord!\" you say hastily.\n\nHe nods thoughtfully. \"I wonder. Well, I'll whisk you off to your destination, but mind you're on your worst behaviour from now on. I can't abide a dainty do-gooder!\"At Dionysus's gesture, the wine soaking the decks rises in a cloud of giddying vapour. Reeling from the fumes, you grope out until you feel the hands of your friends. They cling to you as their only protection -- though, truth to tell, if the god had unleashed his full wrath then there would have been little enough that you could do.\n\nThe wine-mist clears. There is no sign of Dionysus or his panthers -- nor of the cursed ship. Now the four of you are huddle together in the corner of a dingy tavern. A burly barman stomps over and swabs at a puddle of spilled wine on the table in front of you. \"Ain't you got no homes to go to?\" he grumbles.\n\n\"Where are we?\" Oakley innocently asks him.\n\nThe barman gives him a contemptuous look. \"You drunken lubbers! This is a Slaughtered Goat tavern, in Port Leshand.\"\n\nYou have been spirited magically to where you wanted to go, but the god's services has its price. He has left your mind permanently tinged with exuberant madness that is his hallmark.\n\nYou must make room for the [ROGUERY] and [BRAWLING] skills.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::ROGUERY, Skill::Type::BRAWLING}))
+        {
+            Choices.push_back(Choice::Base("You already have these skills", 9));
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            player.SKILLS_LIMIT = 3;
+
+            Character::LOSE_SKILLS(player, {Skill::Type::BRAWLING});
+
+            Choices.push_back(Choice::Base("Make room for [ROGUERY]", -59, Choice::Type::LOSE_SKILLS, 2));
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            player.SKILLS_LIMIT = 3;
+
+            Character::LOSE_SKILLS(player, {Skill::Type::ROGUERY});
+
+            Choices.push_back(Choice::Base("Make room for [BRAWLING]", -59, Choice::Type::LOSE_SKILLS, 2));
+        }
+        else
+        {
+            Choices.push_back(Choice::Base("Make room for [ROGUERY] and [BRAWLING]", -59, Choice::Type::LOSE_SKILLS, 2));
+        }
+    }
+};
+
+class Event059 : public Story::Base
+{
+public:
+    Event059()
+    {
+        ID = -9;
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        player.SKILLS_LIMIT = 4;
+        player.Skills.push_back(Skill::ROGUERY);
+        player.Skills.push_back(Skill::BRAWLING);
+
+        return 9;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -1790,15 +2020,28 @@ auto story046 = Story046();
 auto story047 = Story047();
 auto story048 = Story048();
 auto story049 = Story049();
+auto story050 = Story050();
+auto story051 = Story051();
+auto story052 = Story052();
+auto story053 = Story053();
+auto story054 = Story054();
+auto story055 = Story055();
+auto story056 = Story056();
+auto story057 = Story057();
+auto story058 = Story058();
+auto story059 = Story059();
+auto event059 = Event059();
 
 void InitializeStories()
 {
     Stories = {
+        &event059,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
         &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
-        &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049};
+        &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
+        &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059};
 }
 
 #endif
