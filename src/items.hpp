@@ -28,8 +28,13 @@ namespace Item
         BOOK_OF_CHARTS,
         LODESTONE,
         MONKEY,
+        SHIP_IN_BOTTLE,
+        BLACK_KITE,
+        HEALING_POTION,
+        DIAMOND,
+        DEED_OF_OWNERSHIP,
         First = MAGIC_AMULET,
-        Last = MONKEY
+        Last = DEED_OF_OWNERSHIP
     };
 
     class Base
@@ -84,6 +89,11 @@ namespace Item
     auto BOOK_OF_CHARTS = Item::Base("BOOK OF CHARTS", "BOOK OF CHARTS", Item::Type::BOOK_OF_CHARTS);
     auto LODESTONE = Item::Base("LODESTONE", "LODESTONE", Item::Type::LODESTONE);
     auto MONKEY = Item::Base("MONKEY", "MONKEY", Item::Type::MONKEY);
+    auto SHIP_IN_BOTTLE = Item::Base("SHIP IN BOTTLE", "SHIP IN BOTTLE", Item::Type::SHIP_IN_BOTTLE);
+    auto BLACK_KITE = Item::Base("BLACK KITE", "BLACK KITE", Item::Type::BLACK_KITE);
+    auto DIAMOND = Item::Base("DIAMOND", "DIAMOND", Item::Type::DIAMOND);
+    auto HEALING_POTION = Item::Base("HEALING POTION", "HEALING POTION", Item::Type::HEALING_POTION);
+    auto DEED_OF_OWNERSHIP = Item::Base("DEED OF OWNERSHIP", "DEED OF OWNERSHIP", Item::Type::DEED_OF_OWNERSHIP);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::DRAGON_RING};

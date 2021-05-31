@@ -35,7 +35,7 @@ namespace Choice
         LOSE_CODEWORD,
         GAIN_MONEY,
         GIVE,
-        BUY_VEHICLE
+        BRIBE
     };
 
     class Base
@@ -51,7 +51,7 @@ namespace Choice
 
         Codeword::Type Codeword = Codeword::Type::NONE;
 
-        Ship::Type Ship = Ship::Type::NONE;
+        std::vector<Item::Type> Accept = std::vector<Item::Type>();
 
         int Value = 0;
 
@@ -155,20 +155,12 @@ namespace Choice
             Codeword = codeword;
         }
 
-        Base(const char *text, int destination, Choice::Type type, Ship::Type ship)
+        Base(const char *text, int destination, std::vector<Item::Type> bribe, int value)
         {
             Text = text;
             Destination = destination;
-            Type = type;
-            Ship = ship;
-        }
-
-        Base(const char *text, int destination, Choice::Type type, Ship::Type ship, int value)
-        {
-            Text = text;
-            Destination = destination;
-            Type = type;
-            Ship = ship;
+            Type = Choice::Type::BRIBE;
+            Accept = bribe;
             Value = value;
         }
     };
@@ -1972,6 +1964,232 @@ public:
     }
 };
 
+class Story060 : public Story::Base
+{
+public:
+    Story060()
+    {
+        ID = 60;
+
+        Text = "Raising your WAND you commence a chant of your own, calling upon the occult forces which empower your magic. Seeing this, the natives fall back with a frightened moan. Then one withered old man in a feather cloak steps forward: their shaman. Wielding an obscene wand carved from a human thigh bone, he screeches a hasty incantation and advances to match his sorcery against yours.\n\nSpells flash and sparkle in the air, but the uncanny duel is short-lived. Seeing that you are far more powerful a wizard than he, the shaman hurls his wand down into the sand in a gesture of surrender.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 22; };
+};
+
+class Story061 : public Story::Base
+{
+public:
+    Story061()
+    {
+        ID = 61;
+
+        Text = "Magic bends the very elements of nature to your will. The breeze obediently brings you the words of Skarvench and his cronies as they sit chatting over their bottle of grog. They are still more than fifty paces away, but you can now hear them as clearly as if they were right by your side!\n\n\"So what's this treasure for, Cap'n?\" hiccups the quartermaster.\n\n\"To pay a certain shipwright in Port Selenice, for one thing,\" says Skarvench. \"He's to be paid in gold for the new ship he's building us.\"\n\n\"New ship?\" says Porbuck the mate, roused from his dull witted torpor. \"I liked the old one...\"\n\n\"This one's better though. The Moon Dog, she's to be named, and her special sails were ensorcelled by the Queen's own wizard. Does things the Belle Dame never could.\"\n\n\"The Queen's wizard?\" repeat Curshaw.\n\n\"Aye, Will Wild himself. My dear half-brother! But he wants silver coins for his pains, see, so there's another reason for needing this here loot. Ahoy there, ye lazy lubbers, ain't you struck the box yet?\"\n\nThe two sailors look up from their work. \"Aye, Cap'n. Here it is.\"\n\nYou've heard enough.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Wait until they have taken the treasure aboard their ship and sailed off", 288));
+        Choices.push_back(Choice::Base("Risk attacking them in your weakened state", 267));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story062 : public Story::Base
+{
+public:
+    Story062()
+    {
+        ID = 62;
+
+        Text = "A funnel of wind whiplashes down out of the sky. As she feels it engulf her, Ejada gives vent to a cry of alarm and tries to catch a handhold on the palace wall. Her hair and robes billow in the wind and she is sucked inexorably into the air. To your amazement, you can now see something like green shoots or rootlets dangling from the soles of her feet. As soon as these are tugged out of the ground, she begins visibly to weaken and soon she is begging for mercy.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 157; };
+};
+
+class Story063 : public Story::Base
+{
+public:
+    Story063()
+    {
+        ID = 63;
+
+        Text = "Kemp nods. \"Just recently finished. Skarvench took delivery of her two days ago, a fine galleon of forty guns which he means to name Moon Dog. Got some queer features to her, though.\"\n\nYou press him on the point. \"Such as?\"\n\n\"Well, first off he had me install gunports along the keel. \"The ship'll sink,\" says I, but Skarvench would have none of it -- just chortled like an old crow and showed me the designs he'd brought. \"Along the keel,\" he insists, \"and mind you fit the masts thus and so; they've a fair load to lift.\"\n\n\"Eh?\" You're puzzled. \"What did he mean by that?\"\n\nKemp sighs, \"My own guess is worthless, so doubtless your own is better. It's not how I've built any ship before, and I've built hundreds. The timber was too light also -- pine is easily split by cannon -- but Skarvench only laughed fit to burst and said, \"It depends where the cannons be pointing!\" So in the end, since his gold was good, I did it the way he wanted. Now I have other customers to attend to, so I'll be bidding you good day.\"\n\n\"Where to now?\" says Oakley as you walk back to town.\n\nYou think for a moment. \"We'll take rooms at the Sweat o' the Brow inn. If Skarvench shows his face anywhere in Selenice, it'll be there.\"\n\nYou have never spoken a truer word, for no sooner have you stepped through the doorway of the inn than you are rooted to the spot in shock. There the fiend stands, large as life in front of you. A rum bottle is clutched in his hand and his crew throng the tap-room around him, cowering as he subjects them to one of his thunderous drunken rants.\n\nThen his eyes alights on you. His snarling voice is cut off in mid-sentence. A thin line of spittle runs down into his beard as his teeth show shark-like in a vicious grin. It is the moment you have waited for. Face to face with your dearest foe.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 14; };
+};
+
+class Story064 : public Story::Base
+{
+public:
+    Story064()
+    {
+        ID = 64;
+
+        Text = "A long moment passes while you sit thunderstruck gawping in amazement at the mermaid like four fishes in a net. She waits, serene as a statue. Then a slow smile appears on her lips and, raising her pale arms, she turns to swim away...\n\nIt is Blutz who reacts first, shocking himself with his own impetuosity. His arm shoots out and he seizes a hunk of the mermaid's long mauve-pink hair. For her part, she gives a cry of shock -- abrupt and musical, like the plucked string of a harp -- and twists in his grasp like an eel.\n\n\"I got her!\" cries Blutz. His eyes shine as he looks around at the rest of you, partly seeking applause and partly reassurance.\n\nThen the mermaid herself speaks. Clutching at Blutz's hand, she slowly relaxes her struggles and says, \"Release me, man of the dry land, and I will aid you.\" Managing to twist around until she faces you, her eyes flash with wild light as she adds: \"But if you should harm me, I'll lay a curse on you to harrow the hearts of all who hear of it!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[CHARMS] Counter any such curse", 83, Skill::Type::CHARMS));
+        Choices.push_back(Choice::Base("[SPELLS] Enthral her with magic", 102, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Recommend Blutz to turn her loose", 121));
+        Choices.push_back(Choice::Base("Ask her what lies ahead on your journey", 140));
+        Choices.push_back(Choice::Base("Ask bout the best course you can take to Port Leshand", 159));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story065 : public Story::Base
+{
+public:
+    Story065()
+    {
+        ID = 65;
+
+        Text = "Taking your leave of the drunken captain, you investigate the ship. It is built in a style rarely seen these days, with high structures to fore and aft and small brass cannons designed to fire grape-shot at any enemy attempting to board. \"An old vessel,\" decides Grimes, \"and somewhat in the Moorish style.\" He points to abstract fretwork carvings in the woodwork. \"Such geometrical decoration is typical of the Moors.\"\n\n\"What's this?\" asks Blutz. He has found a wooden casket on the main deck, beside the gangplank rail.\n\nGrimes rubs his jaw thoughtfully. \"Perhaps a water tank?\"\n\n\"Er... I don't think so,\" replies Blutz, eyes widening as he takes a peek inside the casket. \"You'd better take a look at this, mates.\"\n\nYou peer over his shoulder, almost yelping with shock at what you see inside the casket. For although it is half full of rainwater as Grimes surmised, it also contains several dozen skeletal hands.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 84; };
+};
+
+class Story066 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story066()
+    {
+        ID = 66;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "Rigging a small sail made from your torn shirts, you take the boat northwards. There you hope to find an island with food and fresh water to sustain you on the long journey back to civilization.\n\nHunger makes a knot of your belly, and thirst drives you to distraction.\n\nYou LOSE 1 Life Point.\n\n";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "You arrive at last at an island. Above the bright emerald line marking its jungle-fringed shore rises the steep cone of a volcano. Clouds of smoke wreath its summit, and you can see a dull red glimmer that can only be lava. \"Let's not put in here,\" say Blutz despite his thirst. \"It might erupt and kill us all.\"";
+
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                Choices.push_back(Choice::Base("Land here", 174));
+                Choices.push_back(Choice::Base("Head towards the next island in the chain", 135));
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 193; };
+};
+
+class Story067 : public Story::Base
+{
+public:
+    Story067()
+    {
+        ID = 67;
+
+        Text = "Few details of any sea-going craft escape your trained eye. You note that although Mortice's raft is made of oak planks, which is a heavy wood, it floats surprisingly light in the water. This is especially odd given that the raft also carries the burden of a man, a full rain barrel, and a large chest of provisions. You can only conclude there must be something buoyant lashed to the underside of the raft.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Query Mortice about this", 124));
+        Choices.push_back(Choice::Base("Let it lie", 105));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story068 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story068()
+    {
+        ID = 68;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "Scared witless by the gargoyle-prow and black sails of Skarvench's ship, the natives will not be easy to convince. Their chief believes the pirates will kill them if they suspect them of lying. In all honesty, you have to admit he is right. You must part with two items to bribe the natives. They will accept two of the following: a SWORD, a PISTOL, a MAGIC WAND, a MAGIC AMULET, a SHIP IN A BOTTLE, a CONCH-SHELL HORN, a BAT-SHAPED TALISMAN, a BLACK KITE, a DIAMOND, a TOOLKIT, a HEALING POTION, a BRONZE HELMET, a CRUCIFIX, or a DRAGON RING.";
+
+        auto count = 0;
+
+        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::SHIP_IN_BOTTLE, Item::Type::CONCH_SHELL_HORN, Item::Type::BAT_SHAPED_TALISMAN, Item::Type::BLACK_KITE, Item::Type::DIAMOND, Item::Type::TOOLKIT, Item::Type::HEALING_POTION, Item::Type::BRONZE_HELMET, Item::Type::CRUCIFIX, Item::Type::DRAGON_RING};
+
+        for (auto i = 0; i < bribe.size(); i++)
+        {
+            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+        }
+
+        if (count >= 2)
+        {
+            Choices.push_back(Choice::Base("Part with two such items", 144, bribe, 2));
+        }
+        else
+        {
+            PreText += "\n\nBut you are unable to part with such items.";
+        }
+        
+        Choices.push_back(Choice::Base("Stay here to confront Skarvench", 87));
+        Choices.push_back(Choice::Base("Run off into the jungle", 49));
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story069 : public Story::Base
+{
+public:
+    Story069()
+    {
+        ID = 69;
+
+        Image = "images/capstick-green.png";
+
+        Text = "Capstick has a fine house on Halyard Street, in one of the richest parts of town. Smartening yourselves up to look as respectable as possible, you ignore the sidelong glances and haughty sniffs of the wealthy passers-by, marching straight up to present yourselves at the front door. The servant who answers the door at first mistakes you for beggars, but once you've corrected that small misunderstanding he shows you through his master's study.\n\nCapstick is sitting by the fire with a book. Seeing you, he gives his great belly-shaking laugh and leaps up to greet you, commanding the servant to bring a bottle of sherry.\n\n\"Freshly taken off a Sidonian merchantman,\" he says shortly, lifting his glass to savour the smoky gold liquid before drinking. \"And..\" he smacks his lips, refills your glasses \"all the better for being plundered off one of those rascals, eh?\"\n\nSoon the conversation turns to the matters you discussed aboard the Jewel of Heaven. At this, Capstick's face falls. \"I have sour news,\" he tells you. \"I must sail for Glorianne in two days' time, and so I'll be unable to partner you in your attack on that devil Skarvench. Moreover I've told the tale to several high officials, but no one believes it's true.\"\n\nYou give a glum nod. \"Who can blame them, given the source of your information? We are vagabond ex-pirates, which is not the best pedigree for reliable testimony.\"\n\n\"But I believe you, by God!\" He produces an envelope and hands it to you. \"This is a DEED OF OWNERSHIP for a sloop that I own in Port Selenice. She's just a small craft, but better than no ship at all. Go to Selenice, get together a crew, and see if you can't beat this Skarvench at his own game.\"\n\nThanking Capstick for his help, you take your leave. \"I'm only sorry not to be sailing with you,\" are his parting words.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::DEED_OF_OWNERSHIP});
+    }
+
+    int Continue(Character::Base &player) { return 107; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -2033,6 +2251,16 @@ auto story057 = Story057();
 auto story058 = Story058();
 auto story059 = Story059();
 auto event059 = Event059();
+auto story060 = Story060();
+auto story061 = Story061();
+auto story062 = Story062();
+auto story063 = Story063();
+auto story064 = Story064();
+auto story065 = Story065();
+auto story066 = Story066();
+auto story067 = Story067();
+auto story068 = Story068();
+auto story069 = Story069();
 
 void InitializeStories()
 {
@@ -2043,7 +2271,8 @@ void InitializeStories()
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
         &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
         &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
-        &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059};
+        &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
+        &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069};
 }
 
 #endif

@@ -508,7 +508,7 @@ SDL_Surface *createHeaderButton(SDL_Window *window, const char *text, SDL_Color 
     return button;
 }
 
-std::vector<Button> createItemList(SDL_Window *window, SDL_Renderer *renderer, std::vector<Item::Base> list, int start, int last, int limit, bool confirm_button)
+std::vector<Button> createItemList(SDL_Window *window, SDL_Renderer *renderer, std::vector<Item::Base> list, int start, int last, int limit, bool confirm_button, bool back_button)
 {
     auto text_space = 8;
 
@@ -570,12 +570,15 @@ std::vector<Button> createItemList(SDL_Window *window, SDL_Renderer *renderer, s
     {
         idx = controls.size();
 
-        controls.push_back(Button(idx, "icons/yes.png", idx - 1, idx + 1, idx - 1, idx, startx, buttony, Control::Type::CONFIRM));
+        controls.push_back(Button(idx, "icons/yes.png", idx - 1, back_button ? idx + 1 : idx, idx - 1, idx, startx, buttony, Control::Type::CONFIRM));
     }
 
-    idx = controls.size();
+    if (back_button)
+    {
+        idx = controls.size();
 
-    controls.push_back(Button(idx, "icons/back-button.png", idx - 1, idx, list.size() > 0 ? (last - start) : idx, idx, (1.0 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
+        controls.push_back(Button(idx, "icons/back-button.png", idx - 1, idx, list.size() > 0 ? (last - start) : idx, idx, (1.0 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
+    }
 
     return controls;
 }
@@ -846,7 +849,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
 
         auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space);
 
-        auto controls = createItemList(window, renderer, Items, offset, last, display_limit, false);
+        auto controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
         TTF_Init();
 
@@ -951,7 +954,8 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                         }
 
                         controls.clear();
-                        controls = createItemList(window, renderer, Items, offset, last, display_limit, false);
+
+                        controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
                         SDL_Delay(50);
                     }
@@ -985,7 +989,8 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                         }
 
                         controls.clear();
-                        controls = createItemList(window, renderer, Items, offset, last, display_limit, false);
+
+                        controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
                         SDL_Delay(50);
 
@@ -1028,7 +1033,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                             }
 
                             controls.clear();
-                            controls = createItemList(window, renderer, Items, offset, last, display_limit, false);
+                            controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
                             std::string description = item.Name;
 
@@ -1079,7 +1084,8 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                                 }
 
                                 controls.clear();
-                                controls = createItemList(window, renderer, Items, offset, last, display_limit, false);
+
+                                controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
                                 std::string description = item.Name;
 
@@ -1168,7 +1174,7 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
         auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space);
 
-        auto controls = createItemList(window, renderer, items, offset, last, limit, true);
+        auto controls = createItemList(window, renderer, items, offset, last, limit, true, true);
 
         TTF_Init();
 
@@ -1315,7 +1321,8 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                         }
 
                         controls.clear();
-                        controls = createItemList(window, renderer, items, offset, last, limit, true);
+
+                        controls = createItemList(window, renderer, items, offset, last, limit, true, true);
 
                         SDL_Delay(50);
                     }
@@ -1349,7 +1356,8 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                         }
 
                         controls.clear();
-                        controls = createItemList(window, renderer, items, offset, last, limit, true);
+
+                        controls = createItemList(window, renderer, items, offset, last, limit, true, true);
 
                         SDL_Delay(50);
 
@@ -1433,6 +1441,338 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
     return done;
 }
 
+bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, std::vector<Item::Type> item_types, int Limit)
+{
+    auto done = false;
+
+    if (Limit > 0)
+    {
+        auto scrollSpeed = 1;
+        auto limit = 8;
+        auto offset = 0;
+        auto last = offset + limit;
+
+        if (last > player.Items.size())
+        {
+            last = player.Items.size();
+        }
+
+        const char *message = NULL;
+
+        auto error = false;
+
+        Uint32 start_ticks = 0;
+        Uint32 duration = 3000;
+
+        auto text_space = 8;
+
+        auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space);
+
+        auto controls = createItemList(window, renderer, player.Items, offset, last, limit, true, false);
+
+        TTF_Init();
+
+        auto font = TTF_OpenFont(FONT_FILE, 20);
+
+        auto selected = false;
+        auto current = -1;
+        auto quit = false;
+        auto scrollUp = false;
+        auto scrollDown = false;
+        auto hold = false;
+
+        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto boxh = 0.125 * SCREEN_HEIGHT;
+
+        auto selection = std::vector<int>();
+
+        while (!done)
+        {
+            last = offset + limit;
+
+            if (last > item_types.size())
+            {
+                last = item_types.size();
+            }
+
+            SDL_SetWindowTitle(window, "Down Among the Dead Men");
+
+            fillWindow(renderer, intWH);
+
+            if (error)
+            {
+                if ((SDL_GetTicks() - start_ticks) < duration)
+                {
+                    putText(renderer, message, font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh * 2, startx, starty);
+                }
+                else
+                {
+                    error = false;
+                }
+            }
+
+            if (!error)
+            {
+                std::string lose_message = "";
+
+                if (item_types.size() > 1)
+                {
+                    if (Limit > 1)
+                    {
+                        lose_message = "You must GIVE UP " + std::to_string(Limit) + " items.";
+                    }
+                    else
+                    {
+                        lose_message = "Choose an item to GIVE UP.";
+                    }
+                }
+                else
+                {
+                    lose_message = "GIVE UP this item";
+                }
+
+                putText(renderer, lose_message.c_str(), font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+            }
+
+            std::string lose = "";
+
+            if (selection.size() > 0)
+            {
+                for (auto i = 0; i < selection.size(); i++)
+                {
+                    if (i > 0)
+                    {
+                        lose += ", ";
+                    }
+
+                    std::string description = player.Items[selection[i]].Name;
+
+                    if (player.Items[selection[i]].Charge >= 0)
+                    {
+                        description += " (";
+
+                        if (player.Items[selection[i]].Charge >= 0)
+                        {
+                            description += std::to_string(player.Items[selection[i]].Charge) + " charges";
+                        }
+                        else
+                        {
+                            description += "empty";
+                        }
+
+                        description += ")";
+                    }
+
+                    lose += description;
+                }
+            }
+
+            putText(renderer, "SELECTED", font, text_space, clrWH, intDB, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (3 * boxh + infoh));
+            putText(renderer, selection.size() > 0 ? lose.c_str() : "(None)", font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, 3 * boxh, startx, starty + text_bounds - 3 * boxh);
+
+            fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
+
+            renderButtons(renderer, controls, current, intGR, text_space, text_space / 2);
+
+            if (last - offset > 0)
+            {
+                for (auto i = 0; i < last - offset; i++)
+                {
+                    if (Item::FIND(selection, offset + i) >= 0)
+                    {
+                        drawRect(renderer, controls[i].W + 2 * text_space, controls[i].H + 2 * text_space, controls[i].X - text_space, controls[i].Y - text_space, intDB);
+                    }
+                }
+            }
+
+            done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
+
+            if ((selected && current >= 0 && current < controls.size()) || scrollUp || scrollDown || hold)
+            {
+                if (controls[current].Type == Control::Type::SCROLL_UP || (controls[current].Type == Control::Type::SCROLL_UP && hold) || scrollUp)
+                {
+                    if (offset > 0)
+                    {
+                        offset -= scrollSpeed;
+
+                        if (offset < 0)
+                        {
+                            offset = 0;
+                        }
+
+                        last = offset + limit;
+
+                        if (last > item_types.size())
+                        {
+                            last = item_types.size();
+                        }
+
+                        controls.clear();
+
+                        controls = createItemList(window, renderer, player.Items, offset, last, limit, true, false);
+
+                        SDL_Delay(50);
+                    }
+
+                    if (offset <= 0)
+                    {
+                        current = -1;
+
+                        selected = false;
+                    }
+                }
+                else if (controls[current].Type == Control::Type::SCROLL_DOWN || ((controls[current].Type == Control::Type::SCROLL_DOWN && hold) || scrollDown))
+                {
+                    if (item_types.size() - last > 0)
+                    {
+                        if (offset < item_types.size() - limit)
+                        {
+                            offset += scrollSpeed;
+                        }
+
+                        if (offset > item_types.size() - limit)
+                        {
+                            offset = item_types.size() - limit;
+                        }
+
+                        last = offset + limit;
+
+                        if (last > item_types.size())
+                        {
+                            last = item_types.size();
+                        }
+
+                        controls.clear();
+
+                        controls = createItemList(window, renderer, player.Items, offset, last, limit, true, false);
+
+                        SDL_Delay(50);
+
+                        if (offset > 0)
+                        {
+                            if (controls[current].Type != Control::Type::SCROLL_DOWN)
+                            {
+                                current++;
+                            }
+                        }
+                    }
+
+                    if (item_types.size() - last <= 0)
+                    {
+                        selected = false;
+
+                        current = -1;
+                    }
+                }
+                else if (controls[current].Type == Control::Type::ACTION && !hold)
+                {
+                    if (current >= 0 && current < controls.size())
+                    {
+                        auto result = Item::FIND(selection, offset + current);
+
+                        if (result >= 0)
+                        {
+                            selection.erase(selection.begin() + result);
+                        }
+                        else
+                        {
+                            if (selection.size() < Limit)
+                            {
+                                auto found = false;
+
+                                auto type = player.Items[offset + current].Type;
+
+                                for (auto i = 0; i < item_types.size(); i++)
+                                {
+                                    if (type == item_types[i])
+                                    {
+                                        found = true;
+
+                                        break;
+                                    }
+                                }
+
+                                if (found)
+                                {
+                                    selection.push_back(offset + current);
+                                }
+                                else
+                                {
+                                    error = true;
+
+                                    message = "This is unacceptable. Please choose another.";
+
+                                    start_ticks = SDL_GetTicks();
+                                }
+                            }
+                        }
+                    }
+
+                    current = -1;
+
+                    selected = false;
+                }
+                else if (controls[current].Type == Control::Type::CONFIRM && !hold)
+                {
+                    if (selection.size() == Limit)
+                    {
+                        auto items = std::vector<Item::Base>();
+
+                        for (auto i = 0; i < player.Items.size(); i++)
+                        {
+                            auto found = false;
+
+                            for (auto j = 0; j < selection.size(); j++)
+                            {
+                                if (i == selection[j])
+                                {
+                                    found = true;
+
+                                    break;
+                                }
+                            }
+
+                            if (!found)
+                            {
+                                items.push_back(player.Items[i]);
+                            }
+                        }
+
+                        player.Items = items;
+
+                        current = -1;
+
+                        selected = false;
+
+                        done = true;
+
+                        break;
+                    }
+                    else
+                    {
+                        message = "Please select item(s) to GIVE UP";
+
+                        error = true;
+
+                        start_ticks = SDL_GetTicks();
+                    }
+                }
+            }
+        }
+
+        if (font)
+        {
+            TTF_CloseFont(font);
+
+            font = NULL;
+        }
+
+        TTF_Quit();
+    }
+
+    return done;
+}
+
 void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font, Character::Base &player)
 {
     const int profilew = SCREEN_WIDTH * (1.0 - 2.0 * Margin);
@@ -1497,7 +1837,6 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
         if (player.Ship.Stars > 0)
         {
             name_string += " " + std::string(player.Ship.Stars, '#') + std::string(5 - player.Ship.Stars, '-') + " ";
-
         }
 
         name_string += ")";
@@ -3184,6 +3523,16 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
 
                                 error = true;
                             }
+                        }
+                        else if (story->Choices[current].Type == Choice::Type::BRIBE)
+                        {
+                            loseItems(window, renderer, player, story->Choices[current].Accept, story->Choices[current].Value);
+
+                            next = (Story::Base *)findStory(story->Choices[current].Destination);
+
+                            done = true;
+
+                            break;
                         }
                         else if (story->Choices[current].Type == Choice::Type::GET_CODEWORD)
                         {
