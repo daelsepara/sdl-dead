@@ -25,20 +25,20 @@ namespace Codeword
     };
 
     std::map<Codeword::Type, const char *> Descriptions = {
-        {Codeword::Type::AUGUST, "AUGUST"},
-        {Codeword::Type::CHANCERY, "CHANCERY"},
-        {Codeword::Type::DETRUDE, "DETRUDE"},
-        {Codeword::Type::FETISH, "FETISH"},
-        {Codeword::Type::HORAL, "HORAL"},
-        {Codeword::Type::ICARUS, "ICARUS"},
-        {Codeword::Type::MALEFIC, "MALEFIC"},
-        {Codeword::Type::MAMMON, "MAMMON"},
-        {Codeword::Type::MARATHON, "MARATHON"},
-        {Codeword::Type::PECCANT, "PECCANT"},
-        {Codeword::Type::PROSPERO, "PROSPERO"},
-        {Codeword::Type::RAVEN, "RAVEN"},
-        {Codeword::Type::SCRIP, "SCRIP"},
-        {Codeword::Type::FLOAT, "FLOAT"}};
+        {Codeword::Type::AUGUST, "August"},
+        {Codeword::Type::CHANCERY, "Chancery"},
+        {Codeword::Type::DETRUDE, "Detrude"},
+        {Codeword::Type::FETISH, "Fetish"},
+        {Codeword::Type::HORAL, "Horal"},
+        {Codeword::Type::ICARUS, "Icarus"},
+        {Codeword::Type::MALEFIC, "Malefic"},
+        {Codeword::Type::MAMMON, "Mammon"},
+        {Codeword::Type::MARATHON, "Marathon"},
+        {Codeword::Type::PECCANT, "Peccant"},
+        {Codeword::Type::PROSPERO, "Prospero"},
+        {Codeword::Type::RAVEN, "Raven"},
+        {Codeword::Type::SCRIP, "Scrip"},
+        {Codeword::Type::FLOAT, "Float"}};
 
 } // namespace Codeword
 #endif

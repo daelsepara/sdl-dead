@@ -1496,7 +1496,7 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
 
         if (player.Ship.Stars > 0)
         {
-            name_string += " [" + std::string(player.Ship.Stars, '#') + std::string(5 - player.Ship.Stars, '-') + "] ";
+            name_string += " " + std::string(player.Ship.Stars, '#') + std::string(5 - player.Ship.Stars, '-') + " ";
 
         }
 

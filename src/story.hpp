@@ -1437,6 +1437,289 @@ public:
     int Continue(Character::Base &player) { return 172; }
 };
 
+class Story040 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story040()
+    {
+        ID = 40;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Put in at at the island", 28));
+        Choices.push_back(Choice::Base("Continue on your present course", 47));
+        Choices.push_back(Choice::Base("Detour northwards towards the Smoking Islands", 66));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "By steering a southerly route you take advantage of the prevailing east current which should bear you to Port Leshand with the need for hard effort at the oars. Additionally, there is always the chance that you will be picked up by one of the many ships that ply these waters\n\nAfter a whole day at sea you do not have such hopes. In all that tie you have seen nothing but the boundless expanse of ocean all around you. The sky is cloudless, giving you no respite from the sun that beats mercilessly down from dawn to dusk. By night a cool wind leaves you huddled, shivering, inside your ragged clothes.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            PreText += "[WILDERNESS LORE] ";
+
+            DAMAGE = -1;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                PreText += "\n\n[WILDERNESS LORE] You soak your ragged clothes in the sea to keep yourself warm at night and cool during the day.";
+            }
+
+            PreText += "\n\nShortly after sunrise on the second day, you catch sight of a small uncharted island off to port. In form it is a rough hump of rock with no more than a hundred paces from side to side, girt with weed and sandbanks covered with clumps of greenish algae.\n\n\"A coral reef,\" decides Grimes, noting the vague orange-pink shadow of rocks beneath the waves. \"There could at least be fresh rainwater here -- and insects, if not birds.\"\n\n\"What do we want with insects?\" asks Blutz in disgust.\n\n\"Food,\" you tell him. \"Necessity must overrule nicety if we're to survive.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story041 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story041()
+    {
+        ID = 41;
+
+        Image = "images/throwing-rocks-green.png";
+
+        Bye = "You slump down into the bottom of the boat with an exhausted sigh of relief as you finally get out to open sea beyond reach of the islander's bombardment.\n\n\"I think they wanted us to stay for dinner,\" jokes Oakley with grim humour. \"I hope the natives on the next island are more friendly.\"\n\nSo do you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Heavy stones fly about you like shots from a cannon as you beat your retreat. Several of them thud harmlessly into the soft sand but then you feel a hot slash of pain as one strikes the inside of your head, leaving a ragged gash. You stumble, but Blutz catches your arm and helps you into the boat.\n\nYou lose consciousness for a moment. The next thing you know, the boat is already out amid the waves with Oakley and Grimes plying the oars for all they're worth.\n\nThe battering hail of rocks continues as the natives watch you row away.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            PreText += "[CHARMS] ";
+
+            DAMAGE = -1;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 116; }
+};
+
+class Story042 : public Story::Base
+{
+public:
+    Story042()
+    {
+        ID = 42;
+
+        Text = "You tread on a twig and Skarvench and his cronies leap up with angry roars to do battle. Discovered, you have no recourse but to rush in on them.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ROGUERY) && !Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            return -1;
+        }
+        else
+        {
+            return 80;
+        }
+    }
+
+    int Continue(Character::Base &player) { return 267; };
+};
+
+class Story043 : public Story::Base
+{
+public:
+    Story043()
+    {
+        ID = 43;
+
+        Text = "\"These are glad tidings!\" he declares with enthusiasm. \"I am always happy to launch gentlemen of fortune on their careers.\"\n\nFor the next hour you are shown around the shipyard while discussing the exact specifications of your new ship. You explain to Kemp everything you want, from the timber to be used and the kind of armaments right down to details such as cargo capacity, the figurehead, and even the cabin fittings.\n\n\"You know your vessels,\" he says approvingly. \"Naturally, in view of the fact that on every point you have stipulated that you want materials and labour of only the soundest and best quality, you must appreciate that the price will not be cheap.\"\n\nYou add up the costs and discover that you will need at least one DIAMOND to purchase even a small second-hand ship. Failing that, you will have to obtain one some other way. Promising to return as soon as you have come to a firm decision, you take your leave of Master Kemp and walk back into town.\n\n\"Where to now?\" says Oakley.\n\nYou think for a moment. \"We'll take rooms at the Sweat of the Brow inn. If Skarvench shows his face anywhere in Selenice, it'll be there.\"\n\nNever a truer word was spoken. You arrive at the inn and stand frozen in shock in the doorway. There the devil stands, large as life in front of you. A rum bottle is clutched in his hand and his crew throng the tap-room around him, cowering as he subjects them to one of his thunderous drunken rants.\n\nThen his eye alights on you. His snarling voice is cut off in mid-sentence. A thin line of spittle runs down into his beard as his teeth show shark-like in a vicious grin. It is the moment you have waited for. Face to face with your arch foe.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 14; };
+};
+
+class Story044 : public Story::Base
+{
+public:
+    Story044()
+    {
+        ID = 44;
+
+        Text = "Blutz directs the crew to fetch up the cargo from the hold. At first you have no idea what he's talking about, then you remember the barrels of rock salt that the last owner of the Lady of Shalott left aboard when he sold her. The light begins to dawn when Blutz orders the cannons loaded with this salt. The first broadside scours the surface of the iceberg, and it is not long before water is trickling down in the hot noon sun.\n\n\"I remembered that salt can be used to melt ice and snow,\" explains Blutz, beaming with elation at the success of his plan. After two more broadsides the salt has etched its way deep into the ice and there comes a continuous crackling sound as the iceberg slowly breaks apart under the onslaught.\n\nAn attack with pickaxes completes the task. Soon the ice has been chipped away to leave a deep gouge, and the OCTAVIUS comes drifting forth gleaming into the full daylight. You board her, abandoning the sloop, and set a northward course.\n\nThe days pass and your new ship is a delight, handling better than any vessel you've ever sailed. You feel a glow of pride as you at last steer her through the harbour gate and up to the Selenice docks.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::OCTAVIUS);
+    }
+
+    int Continue(Character::Base &player) { return 184; };
+};
+
+class Story045 : public Story::Base
+{
+public:
+    Story045()
+    {
+        ID = 45;
+
+        Text = "Mermaids are like all faerie creatures in being motivated by caprice. They can be cruel or kind, as the whim takes them. It is well known that they sometimes seek the company of mortal men, whom they entice with their beauty and promise of secret wealth, because they constantly yearn to draw a little of the surface world's warmth and vitality into their own submerged realm of twilit silence. Few who have succumbed to a mermaid's lures survive to tell the tale. There are cases of men who have tarried a while under the sea, then returned with the gift of second sight -- for the mermaids are able to grant knowledge of future events. Such cases are rare. A more likely fate is to be washed up ton the beach, leeched of breath by the mermaid's kiss, dead face forever frozen in fearful rapture of having heard the mermaid's secrets and witnessed her unearthly beauty.\n\nYou know one more thing. Any question put to a mermaid must be answered truthfully if the questioner has a firm grip on her. In that respect, too, she is like any other faerie creature.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 64; };
+};
+
+class Story046 : public Story::Base
+{
+public:
+    Story046()
+    {
+        ID = 46;
+
+        Text = "Slurring his words, Mandrigard peers soddenly at you across the table. \"It's more talk you want, is it? Well, I'm talked out. Not all the blabber in a thousand harems will wipe out the curse I carry with me -- and you poor dolts are part of that curse now -- now, and forevermore!\"\n\nWine-soaked spittle sprays out from his lips as he screams all this. The look in his eyes is like the fires of hell. Then suddenly his eyelids droop, and he slumps forward across the treasure, mumbling, \"See this scar on my left hand? There's the proof, y'see? 'Tis where I broke the lock of that heathen shrine. See the stain of my curse, do you?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 65; };
+};
+
+class Story047 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story047()
+    {
+        ID = 47;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Improvise Something with [SEAFARING]", 218, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("... or [WILDERNESS LORE]", 218, Skill::Type::WILDERNESS_LORE));
+        Choices.push_back(Choice::Base("Eat a MONKEY", 237, {Item::MONKEY}));
+        Choices.push_back(Choice::Base("Otherwise", 275));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "A little rainfall helps to slake your thirst, but hunger still chews at your bellies and the constant blaze of the sun makes you dizzy.\n\nYou LOSE 1 Life Point.\n\n";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "Squinting into the sunset, Oakley gives a sudden cry of anguish. \"Another night of this, God rot me, and I'll be as mad as a gannet! If we only had something to eat.\" He gnaws the leather of his belt just to have a taste of something solid in his mouth.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story048 : public Story::Base
+{
+public:
+    Story048()
+    {
+        ID = 48;
+
+        Text = "You eat and drink while listening to Mortice tell his tale. It is a gruesome story, beginning with a storm at sea. Mortice was washed ashore on a deserted island along with a dozen corpses of his former shipmates. After many months he was picked up by a ship called Cold Grue, but there his hope soon turned to despair. \"By day I was locked up in the fo'c'sle, and only let out at night to toil on deck. I never knew a harsher taskmaster than El Draque, the captain of that fell ship! There were other poor sailors aboard with me, and if ever you set a foot wrong -- or even if you didn't, sometimes -- you'd be taken down to the hold an' never seen again. Once I watched El Draque and his corsairs bury treasure by moonlight on a stretch o' shore off Tortoise Island, under a rock marked with crossed bones. Aye, I marked that well; I'd be goin' back there, if I had myself a ship that could outrun the Cold Grue!\"\n\n\"And how did you escape?\" asks Blutz, chomping on a chicken leg.\n\n\"Why, I made myself this raft and starved until I was so thin I could squeeze out the fo'c'sle hatch like any bag of old scraps. There wasn't a soul stirring on deck during the hours o' daylight, you see. So I loaded up food and water and pushed off. Been adrift for weeks, I have, till I caught sight o' you jolly lads!\" He refills your cups from the full barrel beside him.\"\n\nYou gained the codeword RAVEN.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::RAVEN});
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 67;
+        }
+        else
+        {
+            return 105;
+        }
+    }
+};
+
+class Story049 : public Story::Base
+{
+public:
+    Story049()
+    {
+        ID = 49;
+
+        Text = "You race off into the jungle not a moment too soon. Turning to peer back from the crest of a wooded hill, you see the Belle Dame already riding at anchor offshore. A rowboat is bringing Skarvench and his cut-throats to the beach even now.\n\n\"He'll never leave until he's found us,\" mutters Oakley as you trudge on through the dense green thickets.\n\n\"It's a big island,\" you call back over your shoulder. \"If we stay hidden long enough, he'll have to give up the search and leave. For all he knows we might be dead already.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            return 144;
+        }
+        else
+        {
+            return 163;
+        }
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -1477,6 +1760,16 @@ auto story036 = Story036();
 auto story037 = Story037();
 auto story038 = Story038();
 auto story039 = Story039();
+auto story040 = Story040();
+auto story041 = Story041();
+auto story042 = Story042();
+auto story043 = Story043();
+auto story044 = Story044();
+auto story045 = Story045();
+auto story046 = Story046();
+auto story047 = Story047();
+auto story048 = Story048();
+auto story049 = Story049();
 
 void InitializeStories()
 {
@@ -1484,7 +1777,8 @@ void InitializeStories()
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
-        &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039};
+        &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
+        &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049};
 }
 
 #endif
