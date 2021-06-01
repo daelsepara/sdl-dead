@@ -594,7 +594,7 @@ public:
     {
         ID = 6;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler2-green.png";
 
         Choices.clear();
 
@@ -1432,7 +1432,7 @@ public:
     {
         ID = 39;
 
-        Text = "The sailmaster is the officer in charge of day-to-day navigation of the ship. His tiny cabin is strewn about with papers, compasses, books and other maritime paraphernalia.\n\nA sound from the bunk directly by your shoulder makes you give a start of alarm. You thought the blasted cabin was empty! But just as you are lunging forward, the blanket is tossed aside and you have a clear view of the bunk's occupant -- not a sailor, but only the little monkey that serves as the ship's mascot. Mister Chatter is what the crew call him. He squats on the bunk and watches as you search around the rest of the cabin.\n\nYou have time to grab two items from the following: a TOOLKIT, a BOOK OF CHARTS, a CRUCIFIX, a LODESTONE and the MONKEY.";
+        Text = "The sailmaster is the officer in charge of day-to-day navigation of the ship. His tiny cabin is strewn about with papers, compasses, books and other maritime paraphernalia.\n\nA sound from the bunk directly by your shoulder makes you give a start of alarm. You thought the blasted cabin was empty! But just as you are lunging forward, the blanket is tossed aside and you have a clear view of the bunk's occupant -- not a sailor, but only the little MONKEY that serves as the ship's mascot. Mister Chatter is what the crew call him. He squats on the bunk and watches as you search around the rest of the cabin.\n\nYou have time to grab two items from the following: a TOOLKIT, a BOOK OF CHARTS, a CRUCIFIX, a LODESTONE and the MONKEY.";
 
         Choices.clear();
 
@@ -2214,6 +2214,8 @@ public:
     {
         ID = 71;
 
+        Image = "images/filler4-green.png";
+
         Text = "The blind man is Greymalkin Smith. Once a pirate himself, he was blinded in powder keg explosion and now ekes out a living running errands around town and swapping gossip for drinks.\n\nYou have also seen the three ruffians before. In fact, just a few weeks ago you learned that the governor of Leshand has put a price on their heads.";
 
         Choices.clear();
@@ -2654,6 +2656,286 @@ public:
     int Continue(Character::Base &player) { return 76; }
 };
 
+class Story090 : public Story::Base
+{
+public:
+    Story090()
+    {
+        ID = 90;
+
+        Text = "You fetch a foaming stoop of ale. After fastidiously transferring the contents to his odd saucer-shaped goblet, he turns his blind gaze on you. \"You were with that Skarvench, weren't ye?\"\n\n\"How did you --?\" begins Blutz.\n\nHe holds up his hand. \"I hears a thing or two. Like about Skarvench doin' in old Marshy. I sailed with Marshy, lads, once upon a time, and Skarvench weren't fit to spit upon his shoes. Talkin' of Skarvench, you know the new ship he's had built, the Moon Dog? Fitted with silver sails that came in a crate all the way from Glorianne. An' why did Skarvench keep askin' around about full moons an' cloud cover an' such -- ain't tide tables good enough for him no more? Makes you wonder, mates. Is it lunacy, or is there method in his madness?\"\n\nHe's a fine one to talk about lunacy,\" whispers Grimes as you get up to leave.\n\n\"I heard that too!\" screeches Greymalkin after you. \"Ye'd do well to pay heed to what I told you, if ye want to live. Watch out for that basilisk he had shipped aboard an an' all.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            Choices.push_back(Choice::Base("Step in to save the scholar from being bullied", 52));
+            Choices.push_back(Choice::Base("Go to the shipyard", 374));
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            return 385;
+        }
+        else
+        {
+            return 109;
+        }
+    }
+};
+
+class Story091 : public Story::Base
+{
+public:
+    Story091()
+    {
+        ID = 91;
+
+        Image = "images/filler3-green.png";
+
+        Text = "A key that no-one can see or touch? A riddle set by an ocean god is a mere trifle for an artful trickster like yourself. Pursing your lips, you whistle a few bars of a jaunty tune. To the amazement of others, this causes the chain to unlock itself and fall aside, giving you admittance to the harbour.\n\nYou spread your hands and take a bow. \"It was the key of C,\" you explain with a smile.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 205; }
+};
+
+class Story092 : public Story::Base
+{
+public:
+    Story092()
+    {
+        ID = 92;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::ICARUS))
+        {
+            return 130;
+        }
+        else
+        {
+            return 149;
+        }
+    }
+};
+
+class Story093 : public Story::Base
+{
+public:
+    Story093()
+    {
+        ID = 93;
+
+        Text = "With your every thought focussed on the goal of finding the iceberg, you are blinded to the stirrings of mutiny. Oakley, Grimes and Blutz come to your cabin. Although you are all old comrades, they seem nervous in the face of your driving obsession. \"Skipper,\" begins Oakley, \"the crew are discontent. They fear you'll sail us off the edge of the world.\"\n\n\"Edge of the world? Pah!\" you fling your charts down and take a swig of rum. \"It's a thousand leagues from here, at least.\"\n\n\"I don't care for the look on their faces, Cap'n,\" presses Grimes. \"They look like mourners at a funeral -- our funeral, if you won't turn back.\"\n\nYou give a sour scowl. \"And you, Mister Blutz? Are you party to this insubordination too?\"\n\n\"I'd sail with you to hell, skipper, if you asked me,\" replies Blutz. \"It's just... well, I never till now though you'd ask!\"\n\nSuddenly the door crashes in. The crew stand there with drawn swords, the bo'sun at their head. \"Out on deck,\" he growls. \"'Tis time we settled this.\"\n\nYou and your comrades are hauled up and tied. A plank is fixed out over the side of the ship. Even now, it is livid rage rather than fear that consumes you. You curse them for their perfidy, but to no avail. With a sword at your back, you are forced to climb over the rail and walk until you run out of plank...";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story094 : public Story::Base
+{
+public:
+    Story094()
+    {
+        ID = 94;
+
+        Text = "It seems like hours. At last the storm blows over. The full moon appears -- a blazing white beacon. The clouds go draining away like pools of quicksilver in the vast dark blue dish of the sky.\n\n\"Ship ahoy!\" cries the lookout. \"She's the Rose!\"\n\nIt is indeed the Queen's proud flagship, her spars snapped and rigging torn from the storm she's just weathered. Even so, she is a daunting oaken fortress on the slow swell of the ocean. There is no sign of the escort fleet -- presumably scattered or sent to the deeps by the recent hurricane. You order a cautious approach, wary in case the Rose's gunners open fire on you out of panic.\n\nBut this uncanny night still has surprises in store, it seems. As you draw closer to the drifting Rose, thick white fog boils out from nowhere and spreads rapidly across the sea. Within a minute it has entirely obscured your view of the ship. You gaze out at the blanket of fog, luminous in the moonlight, sitting on the waters like a malevolent entity. Tendrils drift across your own deck, and the crew look up at you with expressions of confusion and fear.\n\nYou sniff the air. \"There's a smell of sorcery here, my lads,\" you say to the others.\n\n\"Look up there!\" cries one of the sailors, and suddenly there is a moan of awestruck amazement from everyone on deck. You lift your eyes towards the sky and feel a sudden chill of supernatural dead. Sailing down out of the scattered clouds, her silver sails filled with lunar light, comes Skarvench's enchanted galleon: the Moon Dog.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!(Character::VERIFY_CODEWORD(player, Codeword::Type::HORAL) && Character::VERIFY_ITEMS(player, {Item::Type::POCKET_WATCH})))
+        {
+            Choices.push_back(Choice::Base("Use a BAT-SHAPED TALISMAN", 151, {Item::BAT_SHAPED_TALISMAN}));
+            Choices.push_back(Choice::Base("Use a BLACK KITE", 170, {Item::BLACK_KITE}));
+            Choices.push_back(Choice::Base("Otherwise", 208));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 189; }
+};
+
+class Story095 : public Story::Base
+{
+public:
+    Story095()
+    {
+        ID = 95;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Calmly levelling your PISTOL, you shoot the end off the taper. \"By all that's unholy!\" sears Skarvench. \"I never seen such a shot!\"\n\nNeither have you, but you do not let surprise cost you your momentary advantage. You race in before Skarvench can relight the fuse, and in seconds the two of you are locked in a fight to death.\n\nYou were not able to reload your PISTOL in time. You will not be able use it again.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        for (auto i = 0; i < player.Items.size(); i++)
+        {
+            if (player.Items[i].Type == Item::Type::PISTOL)
+            {
+                // Disable first pistol
+                player.Items[i].Charge = 0;
+
+                break;
+            }
+        }
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story096 : public Story::Base
+{
+public:
+    Story096()
+    {
+        ID = 96;
+
+        Text = "You hurry into the cabin, startling the pet MONKEY which is perched on the bunk. Immediately it starts jumping up and down, chittering wildly, and the only thing you can do is grab it and stuff it into your haversack. Praying that no-one heard the noise, you head up on deck.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::MONKEY});
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
+class Story097 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story097()
+    {
+        ID = 97;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go ashore" , 173));
+        Choices.push_back(Choice::Base("Sail on towards the next island", 116));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Taking turns at the oars, you row westwards under the glare of a fierce sun. Soon your lips are parched, your necks blistered red in the heat. Everyone's spirits were at first buoyed up by the relief you felt at escaping from Skarvench's grasp, but soon you begin to wilt with the awful gnawing of discouragement and doubt. Will you survive long enough to reach land, or will the little jollyboat become your floating coffin?\n\n";
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            PreText += "[WILDERNESS LORE] You soaked your clothes in the water to protect yourself from the heat.";
+
+        }
+        else
+        {
+            Character::GAIN_LIFE(player, -1);
+
+            PreText += "You LOSE 1 Life Point through thirst, fatigue and heatstroke.";
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nAround noon of the second day you catch sight of Red Skull Island. \"Well?\" mutters Grimes through thirst-blackened lips. \"Do we risk going ashore? There might be fresh water... and food.\"\n\n\"Aye says Oakley.\" \"And it's us that might be the food, if there are cannibals in these parts.\"\n\nThey look to you to make the final decision.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story098 : public Story::Base
+{
+public:
+    Story098()
+    {
+        ID = 98;
+
+        Text = "The chief of the islander arrives. He is a very big man adorned in feathers and glass trinkets, with a weathered grey face like a carving in driftwood. Dipping his finger in a coconut-shell dish carried by an attendant, he proceeds to draw a design on your face in red dye.\n\n\"It's just like the warpaint of these natives,\" says Grimes, looking at you. \"I wonder what that means?\"\n\n\"Maybe he's inviting me to join the tribe,\" you say with a wry smile.\n\nNext the tribal shaman comes forward and draws a picture in the sand with his long bony fingers. It shows a woman with a scorpion crown. He spits on the picture, then lifts his ceremonial sceptre and points westwards. The chief says something which sounds like, \"Matya Ejada niyu,\" and each of the islanders in turn nods and repeats the words before stamping on the picture. Before long the image is completely lost in the scuffed sand.\n\n\"A curious little ritual,\" remarks Oakley. \"Now, why don't we shove off, mates before we outstay our welcome?\"\n\nYou have to agree. Clambering into the boat, you row off watched by the horde of silent islanders. \"You're not going to leave that warpaint on your face, are you?\" Oakley asks when you are well clear of the shore. \"It makes you look like a ruddy heathen.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Wash off the dye before it dries", 116));
+        Choices.push_back(Choice::Base("Leave it", 116, Choice::Type::GET_CODEWORD, Codeword::Type::SCRIP));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story099 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story099()
+    {
+        ID = 99;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Recognizing its former master, the little animal suddenly slips out of your grasp, bursts from the undergrowth and goes scampering towards him. Skarvench and his men leap up and seize their weapons, instantly alert. Standing rigid with a snarl stamped on this cruel face, Skarvench scans the jungle and then his eyes lock on yours despite the cover of foliage. You realise the game is up -- he's spotted you. You rise to your feet with a defiant battle-cry as he levels his pistol. Thirty paces separate you -- a distance you might cover in six seconds, from a standing start. A bullet can cross it in an instant...\n\nJust as Skarvench squeezes the trigger, the MONKEY leaps up and gives his wrist a painful nip. He bellows in range and the shot goes wide, whistling past your ear to embed itself in the bole of a tree. But you have no time to give thanks; within moments the pirates have closed in. The battle is joined, and you and your comrades are fighting for your lives.\n\n";
+
+        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        {
+            Character::GAIN_LIFE(player, -7);
+
+            PreText += "[SWORDPLAY] [MARKSMANSHIP] You LOSE 7 Life Points.";
+        }
+        else if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::BRAWLING, Skill::Type::MARKSMANSHIP}))
+        {
+            Character::GAIN_LIFE(player, -8);
+
+            PreText += "[BRAWLING] [MARKSMANSHIP] You LOSE 8 Life Points.";
+        }
+        else
+        {
+            PreText += "Your combination of skills are insufficient to save you. You are quickly slain.";
+
+            player.Life = 0;
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 23; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -2745,6 +3027,16 @@ auto story086 = Story086();
 auto story087 = Story087();
 auto story088 = Story088();
 auto story089 = Story089();
+auto story090 = Story090();
+auto story091 = Story091();
+auto story092 = Story092();
+auto story093 = Story093();
+auto story094 = Story094();
+auto story095 = Story095();
+auto story096 = Story096();
+auto story097 = Story097();
+auto story098 = Story098();
+auto story099 = Story099();
 
 void InitializeStories()
 {
@@ -2758,7 +3050,8 @@ void InitializeStories()
         &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
         &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
         &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
-        &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089};
+        &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
+        &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099};
 }
 
 #endif

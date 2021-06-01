@@ -605,8 +605,8 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
         auto marginw = Margin * SCREEN_WIDTH;
         auto marginh = Margin * SCREEN_HEIGHT / 2;
 
-        auto headerw = 0.6 * splashw;
-        auto headerh = 0.06 * SCREEN_HEIGHT;
+        auto headerw = 0.8 * splashw;
+        auto headerh = 0.07 * SCREEN_HEIGHT;
         auto space = 8;
         auto font_size = 18;
 
@@ -1044,7 +1044,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
 
                                 if (item.Charge > 0)
                                 {
-                                    description += std::to_string(item.Charge) + " charges";
+                                    description += std::to_string(item.Charge) + " bullets";
                                 }
                                 else
                                 {
@@ -1096,7 +1096,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
 
                                     if (item.Charge > 0)
                                     {
-                                        description += std::to_string(item.Charge) + " charges";
+                                        description += std::to_string(item.Charge) + " bullets";
                                     }
                                     else
                                     {
@@ -1267,7 +1267,7 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
                         if (items[selection[i]].Charge > 0)
                         {
-                            description += std::to_string(items[selection[i]].Charge) + " charges";
+                            description += std::to_string(items[selection[i]].Charge) + " bullets";
                         }
                         else
                         {
@@ -1554,7 +1554,7 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
 
                         if (player.Items[selection[i]].Charge >= 0)
                         {
-                            description += std::to_string(player.Items[selection[i]].Charge) + " charges";
+                            description += std::to_string(player.Items[selection[i]].Charge) + " bullets";
                         }
                         else
                         {
@@ -1779,8 +1779,8 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
     const int profilew = SCREEN_WIDTH * (1.0 - 2.0 * Margin);
     const int profileh = 0.12 * SCREEN_HEIGHT;
 
-    auto headerw = 0.6 * splashw;
-    auto headerh = 0.06 * SCREEN_HEIGHT;
+    auto headerw = 0.8 * splashw;
+    auto headerh = 0.07 * SCREEN_HEIGHT;
     auto space = 8;
 
     auto marginw = Margin * SCREEN_WIDTH;
@@ -1818,7 +1818,7 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
 
             if (player.Items[i].Charge > 0)
             {
-                possessions += std::to_string(player.Items[i].Charge) + " charges";
+                possessions += std::to_string(player.Items[i].Charge) + " bullets";
             }
             else
             {
@@ -2913,7 +2913,7 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
                     if (item.Charge > 0)
                     {
-                        choice += std::to_string(item.Charge) + " charges";
+                        choice += std::to_string(item.Charge) + " bullets";
                     }
                     else
                     {
@@ -3067,7 +3067,7 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
                                         if (item.Charge > 0)
                                         {
-                                            description += std::to_string(item.Charge) + " charges";
+                                            description += std::to_string(item.Charge) + " bullets";
                                         }
                                         else
                                         {
@@ -3396,7 +3396,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                             {
                                 if (Item::VERIFY(player.Items, story->Choices[current].Items[0]))
                                 {
-                                    message = "The item you are carrying is not charged!";
+                                    message = "The weapon you are carrying is not loaded!";
                                 }
                                 else
                                 {
@@ -3687,7 +3687,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
 
                                     if (Item::FIND_TYPE(player.Items, item) >= 0)
                                     {
-                                        message = "The item you are carrying is not charged!";
+                                        message = "The item you are carrying is not loaded!";
                                     }
                                     else
                                     {

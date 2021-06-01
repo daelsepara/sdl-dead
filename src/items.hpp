@@ -34,8 +34,9 @@ namespace Item
         DIAMOND,
         DEED_OF_OWNERSHIP,
         WEASEL,
+        POCKET_WATCH,
         First = MAGIC_AMULET,
-        Last = WEASEL
+        Last = POCKET_WATCH
     };
 
     class Base
@@ -96,6 +97,7 @@ namespace Item
     auto HEALING_POTION = Item::Base("HEALING POTION", "HEALING POTION", Item::Type::HEALING_POTION);
     auto DEED_OF_OWNERSHIP = Item::Base("DEED OF OWNERSHIP", "DEED OF OWNERSHIP", Item::Type::DEED_OF_OWNERSHIP);
     auto WEASEL = Item::Base("WEASEL", "WEASEL", Item::Type::WEASEL);
+    auto POCKET_WATCH = Item::Base("POCKET WATCH", "POCKET WATCH", Item::Type::POCKET_WATCH);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::DRAGON_RING};
