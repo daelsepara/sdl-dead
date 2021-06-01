@@ -3365,7 +3365,7 @@ public:
 
         if (count >= 1)
         {
-            Choices.push_back(Choice::Base("Give them a gift.", -117, bribe, 1));
+            Choices.push_back(Choice::Base("Give them a gift", -117, bribe, 1));
         }
         else
         {
