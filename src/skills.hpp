@@ -59,7 +59,7 @@ namespace Skill
     auto SEAFARING = Skill::Base("SEAFARING", "Knowing all about life at sea, including the ability to handle anything from a rowing boat right up to a large sailing ship.", Skill::Type::SEAFARING);
     auto SPELLS = Skill::Base("SPELLS", "A range of magical effects encompassing illusions, elemental effects, commands, and summonings. You must possess a MAGIC WAND to use this skill.", Skill::Type::SPELLS, Item::Type::MAGIC_WAND);
     auto STREETWISE = Skill::Base("STREETWISE", "With this skill you are never at a loss in towns and cities. What others see as the squalor and menace of narrow cobbed streets is home to you.", Skill::Type::STREETWISE);
-    auto SWORDPLAY = Skill::Base("SWORDPLAY", "The best fighting skill. You must possess a sword to use this skill.", Skill::Type::SWORDPLAY, Item::Type::SWORD);
+    auto SWORDPLAY = Skill::Base("SWORDPLAY", "The best fighting skill. You must possess a SWORD to use this skill.", Skill::Type::SWORDPLAY, Item::Type::SWORD);
     auto WILDERNESS_LORE = Skill::Base("WILDERNESS LORE", "A talent for survival in the wild - whether it be forest, desert, swamp or mountain peak.", Skill::Type::WILDERNESS_LORE);
 
     std::vector<Skill::Base> ALL = {Skill::AGILITY, Skill::BRAWLING, Skill::CHARMS, Skill::CUNNING, Skill::FOLKLORE, Skill::MARKSMANSHIP, Skill::ROGUERY, Skill::SEAFARING, Skill::SPELLS, Skill::STREETWISE, Skill::SWORDPLAY, Skill::WILDERNESS_LORE};

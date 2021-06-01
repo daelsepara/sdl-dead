@@ -575,9 +575,9 @@ public:
             PreText += "[Item: FEATHER SHIELD] ";
         }
 
-        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
-
         Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
 
         Text = PreText.c_str();
     }
@@ -2376,8 +2376,8 @@ public:
         Text = "Two more boxes are swiftly opened, their lids splintering under hard shovel-blows. These also contain dead bodies lying on bars of silver. The third gives you particular cause to shudder -- a thin rill of blood has caked on its lips, just as a careless or gluttonous man might leave a dribble of gravy.\n\n\"Vampires!\" gasps Blutz. All together you turn to look at the sun, now almost drowned in the western sea. In mere moments the last of the daylight will have drained away.\n\nBlutz pulls a stick from his belt and thrusts it into your hand. It is the broken stool-leg he got clouted with back in the tavern in Selenice. The end has splintered to leave a sharp point. Sharp enough to pierce a heart, if driven down with courage and strength.\n\nThere is just time to impale one of the three corpses you've unearthed. You glance from one to other. Which will it be?";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Choose the body with blood on its lips" , 169));
-        Choices.push_back(Choice::Base("... the one with a skull tattoo" , 188));
+        Choices.push_back(Choice::Base("Choose the body with blood on its lips", 169));
+        Choices.push_back(Choice::Base("... the one with a skull tattoo", 188));
         Choices.push_back(Choice::Base("... the one with ice-blue eyes", 150));
 
         Controls = Story::Controls::STANDARD;
@@ -2403,11 +2403,255 @@ public:
     void Event(Character::Base &player)
     {
         Take = {Item::FEATHER_SHIELD, Item::SHARKS_TOOTH_SWORD};
-        
+
         Limit = 2;
     }
 
     int Continue(Character::Base &player) { return 116; }
+};
+
+class Story080 : public Story::Base
+{
+public:
+    Story080()
+    {
+        ID = 80;
+
+        Text = "Moving with no more noise than a snake, you edge through the undergrowth until you are close enough to hear what Skarvench and the others. While the two seamen sweat over their spades, heaving up great clods of earth, Skarvench passes the grog bottle around and recounts his scurvy plans.\n\n\"So what's this treasure for, Cap'n?\" hiccups the quartermaster.\n\n\"To reward a certain shipwright in Port Selenice, for one thing,\" says Skarvench.\"He's to be paid in gold for the new ship he's building us.\"\n\n\"New ship?\" says Porbuck the mate, roused from his dull-witted torpor. \"I liked the old one.\"\n\nSkarvench ignores him. \"And the silver's for the Queen's wizard, William wild. He'll be supplying special sails for our new vessel -- aye, and a bit o' trickery into the bargain to ensure we take the Rose unhindered, me hearties!\" And he gives a low chuckle of perfect wickedness at the thought.\n\nThe scheming dog! His monstrous arrogance makes your blood boil.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Wait until they have taken the treasure aboard their ship and sailed off", 288));
+        Choices.push_back(Choice::Base("Risk attacking them in your weakened state", 267));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story081 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story081()
+    {
+        ID = 81;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Run away now", 5));
+        Choices.push_back(Choice::Base("Continue the duel with either a whirlwind spell", 62));
+        Choices.push_back(Choice::Base("... or a darkness spell", 100));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "A torrent of red fire crackles around Ejada but she stands steadfast, weathering the onslaught. Your spell fades leaving her charred and withered like a burnt wooden effigy. But then, in front of your astonished gaze, she rapidly regenerates and in seconds is completely unscathed!\n\n\"My mother's gift to her daughter: unending vitality,\" she explains with a triumphant smile. Then with a gesture she causes fists of rock to rip up out of the ground and pummel.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
+        {
+            PreText += "[Item:: FEATHER SHIELD] ";
+
+            DAMAGE += 3;
+        }
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            PreText += "[CHARMS] ";
+
+            DAMAGE += 1;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s)";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story082 : public Story::Base
+{
+public:
+    Story082()
+    {
+        ID = 82;
+
+        Text = "\"She was El Draque's ship,\" says Kemp. \"A fine stout vessel. I did some work on her once. Curious to choose a bat as your figurehead, but that was El Draque for you. Those scarlet sails can't have been cheap, either. I hear he was captured by the Gloriannic Navy and hanged at sea for his crimes -- though what became of the Grue, I can't say.\"\n\nKemp has other customers to attend to, so you bid him good day and walk back to town.\n\n\"Where to now?\" says Oakley.\n\nYou think for a moment. \"We'll take rooms at the Sweat o' the Brow inn. If Skarvench shows his face anywhere in Selenice, it'll be there.\"\n\nYou have never spoken a truer word, for no sooner have you stepped through the doorway of the inn than you are rooted to the spot in shock. There the fiend stands, large as life in front of you. A rum bottle is clutched in his hand and his crew throng the tap-room around him, cowering as he subjects them to one of this thunderous drunken rants.\n\nThen his eye alights on you. His snarling voice is cut off in mid-sentence. A thin line of spittle runs down into his beard as his teeth show shark-like in a vicious grin. It is the moment you have waited for. Face to face with your dearest foe.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 14; }
+};
+
+class Story083 : public Story::Base
+{
+public:
+    Story083()
+    {
+        ID = 83;
+
+        Text = "Touching your magical amulet, you utter the words of a brief incantation that will deflect any curse the mermaid might attempt.\n\nAt this she pouts. \"Such crude magic.\"\n\n\"Crude, perhaps, my lady,\" you return with a gallant flourish, \"but I have always found it no less effective for that\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SPELLS] Bring her under hypnotic control", 102, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Tell Blutz to let her go at once", 121));
+        Choices.push_back(Choice::Base("Ask her what lies ahead on your journey", 140));
+        Choices.push_back(Choice::Base("Ask her about the best course you can take to Port Leshand", 159));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story084 : public Story::Base
+{
+public:
+    Story084()
+    {
+        ID = 84;
+
+        Text = "Most of the hands are just bare bone, but a couple still show traces of skin and sinew. One even wears a gold ring, though none of you cares to fish it out of the tank. \"I'm glad we haven't drunk from this,\" says Oakley quietly, closing the lid. \"No wonder the captain prefers wine. It could fair kill a bloke's thirst for fresh water, it could.\"\n\n\"Here's what did the job,\" announces Grimes, picking something up off the deck. He hands it to you: a long-bladed butcher's cleaver.\n\n\"I'm for leaving right now,\" declares Blutz, quaking with fear. But as he tries to climb back down the jolly boat moored alongside, he makes an ominous discovery. \"I can't get over the rail. It's as if some supernatural force is tugging me back!\"\n\nThe same applies to the rest of you. \"The ship is cursed,\" says Grimes. \"And now shipmates, we're cursed too.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SEAFARING] Make repairs to the boat", 103, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("Use a TOOLKIT", 103, {Item::TOOLKIT}));
+        Choices.push_back(Choice::Base("Use [CHARMS]", 122, Skill::Type::CHARMS));
+        Choices.push_back(Choice::Base("Otherwise", 141));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story085 : public Story::Base
+{
+public:
+    Story085()
+    {
+        ID = 85;
+
+        Image = "images/giant-crab-green.png";
+
+        Text = "Before long the others call to you, saying they have collected a goodly share of barnacles and other succulent shellfish from the shore of the island. You have meanwhile been strolling around in search of fresh water, but every single pool that has formed in depressions in the rock has turned out to be full of brine.\n\nSuddenly there is a shuddering underfoot. The whole island begins to shake. Your companions utter cries of alarm and you see them run towards the boat, abandoning their pile of shellfish. \"It's sinking into the sea!\" screeches Blutz. \"Hurry or we'll be drowned!\"\n\nOut of the corner of your eye you see something break the surface of the sea. You turn watching aghast as it rises high up into the air. It is sharp and huge, its serrated edge casting an orange-red shadow across the sky. As it flexes open and closed, you stare at it dumbfounded. And then you realise what it is: a giant pincer.\n\nThe shock almost makes you pass out. This is no island. You're on the back of a gigantic crab.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 123;
+        }
+        else
+        {
+            return 142;
+        }
+    }
+};
+
+class Story086 : public Story::Base
+{
+public:
+    Story086()
+    {
+        ID = 86;
+
+        Text = "Maybe it is ungracious to harbour suspicions about Mortice when he has been kind enough to feed you. All the same, you cannot help but notice certain disquieting facts. For one thing, the supply of food and water he has left is amazing given that he shows every sign of having been adrift for weeks. Also, he declined to eat or drink anything himself while you were eating, not even joining your toast at the end of the meal. His bald statement on the subject was, \"I never drink grog.\" That is a very odd thing for any seaman to say. Finally, his insistence at getting a formal invitation to board your boat, along with the fact that he apparently finds the moonlight rather bright for his eyes, is little short of sinister.\n\nOn the other hand, maybe you've just been at this game too long. Its your choice.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Invite him aboard", 143));
+        Choices.push_back(Choice::Base("Let him spend the night where he is", 162));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story087 : public Story::Base
+{
+public:
+    Story087()
+    {
+        ID = 87;
+
+        Text = "Skarvench's face twists into a broad smile as he sees you striding along the foreshore towards him. But it is a smile to make your blood run with ice: the smile on a wolf's face before it seizes its prey.\n\n\"Ah, so you blokes have fared well!\" he thunders. \"Still hale and hearty, I see. And glad I am to see it, for I wanted to savour your deaths meself. Just knowing you'd been drowned would have left me inconsolable, like.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Fight him here and now", 182));
+        Choices.push_back(Choice::Base("Use a THUNDERCLOUD FAN", 315, {Item::THUNDERCLOUD_FAN}));
+        Choices.push_back(Choice::Base("Use a BAT-SHAPED TALISMAN", 334, {Item::BAT_SHAPED_TALISMAN}));
+        Choices.push_back(Choice::Base("Bide your time", 201));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story088 : public Story::Base
+{
+public:
+    Story088()
+    {
+        ID = 88;
+
+        Text = "Rumours abound in a port like Leshand. Some are mere gossip, some are tall tales, some are outright lies -- and a very few are the gospel truth. The trick lies in telling the difference.\n\nYou keep your ear to the ground for a day or two, trawling the taverns on the lookout for information. What are are you interested in finding out about?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Look for rumours concerning the pirate El Draque", 183));
+        Choices.push_back(Choice::Base("Look for information on Queen Titania's state visit", 221));
+        Choices.push_back(Choice::Base("Hear news of Skarvench", 297));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            Choices[0].Destination = 164;
+            Choices[1].Destination = 202;
+            Choices[2].Destination = 278;
+        }
+        else
+        {
+            Choices[0].Destination = 183;
+            Choices[1].Destination = 221;
+            Choices[2].Destination = 297;
+        }
+    }
+};
+
+class Story089 : public Story::Base
+{
+public:
+    Story089()
+    {
+        ID = 89;
+
+        Text = "\"You've given me a cannon-load o' trouble,\" says Skarvench. \"Here's where I pay you back -- with my trusty basilisk here.\"\n\nYou glance down to see that he is standing beside a cannon which is pointing straight at you. Skarvench shows you the lighted taper in his hand.\n\n\"You despicable cur!\" you snarl. \"You've no stomach for facing me at close quarters, I see.\"\n\n\"Stow your bluster, mate,\" he sneers. \"Here's where you retire to a safe distance. Thirty fathoms down!\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::WEASEL}))
+        {
+            Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 95, Skill::Type::MARKSMANSHIP));
+            Choices.push_back(Choice::Base("[CHARMS] Use a MAGIC AMULET", 114, Skill::Type::CHARMS));
+            Choices.push_back(Choice::Base("Use [AGILITY]", 133, Skill::Type::AGILITY));
+            Choices.push_back(Choice::Base("Otherwise", 152));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 76; }
 };
 
 auto prologue = Prologue();
@@ -2491,6 +2735,16 @@ auto story076 = Story076();
 auto story077 = Story077();
 auto story078 = Story078();
 auto story079 = Story079();
+auto story080 = Story080();
+auto story081 = Story081();
+auto story082 = Story082();
+auto story083 = Story083();
+auto story084 = Story084();
+auto story085 = Story085();
+auto story086 = Story086();
+auto story087 = Story087();
+auto story088 = Story088();
+auto story089 = Story089();
 
 void InitializeStories()
 {
@@ -2503,7 +2757,8 @@ void InitializeStories()
         &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
         &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
         &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
-        &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079};
+        &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
+        &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089};
 }
 
 #endif
