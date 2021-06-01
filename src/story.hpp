@@ -2845,7 +2845,7 @@ public:
         ID = 97;
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Go ashore" , 173));
+        Choices.push_back(Choice::Base("Go ashore", 173));
         Choices.push_back(Choice::Base("Sail on towards the next island", 116));
 
         Controls = Story::Controls::STANDARD;
@@ -2858,7 +2858,6 @@ public:
         if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
         {
             PreText += "[WILDERNESS LORE] You soaked your clothes in the water to protect yourself from the heat.";
-
         }
         else
         {
@@ -2934,6 +2933,211 @@ public:
     }
 
     int Continue(Character::Base &player) { return 23; }
+};
+
+class Story100 : public Story::Base
+{
+public:
+    Story100()
+    {
+        ID = 100;
+
+        Text = "Utter blackness falls like an iron door. You can hear your foe raging blindly, casting deadly bolts of occult force at random into the dark in her frenzied efforts to slay you.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Choices.push_back(Choice::Base("Follow up your advantage with a whirlwind spell", 62));
+            Choices.push_back(Choice::Base("Take advantage of the cover of darkness to sneak back to the boat", 6));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 176; }
+};
+
+class Story101 : public Story::Base
+{
+public:
+    Story101()
+    {
+        ID = 101;
+
+        Text = "Only one thing can save you and your comrades now. You must summon a rainstorm to provide you with the drinking water you so desperately need. But despite the dire straits you are now in, you cannot help hesitating. Conjuring with the weather is a risky business at best of times. The slightest slip can turn a breeze into a typhoon, or a scatter of snowflakes into a raging blizzard. You remember a time years ago, when you were just an apprentice wizard. You tried to conjure a sunny afternoon so you could go picnicking, only to start a three-week heat wave that burnt the fields brown and reduced rivers to muddy trickles.\n\nYou gaze a the wand in your hand. Mistakes like that are a long way in your past; you are an accomplished sorcerer now. On the other hand, the hurricane season is looming just a month away, and that makes the risk in summoning a storm particularly high.\n\n\"What are you waiting for?\" says Blutz. \"We'll die without fresh water.\"\n\n\"And what if rain swamps our boat and it sinks?\" you ask him. \"We'll be just as dead.\"\n\nDecide.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try conjuring rain", 10));
+        Choices.push_back(Choice::Base("Otherwise", 120));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story102 : public Story::Base
+{
+public:
+    Story102()
+    {
+        ID = 102;
+
+        Text = "\"Give me a hand!\" says Blutz. \"She's as slippery as a salmon.\"\n\nThe mermaid thrashes in his grasp, churning up sea-foam with her powerful tail, but Oakley and Grimes hurry to help, holding her fast until you can complete your spell. You chant the words. Her eyes glaze like frost; her struggling ceases. For a brief time, the magic makes her your slave.\n\n\"What is our best route home?\" you demand of her.\n\n\"Home?\" she says dully, speaking as though in deep sleep. \"Where is home?\"\n\n\"The far west. Port Leshand.\"\n\n\"Sail on your present course if you fear neither weird dooms nor fierce weather. Steer south if a witch's hospitality does not daunt you. West to face rain and wind and the nightmare ship; south to see the earth god's daughter.\"\n\nThere is along pause while you all weigh up these words. \"Er, perhaps not as lucid as we might've hoped...\" says Grimes.\n\n\"The best we'll get from a faerie creature, enthralled or not,\" you tell him. You dismiss the mermaid, breaking the spell with a snap of your fingers.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 178; }
+};
+
+class Story103 : public Story::Base
+{
+public:
+    Story103()
+    {
+        ID = 103;
+
+        Text = "You get the others' help in hooking the jollyboat's mooring rope and winching it up onto the desk by means of pulleys attached to the ship's yardarm. \"At least we can make sure our little craft is seaworthy,\" you tell the others as you bend to examine whatever damage the boat has taken during the days you have spent on the open ocean.\n\n\"Are you stark mad?\" says Oakley. \"We're trapped aboard a cursed ship, and all you find to do is fiddle with the damned jollyboat!\"\n\nYou hum a few bars of a sea shanty, then look up from your work with a relaxed grin. \"Let's think of a plan while we fix our boat up, mates. That way we'll be ready to jump ship when the chance comes our way.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::DETRUDE);
+        Character::REMOVE_CODEWORD(player, Codeword::Type::PECCANT);
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            return 122;
+        }
+        else
+        {
+            return 141;
+        }
+    }
+};
+
+class Story104 : public Story::Base
+{
+public:
+    Story104()
+    {
+        ID = 104;
+
+        Text = "Certain features of this island are ominously reminiscent of an old sea-myth concerning the giant crab Pusat Tassek. This crab is said to be as big as a house. It basks in mid-ocean with the top of its shell exposed, sometimes staying in one place so long that sands gathers on its back and plants start to grow there, all the while feeding on fish that it attracts to its maw with a sweet-smelling chemical secretion.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stay here to look for food", 85));
+        Choices.push_back(Choice::Base("Put to sea heading on your previous course westward", 47));
+        Choices.push_back(Choice::Base("Turn north towards the Smoking Islands", 66));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story105 : public Story::Base
+{
+public:
+    Story105()
+    {
+        ID = 105;
+
+        Image = "images/filler4-green.png";
+
+        Text = "\"So,\" says Mortice as you settle down to sleep, \"are you going to invite me aboard your boat, or leave me here on my blessed raft all night?\"\n\nOakley smiles at him. \"Are you standing on ceremony, mate? Waiting for a bloody invite?\"\n\nMortice takes ill against this joking retort. \"Aye,\" he growls, spitting into his beard. \"An invite's just what I'm after. Well, haven't ye dined like lords at my expense until you're as full as farmyard geese? Call me over, damn your veins!\"\n\nBlutz is understandably not keen to sleep beside a lunatic, no matter how charitable. He turns to you and mutters under his breath, \"Well, our boat's pretty cramped already -- and no more comfortable than his raft, I'd say.\"\n\n\"What's that whispering?\" snarls Mortice, stamping his foot. \"Secrecy and distrust!\" Is this how you repay a bit o' kindness, eh? Come on, will you ask me aboard or not?\"\n\n\"Ask the skipper,\" says Grimes, nodding towards you.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            Choices.push_back(Choice::Base("Ask Mortice to come aboard", 143));
+            Choices.push_back(Choice::Base("Let him stay on his raft", 162));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 86; }
+};
+
+class Story106 : public Story::Base
+{
+public:
+    Story106()
+    {
+        ID = 106;
+
+        Image = "images/jewel-of-heaven-green.png";
+
+        Text = "The clouds are black banners across the scarlet of sunset when, gazing into the face of approaching night, you spy a billowing sail gleaming wanly in the dusk. A ship bound for Leshand! Jumping to your feet, shouting and waving, you wait anxiously until an answering hail tells you they've seen you. The ship comes nearer, her prow sliding though the twilit waters, her sails pinned like sheets of gold against the darkening sky. Faces look down from the rail, and a rope ladder is lowered. You climb rapidly despite your fatigue, gladdened by the friendly speech of the sailors.\n\nA hand grasps yours and helps you up. \"Welcome aboard the Jewel of Heaven,\" says a Gloriannic voice. You do not reply at once, but fall on your knees alongside Oakley and the others, thanking almighty God for deliverance from the brink of doom.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 370; }
+};
+
+class Story107 : public Story::Base
+{
+public:
+    Story107()
+    {
+        ID = 107;
+
+        Text = "Finding a secluded snug in a tavern away from the docks, you consult with your friends as to what your next move should be.\n\nBlutz is all for telling the authorities what you know, \"They're in a better position than we are to protect Queen Titania,\" he argues.\n\n\"I disagree,\" says Grimes, \"An opportunity like this won't quickly come our way again. It's like the tide: take it at the flood and fortune follows; wait till it's out and you've missed your boat.\"\n\n\"We should go to Port Selenice,\" says Oakley. \"That's where Skarvench will go next. \"Let's see if we can't steal a march on the fiend and scupper his plans. The Gloriannic authorities will reward us richly, but even more important than that --\n\n\"More important than that, we get our revenge on Skarvench,\" you finish.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Head straight for Selenice", 145));
+        Choices.push_back(Choice::Base("Go to the governor first", 126));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story108 : public Story::Base
+{
+public:
+    Story108()
+    {
+        ID = 108;
+
+        Text = "The days pass, balmy and full of ease after your long deprivation. With rest and food you recover quickly from your ordeal.\n\nAt last you catch sight of land, and after tacking along the coast for a few hours you arrive at Leshand harbour. A forest of masts sways along the wharf, and the sharp smells of tar and fish waft on the air. As the Jewel of Heaven ties up at the quayside, you are anxious to gather your few belongings and go ashore.\n\n\"Dry land,\" says Oakley, in the tone of a man greeting his long-lost sweetheart. \"I never thought to see it again!\"\n\nThe captain and crew are busy with unloading their cargo. You thank them, shaking each man's hand as you press across the deck and make your way down the gangplank.\n\nThe dock is a confused bustle, with longshoremen and sailors teeming around and wagons trundling to and fro. Pushing through the milling crowds, you head along a narrow alley in search of an inn.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 9; }
+};
+
+class Story109 : public Story::Base
+{
+public:
+    Story109()
+    {
+        ID = 109;
+
+        Text = "The basilisk is the name of a new type of powerful long-range cannon that has recently come into use on Gloriannic warships. They are not easy to obtain, being manufactured exclusively by the Queen's armourers at the Royal Arsenal. If Skarvench really has managed to lay his hands on one, he must have friends in high places at the Gloriannic court.\n\nThe commotion at the bar continues.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Head straight for Selenice", 52));
+        Choices.push_back(Choice::Base("Go to the governor first", 374));
+
+        Controls = Story::Controls::STANDARD;
+    }
 };
 
 auto prologue = Prologue();
@@ -3037,6 +3241,16 @@ auto story096 = Story096();
 auto story097 = Story097();
 auto story098 = Story098();
 auto story099 = Story099();
+auto story100 = Story100();
+auto story101 = Story101();
+auto story102 = Story102();
+auto story103 = Story103();
+auto story104 = Story104();
+auto story105 = Story105();
+auto story106 = Story106();
+auto story107 = Story107();
+auto story108 = Story108();
+auto story109 = Story109();
 
 void InitializeStories()
 {
@@ -3051,7 +3265,8 @@ void InitializeStories()
         &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
         &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
         &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
-        &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099};
+        &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
+        &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109};
 }
 
 #endif
