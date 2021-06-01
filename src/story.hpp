@@ -3374,7 +3374,7 @@ public:
 
         if (player.Money > 0)
         {
-            Choices.push_back(Choice::Base("Give them ALL of Your MONEY", 98, Choice::Type::LOSE_MONEY, player.Money));
+            Choices.push_back(Choice::Base("Give them ALL of Your MONEY", -117, Choice::Type::LOSE_MONEY, player.Money));
         }
 
         Choices.push_back(Choice::Base("You cannot or refuse to give anything: They start to turn nasty and you realize you had better run for it", 41));
