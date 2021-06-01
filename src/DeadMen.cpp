@@ -1893,14 +1893,14 @@ std::vector<Button> skillsList(SDL_Window *window, SDL_Renderer *renderer, int s
     {
         if (start > 0)
         {
-            controls.push_back(Button(idx, "icons/up-arrow.png", idx, idx, idx, idx + 1, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, texty + border_space, Control::Type::SCROLL_UP));
+            controls.push_back(Button(idx, "icons/up-arrow.png", 0, idx, idx, idx + 1, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, texty + border_space, Control::Type::SCROLL_UP));
 
             idx++;
         }
 
         if (Skill::ALL.size() - last > 0)
         {
-            controls.push_back(Button(idx, "icons/down-arrow.png", idx, idx, start > 0 ? idx - 1 : idx, idx + 1, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, (texty + 2 * text_bounds / 3 - arrow_size - border_space), Control::Type::SCROLL_DOWN));
+            controls.push_back(Button(idx, "icons/down-arrow.png", 0, idx, start > 0 ? idx - 1 : idx, idx + 1, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, (texty + 2 * text_bounds / 3 - arrow_size - border_space), Control::Type::SCROLL_DOWN));
 
             idx++;
         }
@@ -2151,8 +2151,6 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
                             }
                         }
                     }
-
-                    current = -1;
 
                     selected = false;
                 }
