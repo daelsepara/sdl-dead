@@ -107,6 +107,7 @@ namespace Character
     auto MARINER = Character::Base("The Mariner", Character::Type::MARINER, "Born on the deck of a ship and raised with the salt breeze in your face, you have been toughened by the experience of a hundred ports and desert islands. No one can match your knowledge of the seven seas.", {Skill::AGILITY, Skill::SEAFARING, Skill::STREETWISE, Skill::WILDERNESS_LORE}, 10);
     auto SWASHBUCKLER = Character::Base("The Swashbuckler", Character::Type::SWASHBUCKLER, "With your dashing good looks, gallant wit, aristocratic manners and flair for stylish derring-do, you're a hero to your friends and a real pain in the neck to your enemies!", {Skill::AGILITY, Skill::CUNNING, Skill::STREETWISE, Skill::SWORDPLAY}, {Item::SWORD}, 10);
     auto WARLOCK = Character::Base("The Warlock", Character::Type::WARLOCK, "Your scholarly appeareance disguises the fact that you are one of the most powerful opponents a pirate captain could ever fear to face.", {Skill::CHARMS, Skill::MARKSMANSHIP, Skill::SPELLS, Skill::STREETWISE}, {Item::MAGIC_AMULET, Item::PISTOL, Item::MAGIC_WAND}, 10);
+    auto CUSTOM = Character::Base("Custom Character", Character::Type::CUSTOM, "This is a player generated character.", {}, {}, 10);
 
     std::vector<Character::Base> Classes = {Character::ADVENTURER, Character::BUCCANEER, Character::CHANGELING, Character::GYPSY, Character::MARINER, Character::MARINER, Character::SWASHBUCKLER, Character::WARLOCK};
 

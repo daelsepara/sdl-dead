@@ -20,6 +20,7 @@ namespace Control
         CHARACTER,
         GAME,
         NEW,
+        CUSTOM,
         LOAD,
         SAVE,
         SHOP,
