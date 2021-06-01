@@ -35,8 +35,10 @@ namespace Item
         DEED_OF_OWNERSHIP,
         WEASEL,
         POCKET_WATCH,
+        CORKSCREW,
+        PROVISIONS,
         First = MAGIC_AMULET,
-        Last = POCKET_WATCH
+        Last = PROVISIONS
     };
 
     class Base
@@ -91,13 +93,15 @@ namespace Item
     auto BOOK_OF_CHARTS = Item::Base("BOOK OF CHARTS", "BOOK OF CHARTS", Item::Type::BOOK_OF_CHARTS);
     auto LODESTONE = Item::Base("LODESTONE", "LODESTONE", Item::Type::LODESTONE);
     auto MONKEY = Item::Base("MONKEY", "MONKEY", Item::Type::MONKEY);
-    auto SHIP_IN_BOTTLE = Item::Base("SHIP IN BOTTLE", "SHIP IN BOTTLE", Item::Type::SHIP_IN_BOTTLE);
+    auto SHIP_IN_BOTTLE = Item::Base("SHIP IN A BOTTLE", "SHIP IN A BOTTLE", Item::Type::SHIP_IN_BOTTLE);
     auto BLACK_KITE = Item::Base("BLACK KITE", "BLACK KITE", Item::Type::BLACK_KITE);
     auto DIAMOND = Item::Base("DIAMOND", "DIAMOND", Item::Type::DIAMOND);
     auto HEALING_POTION = Item::Base("HEALING POTION", "HEALING POTION", Item::Type::HEALING_POTION);
     auto DEED_OF_OWNERSHIP = Item::Base("DEED OF OWNERSHIP", "DEED OF OWNERSHIP", Item::Type::DEED_OF_OWNERSHIP);
     auto WEASEL = Item::Base("WEASEL", "WEASEL", Item::Type::WEASEL);
     auto POCKET_WATCH = Item::Base("POCKET WATCH", "POCKET WATCH", Item::Type::POCKET_WATCH);
+    auto CORKSCREW = Item::Base("CORKSCREW", "CORKSCREW", Item::Type::CORKSCREW);
+    auto PROVISIONS = Item::Base("PROVISIONS", "PROVISIONS", Item::Type::PROVISIONS);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::DRAGON_RING};

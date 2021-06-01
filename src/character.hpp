@@ -531,6 +531,31 @@ namespace Character
         return condition;
     }
 
+    bool HAS_FOOD(Character::Base &player, int threshold)
+    {
+        return Item::COUNT_TYPES(player.Items, Item::Type::PROVISIONS) > threshold;
+    }
+
+    int CONSUME_FOOD(Character::Base &player, int amount)
+    {
+        auto consumed = 0;
+
+        if (HAS_FOOD(player, 0))
+        {
+            for (auto i = 0; i < amount; i++)
+            {
+                if (Character::VERIFY_ITEMS(player, {Item::Type::PROVISIONS}))
+                {
+                    Character::LOSE_ITEMS(player, {Item::Type::PROVISIONS});
+
+                    consumed++;
+                }
+            }
+        }
+
+        return consumed;
+    }
+
 } // namespace Character
 
 #endif

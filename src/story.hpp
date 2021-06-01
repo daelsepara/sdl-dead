@@ -1090,11 +1090,11 @@ public:
 class Story025 : public Story::Base
 {
 public:
-    std::string PreText = "";
-
     Story025()
     {
         ID = 25;
+
+        Text = "With a groan of protesting timbers, your ship lurches to a dead halt as her prow smashes into the Moon Dog's side. Your sailors cast grappling-hooks, catching the other ship's rail and pulling them together for the final battle.\n\nYou ship SUFFERS 1 damage.";
 
         Choices.clear();
 
@@ -1103,11 +1103,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText = "With a groan of protesting timbers, your ship lurches to a dead halt as her prow smashes into the Moon Dog's side. Your sailors cast grappling-hooks, catching the other ship's rail and pulling them together for the final battle.\n\nYou ship SUFFERS 1 damage.";
-
         Character::DAMAGE_SHIP(player, 1);
-
-        Text = PreText.c_str();
     }
 
     int Continue(Character::Base &player)
@@ -3140,6 +3136,348 @@ public:
     }
 };
 
+class Story110 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story110()
+    {
+        ID = 110;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use both CORKSCREW and SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
+        Choices.push_back(Choice::Base("Use DEED OF OWNERSHIP given to you by Master Capstick", 318, {Item::DEED_OF_OWNERSHIP}));
+        Choices.push_back(Choice::Base("Pay with DIAMONDs", 299, {Item::DIAMOND}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "You lift your MAGIC WAND, occult syllables leaping to the front of your mind like war hounds eager to be unleashed. \"What can be locked can be unlocked,\" you assert. \"I shall open the chain by most potent art.\"\n\nThe colossus regards you with his cool majestic eyes. \"But, mortal: the chain is held closed by magic.\"\n\nYou laugh. \"Then I'll cast a spell to undo magic!\" No sooner do you, however, than the coracle is swept off away from the harbour at dizzying speed. If not for Blutz catching hold of your coat, you would have been thrown overboard. \"What's happened, skipper?\" he says as the four of you crouch terrified in the bottom of the coracle with the waves crashing against the sides.\n\n\"I forgot,\" you say with a groan. \"It was magic that brought us here in the first place. My spell undid that.\"\n\nIt is dawn by the time you reach Selenice. You are flung up onto the shore, and by the time you turn and look out to the sea, the coracle has vanished.";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::CORKSCREW, Item::Type::SHIP_IN_BOTTLE}) && !Character::VERIFY_ITEMS_ANY(player, {Item::DEED_OF_OWNERSHIP, Item::DIAMOND}))
+        {
+            PreText += "\n\nYou have no hope of catching up with Skarvench. This is the end.";
+
+            Type = Story::Type::DOOM;
+        }
+        else
+        {
+            PreText += "\n\nNow you must look for another way to obtain a vessel.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story111 : public Story::Base
+{
+public:
+    Story111()
+    {
+        ID = 111;
+
+        Text = "A rope is slung over the yardarm. The warship captain personally ties the end into a noose. As he puts it over your head, you cannot resist a few futile words of defiance. \"You enjoy your job, don't you?\" you snarl at him.\n\nHe gazes back at you coolly. \"I serve my Queen and country. That is all; there's nothing personal about this.\" He turns to the marines holding the end of the rope and gives a curt nod. You are hauled aloft to kick out your life under the shadow of you own ship's yardarm. It is a fate that awaits many pirates, and a far cry from the glorious destiny you dreamed of.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story112 : public Story::Base
+{
+public:
+    Story112()
+    {
+        ID = 112;
+
+        Image = "images/filler2-green.png";
+
+        Text = "You have not long gone off watch, and are sitting in your cabin with a warming cup of grog, when there comes a stifled cry from up on deck. Bone weary, you throw on your cloak and grumpily stomp back up the companion-way. You are on the point of berating Blutz for calling out, certain that he has simply allowed the mist and the desolation of the spot to unnerve him, but the moment you emerge on deck those words choke off in your throat.\n\nEverything is swathed in the eerie greenish mist. Blutz stands amidships, backing away from the rail with little fluttering motions of his hands. You turn and behold the cause of his terror. Coming up over the side is a figure out of a nightmare -- a seaweed-draped corpse clad in robes sodden with sea water. As it climbs over the rail, its angular hunched stance and galvanic spasms of motion put you in mind of a spider's stalking gait. Patches of exposed bone show through the rotted flesh and it has only deep black sockets for eyes. In one hand it holds a rust-blotched sword; the other is rigid like a claw poised to strike.\n\n\"All hands on deck!\" Your voice is a thin reedy screech, strained by stark fear. Even as you hear the bustle of men rushing up from below, more of these ghastly apparitions appear at the rail, and you know that you are in for the toughest battle of your life.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 321; }
+};
+
+class Story113 : public Story::Base
+{
+public:
+    Story113()
+    {
+        ID = 113;
+
+        Text = "Your bows smash into the helpless warship with an anguished splintering of timbers. The ship lurches and you see at least one of your crew swept overboard by a titanic wave. He is immediately swallowed up by the storm's fury. There is nothing you can do to save him -- you may not even be able to save yourself.\n\nYou ship SUFFERS 2 damage.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::DAMAGE_SHIP(player, 2);
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::CHECK_SHIP(player))
+        {
+            return 94;
+        }
+        else
+        {
+            return 227;
+        }
+    }
+};
+
+class Story114 : public Story::Base
+{
+public:
+    Story114()
+    {
+        ID = 114;
+
+        Text = "An all-purpose good luck charm is your best chance. Touching your amulet, you mutter the words of the cantrip at the same moment that Skarvench lights the basilisk cannon's fuse. There is a damp spluttering and then -- nothing.\n\n\"Misfire, curse it!\" snarls Skarvench. He pulls his sword from his belt. \"Very well, then, we'll have to settle our business up close an' personal, like.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story115 : public Story::Base
+{
+public:
+    Story115()
+    {
+        ID = 115;
+
+        Text = "\"You ask me how I can be sure of Queen Titania's itinerary, my lads?\" growls Skarvench. \"You ask how I can whistle up a storm to scatter her escort fleet, then as quickly becalm her flagship in a bank of fog? And maybe you'll ask how I'll descend from the skies on a rope to whisk the pretty little package away before her soldiers even know what's what? Oh, what a bunch of scurvy doubting dogs you are, to be sure! There's one simple answer to all such cynical questions, and that's this: her wizard, William Wild, is my half-brother. He's in on the scheme, y'see.\"\n\nYou have heard enough. The whole world knows of the court wizard Dr Wild and the boundless trust placed in him by Queen Titania. If he plots betrayal, she is in real danger and not all her soldiers can save her.\n\nA floorboard creaks from further along the passage. You look around sharply. Someone is coming.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            Choices.push_back(Choice::Base("Hide in the sailmaster's cabin", 134));
+            Choices.push_back(Choice::Base("Stand your ground", 191));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 153; }
+};
+
+class Story116 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    bool HAS_FOOD = false;
+
+    Story116()
+    {
+        ID = 116;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        HAS_FOOD = false;
+
+        PreText = "Another day passes, and your voyage becomes an increasing ordeal as heat and fatigue take their toll. The sea sits all about you like a gleaming leaden plate; the sun turns the sky into a furnace of white haze. By night you shiver under the uncaring gaze of a million stars.";
+
+        if (Character::HAS_FOOD(player, 0))
+        {
+            PreText += "\n\nYour supply of PROVISIONS DECREASED by 1.";
+
+            Character::CONSUME_FOOD(player, 1);
+
+            HAS_FOOD = true;
+        }
+        else
+        {
+            PreText += "\n\nYou've exhausted your supply of PROVISIONS.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (HAS_FOOD)
+        {
+            return 426;
+        }
+        else
+        {
+            return 155;
+        }
+    }
+};
+
+class Story117 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story117()
+    {
+        ID = 117;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "You must offer the natives one of the following items; they won't accept anything else: a SWORD, a PISTOL, a MAGIC AMULET, a MAGIC WAND, a CRUCIFIX, a TOOLKIT, or all your MONEY.";
+
+        auto count = 0;
+
+        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::CRUCIFIX};
+
+        for (auto i = 0; i < bribe.size(); i++)
+        {
+            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+        }
+
+        if (count >= 1)
+        {
+            Choices.push_back(Choice::Base("Give them a gift.", -117, bribe, 1));
+        }
+        else
+        {
+            PreText += "\n\nBut you are unable to part with such items.";
+        }
+
+        if (player.Money > 0)
+        {
+            Choices.push_back(Choice::Base("Give them ALL of Your MONEY", 98, Choice::Type::LOSE_MONEY, player.Money));
+        }
+
+        Choices.push_back(Choice::Base("You cannot or refuse to give anything: They start to turn nasty and you realize you had better run for it", 41));
+
+        Text = PreText.c_str();
+    }
+};
+
+class Event117 : public Story::Base
+{
+public:
+    Event117()
+    {
+        Title = "Down Among the Dead Men: 117";
+
+        ID = -117;
+
+        Text = "They bring forward a shield woven of brightly coloured feathers and a wooden sword studded with shark's teeth which they offer in exchange.\n\nOakley gives a snort of disgust when he sees these. \"They're not worth a tenth of what we gave them!\"\n\n\"Maybe you shouldn't accept these gifts,\" cautions Blutz, catching your sleeve. \"The natives might get angry. Maybe it's just a token gesture and they don't really want to part with them.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::FEATHER_SHIELD, Item::SHARKS_TOOTH_SWORD};
+
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player) { return 98; }
+};
+
+class Story118 : public Story::Base
+{
+public:
+    Story118()
+    {
+        ID = 118;
+
+        Text = "You drag your boat up the beach under the blandly incurious gaze of the paradise-birds. Blutz gives an excited cry and points, saying, \"Look, above the treetops! It's a tower. A ruddy marble tower, mates.\"\n\nHe's right. In the declining golden light of the afternoon, you see a gleaming tower of polished stone. Since there are no creepers growing over it, the place is surely inhabited. But do you want to meet the inhabitant?";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            Choices.push_back(Choice::Base("Head for the tower", 194));
+            Choices.push_back(Choice::Base("Gather food and water", 232));
+            Choices.push_back(Choice::Base("Put to sea immediately", 137));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 213; }
+};
+
+class Story119 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story119()
+    {
+        ID = 119;
+
+        Bye = "Ejada is done with you and you are free to return to the boat and sail away from here.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You suggest that, instead of draining one person's entire soul so that he dies, she contents herself with a quarter of the life force taken from each of you. She considers this, then gives a short regal nod. \"I accept. Step forward , mortals.\"\n\nShe lays her knife against the chest of each of you in turn. A cold chill spreads through you as her magic leeches a part of your very soul.\n\nYou PERMANENTLY LOSE 1 Life Point and a skill of your choice.";
+
+        player.MAX_LIFE_LIMIT--;
+
+        Character::GAIN_LIFE(player, -1);
+
+        Choices.clear();
+
+        if (player.Skills.size() > 1)
+        {
+            if (player.Skills.size() < player.SKILLS_LIMIT)
+            {
+                player.SKILLS_LIMIT = player.Skills.size();
+            }
+
+            Choices.push_back(Choice::Base("Choose which skill to lose", 137, Choice::Type::LOSE_SKILLS, player.SKILLS_LIMIT - 1));
+        }
+        else
+        {
+            PreText += "\n\nYour entire soul has been drained.";
+
+            player.Life = 0;
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -3251,11 +3589,22 @@ auto story106 = Story106();
 auto story107 = Story107();
 auto story108 = Story108();
 auto story109 = Story109();
+auto story110 = Story110();
+auto story111 = Story111();
+auto story112 = Story112();
+auto story113 = Story113();
+auto story114 = Story114();
+auto story115 = Story115();
+auto story116 = Story116();
+auto story117 = Story117();
+auto event117 = Event117();
+auto story118 = Story118();
+auto story119 = Story119();
 
 void InitializeStories()
 {
     Stories = {
-        &event059,
+        &event059, &event117,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -3266,7 +3615,8 @@ void InitializeStories()
         &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
         &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
         &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
-        &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109};
+        &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
+        &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119};
 }
 
 #endif
