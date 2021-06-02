@@ -3665,6 +3665,287 @@ public:
     }
 };
 
+class Story130 : public Story::Base
+{
+public:
+    Story130()
+    {
+        ID = 130;
+
+        Text = "The captain takes your LETTER OF MARQUE, scans it briefly, then regards you with his coldly disapproving gaze. \"This document is invalid. We have reports that you have been plundering Gloriannic ships, which disqualifies you from acting as a privateer on Her Majesty's behalf.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 111; }
+};
+
+class Story131 : public Story::Base
+{
+public:
+    Story131()
+    {
+        ID = 131;
+
+        Image = "images/boat-in-fog-green.png";
+
+        Text = "You come on deck shortly before eight bells. The fog shrouds everything in a spectral pall. You look up at the rigging, which hangs like the shadow of a giant web. There is a rotting miasmal smell in the air, wafting from the swamps along the back of the bay. Blutz gives a rattling cough, mumbles something about yellow fever and wanting to be shot of this anchorage, and stumps below to get a cup of grog before turning in. You are left alone on the deck.\n\nGazing back towards the glow from the swamps, you hear the muffled sound of oars splashing far off in the darkness. A small boat appears, gradually taking solid form out of the fog, and in the light of the ship's lanterns you see a tall figure standing in the prow with two rowers hunched over the oars behind him. As the boat pulls alongside you have a clear view of the man -- tall and pale, with eyes of startling cobalt blue. His teeth flash in a smile as he hails you: \"Permission to come aboard?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Give him permission to come onto your ship", 283));
+        Choices.push_back(Choice::Base("Refuse", 302));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story132 : public Story::Base
+{
+public:
+    Story132()
+    {
+        ID = 132;
+
+        Text = "The Gloriannic ship goes rushing past, helpless in the grip of the storm. You catch a brief glimpse of tiny figures scurrying across her deck. Then a wave crashes down, obscuring all sight of her, and when you look again she is gone.\n\n\"God help the Rose if she's out in that,\" gasps Oakley, staring into the teeth of the hurricane.\n\nYou do not answer. It takes every ounce of your strength to hold the whipstaff and keep your own ship on an even keel. As the thunderclouds spit molten light into the darkness all around you, fracturing the heavens with their fury, you strike on implacably towards your goal.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 94; }
+};
+
+class Story133 : public Story::Base
+{
+public:
+    Story133()
+    {
+        ID = 133;
+
+        Text = "You duck into a forward roll just as the cannon belches forth its charge. The ball goes whizzing over your head, snapping a spar just where you were standing. You have the bad luck to be caught by a flying splinter of wood, but it only grazes your forehead.\n\nYou LOSE 1 Life Point.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story134 : public Story::Base
+{
+public:
+    Story134()
+    {
+        ID = 134;
+
+        Text = "You dart inside the cabin, pushing the door behind you and listening with bated breath as the heavy tread of boots advances along the passage and pauses just outside. Then the door starts to swing open...";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [CHARMS]", 210, Skill::Type::CHARMS));
+        Choices.push_back(Choice::Base("Use [ROGUERY]", 229, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("You cannot avoid detection", 191));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story135 : public Story::Base
+{
+public:
+    Story135()
+    {
+        ID = 135;
+
+        Text = "Your tiny boat heads heads onward. By day you are seared by the sun; by night you are racked with chill. Salt spray chafes the sores on your skin, and the need to bail water constantly gives you no rest. Another two days crawl by, and you gradually give way to fever and exhaustion.\n\nYou LOSE 1 Life Point.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            if (!Character::HAS_FOOD(player, 0))
+            {
+                if (Character::VERIFY_ITEMS(player, {Item::Type::MONKEY}))
+                {
+                    Choices.push_back(Choice::Base("Eat the MONKEY if you are heartless or desperate", 212, Choice::Type::LOSE_ITEMS, {Item::MONKEY}));
+                    Choices.push_back(Choice::Base("Do not eat the monkey", 231));
+                }
+                else
+                {
+                    Choices.push_back(Choice::Base("You have nothing to eat", 231));
+                }
+            }
+            else
+            {
+                Character::CONSUME_FOOD(player, 1);
+            }
+        }
+    }
+
+    int Continue(Character::Base &player) { return 212; }
+};
+
+class Story136 : public Story::Base
+{
+public:
+    Story136()
+    {
+        ID = 136;
+
+        Text = "\"Here's the question as I sees it,\" says Grimes. \"Do we try to make it all the way to Leshand, or do we strike southward first? I reckon we'd have a shorter hop to Pandanus Isle, and we could pick up provisions there.\"\n\n\"Or the natives could pick up provisions,\" says Oakley. \"Us.\"\n\nIt looked as if Blutz was about to go along with Grimes's suggestion, but at the mention of cannibals he looks nervously to the south. \"We were on that cursed ship a fair while, mates,\" he says. \"Surely Leshand can't be far off, if we stay bold.\"\n\n\"Bold!\" Oakley gives a croak of mocking laughter.\n\nThey can't decide amongst themselves. The decision is left to you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Head south to the Smoking Islands", 156));
+        Choices.push_back(Choice::Base("Steer straight ahead and hope to make it to Port Leshand without further mishap", 405));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::PECCANT))
+        {
+            Choices[1].Destination = 386;
+        }
+        else
+        {
+            Choices[1].Destination = 405;
+        }
+    }
+};
+
+class Story137 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    bool HAS_FOOD = false;
+
+    Story137()
+    {
+        ID = 137;
+
+        Image = "images/filler3-green.png";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        HAS_FOOD = Character::HAS_FOOD(player, 0);
+
+        PreText = "Swept onwards, your little craft starts to spring leaks.";
+
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::FLOAT))
+        {
+            PreText += "\n\nHowever, there is no cause for alarm.";
+        }
+
+        if (!HAS_FOOD)
+        {
+            PreText += "\n\nYou've exhausted your supply of PROVISIONS.";
+        }
+        else
+        {
+            PreText += "\n\nYour supply of PROVISIONS DECREASED by 1.";
+
+            Character::CONSUME_FOOD(player, 1);
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (HAS_FOOD)
+        {
+            return 156;
+        }
+        else
+        {
+            return 175;
+        }
+    }
+};
+
+class Story138 : public Story::Base
+{
+public:
+    Story138()
+    {
+        ID = 138;
+
+        Text = "A strong breeze stretches your sails wide against the sky, driving you on towards your destiny. But you have no time to brood on what the future may hold; you have a ship to command. Seeing the way her prow cleaves the water, and the jaunty courage of your crew as they go about their chores, your heart brims with optimism. Soon Skarvench will see his last sunset in his life -- of that you feel sure.\n\nYou RECOVER 2 Life Points.\n\nMore than a week goes by. On the ninth day, you stand on the deck watching the sun slide out of the sky. Long blazing beams of orange light turn the green waves to liquid gold. And then -- in the blink of an eye -- this idyllic scene is transformed. A purple murk rises from the western horizon, blotting out the afternoon sun behind thick thunderclouds. A cold gust blows in your face, setting the sails to a pensive fluttering like frightened birds. You know well the taste of that chill wind; it is the harbinger of the hurricane.\n\n\"This is but the twitch of the lion's tail compared to what will come,\" mutters Grimes. \"We'll have to put about.\" He calls to the crew: \"Strike the main topsail.\"\n\nYou turn. \"Belay that striking order. Lash it!\"\n\nOakley stares at you. \"Skipper, the hurricane'll tear us apart.\"\n\nThe first rain spits into your face, icily intense. \"'We're going in, hurricane or not. God is the master of the heavens and all the world -- but, by all that's holy, I'm the master of this ship!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a THUNDERCLOUD FAN", 18, {Item::THUNDERCLOUD_FAN}));
+        Choices.push_back(Choice::Base("[CHARMS] Use a MAGIC AMULET", 37, Skill::Type::CHARMS));
+        Choices.push_back(Choice::Base("Use [SEAFARING]", 397, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("Otherwise", 75));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 2);
+    }
+};
+
+class Story139 : public Story::Base
+{
+public:
+    Story139()
+    {
+        ID = 139;
+
+        Text = "Mulling over your extensive knowledge of myth and legend, you consider what the items might be. Obviously they are classical in style. Very old, then -- which suggests the possibility of powerful magic, since everyone knows that the sorcerers of ancient times knew many magical secrets that are now lost. On the basis of hopeful surmise, you finally identify the items as follows:\n\nThe DIAMOND would suffice to buy you a ship of your own but it has no magical properties, unless the effect of staggering wealth on men's greed can be accounted magical.\n\nThe CONCH-SHELL HORN reminds you of such an item which was said to be taken by the Trojans after the sack of Atlantis. It can be used to convey its owner to the secret harbour of Poseidon, god of the sea. This harbour is filled with treasures, but it is guarded by a locked gate which can only be opened by the note of a flute or pipe.\n\nThe THUNDERCLOUD FAN is surely sacred to the storm deity of far-off Cathay. If wielded carefully, it unleashes a hurricane which can be directed as one wishes.\n\nYou soon place the BRONZE HELMET as having belonged to a Spartan king. No doubt it confers skill at arms upon the wearer, since the Spartans were renowned for their martial prowess.\n\nAs for the DRAGON RING... you're not sure. It strikes a distant chord of memory, but nothing you can quite dredge to the surface. Handling it makes you feel distinctly uneasy, however.\n\nDo you wish to change the two items you're taking on the basis of this information?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Change the two items you are taking", -139));
+        Choices.push_back(Choice::Base("Stick with what you have chosen", 217));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Event139 : public Story::Base
+{
+public:
+    Event139()
+    {
+        Title = "Down Among the Dead Men: 139";
+
+        ID = -139;
+
+        Text = "You go over the loot once more.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::DIAMOND, Item::Type::CONCH_SHELL_HORN, Item::Type::THUNDERCLOUD_FAN, Item::Type::BRONZE_HELMET, Item::Type::DRAGON_RING});
+
+        Take = {Item::DIAMOND, Item::CONCH_SHELL_HORN, Item::THUNDERCLOUD_FAN, Item::BRONZE_HELMET, Item::DRAGON_RING};
+
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player) { return 217; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -3797,11 +4078,22 @@ auto story126 = Story126();
 auto story127 = Story127();
 auto story128 = Story128();
 auto story129 = Story129();
+auto story130 = Story130();
+auto story131 = Story131();
+auto story132 = Story132();
+auto story133 = Story133();
+auto story134 = Story134();
+auto story135 = Story135();
+auto story136 = Story136();
+auto story137 = Story137();
+auto story138 = Story138();
+auto story139 = Story139();
+auto event139 = Event139();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117,
+        &event059, &event117, &event139,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -3814,7 +4106,8 @@ void InitializeStories()
         &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
         &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
         &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
-        &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129};
+        &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
+        &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139};
 }
 
 #endif
