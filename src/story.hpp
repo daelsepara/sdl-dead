@@ -4170,6 +4170,8 @@ public:
     {
         ID = 152;
 
+        Image = "images/filler3-green.png";
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -4196,6 +4198,8 @@ public:
     Story153()
     {
         ID = 153;
+
+        Image = "images/filler2-green.png";
 
         Text = "Reaching up, you take a firm grip on the bulkhead beam running across the ceiling of the passage. Then you swing yourself up until you are braced across the beam. A moment later you see the sailmaster's distinctive bald head appear below where you're hiding, but he does not look up. As he vanishes into his cabin, you drop silently to the floor and hurry up the companion-way to join your comrades.";
 
@@ -4241,6 +4245,8 @@ public:
     Story155()
     {
         ID = 155;
+
+        Image = "images/filler2-green.png";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -4291,6 +4297,8 @@ public:
     Story157()
     {
         ID = 157;
+
+        Image = "images/filler3-green.png";
 
         Text = "Now you guess the truth. As daughter of the earth goddess, Ejada received unending strength and vitality as long as she remained in contact with the ground. Now she is like an uprooted flower wilting in the hot sunlight. \"Restore me to the earth,\" she begs, \"and all my treasures are yours.\"\n\n\"They are anyway.\" You learned never to trust a sorceress. Wedging her on a high cornice of the building, well clear of the soil that would regenerate her power, you go inside to explore. You soon find a hoard of magical treasures comprising a MAGIC WAND, a HEALING POTION, a SHIP IN A BOTTLE, and a BLACK KITE. The HEALING POTION can be drunk once at any time to restore your Life points to normal. The other items may or may not come in handy later.";
 
