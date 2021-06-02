@@ -100,7 +100,7 @@ namespace Item
     auto HEALING_POTION = Item::Base("HEALING POTION", "HEALING POTION", Item::Type::HEALING_POTION);
     auto DEED_OF_OWNERSHIP = Item::Base("DEED OF OWNERSHIP", "DEED OF OWNERSHIP", Item::Type::DEED_OF_OWNERSHIP);
     auto WEASEL = Item::Base("WEASEL", "WEASEL", Item::Type::WEASEL);
-    auto POCKET_WATCH = Item::Base("POCKET WATCH", "POCKET WATCH", Item::Type::POCKET_WATCH);
+    auto POCKET_WATCH = Item::Base("POCKET-WATCH", "POCKET-WATCH", Item::Type::POCKET_WATCH);
     auto CORKSCREW = Item::Base("CORKSCREW", "CORKSCREW", Item::Type::CORKSCREW);
     auto PROVISIONS = Item::Base("PROVISIONS", "PROVISIONS", Item::Type::PROVISIONS);
     auto HORNPIPE = Item::Base("HORNPIPE", "HORNPIPE", Item::Type::HORNPIPE);

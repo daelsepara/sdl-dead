@@ -1805,6 +1805,16 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
         skills += player.Skills[i].Name;
     }
 
+    for (auto i = 0; i < player.TemporarySkills.size(); i++)
+    {
+        if (i > 0 || skills.length() > 0)
+        {
+            skills += ", ";
+        }
+
+        skills += std::string(player.TemporarySkills[i].Name) + " (temporary)";
+    }
+
     auto boxw = (profilew - marginw) / 2;
     auto boxh = (profileh) / 2;
 
@@ -2537,6 +2547,7 @@ bool saveGame(Character::Base &player, const char *overwrite)
 
     auto skills = std::vector<Skill::Type>();
     auto lostSkills = std::vector<Skill::Type>();
+    auto temporarySkills = std::vector<Skill::Type>();
 
     for (auto i = 0; i < player.Skills.size(); i++)
     {
@@ -2548,8 +2559,14 @@ bool saveGame(Character::Base &player, const char *overwrite)
         lostSkills.push_back(player.LostSkills[i].Type);
     }
 
+    for (auto i = 0; i < player.TemporarySkills.size(); i++)
+    {
+        temporarySkills.push_back(player.TemporarySkills[i].Type);
+    }
+
     data["skills"] = skills;
     data["lostSkills"] = lostSkills;
+    data["temporarySkills"] = temporarySkills;
     data["lostMoney"] = player.LostMoney;
     data["storyID"] = player.StoryID;
 
@@ -2629,6 +2646,7 @@ Character::Base loadGame(std::string file_name)
 
         auto lostSkills = std::vector<Skill::Base>();
         auto lostItems = std::vector<Item::Base>();
+        auto temporarySkills = std::vector<Skill::Base>();
 
         for (auto i = 0; i < (int)data["skills"].size(); i++)
         {
@@ -2649,6 +2667,20 @@ Character::Base loadGame(std::string file_name)
             if (found >= 0)
             {
                 lostSkills.push_back(Skill::ALL[found]);
+            }
+        }
+
+        if (!data["temporarySkills"].is_null())
+        {
+            for (auto i = 0; i < (int)data["temporarySkills"].size(); i++)
+            {
+                auto skill = static_cast<Skill::Type>((int)data["temporarySkills"][i]);
+                auto found = Skill::FIND(Skill::ALL, skill);
+
+                if (found >= 0)
+                {
+                    temporarySkills.push_back(Skill::ALL[found]);
+                }
             }
         }
 
@@ -2686,6 +2718,7 @@ Character::Base loadGame(std::string file_name)
 
         character.LostSkills = lostSkills;
         character.LostItems = lostItems;
+        character.TemporarySkills = temporarySkills;
         character.LostMoney = (int)data["lostMoney"];
 
         character.ITEM_LIMIT = (int)data["itemLimit"];

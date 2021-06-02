@@ -52,6 +52,8 @@ namespace Character
 
         std::vector<Skill::Base> LostSkills = std::vector<Skill::Base>();
 
+        std::vector<Skill::Base> TemporarySkills = std::vector<Skill::Base>();
+
         Ship::Base Ship = Ship::NONE;
 
         int LostMoney = 0;
@@ -205,6 +207,26 @@ namespace Character
                     if (player.Skills[i].Requirement != Item::Type::NONE)
                     {
                         found = Character::VERIFY_ITEMS(player, {player.Skills[i].Requirement});
+                    }
+                    else
+                    {
+                        found = true;
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        if (!found && player.TemporarySkills.size() > 0 && skill != Skill::Type::NONE)
+        {
+            for (auto i = 0; i < player.TemporarySkills.size(); i++)
+            {
+                if (player.TemporarySkills[i].Type == skill)
+                {
+                    if (player.TemporarySkills[i].Requirement != Item::Type::NONE)
+                    {
+                        found = Character::VERIFY_ITEMS(player, {player.TemporarySkills[i].Requirement});
                     }
                     else
                     {
@@ -527,7 +549,7 @@ namespace Character
         {
             condition = player.Ship.Stars > 0;
         }
-        
+
         return condition;
     }
 

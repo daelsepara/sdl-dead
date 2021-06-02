@@ -2289,6 +2289,8 @@ public:
         PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
 
         Text = PreText.c_str();
+
+        player.TemporarySkills.clear();
     }
 
     int Continue(Character::Base &player) { return 225; }
@@ -4696,6 +4698,8 @@ public:
         PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
 
         Text = PreText.c_str();
+
+        player.TemporarySkills.clear();
     }
 
     int Continue(Character::Base &player) { return 361; }
@@ -5161,7 +5165,7 @@ public:
     {
         ID = 189;
 
-        Text = "You take out your pocket-watch and glance at it. The glass was cracked when it stopped Skarvench's bullet, but it is still working. \"Midnight,\" you say, and close the case with a click.\n\nThere is a gasp from the sailors. One man almost falls out of the rigging in shock. Staring at the sky, they watch as an encroaching arc of darkness closes in front of the moon. \"'Tis doomsday!\" cries the bo'sun. \"First an unseasonal hurricane, then becalmed in fog, then flying ships - an' now a dragon devours the moon!\" A low moan of dread escapes the crew's lips.\n\nStand fast, you timid swabs!\" you thunder down at them from the poopdeck. \"Have you never seen an eclipse of the moon before?\"";
+        Text = "You take out your POCKET-WATCH and glance at it. The glass was cracked when it stopped Skarvench's bullet, but it is still working. \"Midnight,\" you say, and close the case with a click.\n\nThere is a gasp from the sailors. One man almost falls out of the rigging in shock. Staring at the sky, they watch as an encroaching arc of darkness closes in front of the moon. \"'Tis doomsday!\" cries the bo'sun. \"First an unseasonal hurricane, then becalmed in fog, then flying ships - an' now a dragon devours the moon!\" A low moan of dread escapes the crew's lips.\n\nStand fast, you timid swabs!\" you thunder down at them from the poopdeck. \"Have you never seen an eclipse of the moon before?\"";
 
         Choices.clear();
 
@@ -5169,6 +5173,36 @@ public:
     }
 
     int Continue(Character::Base &player) { return 246; }
+};
+
+class Story190 : public Story::Base
+{
+public:
+    Story190()
+    {
+        ID = 190;
+
+        Text = "The helmet fills your mind with the battle-lore of the Spartans. You now count as having [BRAWLING] and [SWORDPLAY] in addition to your usual skills. You sense the effect is only temporary - but it should last long enough to help you defeat Skarvench, or die trying.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.TemporarySkills.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            player.TemporarySkills.push_back(Skill::BRAWLING);
+        }
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            player.TemporarySkills.push_back(Skill::SWORDPLAY);
+        }
+    }
+
+    int Continue(Character::Base &player) { return 209; }
 };
 
 auto prologue = Prologue();
@@ -5364,6 +5398,7 @@ auto story186 = Story186();
 auto story187 = Story187();
 auto story188 = Story188();
 auto story189 = Story189();
+auto story190 = Story190();
 
 void InitializeStories()
 {
@@ -5387,7 +5422,8 @@ void InitializeStories()
         &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
         &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
-        &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189};
+        &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
+        &story190};
 }
 
 #endif
