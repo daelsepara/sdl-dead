@@ -1816,7 +1816,7 @@ public:
     {
         ID = 54;
 
-        Text = "The warship pulls alongside to windward, stealing the breath from your sails. Clambering into the rigging, you run along the mainyard to where the sails of the two ships are already touching. One of the enemy sailors sees you and comes swinging down from the crow's nest, knife in hand. You duck nimbly under his knife-thrust and a cheer goes up from the deck of the Lady of Shalott as your men see you stun your opponent with a sharp jab to the chin. He sags back, caught in the ratlines, and you grab the knife from his limp fingers. Climbing higher into the rigging of the enemy ship, with musket-shots whistling around your ears, you glance down to see the marines casting grappling hooks. Your own crew stand ready to repel boarders as two ships are pulled together.\n\nDigging your knife into the mainsail, you slide right down the billowing canvas, using deft twists of the blade to steer your descent. You land on the deck in front of the helmsman, the split canvas drooping above you. You raise the knife, but the helmsman has no stomach for a fight and runs off, allowing you to throw the whipstaff hard over. The two vessels begin to pull apart as the warship veers in response. Realising your plan too late, the marines make a dash back from the rail, but you have already jammed the whipstaff in position with the knife and swung up to the poopdeck rail out of reach. Running for the side, you launch yourself into space and catch hold of one of the grapple-lines, swiftly pulling yourself hand over hand back to the Lady of Shalott amid the delighted shouts of your crew.\n\nOakley and the rest lose no time in cutting the remaining lines, and the ships drift rapidly apart. On the deck of the warship you can see the marines struggling to free the jammed whipstaff. By the time they can do that and repair the mainsail you tore in half, you'll have made your getaway.";
+        Text = "The warship pulls alongside to windward, stealing the breath from your sails. Clambering into the rigging, you run along the mainyard to where the sails of the two ships are already touching. One of the enemy sailors sees you and comes swinging down from the crow's nest, knife in hand. You duck nimbly under his knife-thrust and a cheer goes up from the deck of the LADY OF SHALOTT as your men see you stun your opponent with a sharp jab to the chin. He sags back, caught in the ratlines, and you grab the knife from his limp fingers. Climbing higher into the rigging of the enemy ship, with musket-shots whistling around your ears, you glance down to see the marines casting grappling hooks. Your own crew stand ready to repel boarders as two ships are pulled together.\n\nDigging your knife into the mainsail, you slide right down the billowing canvas, using deft twists of the blade to steer your descent. You land on the deck in front of the helmsman, the split canvas drooping above you. You raise the knife, but the helmsman has no stomach for a fight and runs off, allowing you to throw the whipstaff hard over. The two vessels begin to pull apart as the warship veers in response. Realising your plan too late, the marines make a dash back from the rail, but you have already jammed the whipstaff in position with the knife and swung up to the poopdeck rail out of reach. Running for the side, you launch yourself into space and catch hold of one of the grapple-lines, swiftly pulling yourself hand over hand back to the LADY OF SHALOTT amid the delighted shouts of your crew.\n\nOakley and the rest lose no time in cutting the remaining lines, and the ships drift rapidly apart. On the deck of the warship you can see the marines struggling to free the jammed whipstaff. By the time they can do that and repair the mainsail you tore in half, you'll have made your getaway.";
 
         Choices.clear();
 
@@ -1833,7 +1833,7 @@ public:
     {
         ID = 55;
 
-        Text = "The next half-hour gives you as gruelling a test of your ship-handling skills as you've ever faced. Taking constant depth reckoning with a lead line, you steer the Lady of Shalott slowly between reefs and sandbars until at last you are out of the bay in open waters.\n\nHere a light breeze ruffles the sails, but it is not enough to give you the headway you want. You order the rowboats lowered and commence kedging -- carrying the anchor as far ahead of the bows as possible and then dropping it so that you can winch the ship onwards. It is slow going, but at last you are well clear of Tortoise Island and the eldritch fog that surrounds it. Soon you pick up a decent wind and from then on it is plain sailing back to Selenice. But you make the voyage with bitter heart because you are returning empty-handed.";
+        Text = "The next half-hour gives you as gruelling a test of your ship-handling skills as you've ever faced. Taking constant depth reckoning with a lead line, you steer the LADY OF SHALOTT slowly between reefs and sandbars until at last you are out of the bay in open waters.\n\nHere a light breeze ruffles the sails, but it is not enough to give you the headway you want. You order the rowboats lowered and commence kedging -- carrying the anchor as far ahead of the bows as possible and then dropping it so that you can winch the ship onwards. It is slow going, but at last you are well clear of Tortoise Island and the eldritch fog that surrounds it. Soon you pick up a decent wind and from then on it is plain sailing back to Selenice. But you make the voyage with bitter heart because you are returning empty-handed.";
 
         Choices.clear();
 
@@ -3850,18 +3850,31 @@ public:
 
         if (Character::VERIFY_CODEWORD(player, Codeword::Type::FLOAT))
         {
-            PreText += "\n\nHowever, there is no cause for alarm.";
-        }
-
-        if (!HAS_FOOD)
-        {
-            PreText += "\n\nYou've exhausted your supply of PROVISIONS.";
+            PreText += " However, there is no cause for alarm.";
         }
         else
         {
-            PreText += "\n\nYour supply of PROVISIONS DECREASED by 1.";
+            PreText += " You gained the codeword DETRUDE.";
 
-            Character::CONSUME_FOOD(player, 1);
+            Character::GET_CODEWORDS(player, {Codeword::Type::DETRUDE});
+        }
+
+        PreText += "\n\nThirst, hunger and the heat become your bitter foes. Petty quarrels break out as conditions worsen. Each man is nearing the end of his tether.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            if (!HAS_FOOD)
+            {
+                PreText += "\n\nYou've exhausted your supply of PROVISIONS.";
+            }
+            else
+            {
+                PreText += "\n\nYour supply of PROVISIONS DECREASED by 1.";
+
+                Character::CONSUME_FOOD(player, 1);
+            }
         }
 
         Text = PreText.c_str();
@@ -4058,7 +4071,7 @@ public:
         ID = 146;
 
         Image = "images/ruffians-green.png";
-        
+
         Text = "The innkeeper of The Hanged Man is a sour-faced man named Drood. You can see him at the bar polishing tankards with a filthy piece of rag. As you step up, he sets aside the tankard he's holding and gives you a long loury glare. \"Heard you were dead,\" he says. \"Seems the news hasn't reach you yet, though.\"\n\nYou ignore this. \"Skarvench been in?\" you ask.\n\n\"Not lately. Things are too hot for him in Leshand.\" Drood spits on the bar and starts wiping it.\n\nA beefy hand clamps on your shoulder and turns you around. Facing you are six burly ruffians. You vaguely recognise them as Skarvench's \"business associates\" -- men who act as his spies and assassins on shore.\n\nThere leader regards you with eyes like tiny beads of dull glass. \"Cap'n Skarvench is in Port Selenice takin' delivery of a new ship,\" he says, \"Why're you askin'?\"\n\n\"We're planning to meet him.\"\n\nYou start to move past the ruffians, then freeze as they draw knives. \"Tell you what,\" says the leader, \"you go straight to hell, and no doubt the cap'n will join you there when he's good and ready...\"\n\nIt's life or death.";
 
         Choices.clear();
@@ -4116,6 +4129,220 @@ public:
 
         Controls = Story::Controls::STANDARD;
     }
+};
+
+class Story150 : public Story::Base
+{
+public:
+    Story150()
+    {
+        ID = 150;
+
+        Text = "You do not relish such grisly work, but there is no time for hesitation. Kneeling in the bottom of the pit, you raise the sharp stake and drive it deep into the corpse's chest. Instantly the mouth gapes open and there issues forth such a howl of cold hatred that it will haunt your dreams forevermore. The eyes blaze for an instant in their sockets, then darken in true death as a fountain of dry brown blood wells up around the wound.\n\nYou lurch to your feet, glad to feel your friends' hands at your shoulders. Gradually, under your horrified eyes, the corpses collapse and shrivel away to dust.\n\n\"Collect the treasure, shipmates,\" you say in a hoarse voice. \"And look sharp -- I'm keen to quit this place.\"\n\nThe moon has risen by the time all the loot is safely stowed aboard the LADY OF SHALOTT. Only then, with shaking hand do you broach a bottle of rum. Each man gulps his tot eagerly, anxious to rid himself of his memories of this ghastly evening.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 16; }
+};
+
+class Story151 : public Story::Base
+{
+public:
+    Story151()
+    {
+        ID = 151;
+
+        Text = "Clutching the talisman, you appeal to whatever ancient god or demon it depicts to use its power now. For a long instant nothing happens, and you fear that the talisman's magic has worn off with age, but then you see a black shadow spreading across the face of the moon. It has the outline of a bat's wing.\n\n\"The bat was the symbol of night in ancient times,\" says Grimes, his voice hushed in awe as the last moonlight vanishes like a shuttered lantern-beam and the world is plunged into starlit darkness.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 246; }
+};
+
+class Story152 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story152()
+    {
+        ID = 152;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The basilisk cannon roars, hurling fire and hot iron towards you. You throw yourself to one side, but the blast still catches you.\n\nYou LOSE 5 Life Points.";
+
+        Character::GAIN_LIFE(player, -5);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou cry out in terrible agony but manage to stagger towards your foe. \"You take a lot o' killing, I'll say that for ye,\" hisses Skarvench as he draws his sword. \"But now your luck's run out.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story153 : public Story::Base
+{
+public:
+    Story153()
+    {
+        ID = 153;
+
+        Text = "Reaching up, you take a firm grip on the bulkhead beam running across the ceiling of the passage. Then you swing yourself up until you are braced across the beam. A moment later you see the sailmaster's distinctive bald head appear below where you're hiding, but he does not look up. As he vanishes into his cabin, you drop silently to the floor and hurry up the companion-way to join your comrades.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
+class Story154 : public Story::Base
+{
+public:
+    Story154()
+    {
+        ID = 154;
+
+        Text = "You row in towards the island, beaching your vessel on the deserted shore. Oakley gives a cry of delight as he spots a pineapple that has fallen from a tree at the top of the beach. Its juice stings his sun-cracked lips, but he chews ravenously at it all the same.\n\n\"Head's up,\" Grimes says tersely. \"We got company, shipmates.\"\n\nYou turn your head. A large group of Carab natives have emerged from the woods and are coming across the sand towards you. \"Welcoming party...\" you mutter under your breath, noticing the spears.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_CODEWORD(player, Codeword::Type::SCRIP))
+        {
+            Choices.push_back(Choice::Base("[MARKSMANSHIP] Attack using a PISTOL", 196));
+            Choices.push_back(Choice::Base("Go hand-to-hand fighting", 215));
+            Choices.push_back(Choice::Base("You prefer to parley", 272));
+            Choices.push_back(Choice::Base("Put to sea before they reach you", 177));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 253; }
+};
+
+class Story155 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story155()
+    {
+        ID = 155;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your limbs ache with the strain of rowing, like men who have been stretched on the rack. Slumping over the oars, you gaze feebly out across the merciless distance that still separates you from civilization. The water laps temptingly against the sides of your boat, but you know that it holds out a false promise: brine cannot slake a poor mariner's thirst, it can only drive him mad.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            PreText += "[SEAFARING] ";
+
+            DAMAGE = -1;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 426; }
+};
+
+class Story156 : public Story::Base
+{
+public:
+    Story156()
+    {
+        ID = 156;
+
+        Text = "The most westerly of the islands comes in sight. It is a large golden-shored jungle island with many welcoming coves. \"Others have put in here, when blown north off the main shipping route,\" Grimes recalls. \"The natives are said to be hospitable.\"\n\nYou stare into the west. Leshand is still two hundred leagues off, and it might be wise to re-provision before you undertake that long haul. And yet worry gnaws at your mind: \"Hospitable when faced with gifts and muskets and a sea-going vessel of ten cannon, perhaps. But how will they greet a handful of starving wretches in a ramshackle craft?\"\n\nIt's up to you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Put in here", 154));
+        Choices.push_back(Choice::Base("Sail on towards Port Leshand", 177));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story157 : public Story::Base
+{
+public:
+    Story157()
+    {
+        ID = 157;
+
+        Text = "Now you guess the truth. As daughter of the earth goddess, Ejada received unending strength and vitality as long as she remained in contact with the ground. Now she is like an uprooted flower wilting in the hot sunlight. \"Restore me to the earth,\" she begs, \"and all my treasures are yours.\"\n\n\"They are anyway.\" You learned never to trust a sorceress. Wedging her on a high cornice of the building, well clear of the soil that would regenerate her power, you go inside to explore. You soon find a hoard of magical treasures comprising a MAGIC WAND, a HEALING POTION, a SHIP IN A BOTTLE, and a BLACK KITE. The HEALING POTION can be drunk once at any time to restore your Life points to normal. The other items may or may not come in handy later.";
+
+        Bye = "Returning to the beach, you quit Grimoire Island without further delay.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::MAGIC_WAND, Item::HEALING_POTION, Item::SHIP_IN_BOTTLE, Item::BLACK_KITE};
+
+        Limit = 4;
+    }
+
+    int Continue(Character::Base &player) { return 137; }
+};
+
+class Story158 : public Story::Base
+{
+public:
+    Story158()
+    {
+        ID = 158;
+
+        Text = "Coconuts are often found drifting at sea. This is how coconut trees establish themselves on new islands, after all. They can float at sea for months and remain perfectly fresh, so there is no reason why this one should not be edible. You finally manage to convince Blutz that it has not bobbed up from the kingdom of the dead or any such nonsense, and he happily joins the rest of you in your meal.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 389; }
+};
+
+class Story159 : public Story::Base
+{
+public:
+    Story159()
+    {
+        ID = 159;
+
+        Text = "The mermaid splashes grey spume with her tail, writhing angrily in Blutz's grip and spitting like a snake. But she answers you none the less: \"Set your prow south if food and comfort are your aim, for the islands there more hospitable to land-dwellers than these storm-churned seas. Your present course westward will take you to a baleful rendezvous, and one you are unlikely to get away from in once piece.\"\n\n\"I don't like the sound of that,\" says Blutz. \"But tell us more about the isles to the south. Aren't there any dangers there?\"\n\n\"There is the witch Ejada,\" replies the mermaid. \"She seeks souls for her god, and such is her power that none can strike her down while her feet remain planted on solid earth --\"\n\nSuddenly flinging a handful of brine into Blutz's face, she pulls free of his grip, leaving only two or three coral-coloured hairs twined between his stubby fingers.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 178; }
 };
 
 auto prologue = Prologue();
@@ -4270,6 +4497,16 @@ auto story146 = Story146();
 auto story147 = Story147();
 auto story148 = Story148();
 auto story149 = Story149();
+auto story150 = Story150();
+auto story151 = Story151();
+auto story152 = Story152();
+auto story153 = Story153();
+auto story154 = Story154();
+auto story155 = Story155();
+auto story156 = Story156();
+auto story157 = Story157();
+auto story158 = Story158();
+auto story159 = Story159();
 
 void InitializeStories()
 {
@@ -4289,7 +4526,8 @@ void InitializeStories()
         &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
         &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
         &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
-        &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149};
+        &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
+        &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159};
 }
 
 #endif
