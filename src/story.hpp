@@ -3887,7 +3887,7 @@ public:
     {
         ID = 138;
 
-        Text = "A strong breeze stretches your sails wide against the sky, driving you on towards your destiny. But you have no time to brood on what the future may hold; you have a ship to command. Seeing the way her prow cleaves the water, and the jaunty courage of your crew as they go about their chores, your heart brims with optimism. Soon Skarvench will see his last sunset in his life -- of that you feel sure.\n\nYou RECOVER 2 Life Points.\n\nMore than a week goes by. On the ninth day, you stand on the deck watching the sun slide out of the sky. Long blazing beams of orange light turn the green waves to liquid gold. And then -- in the blink of an eye -- this idyllic scene is transformed. A purple murk rises from the western horizon, blotting out the afternoon sun behind thick thunderclouds. A cold gust blows in your face, setting the sails to a pensive fluttering like frightened birds. You know well the taste of that chill wind; it is the harbinger of the hurricane.\n\n\"This is but the twitch of the lion's tail compared to what will come,\" mutters Grimes. \"We'll have to put about.\" He calls to the crew: \"Strike the main topsail.\"\n\nYou turn. \"Belay that striking order. Lash it!\"\n\nOakley stares at you. \"Skipper, the hurricane'll tear us apart.\"\n\nThe first rain spits into your face, icily intense. \"'We're going in, hurricane or not. God is the master of the heavens and all the world -- but, by all that's holy, I'm the master of this ship!\"";
+        Text = "A strong breeze stretches your sails wide against the sky, driving you on towards your destiny. But you have no time to brood on what the future may hold; you have a ship to command. Seeing the way her prow cleaves the water, and the jaunty courage of your crew as they go about their chores, your heart brims with optimism. Soon Skarvench will see his last sunset in his life -- of that you feel sure.\n\nMore than a week goes by. On the ninth day, you stand on the deck watching the sun slide out of the sky. Long blazing beams of orange light turn the green waves to liquid gold. And then -- in the blink of an eye -- this idyllic scene is transformed. A purple murk rises from the western horizon, blotting out the afternoon sun behind thick thunderclouds. A cold gust blows in your face, setting the sails to a pensive fluttering like frightened birds. You know well the taste of that chill wind; it is the harbinger of the hurricane.\n\n\"This is but the twitch of the lion's tail compared to what will come,\" mutters Grimes. \"We'll have to put about.\" He calls to the crew: \"Strike the main topsail.\"\n\nYou turn. \"Belay that striking order. Lash it!\"\n\nOakley stares at you. \"Skipper, the hurricane'll tear us apart.\"\n\nThe first rain spits into your face, icily intense. \"'We're going in, hurricane or not. God is the master of the heavens and all the world -- but, by all that's holy, I'm the master of this ship!\"\n\nYou RECOVER 2 Life Points.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Use a THUNDERCLOUD FAN", 18, {Item::THUNDERCLOUD_FAN}));
@@ -3916,6 +3916,203 @@ public:
         Choices.clear();
         Choices.push_back(Choice::Base("Change the two items you are taking", 217, Choice::Type::TAKE, {Item::DIAMOND, Item::CONCH_SHELL_HORN, Item::THUNDERCLOUD_FAN, Item::BRONZE_HELMET, Item::DRAGON_RING}, 2));
         Choices.push_back(Choice::Base("Stick with what you have taken", 217));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story140 : public Story::Base
+{
+public:
+    Story140()
+    {
+        ID = 140;
+
+        Text = "\"Much maintenance,\" she replies in answer to your query. \"Furious storms could yet swamp your boat; icy rain will chill you; hunger will gnaw at your insides and thirst will wither your tongues --\"\n\n\"Is that all?\" says Oakley.\n\nShe looks hard at him. \"A cursed ship plies these waters. If you have nerves of iron and fear no fright under all of heaven, you might travel aboard her and safely be brought in sight of land.\"\n\n\"A cuh-cursed ship...\" stammers Blutz. \"What's the cuh-catch?\"\n\n\"You'd pay a high price for your passage,\" replies the mermaid. \"A sinister sacrifice is called for when you wish to disembark. But nothing,\" she stares at the hand grasping her long tresses, \"nothing you can't afford to part with.\"\n\nNervousness makes Blutz relax his grip. With a haughty twist, the mermaid pulls away from him.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 178; }
+};
+
+class Story141 : public Story::Base
+{
+public:
+    Story141()
+    {
+        ID = 141;
+
+        Text = "You return to the captain's cabin, where you find Mandrigard snoring, sprawled across a table full of gold coins. Oakley stands looking down at him with hands on hips, his expression an odd mixture of pity and loathing. \"One way to lift the curse,\" he says at last, \"might be to put an end to the wretch.\"\n\n\"Murder him?\" gasps Blutz. \"I don't hold with killing a man who's not standing on his hind legs. Anyway, you're only saying that so you can take his treasure.\"\n\n\"He's dead drunk,\" points out Grimes. \"We could take the treasure from under his nose without provoking so much as a murmur. He'd never miss a few choice bits, and what good is treasure to him if he can never spend it?\"\n\nAs usual the others look to you for authority.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Give the go-ahead to murder Mandrigard while he sleeps", 179));
+        Choices.push_back(Choice::Base("Help yourself to just a few items of treasure", 198));
+        Choices.push_back(Choice::Base("Go back up on deck", 217));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story142 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story142()
+    {
+        ID = 142;
+
+        Image = "images/filler3-green.png";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SEAFARING] Try swimming to safety", 180, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("[CHARMS] Rely on a charm against drowning", 199, Skill::Type::CHARMS));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "Huge eye-stalks rise from the water, swivelling to bring you under the scrutiny of the crab's ghastly black gaze. It's claw swings down at you like a yacht's boom, and it rears and twists in a furious effort to snatch you off its back. Realising that you will be torn in half instantly if you fall prey to the claws, you throw yourself flat and cling to the crab's shell for dear life. There is a great lurch, then sea water washes in to engulf you. The crab is diving into the depths -- and taking you along with it.";
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SEAFARING, Skill::Type::CHARMS}))
+        {
+            PreText += "\n\nThere is nothing you can do to save yourself. Your adventure ends right here.";
+
+            player.Life = 0;
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story143 : public Story::Base
+{
+public:
+    Story143()
+    {
+        ID = 143;
+
+        Text = "Rising to your feet, you perform as elegant an imitation of a courtly bow as your uncouth background and the cramped conditions will allow. \"Of course, we had nearly forgotten our manners. Long privation can do that to the best of us --\"\n\n\"Yes, yes!\" says Mortice eagerly, gripping the side of your boat.\n\nOakley's brow furrows into a frown and he looks on the point of saying something, but not before you have completed your mock ritual with the words: \"Mister Mortice, you have my permission to come aboard our little vessel.\"\n\nInstantly there is a flutter of tattered rags and a soft thud as he lands beside you in a jollyboat. You are taken aback. He moved so fast! With a toothy smile, he says, \"You lot get some rest. I'll keep watch a while.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::CRUCIFIX}) && !Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            return 200;
+        }
+        else
+        {
+            return 181;
+        }
+    }
+};
+
+class Story144 : public Story::Base
+{
+public:
+    Story144()
+    {
+        ID = 144;
+
+        Text = "You hide out deep in the hinterland of the island, surviving off berries and fruit. Eventually you deem it safe to make your way back to the native village. Peering out from the sheltering foliage, you find that the Belle Dame has sailed off. The coast is clear.\n\n\"That fiend!\" rages Oakley. \"No doubt he's off to wreak more wickedness in the world. Are we really going to sit here sucking coconuts while he goes unpunished?\"\n\nYou all agree it is high time you pressed on with your journey. The natives are now too scared to repeat the offer of an escort; you're on your own.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story145 : public Story::Base
+{
+public:
+    Story145()
+    {
+        ID = 145;
+
+        Text = "Experienced sailors like the four of you have no trouble working your passage to Port Selenice. You sign on aboard a caravel and for the next week or so your days are filled with the familiar routine of life at sea.\n\n\"Look at the sunset!\" calls Blutz across the deck one evening. He points to where long clouds like like mauve paint smears across a palette of gloriously mingled gold, scarlet, violet and grey. \"This is the life, eh, shipmates?\n\nGrimes looks up from trimming the topsails. \"I'll take no pleasure from any such sight,\" he says grimly, \"until I know that Skarvench no longer lives under the same sky as we.\"\n\nEventually you reach port, and the captain of the caravel PAYS you off with 5 doubloons. Taking up your packs, you stride down the gangplank and along the bustling quay.\n\nYou RECOVER 3 Life Points.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 3);
+        Character::GAIN_MONEY(player, 5);
+    }
+
+    int Continue(Character::Base &player) { return 165; }
+};
+
+class Story146 : public Story::Base
+{
+public:
+    Story146()
+    {
+        ID = 146;
+
+        Image = "images/ruffians-green.png";
+        
+        Text = "The innkeeper of The Hanged Man is a sour-faced man named Drood. You can see him at the bar polishing tankards with a filthy piece of rag. As you step up, he sets aside the tankard he's holding and gives you a long loury glare. \"Heard you were dead,\" he says. \"Seems the news hasn't reach you yet, though.\"\n\nYou ignore this. \"Skarvench been in?\" you ask.\n\n\"Not lately. Things are too hot for him in Leshand.\" Drood spits on the bar and starts wiping it.\n\nA beefy hand clamps on your shoulder and turns you around. Facing you are six burly ruffians. You vaguely recognise them as Skarvench's \"business associates\" -- men who act as his spies and assassins on shore.\n\nThere leader regards you with eyes like tiny beads of dull glass. \"Cap'n Skarvench is in Port Selenice takin' delivery of a new ship,\" he says, \"Why're you askin'?\"\n\n\"We're planning to meet him.\"\n\nYou start to move past the ruffians, then freeze as they draw knives. \"Tell you what,\" says the leader, \"you go straight to hell, and no doubt the cap'n will join you there when he's good and ready...\"\n\nIt's life or death.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Fight", 13));
+        Choices.push_back(Choice::Base("Use [CUNNING]", 51, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Use [AGILITY]", 32, Skill::Type::AGILITY));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story147 : public Story::Base
+{
+public:
+    Story147()
+    {
+        ID = 147;
+
+        Text = "Stepping up to the bar, you act as if you'd only just spotted the three ruffians. \"Toby Whipstaff!\" you say to the largest of them. \"Why, I haven't clapped eyes on you in a month o' Sundays! How blows the wind, Toby?\"\n\nHe greets you with a broad smile, forgetting his sport with the scholar. \"All's well. Last week we took a Sidonian galleon loaded with gold plate; pickings have rarely been richer.\"\n\nYou nod. \"And not just Sidonian pickings, I suppose, otherwise the governor wouldn't have set a price of a hundred doubloons on your head.\"\n\nHe fingers his neck nervously. \"Ah that must be the little business involving the Gloriannic merchantman a while back. I didn't expect them to make so much of it.\"\n\n\"You're too modest! Five sailors were killed, including the governor's godson.\"\n\nWhipstaff visibly pales. \"A hundred doubloons, eh? That much.\"\n\n\"Your brother's been posted for twice that. No doubt it was his expertise with the flensing-knife that attracted undue attention.\"\n\n\"My brother? But he's sailing for Leshand this very day. I must get to the docks!\" Tossing the spectacles on the bar, he races out with his two cronies close behind.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 223; }
+};
+
+class Story148 : public Story::Base
+{
+public:
+    Story148()
+    {
+        ID = 148;
+
+        Text = "He gives you a single large emerald -- one of his tears of mirth at your great gall. The dolphin and the shark convey you back, chatting to one another on the way. You cannot hear everything they are saying because of the splashing of the waves, but you gather they had their own ideas as to how you'd fare at Neptune's gate. \"One of them's the spitting image of that Ulysses,' you overhear the dolphin say. The shark snorts and replies, \"I'm more interested in the fat one. I like the look of him. I might hang around the shore tomorrow and see if he goes swimming.\n\nAt last you arrive at the beach near Selenice. Your adventure has taken the whole night. As the sun rises, the coracle sinks under the waves. Blutz gives a shudder and seeing this, you remark, \"Don't worry, Mister Blutz, you'll be all right so long as you don't go for a swim.\"\n\n\"Er, it's not that,\" he protests. \"I was just, er, a bit chilly. Come on, mates, let's go to the shipyard and spend our emerald!";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 337; }
+};
+
+class Story149 : public Story::Base
+{
+public:
+    Story149()
+    {
+        ID = 149;
+
+        Text = "He examines the letter, then hands it back. \"All's in order,\" he says. His manner is far from friendly, but at least the expression of icy menace is gone from his eyes. He orders the marines to lower their weapons. You cannot help noticing that the marine sergeant keeps his pistol cocked, however. \"I will take delivery of Her Majesty's share of your plunder,\" says the captain curtly. \"This will save you the trouble of sailing to Leshand to hand it over.\"\n\nYou show him to the hold, where he makes an inventory of your treasure and then divides a sizeable pile from it -- nearly a quarter of all your spoils. \"You're levying a harsh tax,\" you say, pointing at the pile.\n\nFor the first time his face shows a smile. It is like a crack appearing on thin ice. \"You're mistaken. That pile is what you get to keep. We're taking all the rest.\"\n\nYou barely choke back a gasp. He means to take three-quarters of your treasure! You will barely have enough left to buy a decent ship.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [CUNNING]", 168, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Allow him to take the Queen's share", 187));
+        Choices.push_back(Choice::Base("Fight to keep what you have", 206));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -4063,6 +4260,16 @@ auto story136 = Story136();
 auto story137 = Story137();
 auto story138 = Story138();
 auto story139 = Story139();
+auto story140 = Story140();
+auto story141 = Story141();
+auto story142 = Story142();
+auto story143 = Story143();
+auto story144 = Story144();
+auto story145 = Story145();
+auto story146 = Story146();
+auto story147 = Story147();
+auto story148 = Story148();
+auto story149 = Story149();
 
 void InitializeStories()
 {
@@ -4081,7 +4288,8 @@ void InitializeStories()
         &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
         &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
         &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
-        &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139};
+        &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
+        &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149};
 }
 
 #endif
