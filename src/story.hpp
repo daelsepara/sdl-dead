@@ -1946,7 +1946,7 @@ class Event059 : public Story::Base
 public:
     Event059()
     {
-        ID = -9;
+        ID = -59;
 
         Controls = Story::Controls::NONE;
     }
