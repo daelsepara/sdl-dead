@@ -4556,7 +4556,7 @@ class Event167 : public Story::Base
 {
 public:
     std::string PreText = "";
-    
+
     Event167()
     {
         Title = "Down Among the Dead Men: 167";
@@ -4629,6 +4629,308 @@ public:
     }
 
     int Continue(Character::Base &player) { return 347; }
+};
+
+class Story170 : public Story::Base
+{
+public:
+    Story170()
+    {
+        ID = 170;
+
+        Image = "images/filler1-green.png";
+
+        Text = "Handing the kite to a sailor, you tell him to go up into the rigging and cast it towards the sky. \"What good will that do, skipper?\" asks Oakley as you watch the man climb.\n\n\"Call it a hunch, Mister Oakley. That witch Ejada wouldn't treasure anything so mundane as a kite unless it possessed some kind of magical power. Now we'll find out exactly what.\"\n\n\"It's a long shot,\" says Blutz, watching the Moon Dog dip lower in the night sky with silver sails gleaming.\n\nYou watch the sailor reach the top of the mast and throw the kite up into the heavens. Caught by some wind that the sails do not feel, it soars aloft higher and higher, seeming to grow larger as it goes so that it spreads like an inkblot against the moon.\n\n\"The dragon wing of night o'erspreads the world...\" breathes Grimes, his voice barely a whisper. And the last of the moonlight is blotted out, leaving only the gleam of ships' lanterns on the low bank of fog and the spangling of a million stars in the clear blackness above.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 246; }
+};
+
+class Story171 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story171()
+    {
+        ID = 171;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "\"I don't know how you escaped death before,\" snarls Skarvench, \"but this time I'm going to make sure of the matter. I'll cut off your head and stick it on the bowsprit of my ship!\n\nHis sword comes slicing down in a lethal arc, barely missing your shoulder as you dodge desperately aside. It splinters a great chunk of wood out of the mast behind you. Skarvench only gives a bellow of insensate fury and draws it back for another swing. His is in a killing rage, and this fight will be every bit as dangerous as you had anticipated.\n\n";
+
+        auto DAMAGE = -5;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        {
+            DAMAGE = -2;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+            {
+                PreText += "[MARKSMANSHIP] ";
+            }
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            DAMAGE = -3;
+
+            PreText += "[BRAWLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 361; }
+};
+
+class Story172 : public Story::Base
+{
+public:
+    Story172()
+    {
+        ID = 172;
+
+        Image = "images/belle-dame-green.png";
+
+        Text = "The others are waiting for you on deck. In the slanting rays of the setting moon you make out the furtive silhouettes of Grimes, tall and gaunt; Oakley, strong as a tar barrel; and fat little Blutz.\n\nThey have the jollyboat swung out over the side. Stealthily you lower it into the water, working in deep silence like four burglars intent on a night's business. From the below wafts the sound of a hornpipe and snatches of revelry as the crew sing sea shanties in the galley. Climbing down to the jollyboat, you shove off from the side and row with muffled oars away from the brooding bulk of Belle Dame. The moon slips below the western horizon, leaving the night studded with stars. There is no wind and the sea is as flat as a pane of glass. As the sounds of jollity fade into the distance, only the soft splash of your oars remains to disturb the eerie quiet.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 381;
+        }
+        if (Character::VERIFY_ITEMS(player, {Item::Type::BOOK_OF_CHARTS}))
+        {
+            return 381;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            return 399;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::SPELLS))
+        {
+            return 416;
+        }
+        else
+        {
+            return 289;
+        }
+    }
+};
+
+class Story173 : public Story::Base
+{
+public:
+    Story173()
+    {
+        ID = 173;
+
+        Text = "You beach the jollyboat on a narrow strand of fine white sand backed by high cliffs. At the top of the cliffs you can clearly see the tall green boles of coconut trees. \"We're saved!\" cries Blutz, dancing an absurd little jig. \"We can eat those coconuts and even drink the milk if we can't find fresh water.\"\n\n\"But there's a problem,\" says Grimes, surveying the steep cliffs with a dour gaze. \"Who's going to climb up there and get them? You, Mister Blutz?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[AGILITY] Climb the cliffs alone", 192, Skill::Type::AGILITY));
+        Choices.push_back(Choice::Base("Make your way along the beach in search of a way up", 211));
+        Choices.push_back(Choice::Base("Try looking for food here on the beach", 230));
+        Choices.push_back(Choice::Base("Put to sea and continue west towards the next island", 116));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story174 : public Story::Base
+{
+public:
+    Story174()
+    {
+        ID = 174;
+
+        Image = "images/filler4-green.png";
+
+        Text = "Putting into a small cove, you moor the boat beside a large rock and then scramble ashore up a rocky moss-coated slope. Immediately you are confronted by lush jungle teeming with colour and life. Bright bulbous fruits dangle enticingly from the tree branches, yours for the taking. High up amid the emerald foliage, parrots in stained-glass hues peer down at you curiously, heads cocked to one side giving them a comical expression.\n\nYou and your friends have no difficulty in gathering food and fresh water. You RECEIVE two meals' worth of PROVISIONS for yourself.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::PROVISIONS, Item::PROVISIONS});
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::PROSPERO))
+        {
+            return 250;
+        }
+        else
+        {
+            return 269;
+        }
+    }
+};
+
+class Story175 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story175()
+    {
+        ID = 175;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your head swims; your limbs tremble with weakness. Looking into Oakley's face, you give a croak of bleak amusement. \"Saints alive, man, you look as though you'd been keelhauled!\"\n\nHe manages a wry half-smile- \"You think you do don't?\" Staggering over to slump beside you, he adds, \"We're not for long for this world now now, are we, mate?\"\n\nYou gaze into the west, almost all hope gone.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SEAFARING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 156; }
+};
+
+class Story176 : public Story::Base
+{
+public:
+    Story176()
+    {
+        ID = 176;
+
+        Image = "images/filler3-green.png";
+
+        Text = "Resorting to an old trick of your trade, you toss a few pebbles to distract Ejada. She thinks she has heard you creeping away, and gives a wild laugh as she hurls her deathly bolts in the direction of the sound. Meanwhile you sneak into her tower and hastily feel your way along the wall until you come to a treasure chest. From this you pull a large DIAMOND and a BLACK KITE.\n\nEjada is still striding about the outside casting her spells into the undergrowth. \"Show yourself, coward!\" she screeches. \"This darkness won't last forever.\"\n\nIndeed it won't. Before the spell can wear off, you take your friends' arms and lead them back to the beach";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::DIAMOND, Item::BLACK_KITE};
+
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player) { return 195; }
+};
+
+class Story177 : public Story::Base
+{
+public:
+    Story177()
+    {
+        ID = 177;
+
+        Text = "Taking stock of your situation leaves you in a grim mood. \"We're still more than two hundred leagues out from Port Leshand, and there are no islands along the route for us to restock our supplies. What we've got left for now is going to have to keep us going for at least ten days.\"\n\nOakley has another thought, equally sobering. Pointing at the timbers of your vessel - now warped by the constant sun and the battering of high waves -- he mutters: \"Ten days? We might not stay afloat that long.\"\n\n\"Maybe we shouldn't try to make it all the way to Leshand,\" suggests Blutz. \"We could head south from here towards the main shipping lanes. There's a good chance we'd be rescued by a friendly vessel.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go south", 367));
+        Choices.push_back(Choice::Base("Keep on heading west", 404));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::PECCANT))
+        {
+            Choices[4].Destination = 386;
+        }
+        else
+        {
+            Choices[4].Destination = 404;
+        }
+    }
+};
+
+class Story178 : public Story::Base
+{
+public:
+    Story178()
+    {
+        ID = 178;
+
+        Text = "The flash of coral-pink tail against the white-foamed grey of the sea, and then she is gone.\n\nThunder rattles the buttresses of heaven, and the sky gleams with distant lightning. Grimes squints into the west. \"Another storm rolling in ahead,\" he says. \"We're in for a battering.\"\n\n\"Let's head south!\" cries Blutz in sudden desperation. \"There are fewer storms, and we could pick up supplies among the islands, some of which are inhabited.\"\n\n\"Yes,\" grunts Oakley. \"By cannibals.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Give the order to steer south", 135));
+        Choices.push_back(Choice::Base("Stay on your present westward course", 235));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story179 : public Story::Base
+{
+public:
+    Story179()
+    {
+        ID = 179;
+
+        Text = "It takes no special skill to murder a man while he sleeps, just a callous disregard for life. As Mandrigard's bright red blood drips down onto the floorboards and scattered jewels, you and your three companions stare at one another in the flickering lamplight. You all know the significance of your dreadful deed. Before you were merry rogues -- swashbucklers with one eye for plunder and one eye for thrills. Now you are rank villains.\n\nCramming your pockets with gold and gems worth a king's ransom you hurry away from the scene of the murder, up onto the deck where you at last feel a shudder of remorse.\n\nOakley recognizes the look on your face; he wears the same expression himself. Nodding, he cries, \"If this fresh breeze could only clean up my lungs of the stench of butchery - and this rain wash my hands of Mandrigard's blood!\"\n\n\"Forget it,\" grunts Grimes. \"The deed's done. \"We can never go back to being as we were before.\"\n\nYou gained the codeword CHANCERY.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::CHANCERY});
+
+        Choices.clear();
+
+        Choices.push_back(Choice::Base("[CHARMS] Escape from the ship", 236, Skill::Type::CHARMS));
+
+        if (player.Items.size() > 0)
+        {
+            Choices.push_back(Choice::Base("You think you have an item in your possession that might help", 255));
+        }
+
+        Choices.push_back(Choice::Base("Otherwise", 388));
+    }
 };
 
 auto prologue = Prologue();
@@ -4804,6 +5106,16 @@ auto story167 = Story167();
 auto event167 = Event167();
 auto story168 = Story168();
 auto story169 = Story169();
+auto story170 = Story170();
+auto story171 = Story171();
+auto story172 = Story172();
+auto story173 = Story173();
+auto story174 = Story174();
+auto story175 = Story175();
+auto story176 = Story176();
+auto story177 = Story177();
+auto story178 = Story178();
+auto story179 = Story179();
 
 void InitializeStories()
 {
@@ -4825,7 +5137,8 @@ void InitializeStories()
         &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
         &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
         &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
-        &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169};
+        &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
+        &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179};
 }
 
 #endif
