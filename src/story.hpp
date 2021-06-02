@@ -4411,7 +4411,7 @@ public:
         Choices.clear();
         Choices.push_back(Choice::Base("Attack Mortice with bare hands", 219));
         Choices.push_back(Choice::Base("[SWORDPLAY] Attack with a sword", 238, Skill::Type::SWORDPLAY));
-        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a pistol", 257, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 257, Skill::Type::MARKSMANSHIP));
         Choices.push_back(Choice::Base("Cut the raft adrift", 276));
 
         Controls = Story::Controls::STANDARD;
@@ -4804,6 +4804,8 @@ public:
     {
         ID = 175;
 
+        Image = "images/filler3-green.png";
+
         Choices.clear();
 
         Controls = Story::Controls::STANDARD;
@@ -4838,8 +4840,6 @@ public:
     Story176()
     {
         ID = 176;
-
-        Image = "images/filler3-green.png";
 
         Text = "Resorting to an old trick of your trade, you toss a few pebbles to distract Ejada. She thinks she has heard you creeping away, and gives a wild laugh as she hurls her deathly bolts in the direction of the sound. Meanwhile you sneak into her tower and hastily feel your way along the wall until you come to a treasure chest. From this you pull a large DIAMOND and a BLACK KITE.\n\nEjada is still striding about the outside casting her spells into the undergrowth. \"Show yourself, coward!\" she screeches. \"This darkness won't last forever.\"\n\nIndeed it won't. Before the spell can wear off, you take your friends' arms and lead them back to the beach";
 
@@ -4931,6 +4931,244 @@ public:
 
         Choices.push_back(Choice::Base("Otherwise", 388));
     }
+};
+
+class Story180 : public Story::Base
+{
+public:
+    Story180()
+    {
+        ID = 180;
+
+        Image = "images/filler2-green.png";
+
+        Text = "The giant crab drops down into the murk of the ocean, sinking as rapidly as a rock, and you are being carried along with it in the strong undertow. Luckily you were able to get a good lungful of air before you went under, and now you make full use of your remaining strength to strike powerfully up towards the glimmering pane of light that marks the surface.\n\nThe water drags at you like liquid lead. Your pulse thunders in your ears and your chest is burning with the need for air, but you struggle on with desperate strokes, clawing your way upwards until at last you break the surface.\n\nGasping for air, you are barely aware of your friends hauling you into the jollyboat. \"Come on, lads!\" you hear Oakley's voice yelling. \"Let's get clear before it resurfaces.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 161; }
+};
+
+class Story181 : public Story::Base
+{
+public:
+    Story181()
+    {
+        ID = 181;
+
+        Text = "You sleep soundly, waking at dawn to discover that Mortice and his raft have vanished. \"Good riddance to him, too,\" growls Oakley when you shake him awake with the news.\n\n\"He was a rather creepy character,\" Grimes concedes.\n\n\"Yes, but what about the food and water he had?\" Blutz reminds them. \"Now we're just as badly off as we were before.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 332; }
+};
+
+class Story182 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story182()
+    {
+        ID = 182;
+
+        Image = "images/filler3-green.png";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Fight on", 220));
+        Choices.push_back(Choice::Base("Surrender", 201));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Skarvench and his men are not the sort to be taken unawares. With savagery shining from their eager faces, they close to surround you. The clash of steel and the sharp crack of musket shots ring out, startling the constant jungle murmur into silence. Gunpowder smoke and the abattoir stink of blood clog your nostrils. You are heavily outnumbered, and the struggle grows ever more desperate.";
+
+        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        {
+            Character::GAIN_LIFE(player, -5);
+
+            PreText += "\n\n[SWORDPLAY] [MARKSMANSHIP] You LOSE 5 Life Points.";
+        }
+        else
+        {
+            PreText += "\n\nYou sell your lives dearly, but in an ultimately futile massacre.";
+
+            player.Life = 0;
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story183 : public Story::Base
+{
+public:
+    Story183()
+    {
+        ID = 183;
+
+        Image = "images/filler4-green.png";
+
+        Text = "\"El Draque?\" whispers an old sea salt whom you get talking to. \"Have ye not heard? He was captured and hanged at sea barely a month ago. By one account, his body was thrown overboard, but then swam three times around the ship before it sank.\"\n\nGrimes peers into the sailor's tankard. \"What are you drinking mate?\"\n\n\"Why, are you buying a round?\" says the fellow briskly.\n\n\"No,\" Grimes replies. \"I was just going to advise you to drink a bit less of it.\" As you leave the tavern, he says, \"Enough of these taproom tales. It's time we shipped out after Skarvench.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 392; }
+};
+
+class Story184 : public Story::Base
+{
+public:
+    Story184()
+    {
+        ID = 184;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (player.Ship.Type != Ship::Type::NONE)
+        {
+            switch (player.Ship.Type)
+            {
+            case Ship::Type::LADY_OF_SHALOTT:
+                player.Ship.Stars = 1;
+                break;
+            case Ship::Type::SHIVERED_TIMBER:
+                player.Ship.Stars = 2;
+                break;
+            case Ship::Type::QUEENS_RANSOM:
+                player.Ship.Stars = 3;
+                break;
+            case Ship::Type::FAERIE_QUEEN:
+                player.Ship.Stars = 3;
+                break;
+            case Ship::Type::METEOR:
+                player.Ship.Stars = 4;
+                break;
+            case Ship::Type::OCTAVIUS:
+                player.Ship.Stars = 4;
+                break;
+            case Ship::Type::PROVIDENCE:
+                player.Ship.Stars = 5;
+                break;
+            case Ship::Type::CALYPSO:
+                player.Ship.Stars = 5;
+                break;
+            default:
+                player.Ship.Stars = 1;
+                break;
+            }
+        }
+        else
+        {
+            player.Ship.Stars = 0;
+        }
+
+        return 320;
+    }
+};
+
+class Story185 : public Story::Base
+{
+public:
+    Story185()
+    {
+        ID = 185;
+
+        Text = "One of the bullies gives a brutish sneer. \"You won't use that,\" he says with a scornful glance at the PISTOL. \"You'd be strung up for using a weapon in a brawl.\"\n\nYou shrug. \"True, I might get a rope around my neck -- if I'm caught. But it's a sure thing you won't attend the hanging. You'll be dead meat by then.\" He stares at you, licking his thick lips uncertainly. \"You wouldn't dare. Even if you kill me, my buddies here'll rip you apart.\"\n\nYou raise your PISTOL purposefully. It is aimed right between his eyes. \"Again, maybe that's so, but it won't do you any good with your brains splattered all over that wall.\"\n\nHis nerve breaks. With a snarl, he draws his cronies away and they slope off into the street. You tuck the PISTOL back inside your shirt before anyone sees you with it.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 223; }
+};
+
+class Story186 : public Story::Base
+{
+public:
+    Story186()
+    {
+        ID = 186;
+
+        Text = "Signing on a small crew, you set sail. A strong following wind allows you to make good headway, and you reach the island within a fortnight. As you coast in search of safe anchorage, Blutz points out a smaller isle that would be joined to the main island at low tide. Beyond it lies a bay where you drop anchor. Going ashore on the smaller island armed with shovels, you soon discover a boulder marked with crossed bones. \"Here's where we shall dig,\" you tell the others.\n\nYou labour on throughout the afternoon -- and hot work it is, with barely a breath of wind under a sun steaming through coastal marsh-haze. The western sky is already turning the colour of blood when there is the scrape of iron on wood. \"I've found a box!\" yells Blutz.\n\n\"And I another!\" Grimes calls out a moment later.\n\nScooping away the sand with your hands, you uncover a dozen large wooden crates. \"This is a goodly hoard!\" you say, breathless with sudden excitement. \"Break one open, lads, and let's see El Draque's treasure.\"\n\nGrimes smashes a hasp with his shovel. There is a creak as you wrench the lid up. A strong smell of tobacco and tar rises from the interior -- and something else: formaldehyde. A corpse lies there, resting on silver ingots, eyes staring sightlessly from a face which is colourless but untouched by decay. On the waxy flesh of its bare chest you see a tattoo with the legend \"Dethly is fear\".\n\n\"In God's holy name,\" breathes Oakley, \"what's this?\"\n\nBlutz grabs your arm. \"The sun's close to setting, skipper. For heaven's sake, let's forget the treasure and put to sea while we still can!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Open the other boxes", 78));
+        Choices.push_back(Choice::Base("Wait until nightfall", 347));
+        Choices.push_back(Choice::Base("Return to the ship and set sail at once", 413));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story187 : public Story::Base
+{
+public:
+    Story187()
+    {
+        ID = 187;
+
+        Text = "The captain and his marines wait like hawks for your decision. You can sense Oakley and the others readying themselves for a fight, but you know that both honour and common-sense demand that you give in to these conditions.\n\n\"All right, tell your men to load the Queen's gold aboard your ship.\" After he has issued the order, your resentment is still smouldering. \"I expect you'd have preferred us to fight,\" you say. \"You enjoy killing pirates, I'll bet.\"\n\nHe shrugs as if your opinion means nothing. \"Killing pirates is my duty. But you're not a pirate are you? You're a privateer, and it's not my job to quarrel with privateers. Not so long as they pay the Queen her due.\"\n\nHe returns to his warship and turns in the direction of Leshand. \"Any orders? asks Grimes as you watch the warship sail away.\n\n\"Yes, Mister Grimes. Lay in a course for Selenice while we still have a few doubloons in our hold.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 301; }
+};
+
+class Story188 : public Story::Base
+{
+public:
+    Story188()
+    {
+        ID = 188;
+
+        Image = "images/filler2-green.png";
+
+        Text = "This is grim work, but you cannot afford the luxury of hesitation. In moments the sunlight will be gone. Quickly dropping to your knees beside the open box, you raise the stake in both hands and plunge it down hard into the corpse's heart. A terrible gasping sigh escapes the dead lips, reminding you of the sound of autumn leaves scattering in a breeze. Then the body crumbles like ancient parchment.\n\nBlutz cries out. At the same moment, the sun is blotted out beyond the horizon and night rushes triumphantly across the world.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 347; }
+};
+
+class Story189 : public Story::Base
+{
+public:
+    Story189()
+    {
+        ID = 189;
+
+        Text = "You take out your pocket-watch and glance at it. The glass was cracked when it stopped Skarvench's bullet, but it is still working. \"Midnight,\" you say, and close the case with a click.\n\nThere is a gasp from the sailors. One man almost falls out of the rigging in shock. Staring at the sky, they watch as an encroaching arc of darkness closes in front of the moon. \"'Tis doomsday!\" cries the bo'sun. \"First an unseasonal hurricane, then becalmed in fog, then flying ships - an' now a dragon devours the moon!\" A low moan of dread escapes the crew's lips.\n\nStand fast, you timid swabs!\" you thunder down at them from the poopdeck. \"Have you never seen an eclipse of the moon before?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 246; }
 };
 
 auto prologue = Prologue();
@@ -5116,6 +5354,16 @@ auto story176 = Story176();
 auto story177 = Story177();
 auto story178 = Story178();
 auto story179 = Story179();
+auto story180 = Story180();
+auto story181 = Story181();
+auto story182 = Story182();
+auto story183 = Story183();
+auto story184 = Story184();
+auto story185 = Story185();
+auto story186 = Story186();
+auto story187 = Story187();
+auto story188 = Story188();
+auto story189 = Story189();
 
 void InitializeStories()
 {
@@ -5138,7 +5386,8 @@ void InitializeStories()
         &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
         &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
         &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
-        &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179};
+        &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
+        &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189};
 }
 
 #endif

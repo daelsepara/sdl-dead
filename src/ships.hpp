@@ -39,14 +39,14 @@ namespace Ship
     };
 
     auto NONE = Ship::Base("None", -1, Ship::Type::NONE);
-    auto CALYPSO = Ship::Base("Calypso", 5, Ship::Type::CALYPSO);
-    auto FAERIE_QUEEN = Ship::Base("Faerie Queen", 3, Ship::Type::FAERIE_QUEEN);
     auto LADY_OF_SHALOTT = Ship::Base("Lady of Shalott", 1, Ship::Type::LADY_OF_SHALOTT);
+    auto SHIVERED_TIMBER = Ship::Base("Shivered Timber", 2, Ship::Type::SHIVERED_TIMBER);
+    auto QUEENS_RANSOM = Ship::Base("Queen's Ransom", 3, Ship::Type::QUEENS_RANSOM);
+    auto FAERIE_QUEEN = Ship::Base("Faerie Queen", 3, Ship::Type::FAERIE_QUEEN);
     auto METEOR = Ship::Base("Meteor", 4, Ship::Type::METEOR);
     auto OCTAVIUS = Ship::Base("Octavius", 4, Ship::Type::OCTAVIUS);
     auto PROVIDENCE = Ship::Base("Providence", 5, Ship::Type::PROVIDENCE);
-    auto QUEENS_RANSOM = Ship::Base("Queen's Ransom", 3, Ship::Type::QUEENS_RANSOM);
-    auto SHIVERED_TIMBER = Ship::Base("Shivered Timber", 3, Ship::Type::SHIVERED_TIMBER);
+    auto CALYPSO = Ship::Base("Calypso", 5, Ship::Type::CALYPSO);
 }
 
 #endif
