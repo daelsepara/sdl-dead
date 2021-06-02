@@ -35,7 +35,8 @@ namespace Choice
         LOSE_CODEWORD,
         GAIN_MONEY,
         GIVE,
-        BRIBE
+        BRIBE,
+        TAKE
     };
 
     class Base
@@ -3913,37 +3914,11 @@ public:
         Text = "Mulling over your extensive knowledge of myth and legend, you consider what the items might be. Obviously they are classical in style. Very old, then -- which suggests the possibility of powerful magic, since everyone knows that the sorcerers of ancient times knew many magical secrets that are now lost. On the basis of hopeful surmise, you finally identify the items as follows:\n\nThe DIAMOND would suffice to buy you a ship of your own but it has no magical properties, unless the effect of staggering wealth on men's greed can be accounted magical.\n\nThe CONCH-SHELL HORN reminds you of such an item which was said to be taken by the Trojans after the sack of Atlantis. It can be used to convey its owner to the secret harbour of Poseidon, god of the sea. This harbour is filled with treasures, but it is guarded by a locked gate which can only be opened by the note of a flute or pipe.\n\nThe THUNDERCLOUD FAN is surely sacred to the storm deity of far-off Cathay. If wielded carefully, it unleashes a hurricane which can be directed as one wishes.\n\nYou soon place the BRONZE HELMET as having belonged to a Spartan king. No doubt it confers skill at arms upon the wearer, since the Spartans were renowned for their martial prowess.\n\nAs for the DRAGON RING... you're not sure. It strikes a distant chord of memory, but nothing you can quite dredge to the surface. Handling it makes you feel distinctly uneasy, however.\n\nDo you wish to change the two items you're taking on the basis of this information?";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Change the two items you are taking", -139));
-        Choices.push_back(Choice::Base("Stick with what you have chosen", 217));
+        Choices.push_back(Choice::Base("Change the two items you are taking", 217, Choice::Type::TAKE, {Item::DIAMOND, Item::CONCH_SHELL_HORN, Item::THUNDERCLOUD_FAN, Item::BRONZE_HELMET, Item::DRAGON_RING}, 2));
+        Choices.push_back(Choice::Base("Stick with what you have taken", 217));
 
         Controls = Story::Controls::STANDARD;
     }
-};
-
-class Event139 : public Story::Base
-{
-public:
-    Event139()
-    {
-        Title = "Down Among the Dead Men: 139";
-
-        ID = -139;
-
-        Text = "You go over the loot once more.";
-
-        Controls = Story::Controls::STANDARD;
-    }
-
-    void Event(Character::Base &player)
-    {
-        Character::LOSE_ITEMS(player, {Item::Type::DIAMOND, Item::Type::CONCH_SHELL_HORN, Item::Type::THUNDERCLOUD_FAN, Item::Type::BRONZE_HELMET, Item::Type::DRAGON_RING});
-
-        Take = {Item::DIAMOND, Item::CONCH_SHELL_HORN, Item::THUNDERCLOUD_FAN, Item::BRONZE_HELMET, Item::DRAGON_RING};
-
-        Limit = 2;
-    }
-
-    int Continue(Character::Base &player) { return 217; }
 };
 
 auto prologue = Prologue();
@@ -4088,12 +4063,11 @@ auto story136 = Story136();
 auto story137 = Story137();
 auto story138 = Story138();
 auto story139 = Story139();
-auto event139 = Event139();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117, &event139,
+        &event059, &event117,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,

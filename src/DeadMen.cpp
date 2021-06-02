@@ -55,7 +55,7 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer);
 bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story);
 bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story, Control::Type mode);
 bool storyScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, int id);
-bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, std::vector<Item::Base> items, int limit);
+bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, std::vector<Item::Base> items, int limit, bool back_button);
 bool tradeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Item::Base mine, Item::Base theirs);
 
 Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer);
@@ -722,7 +722,7 @@ bool glossaryScreen(SDL_Window *window, SDL_Renderer *renderer, std::vector<Skil
     if (window && renderer)
     {
         auto space = 8;
-        
+
         auto font_size = 20;
 
         const int glossary_width = SCREEN_WIDTH * (1.0 - 2.0 * Margin) - arrow_size - 2 * space;
@@ -1155,7 +1155,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
     return false;
 }
 
-bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, std::vector<Item::Base> items, int TakeLimit)
+bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, std::vector<Item::Base> items, int TakeLimit, bool back_button)
 {
     auto done = false;
 
@@ -1182,7 +1182,7 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
         auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space);
 
-        auto controls = createItemList(window, renderer, items, offset, last, limit, true, true);
+        auto controls = createItemList(window, renderer, items, offset, last, limit, true, back_button);
 
         TTF_Init();
 
@@ -1330,7 +1330,7 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
                         controls.clear();
 
-                        controls = createItemList(window, renderer, items, offset, last, limit, true, true);
+                        controls = createItemList(window, renderer, items, offset, last, limit, true, back_button);
 
                         SDL_Delay(50);
                     }
@@ -1365,7 +1365,7 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
                         controls.clear();
 
-                        controls = createItemList(window, renderer, items, offset, last, limit, true, true);
+                        controls = createItemList(window, renderer, items, offset, last, limit, true, back_button);
 
                         SDL_Delay(50);
 
@@ -3862,6 +3862,35 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
 
                             break;
                         }
+                        else if (story->Choices[current].Type == Choice::Type::TAKE)
+                        {
+                            auto items = std::vector<Item::Type>();
+
+                            for (auto i = 0; i < story->Choices[current].Items.size(); i++)
+                            {
+                                items.push_back(story->Choices[current].Items[i].Type);
+                            }
+
+                            Character::LOSE_ITEMS(player, items);
+
+                            auto finished = false;
+
+                            while (!finished)
+                            {
+                                finished = takeScreen(window, renderer, player, story->Choices[current].Items, story->Choices[current].Value, false);
+                            }
+
+                            while (!Character::VERIFY_POSSESSIONS(player))
+                            {
+                                inventoryScreen(window, renderer, player, story, player.Items, Control::Type::DROP, 0);
+                            }
+
+                            next = (Story::Base *)findStory(story->Choices[current].Destination);
+
+                            done = true;
+
+                            break;
+                        }
                         else if (story->Choices[current].Type == Choice::Type::LOSE_ITEMS)
                         {
                             auto items = std::vector<Item::Type>();
@@ -4934,7 +4963,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
 
                                 if (story->Take.size() > 0 && story->Limit > 0)
                                 {
-                                    auto done = takeScreen(window, renderer, player, story->Take, story->Limit);
+                                    auto done = takeScreen(window, renderer, player, story->Take, story->Limit, true);
 
                                     if (!done)
                                     {
