@@ -37,8 +37,9 @@ namespace Item
         POCKET_WATCH,
         CORKSCREW,
         PROVISIONS,
+        HORNPIPE,
         First = MAGIC_AMULET,
-        Last = PROVISIONS
+        Last = HORNPIPE
     };
 
     class Base
@@ -102,6 +103,7 @@ namespace Item
     auto POCKET_WATCH = Item::Base("POCKET WATCH", "POCKET WATCH", Item::Type::POCKET_WATCH);
     auto CORKSCREW = Item::Base("CORKSCREW", "CORKSCREW", Item::Type::CORKSCREW);
     auto PROVISIONS = Item::Base("PROVISIONS", "PROVISIONS", Item::Type::PROVISIONS);
+    auto HORNPIPE = Item::Base("HORNPIPE", "HORNPIPE", Item::Type::HORNPIPE);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::DRAGON_RING};
