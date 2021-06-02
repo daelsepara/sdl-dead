@@ -4036,7 +4036,7 @@ public:
     {
         ID = 144;
 
-        Text = "You hide out deep in the hinterland of the island, surviving off berries and fruit. Eventually you deem it safe to make your way back to the native village. Peering out from the sheltering foliage, you find that the Belle Dame has sailed off. The coast is clear.\n\n\"That fiend!\" rages Oakley. \"No doubt he's off to wreak more wickedness in the world. Are we really going to sit here sucking coconuts while he goes unpunished?\"\n\nYou all agree it is high time you pressed on with your journey. The natives are now too scared to repeat the offer of an escort; you're on your own.";
+        Text = "You hide out deep in the hinterland of the island, surviving off berries and fruit. Eventually you deem it safe to make your way back to the native village. Peering out from the sheltering foliage, you find that the Belle Dame has sailed off. The coast is clear.\n\n\"That fiend!\" rages Oakley. \"No doubt he's off to wreak more wickedness in the world. Are we really going to sit here sucking COCONUTs while he goes unpunished?\"\n\nYou all agree it is high time you pressed on with your journey. The natives are now too scared to repeat the offer of an escort; you're on your own.";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -4328,7 +4328,7 @@ public:
     {
         ID = 158;
 
-        Text = "Coconuts are often found drifting at sea. This is how coconut trees establish themselves on new islands, after all. They can float at sea for months and remain perfectly fresh, so there is no reason why this one should not be edible. You finally manage to convince Blutz that it has not bobbed up from the kingdom of the dead or any such nonsense, and he happily joins the rest of you in your meal.";
+        Text = "COCONUTs are often found drifting at sea. This is how COCONUT trees establish themselves on new islands, after all. They can float at sea for months and remain perfectly fresh, so there is no reason why this one should not be edible. You finally manage to convince Blutz that it has not bobbed up from the kingdom of the dead or any such nonsense, and he happily joins the rest of you in your meal.";
 
         Choices.clear();
 
@@ -4753,7 +4753,7 @@ public:
     {
         ID = 173;
 
-        Text = "You beach the jollyboat on a narrow strand of fine white sand backed by high cliffs. At the top of the cliffs you can clearly see the tall green boles of coconut trees. \"We're saved!\" cries Blutz, dancing an absurd little jig. \"We can eat those coconuts and even drink the milk if we can't find fresh water.\"\n\n\"But there's a problem,\" says Grimes, surveying the steep cliffs with a dour gaze. \"Who's going to climb up there and get them? You, Mister Blutz?\"";
+        Text = "You beach the jollyboat on a narrow strand of fine white sand backed by high cliffs. At the top of the cliffs you can clearly see the tall green boles of coconut trees. \"We're saved!\" cries Blutz, dancing an absurd little jig. \"We can eat those COCONUTs and even drink the milk if we can't find fresh water.\"\n\n\"But there's a problem,\" says Grimes, surveying the steep cliffs with a dour gaze. \"Who's going to climb up there and get them? You, Mister Blutz?\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("[AGILITY] Climb the cliffs alone", 192, Skill::Type::AGILITY));
@@ -5182,7 +5182,7 @@ public:
     {
         ID = 190;
 
-        Text = "The helmet fills your mind with the battle-lore of the Spartans. You now count as having [BRAWLING] and [SWORDPLAY] in addition to your usual skills. You sense the effect is only temporary - but it should last long enough to help you defeat Skarvench, or die trying.";
+        Text = "The BRONZE HELMET fills your mind with the battle-lore of the Spartans. You now count as having [BRAWLING] and [SWORDPLAY] in addition to your usual skills. You sense the effect is only temporary - but it should last long enough to help you defeat Skarvench, or die trying.";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -5203,6 +5203,218 @@ public:
     }
 
     int Continue(Character::Base &player) { return 209; }
+};
+
+class Story191 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story191()
+    {
+        ID = 191;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SWORDPLAY] Attack him before he can sound the alarm", 286, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[BRAWLING] Fight him", 248, Skill::Type::BRAWLING));
+        Choices.push_back(Choice::Base("[CUNNING] Fall back", 305, Skill::Type::CUNNING));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "You come face to face with the sailmaster. For a moment he stands there in simple perplexity. As an ordinary seaman you are not supposed to be in this part of the ship. \"What are you doing..?\" he starts to say.";
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::BRAWLING, Skill::Type::CUNNING}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nYou are helpless to prevent him from alerting the other pirates, who rush out of Skarvench's cabin to seize you. Your adventure ends before it even began.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story192 : public Story::Base
+{
+public:
+    Story192()
+    {
+        ID = 192;
+
+        Text = "With a dexterity that amazes your companions, you scale the cliffs like a monkey and have soon hurdle down enough COCONUTS to keep you all supplied for days. You scramble back down to the beach amid cheers of delight.\n\n\"Well done,\" says Oakley. He is smiling, but you notice he turns to cast a wary look along the shore. \"Now I suggest we lose no time loading these aboard and casting off. I've no wish to run into the natives hereabouts.\"\n\nYou GATHER 2 COCONUTs.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Leave this island and head west as Oakley suggests", 116));
+        Choices.push_back(Choice::Base("Explore further", 211));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::COCONUT, Item::COCONUT});
+    }
+};
+
+class Story193 : public Story::Base
+{
+public:
+    Story193()
+    {
+        ID = 193;
+
+        Image = "images/filler2-green.png";
+
+        Text = "\"No, you're wrong,\" you tell Blutz. \"Look at most of the island. It's well covered in vegetation, right?\" That volcano has most likely been hissing and spitting for years, but if there had been any major eruption then the jungle wouldn't have grown up to that extent.\"\n\n\"All the same,\" says Grimes, \"let's not dally longer than we have to. The sight of those lava-covered slopes puts me in mind of Satan's brimstone fires!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go ashore", 174));
+        Choices.push_back(Choice::Base("Row on westwards", 135));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::PROVISIONS, Item::PROVISIONS});
+    }
+};
+
+class Story194 : public Story::Base
+{
+public:
+    Story194()
+    {
+        ID = 194;
+
+        Image = "images/plaza-green.png";
+
+        Text = "Despite the thick jungle, you reach the tower quickly by following a stone pathway that leads through the undergrowth. You emerge into a wide grass-covered plaza and facing you is a white marble palace with a high tower. You move cautiously closer and Oakley runs his hand over the monumental carvings beside the entrance. They show a queen or priestess dispatching her enemies into luridly depicted hells.\n\n\"How was this stone brought here?\" Grimes wonders aloud. \"It's not local to the island, if I'm any judge.\"\n\n\"You're right,\" says a woman's voice. \"I brought it here by magic.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 251; }
+};
+
+class Story195 : public Story::Base
+{
+public:
+    Story195()
+    {
+        ID = 195;
+
+        Text = "It seems that the witch's exertions have weakened the spell she cast to bury your jollyboat. Or perhaps desperation lends you unprecedented strength. Whatever the reason, you manage to dig the boat out of the sand and drag it down to the water's edge. Piling in, you put out to sea at once.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 137; }
+};
+
+class Story196 : public Story::Base
+{
+public:
+    Story196()
+    {
+        ID = 196;
+
+        Text = "A shot rings out. A man falls dead. It is a sad, grim, brutally sudden scene which has been played out many times on the stage of life. As always, the onlookers stand for a moment, stunned, waiting for Death to withdraw into the wings so the action can resume.\n\nThe moment passes. The natives are not awed by your ability to kill at a distance -- they have seen firearms before, and know it is no miracle. There is an angry shout, and a thrown rock grazes your hand. The PISTOL is knocked to the ground. The natives stand watching you, ominously tense, torn between shock, grief and rage.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Get out while you can, abandoning your PISTOL", 177, Choice::Type::LOSE_ITEMS, {Item::PISTOL}));
+        Choices.push_back(Choice::Base("Stand and fight", 215));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story197 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story197()
+    {
+        ID = 197;
+
+        Bye = "You see a fleece of white cloud, then a green-tinged hump of land comes in sight. \"Yonder is Red Skull Island,\" announces the mermaid. \"Here, food and water are yours for the taking -- subject only to those laws of ownership which pertain throughout the surface world.\" With a sly wink which raises belated misgivings in your mind, she releases the tow-rope and slides beneath the waves.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Gradually you leave behind the icy rain that has been your constant accompaniment throughout the journey. The southern waters into which the mermaid is now taking you are calmer, the weather warmer. Even so, the comfort only allows you time to regret your other deprivations - not the least of which is hunger.";
+
+        Choices.clear();
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::MONKEY}))
+        {
+            Choices.push_back(Choice::Base("Eat the MONKEY if you are heartless or desperate", 173, Choice::Type::LOSE_ITEMS, {Item::MONKEY}));
+            Choices.push_back(Choice::Base("Do not eat the monkey (LOSE 2 Life Points)", 173, Choice::Type::LIFE, -2));
+        }
+        else
+        {
+            Character::GAIN_LIFE(player, -2);
+
+            PreText += "\n\nYou LOSE 2 Life Points.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 173; }
+};
+
+class Story198 : public Story::Base
+{
+public:
+    Story198()
+    {
+        ID = 198;
+
+        Text = "You hesitate, hands hovering over the wealth of spilled treasure. You are spoiled for choice. Simple riches would buy you a ship of your own, in which you could track down and challenge the foul Skarvench. On the the other hand, you cannot help noticing some special items among the treasure -- artefacts whose real value lies not in their monetary worth, but in the magical power they might posses.\n\nMandrigard snores, stirring in his sleep. He might awaken at any moment. You must decide.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take items of simple monetary value", 274));
+        Choices.push_back(Choice::Base("Favour items which look to be magical in nature", 293));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story199 : public Story::Base
+{
+public:
+    Story199()
+    {
+        ID = 199;
+
+        Text = "\"Can you hear me, shipmate?\n\nBlutz's face swims out of a murky void. Your first thought is: what's he doing under the sea? The next moment you sit bold upright, convulsing as you cough sea-water out of your lungs.\n\n\"We thought you were lost,\" says Oakley in a voice filled with wonder. \"Since you went down with that giant crab, we hadn't seen a sign of you. That was almost an hour ago. Then you came bobbing up near the boat and we hauled you in.\"\n\n\"It's a miracle you aren't drowned,\" says Grimes.\n\nYou look down to see your fingers clutched tightly around your MAGIC AMULET. It is the one thing you managed to hold on to; all your possessions are gone. You cannot remember how, but you guess that your last act before losing consciousness must have been to work a charm against drowning. That explains why you are not dead. But Grimes is still partly right, because it's a miracle that the current carried you back to your friends.\n\nThe crab is long gone, but it is still not safe to stay in the vicinity.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Carry on westwards on your present course", 47));
+        Choices.push_back(Choice::Base("Steer north in the hope of striking the island chain", 66));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.Items.clear();
+
+        Character::GET_ITEMS(player, {Item::MAGIC_AMULET});
+    }
 };
 
 auto prologue = Prologue();
@@ -5399,6 +5611,15 @@ auto story187 = Story187();
 auto story188 = Story188();
 auto story189 = Story189();
 auto story190 = Story190();
+auto story191 = Story191();
+auto story192 = Story192();
+auto story193 = Story193();
+auto story194 = Story194();
+auto story195 = Story195();
+auto story196 = Story196();
+auto story197 = Story197();
+auto story198 = Story198();
+auto story199 = Story199();
 
 void InitializeStories()
 {
@@ -5423,7 +5644,7 @@ void InitializeStories()
         &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
-        &story190};
+        &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199};
 }
 
 #endif

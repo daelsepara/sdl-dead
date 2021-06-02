@@ -104,6 +104,7 @@ namespace Item
     auto CORKSCREW = Item::Base("CORKSCREW", "CORKSCREW", Item::Type::CORKSCREW);
     auto PROVISIONS = Item::Base("PROVISIONS", "PROVISIONS", Item::Type::PROVISIONS);
     auto HORNPIPE = Item::Base("HORNPIPE", "HORNPIPE", Item::Type::HORNPIPE);
+    auto COCONUT = Item::Base("COCONUT", "COCONUT", Item::Type::PROVISIONS);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::DRAGON_RING};
