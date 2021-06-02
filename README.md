@@ -25,6 +25,10 @@ This is an implementation of the **Down Among the Dead Men** game book (Critical
 
 ![Create Character](/screenshots/create-character.png)
 
+**Story screen (Main interface)**
+
+![Story Screen](/screenshots/story-screen.png)
+
 # Copyright Information 
 
 ```
