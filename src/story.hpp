@@ -4353,6 +4353,284 @@ public:
     int Continue(Character::Base &player) { return 178; }
 };
 
+class Story160 : public Story::Base
+{
+public:
+    Story160()
+    {
+        ID = 160;
+
+        Text = "Settling into your jollyboat, you are not sorry to see the gloomy hulk of the LARNASSOS fade off into the darkness and drizzle. As for Captain Mandrigard -- will he ever find rest or an end to his curse? You wonder.\n\n\"Should have more sense than to offend a high priest, shouldn't he,\" says Oakley. \"Save your pity for ourselves mate; we're not through this yet.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Steer south from here, towards the Smoking Islands", 135));
+        Choices.push_back(Choice::Base("Stay on your present course", 349));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::PECCANT))
+        {
+            Choices[1].Destination = 386;
+        }
+        else
+        {
+            Choices[1].Destination = 349;
+        }
+    }
+};
+
+class Story161 : public Story::Base
+{
+public:
+    Story161()
+    {
+        ID = 161;
+
+        Text = "Gazing back, you see the hump of the great crab's shell as it rears up, threshing at the water with its claws in a frenzied search for the human prey that so narrowly escaped its clutches.\n\n\"I expect it's rather short-sighted,\" Blutz says. \"Obviously it wouldn't need sharp vision, seeing as how fish are so plentiful in these waters.\"\n\n\"Yes, but keep your voice down,\" hisses Oakley. \"No reason to suppose that it's deaf as well.\"\n\nLeaving the crab far in your wake, you decide which way to go next.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Steer westwards", 47));
+        Choices.push_back(Choice::Base("Steer north towards the Smoking Islands", 66));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story162 : public Story::Base
+{
+public:
+    Story162()
+    {
+        ID = 162;
+
+        Text = "Mortice becomes livid with rage, hissing out a torrent of curses to freeze the blood. At last, when his anger runs out of words, he lapses into silence and merely glares at you with incandescent yellow eyes.\n\n\"Perhaps we should board his vessel, if it comes to that,\" suggests Grimes.\n\nOakley agrees. \"There could well be treasure in that long box there,\" he says. His eyes are locked on Mortice.\n\nAll of you stand tense, alert. Mortice couches on his raft like a wild beast at bay. As he sees Oakley place his foot on the side of the jollyboat, ready to spring over to the raft, he gives a guttural snarl and says, \"Try it. I'll rip yer gizzard out through yer backside and feed it to the fishes.\"\n\n\"Emphatically unwelcoming,\" you remark. \"If we persist in trying to board the raft I think we'll have a fight on our hands.\"\n\n\"A fight?\" says Oakley, looking back at you. \"He's just one old lubber.\" But all the same he stays poised there, waiting for you to say the word.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Attack Mortice with bare hands", 219));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Attack with a sword", 238, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a pistol", 257, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("Cut the raft adrift", 276));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story163 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story163()
+    {
+        ID = 163;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "\"Let's face it,\" says Oakley a few days later, \"we don't know the first thing about foraging. We'll starve if we stay here.\"\n\nYou have to admit he is right. Unable to trap birds or animals, you are forced back on a meager diet of nuts. You cannot even be sure which are safe to eat, and stomach pains and retching gradually sap your resolve.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\n\"It's hopeless,\" says Grimes. \"We'd be better off going out to face Skarvench. At least we might get a quick clean death.\"\n\nKnowing Skarvench, you doubt that. But it is better to boldly confront your foe than starve to death like miserable dogs. You lead others back to the shore.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 87; }
+};
+
+class Story164 : public Story::Base
+{
+public:
+    Story164()
+    {
+        ID = 164;
+
+        Text = "Haunting moonlit street corners and smoky low-raftered taverns, you gradually piece together a tale of real terror. It seems El Draque was a Carpathian mercenary who arrived in the New World ten years ago and at once embarked on a spree of unrestrained piracy. Instantly recognizable by his filed teeth and acid blue eyes, he inspired such fear that most ships surrendered as soon as he raised his flag. The general consensus among everyone you speak to is that he slept by day in a box in the cargo hold of his ship, that he drank the blood of those he murdered, and that he was impervious to mortal injury.\n\nThere is one more thing. A month ago, taken unawares by a Gloriannic frigate, El Draque was caught and hanged at sea. His body was then flung overboard. The authorities were satisfied -- at least enough to pay out the bounty on his head to the frigate captain who caught him. But then, a week or so later, that same frigate captain was found dead in a harbour-front inn. His throat has been sliced from ear to ear, but the weird thing was there was that there was hardly a drop of blood.\n\nYou've heard enough to guess that the career of the notorious El Draque has not yet ended.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Find out more about Skarvench's activities", 278));
+        Choices.push_back(Choice::Base("Ask around concerning the impending royal visit", 202));
+        Choices.push_back(Choice::Base("Visit a chandler's to buy supplies", 12));
+        Choices.push_back(Choice::Base("Look for someone who can identify unusual items", 31));
+        Choices.push_back(Choice::Base("Apply for a LETTER OF MARQUE", 409));
+        Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
+        Choices.push_back(Choice::Base("You have completed all your business in Leshand", 107));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Choices[4].Destination = 50;
+        }
+        else
+        {
+            Choices[4].Destination = 409;
+        }
+    }
+};
+
+class Story165 : public Story::Base
+{
+public:
+    Story165()
+    {
+        ID = 165;
+
+        Text = "Of all the ports in the Carab Sea, only Selenice -- 'the Pirates' Haven' -- would it be safe for a bloodthirsty cut-throat like Skarvench to show his face and openly spend his ill-gotten gold. Selenice has no allegiance to any nation. It is ruled by the common consent of buccaneers who live here -- the Brethren of the Coast, as they term themselves -- and it is buccaneers and their families who are the town's only citizens.\n\nCuriously, life here is not the lawless mayhem that outsiders imagine. The buccaneers of Selenice arrive here glutted with more than their share of violence and hardship. They want nothing more than to peacefully squander their loot on ale, women and dice. One rule that is stringently enforce above all others is an absolute ban on the use of weapons. Normal brawls can and do occur, for buccaneers are hard men filled with pride, and tempers can flare up easily when the rum flows freely. But any brawl is settled barehanded, since to draw a weapon in Selenice is to invite summary justice from the Brethren of the Coast. However you may have fared elsewhere under the laws of civilized kingdoms, you'd do well not to fall afoul of the Brethren.\n\nPassing a pedlar in the street outside the Thorny Knot tavern, Oakley glances across at you. \"Maybe we should do a spot of shopping, skipper?\"\n\n\"I'd rather do a spot of drinking,\" says Blutz, casting a longing eye at the tavern.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Buy something from the pedlar", 336));
+        Choices.push_back(Choice::Base("Go into the tavern", 355));
+        Choices.push_back(Choice::Base("Go off to see the local shipbuilder", 374));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story166 : public Story::Base
+{
+public:
+    Story166()
+    {
+        ID = 166;
+
+        Text = "Drawing your SWORD, you lunge towards the three bullies with a fierce yell. The terrified scholar throws himself flat and crawls under a table. The fight ranges back and forth across the room until suddenly you are seized from behind. Craning your neck, you see a throng of disapproving faces. A tall dour-faced man steps forward, saying, \"To draw a weapon in Selenice contravenes the code of the Brethren of the Coast. Fortunately we were able to stop you before anyone got seriously hurt.\"\n\nYour weapons are confiscated and any doubloons you were carrying are taken as fine. Then you are bustled out of the inn and sent packing.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::SWORD, Item::Type::PISTOL});
+
+        player.LostMoney += player.Money;
+
+        player.Money = 0;
+    }
+
+    int Continue(Character::Base &player) { return 374; }
+};
+
+class Story167 : public Story::Base
+{
+public:
+    Story167()
+    {
+        ID = 167;
+
+        Text = "He takes a mighty breath and blows it out at you, sending your coracle surging away on a huge billowing wave. You careen through the sea-soaked darkness, shivering for hours in the teeth of an unseasonal gale until finally you are cast up onto the beach outside Selenice.\n\nDawn tinges the sky with rose and gold. You sit up. There is no sign of the coracle. Waves lap the shoreline, seeming to whisper the secrets of the sea. You know those secrets well now;\n\nYou must make room for the [SEAFARING] skill.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            Choices.push_back(Choice::Base("You already have [SEAFARING] skill", -167));
+        }
+        else
+        {
+            Choices.push_back(Choice::Base("Acquire [SEAFARING] skill", -167, Choice::Type::LOSE_SKILLS, player.SKILLS_LIMIT - 1));
+        }
+    }
+};
+
+class Event167 : public Story::Base
+{
+public:
+    std::string PreText = "";
+    
+    Event167()
+    {
+        Title = "Down Among the Dead Men: 167";
+
+        ID = -167;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a CORKSCREW and a SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
+        Choices.push_back(Choice::Base("Use a DEED OF OWNERSHIP", 318, {Item::DEED_OF_OWNERSHIP}));
+        Choices.push_back(Choice::Base("Buy a ship with DIAMONDs", 299, {Item::DIAMOND}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "Returning to town ";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            player.Skills.push_back(Skill::SEAFARING);
+        }
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::CORKSCREW, Item::Type::SHIP_IN_BOTTLE}) && !Character::VERIFY_ITEMS(player, {Item::Type::DEED_OF_OWNERSHIP}) && !Character::VERIFY_ITEMS(player, {Item::Type::DIAMOND}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "you have exhausted all your options. You have no hope of catching up with Skarvench and this is the end.";
+        }
+        else
+        {
+            PreText += "you run through your remaining options.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story168 : public Story::Base
+{
+public:
+    Story168()
+    {
+        ID = 168;
+
+        Text = "After agreeing to the captain's demands, you direct your crew to carry the bulk of the treasure aboard the warship. At least, that's the way it seems. The truth is that only the top of each chest contains gold coins - the rest is filled with the salt that was left aboard the Lady Shalott by her last owner. A few groans, pleas, tears and offers of bribery help to make this charade convincing. The warship sails off towards Leshand and you turn your prow towards Selenice, hoping to be long gone before they discover you've tricked them.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 16; }
+};
+
+class Story169 : public Story::Base
+{
+public:
+    Story169()
+    {
+        ID = 169;
+
+        Text = "This is grim work, but you cannot afford the luxury of hesitation. The sunlight is all but gone. Kneeling quickly beside the open coffin, you raise the stake in both hands and plunge it down with all your strength into the corpse's breast. There is a terrible gasping sigh from the dead lips. It reminds you of autumn leaves scattering in a breeze. Then the body crumples like withered parchment.\n\nBlutz cries out. At the same moment, the sun is blotted out beyond the horizon and blue darkness rushes across the shore.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 347; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -4515,11 +4793,22 @@ auto story156 = Story156();
 auto story157 = Story157();
 auto story158 = Story158();
 auto story159 = Story159();
+auto story160 = Story160();
+auto story161 = Story161();
+auto story162 = Story162();
+auto story163 = Story163();
+auto story164 = Story164();
+auto story165 = Story165();
+auto story166 = Story166();
+auto story167 = Story167();
+auto event167 = Event167();
+auto story168 = Story168();
+auto story169 = Story169();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117,
+        &event059, &event117, &event167,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -4535,7 +4824,8 @@ void InitializeStories()
         &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
         &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
         &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
-        &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159};
+        &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
+        &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169};
 }
 
 #endif
