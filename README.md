@@ -54,5 +54,5 @@ Feel free to report any bugs, issues, and/or suggestions. Thanks!
 
 # Other Gamebooks implemented with SDL
 
-[Necklace of Skulls](https://www.github.com/daelsepara/sdl-skulls)
-[Heart of Ice](https://www.github.com/daelsepara/sdl-heart)
+- [Necklace of Skulls](https://www.github.com/daelsepara/sdl-skulls)
+- [Heart of Ice](https://www.github.com/daelsepara/sdl-heart)
