@@ -32,7 +32,7 @@ This is an implementation of the **Down Among the Dead Men** game book (Critical
 # Copyright Information 
 
 ```
-DEDICATED  TO MICHAEL MOORCOCK
+DEDICATED TO MICHAEL MOORCOCK
 
 A Critical IF gamebook
 
