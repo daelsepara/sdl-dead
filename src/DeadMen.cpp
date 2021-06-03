@@ -4664,7 +4664,12 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
         }
         else
         {
-            controls = Story::ExitControls();
+            controls = Story::ExitControls(compact);
+        }
+
+        if (story->Type != Story::Type::NORMAL || player.Life <= 0)
+        {
+            controls = Story::ExitControls(compact);
         }
 
         // Render the image
@@ -4800,6 +4805,19 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                 }
 
+                if (story->Type == Story::Type::DOOM)
+                {
+                    putText(renderer, "You have failed. This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, messageh, startx, starty);
+                }
+                else if (story->Type == Story::Type::PIRACY)
+                {
+                    putText(renderer, "You have chosen a life of piracy. This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, messageh, startx, starty);
+                }
+                else if (story->Type == Story::Type::GOOD)
+                {
+                    putText(renderer, "You have avenged your honour and saved the Queen. Further adventure awaits!", font, text_space, clrWH, intLB, TTF_STYLE_NORMAL, splashw, messageh, startx, starty);
+                }
+
                 quit = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
                 if (((selected && current >= 0 && current < controls.size()) || scrollUp || scrollDown || hold))
@@ -4833,20 +4851,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                     else if (controls[current].Type == Control::Type::CHARACTER && !hold)
                     {
-                        if (story->Type == Story::Type::NORMAL && player.Life > 0)
-                        {
-                            characterScreen(window, renderer, player, story);
-                        }
-                        else
-                        {
-                            message = "This adventure is over.";
-
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intRD;
-                        }
+                        characterScreen(window, renderer, player, story);
 
                         current = -1;
 
@@ -4862,20 +4867,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                     else if (controls[current].Type == Control::Type::USE && !hold)
                     {
-                        if (story->Type == Story::Type::NORMAL && player.Life > 0)
-                        {
-                            inventoryScreen(window, renderer, player, story, player.Items, Control::Type::USE, 0);
-                        }
-                        else
-                        {
-                            message = "This adventure is over.";
-
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intRD;
-                        }
+                        inventoryScreen(window, renderer, player, story, player.Items, Control::Type::USE, 0);
 
                         current = -1;
 
@@ -4883,26 +4875,13 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                     else if ((controls[current].Type == Control::Type::SHOP || controls[current].Type == Control::Type::SELL) && !hold)
                     {
-                        if (story->Type == Story::Type::NORMAL && player.Life > 0)
+                        if (controls[current].Type == Control::Type::SHOP)
                         {
-                            if (controls[current].Type == Control::Type::SHOP)
-                            {
-                                shopScreen(window, renderer, player, story, Control::Type::BUY);
-                            }
-                            else
-                            {
-                                shopScreen(window, renderer, player, story, Control::Type::SELL);
-                            }
+                            shopScreen(window, renderer, player, story, Control::Type::BUY);
                         }
                         else
                         {
-                            message = "This adventure is over.";
-
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intRD;
+                            shopScreen(window, renderer, player, story, Control::Type::SELL);
                         }
 
                         current = -1;
@@ -4911,20 +4890,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                     else if (controls[current].Type == Control::Type::TRADE && !hold)
                     {
-                        if (story->Type == Story::Type::NORMAL && player.Life > 0)
-                        {
-                            tradeScreen(window, renderer, player, story->Trade.first, story->Trade.second);
-                        }
-                        else
-                        {
-                            message = "This adventure is over.";
-
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intRD;
-                        }
+                        tradeScreen(window, renderer, player, story->Trade.first, story->Trade.second);
 
                         current = -1;
 
@@ -4932,49 +4898,36 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                     else if (controls[current].Type == Control::Type::GAME && !hold)
                     {
-                        if (story->Type == Story::Type::NORMAL && player.Life > 0)
-                        {
-                            auto result = gameScreen(window, renderer, saveCharacter, true);
+                        auto result = gameScreen(window, renderer, saveCharacter, true);
 
-                            if (result == Control::Type::SAVE)
+                        if (result == Control::Type::SAVE)
+                        {
+                            message = "Game saved!";
+
+                            start_ticks = SDL_GetTicks();
+
+                            flash_message = true;
+
+                            flash_color = intLB;
+                        }
+                        else if (result == Control::Type::LOAD)
+                        {
+                            if (saveCharacter.StoryID >= 0 && saveCharacter.Life > 0)
                             {
-                                message = "Game saved!";
+                                player = saveCharacter;
+
+                                story = (Story::Base *)findStory(saveCharacter.StoryID);
+
+                                message = "Game loaded!";
 
                                 start_ticks = SDL_GetTicks();
 
                                 flash_message = true;
 
                                 flash_color = intLB;
+
+                                break;
                             }
-                            else if (result == Control::Type::LOAD)
-                            {
-                                if (saveCharacter.StoryID >= 0 && saveCharacter.Life > 0)
-                                {
-                                    player = saveCharacter;
-
-                                    story = (Story::Base *)findStory(saveCharacter.StoryID);
-
-                                    message = "Game loaded!";
-
-                                    start_ticks = SDL_GetTicks();
-
-                                    flash_message = true;
-
-                                    flash_color = intLB;
-
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            message = "You cannot LOAD or SAVE your game at this time.";
-
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intRD;
                         }
 
                         current = -1;
@@ -4983,132 +4936,86 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                     else if (controls[current].Type == Control::Type::NEXT && !hold)
                     {
-                        if (story->Type == Story::Type::NORMAL)
+                        if (story->LimitSkills > 0)
                         {
-                            if (player.Life > 0)
+                            auto done = loseSkills(window, renderer, player, story->LimitSkills);
+
+                            if (!done)
                             {
-                                if (story->LimitSkills > 0)
-                                {
-                                    auto done = loseSkills(window, renderer, player, story->LimitSkills);
-
-                                    if (!done)
-                                    {
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        story->LimitSkills = 0;
-                                    }
-                                }
-
-                                if (story->Take.size() > 0 && story->Limit > 0)
-                                {
-                                    auto done = takeScreen(window, renderer, player, story->Take, story->Limit, true);
-
-                                    if (!done)
-                                    {
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        story->Limit = 0;
-                                    }
-                                }
-
-                                if (story->Limit > 0 && story->ToLose.size() > story->Limit)
-                                {
-                                    while (story->ToLose.size() > story->Limit)
-                                    {
-                                        inventoryScreen(window, renderer, player, story, story->ToLose, Control::Type::LOSE, story->Limit);
-                                    }
-                                }
-
-                                while (!Character::VERIFY_POSSESSIONS(player))
-                                {
-                                    inventoryScreen(window, renderer, player, story, player.Items, Control::Type::DROP, 0);
-                                }
-
-                                current = -1;
-
-                                selected = false;
-
-                                auto next = renderChoices(window, renderer, player, story);
-
-                                if (next->ID != story->ID)
-                                {
-                                    if (story->Bye)
-                                    {
-                                        auto bye = createText(story->Bye, FONT_FILE, font_size + 4, clrBK, (SCREEN_WIDTH * (1.0 - 2.0 * Margin)) - 2 * text_space, TTF_STYLE_NORMAL);
-                                        auto forward = createImage("icons/next.png");
-
-                                        if (bye && forward)
-                                        {
-                                            fillWindow(renderer, intWH);
-
-                                            fillRect(renderer, (1.0 - 2.0 * Margin) * SCREEN_WIDTH, bye->h + 2 * text_space, startx, (SCREEN_HEIGHT - (bye->h + 2 * text_space)) / 2, intBE);
-                                            renderText(renderer, bye, intBE, (SCREEN_WIDTH - bye->w) / 2, (SCREEN_HEIGHT - bye->h) / 2, SCREEN_HEIGHT, 0);
-
-                                            renderImage(renderer, forward, SCREEN_WIDTH * (1.0 - Margin) - buttonw - button_space, buttony);
-
-                                            SDL_RenderPresent(renderer);
-
-                                            Input::WaitForNext(renderer);
-
-                                            SDL_FreeSurface(bye);
-
-                                            bye = NULL;
-
-                                            SDL_FreeSurface(forward);
-
-                                            forward = NULL;
-                                        }
-                                    }
-
-                                    story = next;
-
-                                    break;
-                                }
+                                continue;
                             }
                             else
                             {
-                                message = "This adventure is over. You have died.";
-
-                                start_ticks = SDL_GetTicks();
-
-                                flash_message = true;
-
-                                flash_color = intRD;
+                                story->LimitSkills = 0;
                             }
                         }
-                        else if (story->Type == Story::Type::DOOM)
+
+                        if (story->Take.size() > 0 && story->Limit > 0)
                         {
-                            message = "This adventure is over. You have failed.";
+                            auto done = takeScreen(window, renderer, player, story->Take, story->Limit, true);
 
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intRD;
+                            if (!done)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                story->Limit = 0;
+                            }
                         }
-                        else if (story->Type == Story::Type::GOOD)
+
+                        if (story->Limit > 0 && story->ToLose.size() > story->Limit)
                         {
-                            message = "Further adventure awaits!";
-
-                            start_ticks = SDL_GetTicks();
-
-                            flash_message = true;
-
-                            flash_color = intLB;
+                            while (story->ToLose.size() > story->Limit)
+                            {
+                                inventoryScreen(window, renderer, player, story, story->ToLose, Control::Type::LOSE, story->Limit);
+                            }
                         }
-                        else if (story->Type == Story::Type::PIRACY)
+
+                        while (!Character::VERIFY_POSSESSIONS(player))
                         {
-                            message = " This adventure is over. You have chosen a life of piracy.";
+                            inventoryScreen(window, renderer, player, story, player.Items, Control::Type::DROP, 0);
+                        }
 
-                            start_ticks = SDL_GetTicks();
+                        current = -1;
 
-                            flash_message = true;
+                        selected = false;
 
-                            flash_color = intRD;
+                        auto next = renderChoices(window, renderer, player, story);
+
+                        if (next->ID != story->ID)
+                        {
+                            if (story->Bye)
+                            {
+                                auto bye = createText(story->Bye, FONT_FILE, font_size + 4, clrBK, (SCREEN_WIDTH * (1.0 - 2.0 * Margin)) - 2 * text_space, TTF_STYLE_NORMAL);
+                                auto forward = createImage("icons/next.png");
+
+                                if (bye && forward)
+                                {
+                                    fillWindow(renderer, intWH);
+
+                                    fillRect(renderer, (1.0 - 2.0 * Margin) * SCREEN_WIDTH, bye->h + 2 * text_space, startx, (SCREEN_HEIGHT - (bye->h + 2 * text_space)) / 2, intBE);
+                                    renderText(renderer, bye, intBE, (SCREEN_WIDTH - bye->w) / 2, (SCREEN_HEIGHT - bye->h) / 2, SCREEN_HEIGHT, 0);
+
+                                    renderImage(renderer, forward, SCREEN_WIDTH * (1.0 - Margin) - buttonw - button_space, buttony);
+
+                                    SDL_RenderPresent(renderer);
+
+                                    Input::WaitForNext(renderer);
+
+                                    SDL_FreeSurface(bye);
+
+                                    bye = NULL;
+
+                                    SDL_FreeSurface(forward);
+
+                                    forward = NULL;
+                                }
+                            }
+
+                            story = next;
+
+                            break;
                         }
                     }
                     else if (controls[current].Type == Control::Type::BACK && !hold)
