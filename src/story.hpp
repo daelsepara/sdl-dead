@@ -2530,7 +2530,7 @@ public:
     {
         ID = 84;
 
-        Text = "Most of the hands are just bare bone, but a couple still show traces of skin and sinew. One even wears a gold ring, though none of you cares to fish it out of the tank. \"I'm glad we haven't drunk from this,\" says Oakley quietly, closing the lid. \"No wonder the captain prefers wine. It could fair kill a bloke's thirst for fresh water, it could.\"\n\n\"Here's what did the job,\" announces Grimes, picking something up off the deck. He hands it to you: a long-bladed butcher's cleaver.\n\n\"I'm for leaving right now,\" declares Blutz, quaking with fear. But as he tries to climb back down the jolly boat moored alongside, he makes an ominous discovery. \"I can't get over the rail. It's as if some supernatural force is tugging me back!\"\n\nThe same applies to the rest of you. \"The ship is cursed,\" says Grimes. \"And now shipmates, we're cursed too.\"";
+        Text = "Most of the hands are just bare bone, but a couple still show traces of skin and sinew. One even wears a gold ring, though none of you cares to fish it out of the tank. \"I'm glad we haven't drunk from this,\" says Oakley quietly, closing the lid. \"No wonder the captain prefers wine. It could fair kill a bloke's thirst for fresh water, it could.\"\n\n\"Here's what did the job,\" announces Grimes, picking something up off the deck. He hands it to you: a long-bladed butcher's CLEAVER.\n\n\"I'm for leaving right now,\" declares Blutz, quaking with fear. But as he tries to climb back down the jolly boat moored alongside, he makes an ominous discovery. \"I can't get over the rail. It's as if some supernatural force is tugging me back!\"\n\nThe same applies to the rest of you. \"The ship is cursed,\" says Grimes. \"And now shipmates, we're cursed too.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("[SEAFARING] Make repairs to the boat", 103, Skill::Type::SEAFARING));
@@ -2539,6 +2539,13 @@ public:
         Choices.push_back(Choice::Base("Otherwise", 141));
 
         Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::CLEAVER};
+
+        Limit = 1;
     }
 };
 
@@ -6602,6 +6609,189 @@ public:
     }
 };
 
+class Story250 : public Story::Base
+{
+public:
+    Story250()
+    {
+        ID = 250;
+
+        Text = "\"This seems a bountiful enough place -- indeed, a very Eden,\" says Grimes. \"Why don't we tarry here a while, shipmates, and get our strengths back for the long haul to Port Leshand?\"\n\nBlutz casts another nervous glance towards the centre of the island. Rearing above the treetops is the high cone of the volcano, ashen smoke lying above it like a thunderhead. \"I'm not so sure.\" he says.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Spend a few more days here", 288));
+        Choices.push_back(Choice::Base("Be on your way", 135));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story251 : public Story::Base
+{
+public:
+    Story251()
+    {
+        ID = 251;
+
+        Text = "She emerges from the shadows of the entrance: a stately figure with skin the colour of burnished oak and hair like a shower of green stars. Her clothing and accent are not those of a Carab native, but seem to evoke the mysteries of an ancient civilization. \"I am Ejada, witch-queen of this isle,\" she tells you. \"I demand tribute from all who come to my shores, but my demands are not excessive. All I'll take is the soul of one of you, to be sacrificed at dawn to my mother the Earth Goddess.\"\n\n\"Send your own soul to hell!\" yells Oakley, snatching up a rock and dashing forward. Ejada calmly sweeps her arm, knocking Oakley to the ground as though he'd run into a tree branch.\n\n\"Return here in the hour before dawn,\" Ejada goes on. \"By then you must have decided which of you will give up his soul.\n\nHelping Oakley to his feet, you return to find the jollyboat sunk deep into the sand of the beach. You try digging it up, but it only sinks deeper. \"That's that, then,\" sobs Blutz. \"The witch's magic has trapped us here. We'll have to choose who's to die!\"";
+
+        Choices.push_back(Choice::Base("[SEAFARING] Make a raft", 308, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("Go to her at dawn as she told you to", 327));
+        Choices.push_back(Choice::Base("Try hiding from her", 346));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story252 : public Story::Base
+{
+public:
+    Story252()
+    {
+        ID = 252;
+
+        Image = "images/warship-green.png";
+
+        Text = "The warship stands much taller than your own vessel, making your few cannon-shots largely ineffective. Your shells smack into the warship's strong oaken flanks with hardly more effect than grape-shot. If only you could score a hit on the enemy's rigging.\n\nThe warship does not return fire. Those mighty guns could easily blast you to kindling, but she is steering instead so as to pull alongside for a boarding action.";
+
+        Choices.push_back(Choice::Base("Use [SPELLS]", 35, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Use [AGILITY]", 54, Skill::Type::AGILITY));
+        Choices.push_back(Choice::Base("Use a THUNDERCLOUD FAN", 263, {Item::THUNDERCLOUD_FAN}));
+        Choices.push_back(Choice::Base("Use the BRONZE HELMET", 282, {Item::BRONZE_HELMET}));
+        Choices.push_back(Choice::Base("Stand by to repel boarders", 73));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story253 : public Story::Base
+{
+public:
+    Story253()
+    {
+        ID = 253;
+
+        Text = "The islanders stare in horror at the red death's head daubed across your face. Several of them step forward with raised spears, angry defiance slowly replacing their initial shock. It is Grimes who realises the cause: \"Those other natives must be their enemies. And they think you're one of 'em.\"";
+
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Shoot your way out of this", 196, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("Try fighting your way through them back to the water", 215));
+        Choices.push_back(Choice::Base("Resort to [CUNNING]", 234, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Try wiping off the red dye and offering gifts to mollify them", 291));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story254 : public Story::Base
+{
+public:
+    Story254()
+    {
+        ID = 254;
+
+        Text = "Throughout a tempestuous night, Oakley screams verse after verse of his morbid dirge, vying with the thunder's roar until his voice is as hoarse as the croak of a dying man. You can tell from the looks on the others' faces that they have been infected by Oakley's mod. Desperation at your sorry plight has now been worn down to hopelessness and new horror.\n\n\"Dawn,\" says Grimes, nodding towards a dreary grey gleam beyond the soot-coloured clouds. \"I doubt we'll live to see another.\"\n\nThe day goes on, and you grow weaker.\n\nYou gained the codeword CHANCERY. You LOSE 1 Life Point.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::CHANCERY});
+
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 273; }
+};
+
+class Story255 : public Story::Base
+{
+public:
+    Story255()
+    {
+        ID = 255;
+
+        Text = "Decide which item you will use.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a butcher's CLEAVER", 331, {Item::CLEAVER}));
+        Choices.push_back(Choice::Base("Use a CRUCIFIX", 350, {Item::CRUCIFIX}));
+        Choices.push_back(Choice::Base("[CUNNING] Use a TOOLKIT", 369, Skill::Type::CUNNING, {Item::TOOLKIT}));
+        Choices.push_back(Choice::Base("You do not have any of these items", 388));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story256 : public Story::Base
+{
+public:
+    Story256()
+    {
+        ID = 256;
+
+        Text = "Throughout another night and day you are swept westwards by the strong sea current. Sometime after dusk, as night shrouds the vast expanse of water and closes walls of darkness around the tiny confines of your boat, you hear a voice hailing you: \"Ho there! Who is it? I hear your oars -- speak up!\"\n\nBlutz peers out into the darkness. \"I think I see him,\" he whispers to the rest of you. \"A lone figure on a raft. Must've been shipwrecked.\"\n\n\"Shall we row over and pick him up?\" says Grimes.\n\nPredictably, Oakley is against this. \"We have enough bad luck to go around as it is. Why add another hungry mouth to an already overcrowded boat?\"";
+
+        Choices.push_back(Choice::Base("Row over to the man on the raft", 294));
+        Choices.push_back(Choice::Base("Agree with Oakley that you should ignore him", 313));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story257 : public Story::Base
+{
+public:
+    Story257()
+    {
+        ID = 257;
+
+        Text = "The shot rings out in the night and a puff of gunsmoke drifts like silver fog in the moonlight. As the smoke clears you see to your astonishment has not fallen. He is just standing there with a ghastly bloodless grin, eyes blazing like a ship's lanterns. Then you notice something else -- the bullet didn't miss him. There is a gaping hole through his chest. For a long moment no-one moves a muscle. Silence gives the scene an air of unreality.\n\n\"He's not a living man!\" gasps Blutz at last. \"He's one of the undead!\"";
+
+        Choices.push_back(Choice::Base("Launch a barehanded assault on Mortice", 219));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Attack him with a SWORD", 238, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("Avoid a confrontation: Cut the line mooring his raft to the jollyboat", 276));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story258 : public Story::Base
+{
+public:
+    Story258()
+    {
+        ID = 258;
+
+        Text = "You arrive at Leshand harbour to find the town awash with troops. It is not long before you hear the news that has stirred up such panic. \"The nefarious buccaneer Skarvench has captured the Queen of Glorianne,\" a stevedore tells you as he unpacks the ship's cargo. \"He's demanding a million doubloons in ransom, otherwise, he'll make a gift of her to her arch-enemy the King of Sidonia.\"\n\n\"Woeful news!\" groans Oakley. \"The Sidonians will likely break her on the wheel, or tie her to an anchor and send her to sup with Davy Jones! If only we could have done something to prevent it.\"\n\nYou could have, but you frolicked too long in an island paradise. Now your part in history is at an end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story259 : public Story::Base
+{
+public:
+    Story259()
+    {
+        ID = 259;
+
+        Text = "You are able to jury-rig a weather cloth using strips torn from everyone's clothing. When this is fitted around the boat it has the effect of raising the freeboard, helping to keep the water from sloshing over the sides. You also inspect the planking and make sure that any cracks where the boat is taking in water are plugged with wadding.\n\n\"Will we stay afloat through another storm like last night's though?\" asks Grimes when he sees you taking these measures.\n\nYou shrug. \"Pray for better weather.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 26; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -6856,6 +7046,16 @@ auto story246 = Story246();
 auto story247 = Story247();
 auto story248 = Story248();
 auto story249 = Story249();
+auto story250 = Story250();
+auto story251 = Story251();
+auto story252 = Story252();
+auto story253 = Story253();
+auto story254 = Story254();
+auto story255 = Story255();
+auto story256 = Story256();
+auto story257 = Story257();
+auto story258 = Story258();
+auto story259 = Story259();
 
 void InitializeStories()
 {
@@ -6885,7 +7085,8 @@ void InitializeStories()
         &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
         &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
         &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
-        &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249};
+        &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
+        &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259};
 }
 
 #endif

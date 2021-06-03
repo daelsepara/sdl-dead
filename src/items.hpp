@@ -38,8 +38,9 @@ namespace Item
         CORKSCREW,
         PROVISIONS,
         HORNPIPE,
+        CLEAVER,
         First = MAGIC_AMULET,
-        Last = HORNPIPE
+        Last = CLEAVER
     };
 
     class Base
@@ -105,9 +106,11 @@ namespace Item
     auto PROVISIONS = Item::Base("PROVISIONS", "PROVISIONS", Item::Type::PROVISIONS);
     auto HORNPIPE = Item::Base("HORNPIPE", "HORNPIPE", Item::Type::HORNPIPE);
     auto COCONUT = Item::Base("COCONUT", "COCONUT", Item::Type::PROVISIONS);
+    auto CLEAVER = Item::Base("CLEAVER", "CLEAVER", Item::Type::CLEAVER);
 
     std::vector<Item::Type> UniqueItems = {
-        Item::Type::DRAGON_RING};
+        Item::Type::DRAGON_RING,
+        Item::Type::BRONZE_HELMET};
 
     bool IsUnique(Item::Type item)
     {
