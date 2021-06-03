@@ -755,7 +755,7 @@ public:
         Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
         Choices.push_back(Choice::Base("You have now completed all your business in Leshand", 107));
 
-        Controls = Story::Controls::STANDARD;
+        Controls = Story::Controls::SHOP;
     }
 
     void Event(Character::Base &player)
