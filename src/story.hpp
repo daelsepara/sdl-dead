@@ -6564,7 +6564,7 @@ public:
         Controls = Story::Controls::STANDARD;
     }
 
-    int Continue(Character::Base &player) { return 343; }
+    int Continue(Character::Base &player) { return 323; }
 };
 
 class Story248 : public Story::Base
