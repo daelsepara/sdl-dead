@@ -5417,6 +5417,283 @@ public:
     }
 };
 
+class Story200 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story200()
+    {
+        ID = 200;
+
+        Image = "images/filler1-green.png";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You LOSE 4 Life Points.";
+
+        Character::GAIN_LIFE(player, -4);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nSleep gradually gives way to awareness. Daylight bathes you, slowly warming the chill from your bones. Suddenly your eyes snap open. You have slept long past dawn and the sun is now high in the sky.. You rise and stretch, feeling curiously giddy and drained of strength. The others are the same. You remark on how haggard they look, bloodshot eyes staring from bloodless faces. You all look and feel as though you had been drugged.\n\n\"Something's bitten me on the neck...\" growls Oakley, gingerly touching the wound and examining the sticky smear of blood on his fingers.\n\n\"Me too,\" says Blutz.\n\nAll four of you have been bitten -- a double puncture mare, deep and raw. No mosquito could have made those bites. And now you notice something else: the raft and its sinister occupant have vanished during the night.";
+        }
+        else
+        {
+            PreText += "\n\n\"You died some time during the night.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 332; }
+};
+
+class Story201 : public Story::Base
+{
+public:
+    Story201()
+    {
+        ID = 201;
+
+        Text = "Your arms are tied. \"Take 'em to the ship,\" growls Skarvench to a couple of his men. \"I'm going to stock up on fresh victuals while we're here.\" You are bundled into the boat. The men assigned to guard you are the rat-faced quartermaster, Curshaw, and Porbuck, the burly first mate. Skarvench himself stays behind with the rest of the shore party to collect supplies while you are rowed back, bound, towards the Belle Dame. You must do something.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[CUNNING]", 372, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("[ROGUERY]", 391, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("[BRAWLING]", 408, Skill::Type::BRAWLING));
+        Choices.push_back(Choice::Base("You have none of those", 240));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story202 : public Story::Base
+{
+public:
+    Story202()
+    {
+        ID = 202;
+
+        Text = "Queen Titania will be visiting a number of Gloriannic colonies in the New World and is scheduled to finish her tour at Port Tudor, where she will reside until after the hurricane season. Since the Sidonians would dearly love to capture her, security for the trip has been made watertight. She will be accompanied by Dr Wild, the court sorcerer, aboard her flagship the Rose, and escorted by Admiral Lord Calidor with a fleet of twelve galleons.\n\n\"The flotilla's security is as unassailable as the Queen's own virtue,\" opines one of your informants. From what you have learned you'd be inclined to agree. And yet... Skarvench clearly has some trick up his sleeve.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to find out exactly what Skarvench has been up to recently", 278));
+        Choices.push_back(Choice::Base("You more interested in the notorious pirate El Draque", 164));
+        Choices.push_back(Choice::Base("Visit a chandler's to buy supplies", 12));
+        Choices.push_back(Choice::Base("Get your magical treasures identified", 31));
+        Choices.push_back(Choice::Base("Apply for a LETTER OF MARQUE", 409));
+        Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
+        Choices.push_back(Choice::Base("You have now completed all your business in Leshand", 107));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Choices[4].Destination = 50;
+        }
+        else
+        {
+            Choices[4].Destination = 409;
+        }
+    }
+};
+
+class Story203 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story203()
+    {
+        ID = 203;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a CORKSCREW and a SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
+        Choices.push_back(Choice::Base("Use a DEED OF OWNERSHIP", 318, {Item::DEED_OF_OWNERSHIP}));
+        Choices.push_back(Choice::Base("Buy a ship with DIAMONDs", 299, {Item::DIAMOND}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "The shark and the dolphin slowly sink, taking the strange boat with them. The waters close over them like thin black oil, and in a last pearly glimmer they are gone. Moonrise flickers just below the horizon. The wind soughs, ruffling white flecks on the waves.\n\n\"We'd have fared ill if we'd ventured into Neptune's realm,\" says Oakley with conviction. \"Better that we obtain a ship by more normal means.\"\n\nYou return to spend the night in Selenice. The next day you take stock of your remaining options.";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::CORKSCREW, Item::Type::SHIP_IN_BOTTLE}) && !Character::VERIFY_ITEMS(player, {Item::Type::DEED_OF_OWNERSHIP}) && !Character::VERIFY_ITEMS(player, {Item::Type::DIAMOND}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nYour cause is hopeless and the adventure ends here.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story204 : public Story::Base
+{
+public:
+    Story204()
+    {
+        ID = 204;
+
+        Text = "With the help of your comrades you make short work of the three ruffians.\n\nYou LOSE 1 Life Point.";
+
+        Bye = "You retrieve the spectacles from the hands of one of those unconscious ruffians and hand them back to their owner.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 223; }
+};
+
+class Story205 : public Story::Base
+{
+public:
+    Story205()
+    {
+        ID = 205;
+
+        Image = "images/filler4-green.png";
+
+        Text = "The harbour is vast. You cannot see the wharfs, blurred by the distance and darkness. As your coracle proceeds, you pass a multitude of ships lying at anchor all around you. A huge hulk looms up, shaped rather like a massive cradle. \"What about that one?\" says Blutz, awestruck. \"You could fit an entire menagerie insider her!\"\n\n\"Too ponderous,\" you decide.\n\nNext you pass a sleek high-powered galley with notches for fifty deck-cannon. \"There's a ship built for heroes,\" avers Grimes. \"Notice the fine beam of the prow, carved to resemble a mouth. What wisdom might she utter, if that mouth could talk!\"\n\n\"A well-designed vessel, to be sure,\" you admit, \"but look at the timbers of the bowsprit. They are so weathered with age that they might give way, to the mortal detriment of any poor soul standing below when they fell.\"\n\n\"What about that one?\" suggests Oakley, pointing further across the bay.\n\n\"Bah, she is entirely clad in sheets of iron! She would be slow to turn -- and, see, despite those long spars of metal she has no masts on her deck! No, we must look further.\"\n\n\"There's our ship!\" yells Blutz in sudden excitement.\n\nYou look to see a tall-masted vessel painted all in black except for the blue lacquer adoring her prow. Her figurehead is a muscular stature in oak wearing a winged helmet on his brow. His arm, upraised with staff held high, seems to point to a destiny brimming with glory. You nod, reading the name blazoned in gold on the ship's escutcheon. \"Yes, she's the one for us. The CALYPSO.\n\nClimbing aboard, you raise the sails and take her out of the harbour under the watchful gaze of the colossus. Still standing astride the harbour mouth, he calls after you as you sail off: \"Mind you don't earn my ire like that other rogue that sailed her before you!\"\n\nThere's no telling what he means by that, but your only thought is for your new vessel. She cuts through the waves with matchless grace and speed, steady as a surgeon's saw. You stand proudly behind the mast, revelling in every wave and gust of salty spray. As dawn breaks, you see the familiar outline of Selenice harbour ahead.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::CALYPSO);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story206 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story206()
+    {
+        ID = 206;
+
+        Image = "images/marine-sergeant-green.png";
+
+        Bye = "You survive to see victory.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your call to arms is cut short by the marine sergeant, who coshes you with the butt of his pistol before discharging it at Grimes. In seconds a frenzied battle breaks out all along the ship. The marines fight with iron discipline, hearts brimming with patriotic fervour, but your scurvy mob of pirates have a still stronger motivation: the glitter of gold awaits them if they win, a hangman's noose if they lose.\n\n";
+
+        auto DAMAGE = -8;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        {
+            DAMAGE = -2;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+            {
+                PreText += "[MARKSMANSHIP] ";
+            }
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            DAMAGE = -3;
+
+            PreText += "[BRAWLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 225; }
+};
+
+class Story207 : public Story::Base
+{
+public:
+    Story207()
+    {
+        ID = 207;
+
+        Text = "Your obsessive search for the iceberg drives you to plot a course far off the familiar shipping lanes. At first, awed by your reputation as a mariner, the crew toil on without complaint. But the days draw by with no sight of land or other ships, and then grumbling begins. Initially it takes the form of simple discontent -- a spluttered curse when a man bites into an apple from the deck-barrel and finds it sour, or a surly rejoinder when orders are given. Oakley, Grimes and Blutz do their best to keep discipline, but the sun beats down day after day until the pitch bubbles in the seams and the deck is too hot to walk on in bare feet. Water begins to run low, and it is then that the grumbling begins to veer towards outright mutiny.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Continue searching for the iceberg in spite of the crew's reluctance", 97));
+        Choices.push_back(Choice::Base("Abandon the search and return to Selenice", 396));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story208 : public Story::Base
+{
+public:
+    Story208()
+    {
+        ID = 208;
+
+        Text = "There is not enough wind to bring you up to the fog bank before the Moon Dog. You watch her descend until she is hovering above the fog, sails shimmering with occult energy. Ropes are dropped down from her rail, and hazily you make out the shapes of men descending on these ropes like a dozen web-spinning spiders.\n\n\"Not enough breeze for the sails,\" you groan. \"I'd give half my life for a single gust of that hurricane now!\"\n\nThe fog envelops your bows. \"We'll have to heave to, skipper,\" cautions Grimes. \"We might run smack into the Rose in this pea-souper.\"\n\nYou are forced to agree. Tense minutes pass. Straining your ears, you think you can hear muffled shouts from far off: \"The Queen! They've got the Queen!\" and \"Where's their ship?\"\n\nAs suddenly as it arose, the fog disperses. The Rose looms close ahead of you, and now you can see figures milling across her deck in panic. You look up to see Skarvench's flying ship appear as a gaunt shadow across the moon for a moment; then it disappears into a rack of cloud.\n\nSoldiers come rowing out from the Rose and clamber aboard waiting for permission. You find yourselves staring down the barrels of thirty muskets. \"What is this?\" you demand angrily. \"We're not your enemies. We came to save the Queen!\"\n\nAdmiral Calidor stares at you like a hawk. He is obviously in a state of anguish but he struggles to control it as he says flatly, \"The Queen has been kidnapped by your accomplices. You're going to tell me where they've taken her.\"\n\n\"I don't know!\" you yell back at him. \"They weren't our accomplices. I told you, we're on your side!\"\n\nYour arms are seized by soldiers and you are bundled into a rowboat. \"These pirates are all the same,\" mutters Calidor to his sergeant of marines. \"Distasteful though it is, we'll have to put them to torture.\"\n\nYou are a long time dying on the rack in the bowels of Calidor's ship. But what makes your death all the more bitter is that you are being punished for the crimes of your arch enemy, the evil Captain Skarvench.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story209 : public Story::Base
+{
+public:
+    Story209()
+    {
+        ID = 209;
+
+        Text = "The deck is deserted. Barrels and splintered booms lie scattered all around. Fog drifts through the torn rigging, reminding you of the slow unfolding of undersea plants. \"What happened to the crew? The soldiers guarding the Queen?\" whispers Blutz as he climbs over the rail behind you.\n\n\"Perhaps stunned by the storm,\" you reply, also in a whisper. \"They must have taken a fearful battering. Also they must be expecting trouble...\"\n\nThe end of a rope lashes down onto the deck. You glance up. A vast grey shadow is hovering overhead, buoyed up by nothing but mist and moonlight: the Moon Dog.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[AGILITY] Climb up the rope to the Moon Dog", 228, Skill::Type::AGILITY));
+        Choices.push_back(Choice::Base("[CUNNING] Try out a plan", 247, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Wait at the bottom of the rope until your enemies come to you", 266));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -5620,6 +5897,16 @@ auto story196 = Story196();
 auto story197 = Story197();
 auto story198 = Story198();
 auto story199 = Story199();
+auto story200 = Story200();
+auto story201 = Story201();
+auto story202 = Story202();
+auto story203 = Story203();
+auto story204 = Story204();
+auto story205 = Story205();
+auto story206 = Story206();
+auto story207 = Story207();
+auto story208 = Story208();
+auto story209 = Story209();
 
 void InitializeStories()
 {
@@ -5644,7 +5931,8 @@ void InitializeStories()
         &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
-        &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199};
+        &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
+        &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209};
 }
 
 #endif
