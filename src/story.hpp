@@ -656,13 +656,16 @@ public:
         }
     }
 
-    int Continue(Character::Base &player)
+    void Event(Character::Base &player)
     {
         if (!Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
         {
             Character::GET_CODEWORDS(player, {Codeword::Type::DETRUDE});
         }
+    }
 
+    int Continue(Character::Base &player)
+    {
         return 26;
     }
 };
@@ -844,7 +847,7 @@ public:
 
         Image = "images/skarvench-green.png";
 
-        Text = "A look of thunder flickers behind Skarvench's eye. \"Still alive, eh? Come and drink with your old cap'n!\" He waves the rum bottle as if inviting you to take it, but you'd sooner put your hand in a wolf's mouth.\n\nBlutz's blood is up at the sight of your hated foe. \"God rot your one eye, villain!\" he screams. \"I'd like to take that bottle and --\"\n\nThere is a crash of breaking wood and Blutz falls with a groan. Glancing to one side, you see he has been hit over the head with a stool. Curshaw stands there grinning, then puts his boot into the unconscious Blutz's ribs. He drops the broken leg of the stool beside him.\n\nOakley and Grimes stand face to face with the closing circle of Skarvench's men. You whirl to face the pirate captain himself. \"Enough, Skarvench; your quarrel's with me, not them.\"\n\nHe crows with laughter. \"Ah, that's a right noble sentiment and no mistake! See here, though: my quarrel's with all who'd try'n scupper my plans. I'm aimin' to bag me a queen, no less, an' then sell her to the highest bidder. So I'm goin' to have to do away with you, mate -- which I should've done long ago, but I guess my old heart's just too soft.\"\n\nHis hand goes to his belt. You realise he's reaching for a weapon, and your own fingers close instinctively on something on the table beside you. You raise it, and Skarvench gives a screech of laughter. You're holding only a corkscrew. He has a musket. \"I'll be the wealthiest man on the seven seas,\" he boasts. \"And he who would that wealth deny, down among the dead men let him lie!\"\n\nThere is a flash as he fires. Smoke fills the air and the musket-ball thuds into your chest. You feel an instant of searing pain, then everything goes black.";
+        Text = "A look of thunder flickers behind Skarvench's eye. \"Still alive, eh? Come and drink with your old cap'n!\" He waves the rum bottle as if inviting you to take it, but you'd sooner put your hand in a wolf's mouth.\n\nBlutz's blood is up at the sight of your hated foe. \"God rot your one eye, villain!\" he screams. \"I'd like to take that bottle and --\"\n\nThere is a crash of breaking wood and Blutz falls with a groan. Glancing to one side, you see he has been hit over the head with a stool. Curshaw stands there grinning, then puts his boot into the unconscious Blutz's ribs. He drops the broken leg of the stool beside him.\n\nOakley and Grimes stand face to face with the closing circle of Skarvench's men. You whirl to face the pirate captain himself. \"Enough, Skarvench; your quarrel's with me, not them.\"\n\nHe crows with laughter. \"Ah, that's a right noble sentiment and no mistake! See here, though: my quarrel's with all who'd try'n scupper my plans. I'm aimin' to bag me a queen, no less, an' then sell her to the highest bidder. So I'm goin' to have to do away with you, mate -- which I should've done long ago, but I guess my old heart's just too soft.\"\n\nHis hand goes to his belt. You realise he's reaching for a weapon, and your own fingers close instinctively on something on the table beside you. You raise it, and Skarvench gives a screech of laughter. You're holding only a CORKSCREW. He has a musket. \"I'll be the wealthiest man on the seven seas,\" he boasts. \"And he who would that wealth deny, down among the dead men let him lie!\"\n\nThere is a flash as he fires. Smoke fills the air and the musket-ball thuds into your chest. You feel an instant of searing pain, then everything goes black.";
 
         Choices.clear();
 
@@ -6174,9 +6177,14 @@ public:
 
         Image = "images/filler2-green.png";
 
-        Text = "Taking hold of the rope, you pull yourself up. Mist surrounds you, dampening your clothes. There is an eerie chill here, suspended in a miasmic white void. The moon shimmers above as though seen in a stagnant pond. The shouts of your men echo leadenly up through the gloom.\n\nThe rope stirs. You look up to see a shape descending out of the moonlit vapour towards you. It is Skarvench, hanging like a great black spider on its web. Let him come. You will show him that this is no mere fly he has to face.";
+        Text = "You know well that the art of concealment rests on distracting the attention. Even as the door starts to swing open, you reach across and unlatch the cabin porthole. Then, scattering a few maps and charts onto the floor from the table where they were lying, you take cover in a heap of oilskins behind the door.\n\nNot a moment too soon. The bald stocky figure of the sailmaster stands in the doorway, lantern in his hand. Seeing the open porthole he gives a growl of annoyance and rushes to close it, worried that salt spray could damage his precious navigation charts. Then he gathers up some papers, puts them under his arm, and crosses to Skarvench's cabin.\n\nYou emerge from your hiding place and peek across the passage. The door of Skarvench's cabin stands ajar, and you can hear him going over the charts with the sailmaster. Now is your chance. Seeing a TOOLKIT beside the door, you take it: your rowing-boat may very well need repairs. There is no time to look for other items. You sneak back along the passage and up on deck.";
 
         Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::TOOLKIT});
     }
 
     int Continue(Character::Base &player) { return 172; }
@@ -6322,7 +6330,7 @@ public:
 
         Image = "images/filler3-green.png";
 
-        Text = "Holding firm to your mystic amulet, you pronounce the words of a blessing.\n\n\"Hey, it worked!\" exclaims Blutz, clambering cumbrously over the rail.\"Look, we're not trapped by the curse anymore.\"\n\nYou nod, allowing yourself a slight smile of self congratulation. \"Don't dawdle, though. The effect of the charm won't last forever.\"\n\nLowering yourselves down to the water, you get back into the jollyboat tethered there and row hastily away through the chopping waves. Behind you, the Larnassos fades until she is no more than a wavering patch of shadow, and then is swallowed entirely by the darkness. \"Good riddance!\" spits Grimes.";
+        Text = "Holding firm to your mystic AMULET, you pronounce the words of a blessing.\n\n\"Hey, it worked!\" exclaims Blutz, clambering cumbrously over the rail.\"Look, we're not trapped by the curse anymore.\"\n\nYou nod, allowing yourself a slight smile of self congratulation. \"Don't dawdle, though. The effect of the charm won't last forever.\"\n\nLowering yourselves down to the water, you get back into the jollyboat tethered there and row hastily away through the chopping waves. Behind you, the Larnassos fades until she is no more than a wavering patch of shadow, and then is swallowed entirely by the darkness. \"Good riddance!\" spits Grimes.";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -6397,6 +6405,200 @@ public:
         {
             return 165;
         }
+    }
+};
+
+class Story240 : public Story::Base
+{
+public:
+    Story240()
+    {
+        ID = 240;
+
+        Text = "You are dragged aboard the Belle Dame. Jeering, the pirates gather round and tie you and your friends to the rail. The burly mate, Porbuck, steps forward swinging a whip in his hand. His huge flabby face is creased into a ghoulish grin.\n\n\"While the cat's away, eh, Porbuck?\" says Oakley. He is trying to sound flippant, but his face is the curdled-milk colour of fear. \"Skarvench won't like it if you kill us before he gets back.\"\n\nPorbuck chortles as he raises the whip. \"Don't you go worryin', Oakley. You won't just die yet. Reckon you'll beg for it though...\"\n\nHours of agony pass before your flayed bodies are finally cast into the sea. By that time you gratefully accept the cool oblivion of death.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story241 : public Story::Base
+{
+public:
+    Story241()
+    {
+        ID = 241;
+
+        Text = "You raise your fists and step quickly forward, ready to give the demon-witch a sound thrashing if she doesn't lift her spell and allow you to leave the island. For her part, she gives you a disdainful smile and places her hands on her hips, tilting her chin back mockingly. \"Come, mortal,\" she says. \"plant your best punch. Then I'll take my turn, and we'll see who's left standing after that.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take a swing at her as she's inviting you to", 271));
+        Choices.push_back(Choice::Base("Grapple with her with an armlock", 290));
+        Choices.push_back(Choice::Base("Lift her over your head for a body slam", 309));
+        Choices.push_back(Choice::Base("Surrender before she gives you a beating you might not survive if you're afraid that you are outclassed", 119));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story242 : public Story::Base
+{
+public:
+    Story242()
+    {
+        ID = 242;
+
+        Text = "You sit up suddenly with a groan. Your chest feels as though you've been kicked by a horse, but by rights you ought to be dead.\n\nShaking your head to clear it, you look down and discover that Skarvench's bullet was deflected by the article hanging at your breast. Instead of hitting your heart, it glanced off the metal and only left a long red gash.\n\nGrimes' face comes into focus. \"How long have ?I been out cold?\" you ask him, each breath making you wince in pain.\n\n\"At least quarter of an hour, skipper.\"\n\nQuite a crowd has gathered around you, As you stagger groggily to your feat, you find you're still holding the CORKSCREW. \"A fat lot of good this did me.\"\n\nOakley cracks a grind, relieved to see you're alright. \"I dunno, you might've had his remaining eye out with it if you'd been a bit closer.\"\n\nAnd elderly pirate steps out of the crowd. You recognize him as a respected man in the disreputable community of Selenice. \"Skarvench broke the Brethren's law,\" he says. \"He's an outcast now. No port on the Carab will give him shelter.\"\n\nBlutz is nursing a lump on his head. His nostrils flare in rage as he cries, \"If Skarvench succeeds in abducting Queen Titania he'll be rich enough to buy his own port!\n\n\"He won't,\" you say in a voice laced with icy determination.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take the CORKSCREW", 343, Choice::Type::GET_ITEMS, {Item::CORKSCREW}));
+        Choices.push_back(Choice::Base("Leave it alone", 343));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story243 : public Story::Base
+{
+public:
+    Story243()
+    {
+        ID = 243;
+
+        Text = "A key that no one can see or touch? The ocean god's riddle leaves you baffled until you remember the hornpipe in your pocket. Putting it to your lips, you play a snatch of an old sea shanty. As you do, the chain unlocks itself, falling aside to admit your boat into the harbour.\n\n\"Well, son of a gun!\" says Blutz. \"It was a musical key that was needed, then.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 205; }
+};
+
+class Story244 : public Story::Base
+{
+public:
+    Story244()
+    {
+        ID = 244;
+
+        Text = "Clutching your LETTER OF MARQUE, you emerge into the sunshine with the happy air of scholars who have just been awarded their diploma. Outwardly you retain the weather-beaten faces and grimy clothes of common street ruffians, but the document in your hands proclaims otherwise. Now you are licensed privateers - proud sea warriors in the conflict with the rapacious kingdom of Sidonia!\n\n\"Now all we need is a ship,\" says Blutz.\n\nThe rest of you whirl and glare at him, the contended smiles wiped off your faces in an instant. Trust the fat oaf to bring you down to earth with a bump.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::LETTER_OF_MARQUE});
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::MARATHON))
+        {
+            return 69;
+        }
+        else
+        {
+            return 107;
+        }
+    }
+};
+
+class Story245 : public Story::Base
+{
+public:
+    Story245()
+    {
+        ID = 245;
+
+        Text = "El Draque raises his arms and comes forward to embrace you. It could almost be the gesture of one greeting a long-lost friend -- if not for the fangs that gleam like talons beneath his white lips.\n\nA seagull wheels high above in the cloudless indigo sky, its wings catching a last flicker of sunlight. You see one chance. Your sword flashes in the grey dusk too fast for the eye to follow. For an instant El Draque stands rooted to the spot, arms outstretched, not yet aware of what you've done. Then a torrent of mingled hate and anguish and disbelief washes across his pale contorted features as he looks down to see your SWORD hilt protruding from his chest. He falls and crumbles to a pile of ash, and as he does the other vampires slump to the ground also. A ghastly keening rises from their lips as they slowly dissolve, leaving nothing but a miasmal stench and dark patches in the sand.\n\nYou are about to retrieve your SWORD, but Blutz advises you to leave it where it is. \"I've heard vampires can reform themselves even from lifeless dust.\" he says with a shudder.";
+
+        Bye = "Then hurriedly loading the silver ingots aboard the LADY OF SHALOTT, you set sail for Selenice.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::SWORD});
+    }
+
+    int Continue(Character::Base &player) { return 16; }
+};
+
+class Story246 : public Story::Base
+{
+public:
+    Story246()
+    {
+        ID = 246;
+
+        Text = "Without the lunar wind to fill her sails, the Moon Dog drops quickly. You hear her splash down some distance off your starboard bow.\n\n\"Now Skarvench is seaborne like us,\" says Oakley with a fierce smile. \"If not for this damned fog, we could give him a battle he'd not soon forget.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a THUNDERCLOUD FAN", 265, {Item::THUNDERCLOUD_FAN}));
+        Choices.push_back(Choice::Base("[SPELLS] Disperse the fog", 284, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Otherwise", 303));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story247 : public Story::Base
+{
+public:
+    Story247()
+    {
+        ID = 247;
+
+        Text = "Darting quickly over into the hold, you break open a travelling chest bearing the royal seal. You scatter the packed clothes and jewels that are inside until you find what you are looking for: one of the Queen's voluminous gowns. Pulling this on, you hurry back on deck, drawing amazed stares from your comrades.\n\n\"Good grief, skipper!\" says Oakley with a wry smile. \"You makes a bloomin' pretty queen, and no mistake!\"\n\n\"Get out of sight, all of you,\" you tell them. Then, lying in to wait behind the overturned water-barrel, you watch until the rope begins to stir. Someone is descending. You see him slide down the rope as loathsome as a great black spider -- Skarvench himself! Choking back the urge to attack him at once, you wait until he reaches the deck before pretending to stumble out of your hiding-place.\n\n\"Oho!\" he cries. \"The precious baggage herself! It's right handy of you to make my job so easy, yer majesty.\" So saying, he reaches out and hefts you over his shoulder. \"Whuf! You're a weighty lass. But a spell on biscuit an' water'll soon take some o' that ample flesh off your bones. That an' the cat, o' course!\"\n\nYou wait until he has carried you halfway up the rope. You may as well let the brigand wear himself out before you kill him. Now you are suspended in a weird misty void between sea and sky, with just the faint haze of moonshine to light your final confrontation. You wrest out of his grasp, seize the rope, and throw off your disguise.\n\n\"You!\" gasps Skarvench.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 343; }
+};
+
+class Story248 : public Story::Base
+{
+public:
+    Story248()
+    {
+        ID = 248;
+
+        Text = "There is a meaty smack as your fist connects with this solar plexus. He makes a soft sucking sound and falls like a fish out of water. Stooping, you deliver a punch to the jaw that lays him out cold. Freezing, you listen tensely but the conversation in Skarvench's cabin continues as before. Nobody heard anything. Still, you had better not tarry here any longer.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
+class Story249 : public Story::Base
+{
+public:
+    Story249()
+    {
+        ID = 249;
+
+        Text = "Reaching the top of the cliffs, you stand atop a spar of rock which gives you a clear view of the interior of the Island. Lush jungle clings to the flanks of a sharply peaked mountain in the centre. The summit of the mountain is hidden by a haze of cloud. Nearer at hand you spy succulent fruits. From beyond the curtain of foliage comes the burgling of a brook.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Collect PROVISIONS", 306));
+        Choices.push_back(Choice::Base("Explore the interior of the island", 325));
+        Choices.push_back(Choice::Base("Return to the boat and resume your journey", 116));
+
+        Controls = Story::Controls::STANDARD;
     }
 };
 
@@ -6644,6 +6846,16 @@ auto story236 = Story236();
 auto story237 = Story237();
 auto story238 = Story238();
 auto story239 = Story239();
+auto story240 = Story240();
+auto story241 = Story241();
+auto story242 = Story242();
+auto story243 = Story243();
+auto story244 = Story244();
+auto story245 = Story245();
+auto story246 = Story246();
+auto story247 = Story247();
+auto story248 = Story248();
+auto story249 = Story249();
 
 void InitializeStories()
 {
@@ -6672,7 +6884,8 @@ void InitializeStories()
         &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
         &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
         &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
-        &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239};
+        &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
+        &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249};
 }
 
 #endif
