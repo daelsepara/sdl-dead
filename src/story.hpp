@@ -173,7 +173,8 @@ namespace Story
     {
         NORMAL = 0,
         GOOD,
-        DOOM
+        DOOM,
+        PIRACY
     };
 
     enum class Controls
@@ -4606,7 +4607,7 @@ public:
     {
         ID = 168;
 
-        Text = "After agreeing to the captain's demands, you direct your crew to carry the bulk of the treasure aboard the warship. At least, that's the way it seems. The truth is that only the top of each chest contains gold coins - the rest is filled with the salt that was left aboard the Lady Shalott by her last owner. A few groans, pleas, tears and offers of bribery help to make this charade convincing. The warship sails off towards Leshand and you turn your prow towards Selenice, hoping to be long gone before they discover you've tricked them.";
+        Text = "After agreeing to the captain's demands, you direct your crew to carry the bulk of the treasure aboard the warship. At least, that's the way it seems. The truth is that only the top of each chest contains gold coins - the rest is filled with the salt that was left aboard the LADY OF SHALOTT by her last owner. A few groans, pleas, tears and offers of bribery help to make this charade convincing. The warship sails off towards Leshand and you turn your prow towards Selenice, hoping to be long gone before they discover you've tricked them.";
 
         Choices.clear();
 
@@ -5961,6 +5962,216 @@ public:
     int Continue(Character::Base &player) { return 295; }
 };
 
+class Story220 : public Story::Base
+{
+public:
+    Story220()
+    {
+        ID = 220;
+
+        Text = "The natives scatter, filled with fear, as the battle rages up and down the beach inside their village. Men's lifeblood spurts into the sand. Lusty battle-cries are replaced now by ragged gasps and terse grunts of pain as each blow takes its toll.\n\nYou are face to face with Skarvench, locked in mortal combat. His breath is a putrid gust in your face. Both of you bear a dozen wounds; your blood runs down to mingle in the gore-soaked sand underfoot. \"I'm sending you to hell -- he snarls through gritted teeth. His cutlass stabs up, and you feel it grate through your ribs as you are impaled.\n\n\"Then we'll go there together!\" you cry, responding with a killing blow which he fails to see until it is too late. The pair of you sag to your knees, locked in a final embrace like old friends. And you are filled with a fierce exultation as, even while your own life ebbs away, you see the face of your foe go stiff and white in death...";
+
+        Type = Story::Type::DOOM;
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story221 : public Story::Base
+{
+public:
+    Story221()
+    {
+        ID = 221;
+
+        Image = "images/filler2-green.png";
+
+        Text = "A few judicious rounds bought in a dockside tavern soon sets tongues wagging. \"Aye, I've heard it's the Queen herself who'll be visiting next month,\" ventures a longshoreman. \"That's why security's been tightened up. It stands to reason, don't it. The governor don't want nothing to go wrong while she's here, or he might end up begging on the streets instead of living in splendour up at the fort.\"\n\nUnfortunately other ears have overheard your enquiries. As you leave the tavern, footsteps ring on the cobbled street behind you. Before you have time to turn, you feel the unpleasantly familiar touch of cold steel against your neck. \"I'm sure the governor will want to know about the keen interest you're taking in Her Majesty's visit,\" says a voice full of honeyed menace. \"Why don't you come and have a chat with him about it?\"\n\n\"Why bother the man?\" you reply. \"He has a lot to deal with at the moment.\"\n\nThe knife prices your skin. \"I wouldn't like to have to press the point,\" says the voice in the darkness behind you.\n\nYou give a gulp. \"In that case, lead on.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 126; }
+};
+
+class Story222 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story222()
+    {
+        ID = 222;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "By the onset of the second night, severe gales are driving freezing rain down onto your unprotected heads. You huddle together for warmth, but it is still impossible to snatch more than a few minutes of fitful sleep.\n\nYou LOSE 4 Life Points owing to the bitter cold.";
+
+        Character::GAIN_LIFE(player, -4);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nOne person had to remain awake at all times to bail water, and in fact this unending task is not as bad as trying to rest -- at least the activity keeps you warm and helps prevent you from getting cramp.\n\nThe dawn is grey and cheerless, marked by a greyish pearl-like glimmer beyond the eastern clouds. It might as well be dusk for all the solace it gives you. The rain settles into a persistent, chilling drizzle. \"At least we have fresh drinking water,\" you say, collecting it in your cupped hands. \"As long as the rain keeps up we don't die of thirst.\"\n\n\"I almost wish we would,\" moans Blutz miserable. \"Another night like that and I'll be praying for death.\"\n\n\"Shut your whining mouth,\" snaps Oakley. \"It's going to get a lot worse than this.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 259;
+        }
+        else
+        {
+            return 7;
+        }
+    }
+};
+
+class Story223 : public Story::Base
+{
+public:
+    Story223()
+    {
+        ID = 223;
+
+        Text = "Putting his spectacles back on, the scholar gratefully shakes you by the hand. \"This is a place for gentlemen of fortune, not gentlemen of letters,\" you tell him. \"I recommend you head on to a lawful port as soon as possible.\"\n\nHe shakes his head. \"But I've travelled all the way from Glorianne in search of someone: the wizard William Wild.\"\n\nYou nod. \"I've heard of him. Why should you expect to find here?\"\n\n\"I'm told he sailed for the colonies with Queen Titania. I left after they did, but my ship must have made better headway because it seems the Queen is still at sea and won't reach the colonies for several weeks.\"\n\n\"It's as you say, but you're mistaken if you think they'll put into port here. Selenice is not under Gloriannic rule.\"\n\nHe flutters his hands impatiently. \"I know that. But it occurs to me that Dr Wild's half-brother, a man called Skarvench, might know where he's bound.\"\n\nThe others have come over to join you. \"So Skarvench is half-brother to the Queen's wizard!\" says Oakley with a whistle. \"No doubt such news portends mischief.\"\n\n\"Why do you want to find Wild?\" Blutz asks the scholar.\n\n\"He paid me to do some astronomical calculations for him. He wanted to know when a certain eclipse of the moon would occur, as apparently he had certain plans which would be disrupted if the eclipse happened to early. Well, I gave him the results, but after he sailed I double-checked my calculations and it turns out I made an error. I told Dr Wild the eclipse would be at two o'clock on midsummer night, but in fact it will be slightly earlier, at midnight.\"\n\nAssuring the scholar that you will deliver his message personally, you escort him to the harbour and put him aboard a ship bound for Glorianne.\n\nYou gained the codeword HORAL.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::HORAL});
+    }
+
+    int Continue(Character::Base &player) { return 374; }
+};
+
+class Story224 : public Story::Base
+{
+public:
+    Story224()
+    {
+        ID = 224;
+
+        Image = "images/filler1-green.png";
+
+        Text = "He said no man can use the key. Pointing to the lock in the middle of the chain, you try to make the monkey understand what you want it to do -- but to no avail. \"Go on, you little fleabag!\" you yell in exasperation, but its only reaction to this is to give itself a cursory scratch and go on squatting there on the edge of the coracle, blinking at you.\n\n\"Begging your pardon, skipper,\" says Blutz, \"but you can't order a monkey about like you would an ordinary seaman. You've got to talk more gentle, like.\"\n\n\"Gentle?\" you say, amazed.\n\n\"Aye,\" Blutz nods. \"It's a thing skippers know nothing about. Let me try.\" He turns to the monkey, \"Now then, Mister Chatter, be a good bloke and unlock the harbour chain so your shipmates can sail through.\"\n\nAnd blow you down if this doesn't do the trick. The monkey clambers along the chain and you hear the click of a key as its paws turn an invisible object in the lock. The chain falls aside and the monkey comes scurrying back, shrieking gleefully.\n\n\"Imagine if captains had to take such a tone with their crew,\" you mutter. \"A ship's deck would be as blooming genteel as a church!\"\n\n\"Don't worry, skipper,\" says Grimes as the coracle glides into the harbour. \"It might work a treat with monkeys, but sailors will always need a bit of yelling at.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 205; }
+};
+
+class Story225 : public Story::Base
+{
+public:
+    Story225()
+    {
+        ID = 225;
+
+        Text = "The surviving marines are rounded up and bound. Grimes is all for going aboard the ship and user her as your new vessel. Blutz soon points out the drawback in this idea: \"We'd be hunted down by the entire Gloriannic navy! That's going to make it rather hard to save the Gloriannic Queen, isn't it?\"\n\n\"The Queen be hanged!\" cries one of the crew. \"We've got treasure, and now that we've seized a warship it'll be easy to keep our coffers filled. I'm for a life of solid piracy. Forget revenge, abandon honour -- let rum and gold be our goals!\"\n\nDo you consent to this?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("No! You still envisage yourself as the Queen's saviour and Skarvench's nemesis. Cut the warship adrift and sail the LADY OF SHALLOT back to Selenice", 16));
+        Choices.push_back(Choice::Base("Yes! Forget about Skarvench", -225));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Event225 : public Story::Base
+{
+public:
+    Event225()
+    {
+        ID = -225;
+
+        Text = "Your adventure ends here.\n\nYou forget about your quest for revenge on Skarvench.\n\nYou have chosen a life of piracy, abandoning honour.\n\nRum and gold are your only goals now.";
+
+        Type = Story::Type::PIRACY;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story226 : public Story::Base
+{
+public:
+    Story226()
+    {
+        ID = 226;
+
+        Text = "Dropping to your knees, you draw a circle around you in the sand and usher your shipmates to stand within it. Then, holding forth the focus of your protection, you begin to recite: \"They return at evening, and swords are in their lips, but let them growl and wander up and down for their blood; they shall not be satisfied. Though a host should encamp against me, my heart shall not fear; when they come upon me to eat up my flesh they shall stumble and fall. For I will sing of power. Yea, in my refuge I will sing aloud in the morning..!\"\n\nAll through the night your ordeal continues. Your voice grows hoarse, and whenever you quaver in your chant one of the vampires lunges forward, trying to snatch you out of the circle. But at long last, just when all hope seems lost, a flicker of grey light trembles on the eastern horizon.\n\n\"The dawn!\" shouts Blutz. \"Thank God!\"\n\nThe vampires gnash their fangs and turn like a pack of dogs, skulking back towards their coffins. \"aye, it's sunrise and we must retreat,\" says El Draque in a voice of icy anger. \"But do not rifle my treasure by day, for he that does will suffer my curse. My vengeance will reach out for him beyond the grave.\"\n\nWit that, he drops back into the hole. When you venture over, emboldened by the spreading daylight, yo see the corpses all back in their boxes. Now you must decide how much you fear his parting threat.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take the silver ingots that the corpses are lying on", 16, Choice::Type::GET_CODEWORD, Codeword::Type::MALEFIC));
+        Choices.push_back(Choice::Base("Leave it alone", 396));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story227 : public Story::Base
+{
+public:
+    Story227()
+    {
+        ID = 227;
+
+        Text = "Your poor ship has taken all the damage she can stand. Listing hard over, her prow begins to sink beneath the waves. \"Man the lifeboats!\" shouts Oakley. \"Abandon ship!\"\n\nGrimes takes your arm. \"Skipper, all's lost now. There's nothing left for us but to save ourselves.\"\n\nYou hesitate. Honour demands that a captain go down with his ship, but that is not what roots you to the spot. Instead it is your bitter disappointment at failing to scupper your foe. Who knows what wickedness he will now wreak, and you are powerless to stop him.\n\nWhether or not you flee the sinking ship...";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story228 : public Story::Base
+{
+public:
+    Story228()
+    {
+        ID = 228;
+
+        Text = "Taking hold of the rope, you pull yourself up. Mist surrounds you, dampening your clothes. There is an eerie chill here, suspended in a miasmic white void. The moon shimmers above as though seen in a stagnant pond. The shouts of your men echo leadenly up through the gloom.\n\nThe rope stirs. You look up to see a shape descending out of the moonlit vapour towards you. It is Skarvench, hanging like a great black spider on its web. Let him come. You will show him that this is no mere fly he has to face.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 323; }
+};
+
+class Story229 : public Story::Base
+{
+public:
+    Story229()
+    {
+        ID = 229;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Taking hold of the rope, you pull yourself up. Mist surrounds you, dampening your clothes. There is an eerie chill here, suspended in a miasmic white void. The moon shimmers above as though seen in a stagnant pond. The shouts of your men echo leadenly up through the gloom.\n\nThe rope stirs. You look up to see a shape descending out of the moonlit vapour towards you. It is Skarvench, hanging like a great black spider on its web. Let him come. You will show him that this is no mere fly he has to face.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -6184,11 +6395,22 @@ auto story216 = Story216();
 auto story217 = Story217();
 auto story218 = Story218();
 auto story219 = Story219();
+auto story220 = Story220();
+auto story221 = Story221();
+auto story222 = Story222();
+auto story223 = Story223();
+auto story224 = Story224();
+auto story225 = Story225();
+auto event225 = Event225();
+auto story226 = Story226();
+auto story227 = Story227();
+auto story228 = Story228();
+auto story229 = Story229();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117, &event167,
+        &event059, &event117, &event167, &event225,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -6210,7 +6432,8 @@ void InitializeStories()
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
         &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
-        &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219};
+        &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
+        &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229};
 }
 
 #endif

@@ -5092,13 +5092,23 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                         }
                         else if (story->Type == Story::Type::GOOD)
                         {
-                            message = "Further adeventure awaits!";
+                            message = "Further adventure awaits!";
 
                             start_ticks = SDL_GetTicks();
 
                             flash_message = true;
 
                             flash_color = intLB;
+                        }
+                        else if (story->Type == Story::Type::PIRACY)
+                        {
+                            message = " This adventure is over. You have chosen a life of piracy.";
+
+                            start_ticks = SDL_GetTicks();
+
+                            flash_message = true;
+
+                            flash_color = intRD;
                         }
                     }
                     else if (controls[current].Type == Control::Type::BACK && !hold)
