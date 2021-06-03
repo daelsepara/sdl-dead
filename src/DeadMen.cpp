@@ -4685,7 +4685,14 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 }
                 else
                 {
-                    SDL_SetWindowTitle(window, (std::string("Down Among the Dead Men: ") + std::string(3 - std::to_string(story->ID).length(), '0') + std::to_string(story->ID)).c_str());
+                    if (story->ID > 0)
+                    {
+                        SDL_SetWindowTitle(window, (std::string("Down Among the Dead Men: ") + std::string(3 - std::to_string(story->ID).length(), '0') + std::to_string(story->ID)).c_str());
+                    }
+                    else
+                    {
+                        SDL_SetWindowTitle(window, "Down Among the Dead Men");
+                    }
                 }
 
                 fillWindow(renderer, intWH);
