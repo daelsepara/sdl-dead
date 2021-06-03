@@ -5694,6 +5694,273 @@ public:
     }
 };
 
+class Story210 : public Story::Base
+{
+public:
+    Story210()
+    {
+        ID = 210;
+
+        Text = "Hurriedly clutching your MAGIC AMULET and uttering an all-purpose good luck charm, you wait to see what effect it will have. Just as the cabin door is swinging open, the person outside gives a gasp of annoyance. \"Damn it...\" he mutters to himself, and you hear the rustle of oilskins as he pats his pockets, \"left my pipe in the galley.\"\n\nOnly when he has retraced his steps, vanishing off along the passage in the direction of the galley, do you expel your breath in a relieved sigh. A hurried inspection of the cabin uncovers a few items that might prove useful: a TOOLKIT, a BOOK OF CHARTS, and a CRUCIFIX. The last of these brings a wry smile to your lips. A thousand CRUCIFIXes would not be enough to save the souls of the black-hearted villains in Skarvench's crew.\n\nJust as you are about to leave the cabin, there is a little shriek from the bunk and something small and grey launches itself onto your back. The shock sends your heart thudding like a hammer, but it is only the MONKEY that serves as the ship's mascot. Mister Chatter, the crew call him. He seems keen to go with you -- and small wonder, given the cruelty with which he is treated by most of the pirates. You could let him perch on your shoulder. Maybe he would bring you luck, at that. On the other hand, he'd be an extra mouth to feed aboard the rowing-boat, and if he does not keep quiet then he could bring the whole crew down on you.";
+
+        Bye = "Then, having spent long enough about fetching supplies, you hasten to rejoin your friends.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::TOOLKIT, Item::BOOK_OF_CHARTS, Item::CRUCIFIX, Item::MONKEY};
+
+        Limit = 4;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
+class Story211 : public Story::Base
+{
+public:
+    Story211()
+    {
+        ID = 211;
+
+        Text = "Some distance along the shore you find a ladder of knotted vines dangling down from the clifftop. \"Looks like there are natives,\" observes Oakley unnecessarily. \"Perhaps we'd be wiser to go back to the boat and shove off.\"\n\nYour experience has been that not all islanders are hostile. It usually depends on the way they have been treated by the outsiders they've met. On the other hand, there are some who are unabashed cannibals and will attack with provocation if they see the chance of an easy meal.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Climb the vines", 249));
+        Choices.push_back(Choice::Base("Return to the jollyboat and continue on your voyage", 116));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story212 : public Story::Base
+{
+public:
+    Story212()
+    {
+        ID = 212;
+
+        Text = "Grimoire Island is a strangely idyllic-looking place, with wide white beaches fringed by gently swaying palm trees. A balmy breeze blows refreshingly from the east. Birds the colour of precious gems watch your approach without fear.\n\n\"It's eerie,\" decides Grimes. \"Almost too perfect.\"\n\n\"Like it's been tended,\" says Blutz. \"You know, like somebody's garden back home.\"\n\n\"A demon's garden, if the native stories are to be believed,\" chips in Oakley. All three, like you, are in a strange mood: both allured and uneasy.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go ashore", 118));
+        Choices.push_back(Choice::Base("Row on towards the next island", 137));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story213 : public Story::Base
+{
+public:
+    Story213()
+    {
+        ID = 213;
+
+        Text = "Blutz reaches out towards what looks like a bunch of oranges. You snatch them out of his pudgy hand. \"That's strychnine fruit,\" you warn him. \"It's deadly poisonous.\" Oakley shows you a handful of berries he's picked, but you shake your head. \"Those too. Everything here looks delicious, but most are poison.\"\n\n\"The tower, then,\" says Grimes. \"Whoever lives there might give us food.\"\n\nBlutz looks worried. \"But what kind of person lives on an island surrounded by poisonous plants?\"\n\nIt's a good question.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go to the tower", 194));
+        Choices.push_back(Choice::Base("Put to sea at once", 137));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story214 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story214()
+    {
+        ID = 214;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            PreText = "Decide what to do next.";
+
+            Choices.push_back(Choice::Base("Go to the tower", 252));
+            Choices.push_back(Choice::Base("Put to sea at once", 24));
+        }
+        else
+        {
+            PreText = "You easily outmanoeuvre the warship and soon leave her far behind.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 16; }
+};
+
+class Story215 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story215()
+    {
+        ID = 215;
+
+        Bye = "You fight your way down the beach and hastily put to sea under a hail of thrown pebbles.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You are outnumbered, but you have an advantage they do not have. Warfare in their society is rarely fatal, intended only as a ritual show of strength. They lack the murderous instincts of you 'civilized' men.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            DAMAGE = -3;
+
+            PreText += "[BRAWLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story216 : public Story::Base
+{
+public:
+    Story216()
+    {
+        ID = 216;
+
+        Text = "Oakley's head rocks back as he feels the sting of your knuckles across his cheek, cutting off his song before he can launch into another gloom-ridden verse. \"Quiet!\" you tell him with a hiss of righteous anger in your voice.\n\nHe glares back at you, bloodshot eyes wide in a drained and haggard face. He is shaking with fear as much as fury. \"Quiet?\" he sobs. \"Why? We're all going to Davy Jones's mess hall tonight, and it's his pet sharks as will be making their meal of us.\"\n\n\"Nonsense!\" You take hold of his shoulders and stare him straight in the eye. \"Listen to me: none of us is going to die. We can all come through this in one piece if we pull together. The worst threat we have to face isn't the sea, or the weather, or hunger, or thirst. It's ourselves. Our fear. If we give in to panic, then we're lost.\"\n\nOakley nods. \"You're right.\" He helps you bail water taking turns throughout the night and the following day.\n\nYou LOSE 1 Life Point.";
+
+        Bye = "You grow weaker, but at least you have inspired a glimmer of hope in your little band.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 273; }
+};
+
+class Story217 : public Story::Base
+{
+public:
+    Story217()
+    {
+        ID = 217;
+
+        Text = "Salt spray spits across the deck in billows, driven by high winds that stretch the sails hard against the rigging. \"It's a wonder she ain't broke up long since!\" says Blutz.\n\n\"She's a cursed ship,\" declares Oakley matter-of-factly. \"Such vessels have an unnatural resilience.\"\n\nHours pass, during which you are blown further into the west. You snatch a short sleep in the shelter of a tarpaulin, preferring not to venture below decks again. At last Grimes shakes you from a feverish dream to say, \"It's time we quit this ship matey.\"\n\nYou agree.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            if (player.Items.size() > 0)
+            {
+                Choices.push_back(Choice::Base("Use an item", 255));
+            }
+
+            Choices.push_back(Choice::Base("Continue", 388));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 236; }
+};
+
+class Story218 : public Story::Base
+{
+public:
+    Story218()
+    {
+        ID = 218;
+
+        Text = "With sudden inspiration you snatch off your own belt and twist the metal of the buckle to make a hook. For a line, you get everyone to unlace their boots and tie the strings together. Tied to the end of an oar, this gives you a makeshift fishing rod. You also trick up some nets by fixing socks onto the other oar.\n\n\"What do we use for bait?\" asks Grimes.\n\n\"Ah.\" You give a delicate cough. \"Well, to be blunt... whatever our stomachs couldn't use from the last meal we ate.\"\n\nTheir perplexed frowns gradually change to disgust as they catch on to what you mean. \"Ugh, you must be joking says Blutz.\n\n\"Believe me, it's the best bait.You weren't going to use it for anything else, were you, Mister Blutz?\"\n\nOakley snorts with outrage. \"You expect us to fish using our own excrement? Revolting! Do we want to live like animals, or die like decent men?\"\n\nThere is a long pause as the rest of you turn to look at Oakley. He thinks, then gives a grim nod and says, \"Right, let's get on with it, then\"\n\nHours later you have caught just three small fishes. A meagre enough meal for one person, let alone four. But at least now you won't starve tonight.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 256; }
+};
+
+class Story219 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story219()
+    {
+        ID = 219;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Despite his shrivelled frame and spindly limbs, Mortice fights with the savagery and strength of a madman. Hissing, clawing, snapping at you with his long teeth, he struggles desperately to force you back off his raft.\n\nAt last you manage to succeed in pinning him, but not without injury.\n\n";
+
+        auto DAMAGE = -3;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[BRAWLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou press all your weight down on Mortice's arms while he writhes in your grasp. Even now he continues his stream of invective, calling on the very devils of hell s though they were his blood brothers.\n\n\"He's as strong as an old serpent,\" says Grimes, holding on to Mortice's legs. It takes three of you to keep him down. While you do, Blutz looks around the raft.\n\nHe soon discovers something lashed to the bottom of the raft, under the water. It is a large pine box. He drags this up and opens it, and at once a mouldering miasma rises out which causes him to gag. \"It's full of old bones,\" he chokes.\n\nEven as these words leave Blutz's lips, there is a mournful unearthly sigh and suddenly the three of you are wrestling empty air. Mortice has vanished like a ghost.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 295; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -5907,6 +6174,16 @@ auto story206 = Story206();
 auto story207 = Story207();
 auto story208 = Story208();
 auto story209 = Story209();
+auto story210 = Story210();
+auto story211 = Story211();
+auto story212 = Story212();
+auto story213 = Story213();
+auto story214 = Story214();
+auto story215 = Story215();
+auto story216 = Story216();
+auto story217 = Story217();
+auto story218 = Story218();
+auto story219 = Story219();
 
 void InitializeStories()
 {
@@ -5932,7 +6209,8 @@ void InitializeStories()
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
-        &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209};
+        &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
+        &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219};
 }
 
 #endif
