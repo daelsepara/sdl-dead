@@ -4085,17 +4085,11 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                             if (player.Life > 0)
                             {
                                 next = (Story::Base *)findStory(story->Choices[current].Destination);
-
-                                done = true;
                             }
-                            else
-                            {
-                                message = "That decision has cost you your life!";
 
-                                start_ticks = SDL_GetTicks();
+                            done = true;
 
-                                error = true;
-                            }
+                            break;
                         }
                         else if (story->Choices[current].Type == Choice::Type::SKILL_ANY)
                         {
@@ -4237,9 +4231,9 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                         {
                             int limit = story->Choices[current].Value;
 
-                            auto done = loseSkills(window, renderer, player, limit);
+                            auto result = loseSkills(window, renderer, player, limit);
 
-                            if (!done)
+                            if (!result)
                             {
                                 continue;
                             }
@@ -4640,7 +4634,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
             text = createText(story->Text, FONT_FILE, font_size, clrBK, textwidth, TTF_STYLE_NORMAL);
         }
 
-        auto compact = text && text->h <= text_bounds - 2 * text_space;
+        auto compact = (text && text->h <= text_bounds - 2 * text_space) || text == NULL;
 
         if (story->Controls == Story::Controls::STANDARD)
         {
@@ -4724,7 +4718,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
 
                 fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
 
-                if (story->Text)
+                if (story->Text && text)
                 {
                     renderText(renderer, text, intBE, textx + space, texty + space, text_bounds - 2 * space, offset);
                 }
@@ -4809,6 +4803,10 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 {
                     putText(renderer, "You have failed. This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, messageh, startx, starty);
                 }
+                else if (player.Life <= 0)
+                {
+                    putText(renderer, "You have died. This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, messageh, startx, starty);
+                }
                 else if (story->Type == Story::Type::PIRACY)
                 {
                     putText(renderer, "You have chosen a life of piracy. This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, messageh, startx, starty);
@@ -4824,28 +4822,34 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 {
                     if (controls[current].Type == Control::Type::SCROLL_UP || (controls[current].Type == Control::Type::SCROLL_UP && hold) || scrollUp)
                     {
-                        if (offset > 0)
+                        if (text)
                         {
-                            offset -= scrollSpeed;
-                        }
+                            if (offset > 0)
+                            {
+                                offset -= scrollSpeed;
+                            }
 
-                        if (offset < 0)
-                        {
-                            offset = 0;
+                            if (offset < 0)
+                            {
+                                offset = 0;
+                            }
                         }
                     }
                     else if (controls[current].Type == Control::Type::SCROLL_DOWN || ((controls[current].Type == Control::Type::SCROLL_DOWN && hold) || scrollDown))
                     {
-                        if (text->h >= text_bounds - 2 * space)
+                        if (text)
                         {
-                            if (offset < text->h - text_bounds + 2 * space)
+                            if (text->h >= text_bounds - 2 * space)
                             {
-                                offset += scrollSpeed;
-                            }
+                                if (offset < text->h - text_bounds + 2 * space)
+                                {
+                                    offset += scrollSpeed;
+                                }
 
-                            if (offset > text->h - text_bounds + 2 * space)
-                            {
-                                offset = text->h - text_bounds + 2 * space;
+                                if (offset > text->h - text_bounds + 2 * space)
+                                {
+                                    offset = text->h - text_bounds + 2 * space;
+                                }
                             }
                         }
                     }
@@ -5016,6 +5020,10 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                             story = next;
 
                             break;
+                        }
+                        else if (player.Life <= 0)
+                        {
+                            controls = Story::ExitControls(compact);
                         }
                     }
                     else if (controls[current].Type == Control::Type::BACK && !hold)

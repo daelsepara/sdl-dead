@@ -3791,7 +3791,7 @@ public:
                 if (Character::VERIFY_ITEMS(player, {Item::Type::MONKEY}))
                 {
                     Choices.push_back(Choice::Base("Eat the MONKEY if you are heartless or desperate", 212, Choice::Type::LOSE_ITEMS, {Item::MONKEY}));
-                    Choices.push_back(Choice::Base("Do not eat the monkey", 231));
+                    Choices.push_back(Choice::Base("Do not eat the MONKEY", 231));
                 }
                 else
                 {
@@ -5372,7 +5372,7 @@ public:
         if (Character::VERIFY_ITEMS(player, {Item::Type::MONKEY}))
         {
             Choices.push_back(Choice::Base("Eat the MONKEY if you are heartless or desperate", 173, Choice::Type::LOSE_ITEMS, {Item::MONKEY}));
-            Choices.push_back(Choice::Base("Do not eat the monkey (LOSE 2 Life Points)", 173, Choice::Type::LIFE, -2));
+            Choices.push_back(Choice::Base("Do not eat the MONKEY (LOSE 2 Life Points)", 173, Choice::Type::LIFE, -2));
         }
         else
         {
@@ -6074,7 +6074,7 @@ public:
 
         Image = "images/filler1-green.png";
 
-        Text = "He said no man can use the key. Pointing to the lock in the middle of the chain, you try to make the monkey understand what you want it to do -- but to no avail. \"Go on, you little fleabag!\" you yell in exasperation, but its only reaction to this is to give itself a cursory scratch and go on squatting there on the edge of the coracle, blinking at you.\n\n\"Begging your pardon, skipper,\" says Blutz, \"but you can't order a monkey about like you would an ordinary seaman. You've got to talk more gentle, like.\"\n\n\"Gentle?\" you say, amazed.\n\n\"Aye,\" Blutz nods. \"It's a thing skippers know nothing about. Let me try.\" He turns to the monkey, \"Now then, Mister Chatter, be a good bloke and unlock the harbour chain so your shipmates can sail through.\"\n\nAnd blow you down if this doesn't do the trick. The monkey clambers along the chain and you hear the click of a key as its paws turn an invisible object in the lock. The chain falls aside and the monkey comes scurrying back, shrieking gleefully.\n\n\"Imagine if captains had to take such a tone with their crew,\" you mutter. \"A ship's deck would be as blooming genteel as a church!\"\n\n\"Don't worry, skipper,\" says Grimes as the coracle glides into the harbour. \"It might work a treat with monkeys, but sailors will always need a bit of yelling at.\"";
+        Text = "He said no man can use the key. Pointing to the lock in the middle of the chain, you try to make the MONKEY understand what you want it to do -- but to no avail. \"Go on, you little fleabag!\" you yell in exasperation, but its only reaction to this is to give itself a cursory scratch and go on squatting there on the edge of the coracle, blinking at you.\n\n\"Begging your pardon, skipper,\" says Blutz, \"but you can't order a MONKEY about like you would an ordinary seaman. You've got to talk more gentle, like.\"\n\n\"Gentle?\" you say, amazed.\n\n\"Aye,\" Blutz nods. \"It's a thing skippers know nothing about. Let me try.\" He turns to the MONKEY, \"Now then, Mister Chatter, be a good bloke and unlock the harbour chain so your shipmates can sail through.\"\n\nAnd blow you down if this doesn't do the trick. The MONKEY clambers along the chain and you hear the click of a key as its paws turn an invisible object in the lock. The chain falls aside and the MONKEY comes scurrying back, shrieking gleefully.\n\n\"Imagine if captains had to take such a tone with their crew,\" you mutter. \"A ship's deck would be as blooming genteel as a church!\"\n\n\"Don't worry, skipper,\" says Grimes as the coracle glides into the harbour. \"It might work a treat with MONKEYs, but sailors will always need a bit of yelling at.\"";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -6180,6 +6180,224 @@ public:
     }
 
     int Continue(Character::Base &player) { return 172; }
+};
+
+class Story230 : public Story::Base
+{
+public:
+    Story230()
+    {
+        ID = 230;
+
+        Text = "You find only a couple of small crabs which between them amount to barely more than a mouthful. Blutz gazes at them hungrily, flabby jowls sagging in dismay. \"Not worth dividing them up,\" he groans. \"Who's going to be the lucky one, then?\"\n\nAs usual, the others instinctively look to you for leadership. Your own stomach is growling as much as anyone's.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Award yourself the crabs", 268));
+        Choices.push_back(Choice::Base("You can let one of the others have them", 287));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story231 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story231()
+    {
+        ID = 231;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your skin is loose on your bones and your tongue feels like a wad of burnt cotton. The urge to drink seawater is almost unbearable now. Your only respite from consciousness is not sleep, but dream-haunted delirium.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SEAFARING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 212; }
+};
+
+class Story232 : public Story::Base
+{
+public:
+    Story232()
+    {
+        ID = 232;
+
+        Text = "You gorge yourselves on ripe fruits and tasty nuts -- only to suffer severe stomach cramps just minutes later. Oakley rushes down the beach and gulps sea water until he vomits. The rest of you follow suit, but you are left dizzy and weak.\n\n\"Something must have been poisonous,\" groans Blutz. \"Maybe we ought to go to the tower. There might be someone there who'll give us food.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go to the tower", 194));
+        Choices.push_back(Choice::Base("Leave the island now", 137));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story233 : public Story::Base
+{
+public:
+    Story233()
+    {
+        ID = 233;
+
+        Text = "The four of you crouch down in the weird boat. No sooner have you settled yourselves than the two great fish slap the waters with their tails, drawing you out to sea. Darkness and frothy waves churn past. With spray in your eyes, the moon looks like a whirlpool in the firmament and their is no way to tell how far you've travelled when, at last, the boat drifts to a halt. You see that you are close to the entrance of a massive harbour. A long golden chain is stretched across the harbour mouth to block the vessels from entering or leaving.\n\nThe moon emerges from behind a cloud, flooding the scene in its timeless white glow. You give a gasp, for now you see that you had taken to be the pillars of the harbour gate are actually colossal legs stretching up far into the night sky. Craning your neck, you see the massive outline of a giant's shoulders against the moon-grazed clouds.\n\nThe giant stoops, showing a smile as wide as a galleon's beam in his face of smooth dark marble. \"Four wayfarers,\" he says in the tone of one who has noticed four curious insects under his nose. \"Mortals. What brings you to Neptune's gate?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Say you seek a ship", 34));
+        Choices.push_back(Choice::Base("Ask for his help in your quest", 53));
+        Choices.push_back(Choice::Base("Tell him you want to return home", 72));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story234 : public Story::Base
+{
+public:
+    Story234()
+    {
+        ID = 234;
+
+        Text = "\"Quick,\" you say to Oakley over your shoulder, \"push me over and make like you're giving me a kick. And make it look convincing.\" He is taken aback at first, but then he catches on to your plan. As you feel him shove you from behind, you fling yourself down to sprawl in the sand. \"Ouch\" you grunt as you feel the toe of his boot. \"Not that convincing!\"\n\n\"We've caught this scurvy wretch,\" Oakley tells the natives with the help of sign-language.\n\nThe chief must have learned a few words off sailors who stopped here. \"Kill,\" he says. \"Burn alive over fire.\"\n\nOakley hesitates. \"Er...\"\n\n\"Oh yes. Er, the prisoner will be taken to Queen Titania, the, er, chief of Glorianne. Get it? She'll decide the proper punishment.\"\n\nThe natives are still keen to seize you, but Oakley keeps them off with warnings of dire reprisals if Queen Titania's wishes are not carried out.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 272; }
+};
+
+class Story235 : public Story::Base
+{
+public:
+    Story235()
+    {
+        ID = 235;
+
+        Text = "The storm rolls over you, tossing your jollyboat halfway to the clouds with each wave. The sea becomes thick with icy froth. The sky is a flickering lantern -- one moment blue-white and bright as daybreak, then blacker than the underworld in the thunderous space between lightning flashes.\n\nWretchedly sick, weak with exhaustion and hunger, the four of you struggle to keep the little craft from submerging. Oakley sings wildly into the sheets of rain as he bails water with cupped hands:\n\n\"Oh, the Coffin Lid heaves to and fro,\ntossed by storms and gales,\nWhat's that thunder now I hear:\nfour hearts thudding full o' fear?\nOr Death's bone fingers drawing near\nand banging in the nails?\"\n\nGrimes and Blutz both look to be near the end of their tether. Oakley's gallows song is not helping their nerves. Nor yours, for that matter.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Shut Oakley up and risk provoking a fight", 216));
+        Choices.push_back(Choice::Base("Do nothing and let morale drain away entirely", 254));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::DETRUDE))
+        {
+            Character::REMOVE_CODEWORD(player, Codeword::Type::DETRUDE);
+
+            Character::GET_CODEWORDS(player, {Codeword::Type::PECCANT});
+        }
+    }
+};
+
+class Story236 : public Story::Base
+{
+public:
+    Story236()
+    {
+        ID = 236;
+
+        Image = "images/filler3-green.png";
+
+        Text = "Holding firm to your mystic amulet, you pronounce the words of a blessing.\n\n\"Hey, it worked!\" exclaims Blutz, clambering cumbrously over the rail.\"Look, we're not trapped by the curse anymore.\"\n\nYou nod, allowing yourself a slight smile of self congratulation. \"Don't dawdle, though. The effect of the charm won't last forever.\"\n\nLowering yourselves down to the water, you get back into the jollyboat tethered there and row hastily away through the chopping waves. Behind you, the Larnassos fades until she is no more than a wavering patch of shadow, and then is swallowed entirely by the darkness. \"Good riddance!\" spits Grimes.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 136; }
+};
+
+class Story237 : public Story::Base
+{
+public:
+    Story237()
+    {
+        ID = 237;
+
+        Text = "\"Well, Mister Chatter,\" says Oakley, settling the little MONKEY on his knee and producing a pocket-knife, \"it's been an honour to sail with 'ee, but your shipmates are going to ask a favour of you now, and it's that most noble sacrifice a bloke can make.\"\n\nRich red sunset glints on the blade, and in a stroke the dead is done. \"Poor little beggar!\" sighs Blutz.\n\n\"Better than poor us, matey,\" says Oakley as he carves you each a hunk of meat. \"Four starving sailors cramped into a jollyboat leaves precious room for sentiment.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Eat the MONKEY", 256));
+        Choices.push_back(Choice::Base("Do not eat the MONKEY (LOSE 1 Life Point)", 256, Choice::Type::LIFE, -1));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::MONKEY});
+    }
+};
+
+class Story238 : public Story::Base
+{
+public:
+    Story238()
+    {
+        ID = 238;
+
+        Image = "images/vampire-green.png";
+
+        Text = "Raising your sword, you leap aboard the raft. You intended only to warn Mortice, but instead of backing off he gives a murderous snarl and runs straight onto the sword, impaling himself through the heart. You look away quickly with a grimace of dismay. Still gripping the blade, you glance back at the others and start to say, \"There wasn't anything I could do. He just --\"\n\n\"Look out!\" Blutz screeches in warning, pointing past you. \"He's not dead!\"\n\nYour eyes jerk back to Mortice, who you now see to your horror is still moving. Twitching galvanically, he grins a blood-rimmed smile and coughs gore, then starts to pull himself along the sword blade towards you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Flee back to the boat, letting go of your SWORD", 276, Choice::Type::LOSE_ITEMS, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Fight on", 314));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story239 : public Story::Base
+{
+public:
+    Story239()
+    {
+        ID = 239;
+
+        Image = "images/filler4-green.png";
+
+        Text = "The captain listens to your tale with equal measures of horror disbelief. \"It's a hard tale to swallow,\" he says at last, \"but I've heard this fellow Skarvench is full of hubris.\"\n\n\"It's no mere pipedream,\" says Grimes. \"Skarvench is cunning and ruthless. If he's set his sights on such a prize, you can be sure he has a good plan.\"\n\nThe captain scratches his head. \"It is true that the Queen's flagship is bound for the colonies,\" he admits. \"But I only heard the news myself as I was about to set sail from Glorianne, so Skarvench must have spies in high places. I'd help if I could, but my vessel is only a merchantman and would fare badly against a fully-armed pirate ship.\"\n\nHe finally agrees to set you off in Port Selenice, where you have your best chance of enlisting aid against Skarvench. Then, wishing you well, he resumes his journey towards Leshand.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::CHANCERY))
+        {
+            return 406;
+        }
+        else
+        {
+            return 165;
+        }
+    }
 };
 
 auto prologue = Prologue();
@@ -6416,6 +6634,16 @@ auto story226 = Story226();
 auto story227 = Story227();
 auto story228 = Story228();
 auto story229 = Story229();
+auto story230 = Story230();
+auto story231 = Story231();
+auto story232 = Story232();
+auto story233 = Story233();
+auto story234 = Story234();
+auto story235 = Story235();
+auto story236 = Story236();
+auto story237 = Story237();
+auto story238 = Story238();
+auto story239 = Story239();
 
 void InitializeStories()
 {
@@ -6443,7 +6671,8 @@ void InitializeStories()
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
         &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
         &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
-        &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229};
+        &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
+        &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239};
 }
 
 #endif
