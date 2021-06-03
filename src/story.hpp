@@ -6792,6 +6792,249 @@ public:
     int Continue(Character::Base &player) { return 26; }
 };
 
+class Story260 : public Story::Base
+{
+public:
+    Story260()
+    {
+        ID = 260;
+
+        Text = "You reply with a discreet smile and draw the official aside, adopting the conspiratorial tone of one elegantly mannered knave to another. By promising him a lavish share of any treasure you take from Sidonian galleons, you finally manage to convince him to issue you with a LETTER OF MARQUE.\n\nYou gained the codeword MAMMON.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::MAMMON});
+    }
+
+    int Continue(Character::Base &player) { return 244; }
+};
+
+class Story261 : public Story::Base
+{
+public:
+    Story261()
+    {
+        ID = 261;
+
+        Text = "You look at the CORKSCREW in your hand. \"Of course! This is how we'll get our ship.\"\n\nThe others watch you with rekindled concern. \"Maybe you ought to lie down for a bit, skipper?\" suggests Blutz. \"You took a nasty knock back there.\"\n\nIn answer you give only a triumphant laugh, setting out towards the harbour with a determined stride they are hard pressed to match. Now you see clearly that it was divine providence that guided your hand to the CORKSCREW -- the same divine providence that deflected the bullet and saved your life. The force of conviction bears you on like a gale until you stand on the quayside, a smile playing on your lips as you gaze at the lapping waves.\n\nThe others come up just as you are withdrawing the cork from the bottle. They gasp in astonishment to see a weird green vapour billow out, spreading to lie in a thick fog-bank beside the quay. A wind rises, stirs the fog, then dissipates it like a puff of steam.\n\nSomeone mutters an oath. Where the green fog hung moments before, a ship now lies -- moored -- a fine gilded galleon with a figurehead in the shape of a lion's head. Cannons fashioned to resemble leonine paws adorn her flanks. Her furled sails blaze like sunlit clouds against the azure of the sky.\n\n\"A magic ship..!\" breathes blutz. \"What'll we call her?\"\n\n\"She's the PROVIDENCE,\" you reply. \"Gentlemen, shall we go aboard?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::PROVIDENCE);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story262 : public Story::Base
+{
+public:
+    Story262()
+    {
+        ID = 262;
+
+        Text = "The RING sparkles in the rich moonlight. The gold looks almost green, the jewelled eyes have a submarine glow. \"Who could doubt it is the very image of Leviathan, greatest of sea serpents?\" You are struck almost breathless in awe. \"See, it all but shines with power! I feel I have only to call upon the serpent by name, and he'll rise up from the depths and sweep this chain asunder.\"\n\nEvery sailor has heard the ancient myths of Leviathan, the sea monster born out of primordial chaos.\n\n\"as it says in the Book of Job: \"Iron he counts as straw, and brass as rotten wood,\" puts in Oakley.\n\nGrimes turns to you with a dour look. \"It is also said: \"If ever thou think to rouse him, consider the struggle that awaits thee and let it be.\" And in Isaiah is he not called \"the fleeing serpent, twisting serpent\"? Do not call him up from the deep, I pray you, or we are all dead men.\"";
+
+        Choices.push_back(Choice::Base("Insist on using the magic RING", 281));
+        Choices.push_back(Choice::Base("Do not use the RING", 72));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story263 : public Story::Base
+{
+public:
+    Story263()
+    {
+        ID = 263;
+
+        Text = "One sweep of the magic fan is enough to produce a powerful gale. The warship's sails snap taut and she is sent veering away with white-flecked billows surging high up around her heaving prow. It is as though the sea a cannon-shot from your bows is being churned up by a mighty storm, while the water around you has only a gentle swell. Your own canvas catches just a strong clear breeze that drives you safely away, while the warship is borne far astern in the grip of the storm.\n\nYou find the THUNDERCLOUD FAN has gone, vanishing once its power was expended.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::THUNDERCLOUD_FAN});
+    }
+
+    int Continue(Character::Base &player) { return 16; }
+};
+
+class Story264 : public Story::Base
+{
+public:
+    Story264()
+    {
+        ID = 264;
+
+        Text = "El Draque clutches you to him. You are powerless to resist; you feel like a sleepwalker.He presses his lips against your throat, and a moment of cold pain is followed by a spreading glow of warmth. Drowsiness clouds your mind as you spiral down into a whirlpool of dark oblivion. You will awaken into the half living world of the undead, cursed to roam the seas without a soul in search of human blood.\n\nYou failed to save the Queen. You failed to slay Skarvench. You failed even to earn yourself a clean quick death.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story265 : public Story::Base
+{
+public:
+    Story265()
+    {
+        ID = 265;
+
+        Image = "images/filler1-green.png";
+
+        Text = "A single sweep of the fan summons a strong wind. The fog swirls and parts, swiftly dispersing into wispy tendrils. You now clearly sight both the crippled Rose and, closer to you, the Moon Dog. She is standing at two o'clock off your starboard bow, just in cannon range. You have the weather gauge, meaning that the wind is blowing from behind you towards the Moon Dog -- the ideal position for a sea battle.\n\n\"Now we have a choice,\" says Oakley. \"We can sail in to board her, or stand off and rake her with our guns. \"What's it to be, skipper?\"\n\nAs captain it is your decision.";
+
+        Choices.push_back(Choice::Base("Steer in towards the Moon Dog", 322));
+        Choices.push_back(Choice::Base("Unlimber your cannons", 341));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story266 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story266()
+    {
+        ID = 266;
+
+        Image = "images/doctor-mirabilis-green.png";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "A deck plank creaks behind you. You turn to see a thin scholarly-looking figure with a neat goatee beard. You have never met him before, but his arcanely patterned robes and peaked cap mark him out unmistakeably. His the Queen's court wizard, Dr Wild.\n\n\"You've been quite troublesome, so my brother tells me,\" he says in a mock-mild voice.\n\nYou look at the wand in his hand, already flickering with sorcerous energy. \"I've hardly got started yet,\" you tell him.\n\nYou were hoping to goad him into talking while you edged closer, but he is too wily for that. Instead of replying, he only smiles and gives an almost regretful shake on his head. Waving the wand, he conjures a phantasmal green harpoon out of thin air and hurls it at your chest.\n\n";
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            PreText += "[CHARMS] You have magically deflected the harpoon.";
+        }
+        else
+        {
+            Character::GAIN_LIFE(player, -3);
+
+            PreText += "The magic harpoon pierces your flesh. You LOSE 3 Life Points.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SPELLS))
+        {
+            return 285;
+        }
+        else
+        {
+            return 304;
+        }
+    }
+};
+
+class Story267 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story267()
+    {
+        ID = 267;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "\"Well, if it ain't me prodigal orphans!\" chortles Skarvench, drawing his sword and pistol as he sees you break from the undergrowth. \"You ran off without collectin' your back pay, mates, so he's a little something on account, like.\" So saying, he levels his pistol and pulls the trigger.\n\nPain lances through your shoulder as the shot tears flesh and splinters bone. But sheer hatred of your foe drives you on. A red haze sparkles across your vision, and Skarvench's grinning face is like a painting in blood on the back of your eyes as you race forward with a savage snarl.";
+
+        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        {
+            Character::GAIN_LIFE(player, -8);
+
+            PreText += "\n\n[SWORDPLAY] [MARKSMANSHIP] You LOSE 8 Life Points.";
+        }
+        else
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nYou sell your life dearly in a futile slaughter.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 23; }
+};
+
+class Story268 : public Story::Base
+{
+public:
+    Story268()
+    {
+        ID = 268;
+
+        Text = "Your companions look on with sour sidelong glances as you hungrily devour the crabs. You stare back at them defiantly until they turn away. After all, didn't they leave the decision to you? As leader, you must try to keep your strength up.\n\nYou RECOVER 1 Life Point and gained the codeword CHANCERY.";
+
+        Choices.push_back(Choice::Base("Continue on your way", 116));
+        Choices.push_back(Choice::Base("Explore the island", 211));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 1);
+
+        Character::GET_CODEWORDS(player, {Codeword::Type::CHANCERY});
+    }
+};
+
+class Story269 : public Story::Base
+{
+public:
+    Story269()
+    {
+        ID = 269;
+
+        Text = "\"In God's name, the devil's caught up with us!\" says Oakley with a gasp of horror as the four of you return to the shore.\n\nYou were bringing up the rear and are still pushing your way out of the undergrowth. Hearing this oath, you hurry to catch up and see what it is that has stopped Oakley and the others dead in their tracks. When you do, it is as though the chill wind of a midwinter night had blown for an instant through the sweltering heat of this tropical jungle. For, out at sea but coming nearer by the minute, lies Skarvench's ship: the dreaded Belle Dame. Drenched in the blood-red light of sunset, it is a sight that closes icy fingers of fear around your heart.\n\n\"They're making anchorage outside the cove,\" says Grimes, shielding his gaze against the low sun. \"It's too shallow for them to bring her right in, lucky for us. They won't know we're here yet. Maybe we'll have a chance of slipping away under cover of darkness.\"\n\nYou rub your jaw, mulling over the other options. Despite your hatred of Skarvench -- and yes, you admit it: your fear of him - you are curious to know why he's come here. \"We could haul the jollyboat up into the jungle and hide it,\" you suggest. \"Then if Skarvench sends a party ashore, we can spy on them.\"\n\n\"Foolishness,\" avers Oakley. \"I agree with hiding the boat, but then we should go deep into the jungle and lie low until Skarvench has left. Let's stay clear of him and his cronies.\"\n\nWhat will you do?";
+
+        Choices.push_back(Choice::Base("Try to get off the island after dark", 307));
+        Choices.push_back(Choice::Base("Spy on Skarvench's shore party", 326));
+        Choices.push_back(Choice::Base("Stay out of sight until they're long gone", 288));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -7056,6 +7299,16 @@ auto story256 = Story256();
 auto story257 = Story257();
 auto story258 = Story258();
 auto story259 = Story259();
+auto story260 = Story260();
+auto story261 = Story261();
+auto story262 = Story262();
+auto story263 = Story263();
+auto story264 = Story264();
+auto story265 = Story265();
+auto story266 = Story266();
+auto story267 = Story267();
+auto story268 = Story268();
+auto story269 = Story269();
 
 void InitializeStories()
 {
@@ -7086,7 +7339,8 @@ void InitializeStories()
         &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
         &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
         &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
-        &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259};
+        &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
+        &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269};
 }
 
 #endif
