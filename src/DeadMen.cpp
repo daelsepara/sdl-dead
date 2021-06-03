@@ -612,7 +612,7 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
         auto space = 8;
         auto font_size = 18;
 
-        auto boxh = (profileh) / 2;
+        auto boxh = headerh;
 
         auto skills = createHeaderButton(window, "Skills", clrWH, intGN, headerw, headerh, space);
         auto possessions = createHeaderButton(window, "Possessions", clrWH, intGN, headerw, headerh, space);
@@ -651,7 +651,7 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                 if (player.Codewords.size() > 0)
                 {
                     putText(renderer, "Codewords", font, space, clrWH, intGN, TTF_STYLE_NORMAL, headerw, headerh, startx, starty + 2 * profileh + 4 * headerh + 4 * marginh + 2 * boxh);
-                    putText(renderer, codewords.c_str(), font, space, clrBK, intBE, TTF_STYLE_ITALIC, profilew - buttonw - 2 * space, profileh, startx, starty + 2 * profileh + 5 * headerh + 4 * marginh + 2 * boxh);
+                    putText(renderer, codewords.c_str(), font, space, clrBK, intBE, TTF_STYLE_ITALIC, profilew - buttonw - 2 * space, boxh, startx, starty + 2 * profileh + 5 * headerh + 4 * marginh + 2 * boxh);
                 }
 
                 renderButtons(renderer, controls, current, intGR, space, space / 2);
@@ -869,7 +869,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
         auto scrollDown = false;
         auto hold = false;
 
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.150 * SCREEN_HEIGHT;
         auto box_space = 10;
         auto messageh = 0.25 * SCREEN_HEIGHT;
@@ -1195,7 +1195,7 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
         auto scrollDown = false;
         auto hold = false;
 
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
 
         auto selection = std::vector<int>();
@@ -1489,7 +1489,7 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
         auto scrollDown = false;
         auto hold = false;
 
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
 
         auto selection = std::vector<int>();
@@ -1816,7 +1816,7 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
     }
 
     auto boxw = (profilew - marginw) / 2;
-    auto boxh = (profileh) / 2;
+    auto boxh = headerh;
 
     std::string possessions;
 
@@ -2936,7 +2936,7 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
 
         auto font_size = 20;
         auto text_space = 8;
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
         auto box_space = 10;
         auto offset = 0;
@@ -3227,7 +3227,7 @@ bool tradeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pl
         auto scrollDown = false;
         auto hold = false;
 
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
 
         while (!done)
@@ -3384,7 +3384,7 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
         auto messageh = 0.25 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto box_space = 10;
 
         while (!done)
@@ -3701,7 +3701,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
         auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space) - 2 * text_space;
         auto messageh = 0.25 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto box_space = 10;
 
         for (int i = 0; i < choices.size(); i++)
@@ -4383,7 +4383,7 @@ bool loseSkills(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
         auto scrollDown = false;
         auto hold = false;
 
-        auto infoh = 0.06 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.125 * SCREEN_HEIGHT;
 
         auto selection = std::vector<Skill::Base>();
@@ -4561,7 +4561,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
     auto font = TTF_OpenFont(FONT_FILE, font_size);
 
     auto messageh = 0.25 * SCREEN_HEIGHT;
-    auto infoh = 0.06 * SCREEN_HEIGHT;
+    auto infoh = 0.07 * SCREEN_HEIGHT;
     auto boxh = 0.125 * SCREEN_HEIGHT;
     auto box_space = 10;
 
@@ -4999,6 +4999,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                                     fillWindow(renderer, intWH);
 
                                     fillRect(renderer, (1.0 - 2.0 * Margin) * SCREEN_WIDTH, bye->h + 2 * text_space, startx, (SCREEN_HEIGHT - (bye->h + 2 * text_space)) / 2, intBE);
+
                                     renderText(renderer, bye, intBE, (SCREEN_WIDTH - bye->w) / 2, (SCREEN_HEIGHT - bye->h) / 2, SCREEN_HEIGHT, 0);
 
                                     renderImage(renderer, forward, SCREEN_WIDTH * (1.0 - Margin) - buttonw - button_space, buttony);
