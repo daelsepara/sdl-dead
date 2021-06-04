@@ -1071,6 +1071,10 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                             start_ticks = SDL_GetTicks();
 
                             flash_message = true;
+
+                            selected = false;
+
+                            current = -1;
                         }
                         else if (mode == Control::Type::LOSE)
                         {
@@ -1123,10 +1127,57 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                                 start_ticks = SDL_GetTicks();
 
                                 flash_message = true;
+
+                                selected = false;
+
+                                current = -1;
                             }
                         }
                         else if (mode == Control::Type::USE)
                         {
+                            if (item.Type == Item::Type::HEALING_POTION)
+                            {
+                                if (player.Life < player.MAX_LIFE_LIMIT)
+                                {
+                                    player.Life = player.MAX_LIFE_LIMIT;
+
+                                    Items.erase(Items.begin() + (current + offset));
+
+                                    if (offset > 0)
+                                    {
+                                        offset--;
+                                    }
+
+                                    last = offset + display_limit;
+
+                                    if (last > Items.size())
+                                    {
+                                        last = Items.size();
+                                    }
+
+                                    controls.clear();
+
+                                    controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
+
+                                    message = "Your Life Points are RESTORED.";
+
+                                    flash_color = intLB;
+
+                                    selected = false;
+
+                                    current = -1;
+                                }
+                                else
+                                {
+                                    message = "You are not INJURED!";
+
+                                    flash_color = intRD;
+                                }
+
+                                start_ticks = SDL_GetTicks();
+
+                                flash_message = true;
+                            }
                         }
                     }
 
