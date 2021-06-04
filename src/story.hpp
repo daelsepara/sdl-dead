@@ -8212,6 +8212,8 @@ public:
     {
         ID = 317;
 
+        Image = "images/filler4-green.png";
+
         Choices.clear();
         Choices.push_back(Choice::Base("Now use [BRAWLING]", 241, Skill::Type::BRAWLING));
         Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 384, Skill::Type::SPELLS));
@@ -8278,6 +8280,285 @@ public:
         Choices.push_back(Choice::Base("To Crossbones Island", 358));
 
         Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story320 : public Story::Base
+{
+public:
+    Story320()
+    {
+        ID = 320;
+
+        Text = "Selenice is a veritable haven for pirates, and a large and experienced crew flocks to your cause. Some have heard of your exploits and are eager to join the quest for gold and glory. Others, having learned of your hatred of Skarvench take grim pleasure in joining the battle against him; they, like you, have old scores to settle.\n\nWhile you are signing on the last few crewmen, Blutz comes bustling along the dock full of urgent news. \"I met a bloke in a tavern,\" he manages to pant out, leaning on a stanchion to recover his breath. \"He was employed as a pilot to steer Queen Titania's convoy past the Smoking Islands. He told me the convoy's heading for Port Tudor where they'll sit out the hurricane season.\"\n\n\"The hurricane season!\" scoffs Oakley. \"The hurricane's not due for a month.\"\n\nBlutz shakes his head. \"This bloke I was talking to said they think it's going to hit early this year. Apparently the Queen's wizard cast a horoscope and he's sure of it.\"\n\nGrimes grabs you by the shoulder. \"Skipper, you know what this means. If Skarvench intends to go through with his attack on the Queen's convoy, he'll have to do it before they reach Port Tudor.\"\n\n\"By thunder, you're right! All hands to their posts -- we sail for Port Tudor, and there isn't a moment to lose!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 138; }
+};
+
+class Story321 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story321()
+    {
+        ID = 321;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The vampires come at you in a crazed rush, knowing no fear in their longing to taste your warm rich blood. They feel no pain either, taking the blow of your valiant sailors as though they were stings of gnats. For a moment you feel a stab of hopelessness, shrinking back as the tide of defeat threatens to engulf you, but then you see the grim desperate faces of your brave lads as they battle the monsters. Your passion wells up in a great roar that thunders across the deck. \"This is my ship, by hell and high water, and I'll suffer a thousand deaths before I'll allow a bunch of bloodsucking lubbers to wrest her from me!\"\n\nYour example inspires the crew to fresh efforts and they lay about them with their sabres, chopping bloodless limbs from undead bodies. And still the vampires come, all undaunted by this macabre butchery...\n\n";
+
+        auto DAMAGE = -8;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -4;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::BRAWLING, Skill::Type::MARKSMANSHIP}))
+        {
+            DAMAGE = -6;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+            {
+                PreText += "[BRAWLING] ";
+            }
+            else
+            {
+                PreText += "[MARKSMANSHIP] ";
+            }
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 340; }
+};
+
+class Story322 : public Story::Base
+{
+public:
+    Story322()
+    {
+        ID = 322;
+
+        Text = "Cannonballs whistle out of the night, splintering timber and crushing bones. You see one of your crewmen give a short cry and go sailing out of the rigging to his doom. A shell goes thundering past only paces from where you're standing, but you remain ice cool as you close in on your foe.\n\nYour ship SUFFERS 1 damage.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        Character::DAMAGE_SHIP(player, 1);
+
+        if (Character::CHECK_SHIP(player))
+        {
+            Choices.push_back(Choice::Base("Stay to windward of the Moon Dog", 379));
+            Choices.push_back(Choice::Base("Sail to her lee side", 360));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 227; }
+};
+
+class Story323 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story323()
+    {
+        ID = 323;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "\"I don't know how you escaped my bullet,\" growls Skarvench, \"but this time I'm going to make sure of the matter. I'll chop off your head and stick it on a marline-spike to look at as I go to sleep each night!\"\n\nYou give him no answer. Clutching hold of the rope with one hand, you save your strength for the most desperate struggle of your life.\n\n";
+
+        auto DAMAGE = -5;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        {
+            DAMAGE = -2;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+            else
+            {
+                PreText += "[MARKSMANSHIP] ";
+            }
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            DAMAGE = -3;
+
+            PreText += "[BRAWLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+
+        player.TemporarySkills.clear();
+    }
+
+    int Continue(Character::Base &player) { return 342; }
+};
+
+class Story324 : public Story::Base
+{
+public:
+    Story324()
+    {
+        ID = 324;
+
+        Text = "Skarvench stands over you. You see his face as though it was reflected in a pool of blood. His voice roars and surges in your ears: \"...among the dead men...\"\n\nThe image clouds and clots, then the red haze turns to blackness as your grip on life gives way. You have met your doom at the hands of your arch-foe, and now there is no one to stop him.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story325 : public Story::Base
+{
+public:
+    Story325()
+    {
+        ID = 325;
+
+        Image = "images/carvings-green.png";
+
+        Text = "Making your way towards the sound of running water, you push the thick undergrowth aside to discover a sparkling stream. After slaking your thirst you follow the stream inland until you come to a clearing where an ancient stone monolith stands surrounded by creepers and green-filtered sunlight. Tiny gnats flit about like motes of golden dust as you inquisitively scrape away the moss covering the monolith so as to examine its carvings. Although weathered, some of the carvings can still be made out, although none of you has any idea what they represent.\n\nThe forest is full of errie sounds. Blutz looks about nervously. \"Shouldn't we be getting back to the boat?\" he says.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 344; }
+};
+
+class Story326 : public Story::Base
+{
+public:
+    Story326()
+    {
+        ID = 326;
+
+        Image = "images/filler3-green.png";
+
+        Text = "You hide the jollyboat and lie in wait until the next morning, when Skarvench comes ashore in a rowboat with five other men: his quartermaster -- the whippet-thin villain named Curshaw, his lumbering first mate Porbuck, Borograve the master gunner, and two seamen carrying spades.\n\nYou crouch in the cover of the bushes and watch this sinister band making their way purposefully through the trees, with Skarvench striding ahead, pacing out distances and from time to time referring to a map he is carrying. Blutz gives a muffled gasp. \"They've come to dig up some treasure!\" he realises.\n\nOakley narrows his eyes. It is all he can do not to leap up from your hiding place and charge at Skarvench, so filled with hatred are his memories. But much as you year for revenge on the evil pirate captain, you know that to attack him now in your weakened state would mean almost certain death. It would be wiser to bide your time.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::MONKEY}))
+        {
+            Choices.push_back(Choice::Base("Stay in hiding and spy on Skarvench", 4));
+            Choices.push_back(Choice::Base("Give the go-ahead to attack him", 267));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 99; }
+};
+
+class Story327 : public Story::Base
+{
+public:
+    Story327()
+    {
+        ID = 327;
+
+        Text = "Ejada stands in front of her palace and surveys you with a haughty eye. In her gilded finery and bejewelled head-dress, with her limbs like a statue's .and her star sapphire gaze, she looks every inch a goddess.\n\nShe raises a flint knife. \"My mother the Earth is thirsty for a mortal soul. Which of you shall I send to her?\"\n\nThis is the moment of truth.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Make a run for it", 5));
+        Choices.push_back(Choice::Base("Fight her", 365));
+        Choices.push_back(Choice::Base("Let each offer a portion of their soul", 119));
+        Choices.push_back(Choice::Base("[SPELLS] Use magic against her", 384, Skill::Type::SPELLS));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story328 : public Story::Base
+{
+public:
+    Story328()
+    {
+        ID = 328;
+
+        Text = "After a hard-fought battle you finally get in a killing blow. To your amazement, Ejada does not fall like any mortal opponent. Instead she gives a deep groan and sags forward like a puppet with its strings cut. Green sap spurts from the wound you've made above her heart, and her long virid tresses wither like plucked blooms.\"Blow me down if she wasn't some sort o' plant!\" says Grimes, touching her cheek. \"Feels like wood rather than flesh.\"\n\nYou shrug and sheathe your sword. \"She did say she was the Earth Goddess's daughter.\"\n\nA hasty exploration of Ejada's palace soon uncovers several treasures: a MAGIC WAND, a HEALING POTION, a SHIP IN A BOTTLE, and a BLACK KITE. The potion can be drunk once at any time to restore your Life Points score to normal. The other items may or may not come in handy later.";
+
+        Bye = "Returning to the boat, you put to see without further delay.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::MAGIC_WAND, Item::HEALING_POTION, Item::SHIP_IN_BOTTLE, Item::BLACK_KITE};
+
+        Limit = 4;
+    }
+
+    int Continue(Character::Base &player) { return 137; }
+};
+
+class Story329 : public Story::Base
+{
+public:
+    Story329()
+    {
+        ID = 329;
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::PROSPERO))
+        {
+            Character::REMOVE_CODEWORD(player, Codeword::Type::PROSPERO);
+
+            return 348;
+        }
+        else
+        {
+            return 30;
+        }
     }
 };
 
@@ -8607,6 +8888,16 @@ auto event316 = Event316();
 auto story317 = Story317();
 auto story318 = Story318();
 auto story319 = Story319();
+auto story320 = Story320();
+auto story321 = Story321();
+auto story322 = Story322();
+auto story323 = Story323();
+auto story324 = Story324();
+auto story325 = Story325();
+auto story326 = Story326();
+auto story327 = Story327();
+auto story328 = Story328();
+auto story329 = Story329();
 
 void InitializeStories()
 {
@@ -8643,7 +8934,8 @@ void InitializeStories()
         &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
         &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
-        &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319};
+        &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
+        &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329};
 }
 
 #endif
