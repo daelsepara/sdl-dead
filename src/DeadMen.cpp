@@ -3754,8 +3754,11 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
 
                         dst.w = zoomw;
                         dst.h = zoomh;
-                        dst.x = startx / 2;
-                        dst.y = starty / 2;
+                        dst.x = mousex + buttonw / 4;
+                        dst.y = mousey - (buttonh / 4 + zoomh);
+
+                        clipValue(dst.x, buttonw / 4, SCREEN_WIDTH - buttonw / 4 - zoomw);
+                        clipValue(dst.y, buttonh / 4, SCREEN_HEIGHT - buttonh / 4 - zoomh);
 
                         if (current_map == 1)
                         {
