@@ -3632,7 +3632,7 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
         auto marginw = (1.0 - 2.0 * Margin) * SCREEN_WIDTH;
 
         auto controls = std::vector<Button>();
-        controls.push_back(Button(0, "icons/next.png", 0, 1, 0, 0, startx, buttony, Control::Type::NEXT));
+        controls.push_back(Button(0, "icons/map.png", 0, 1, 0, 0, startx, buttony, Control::Type::MAP));
         controls.push_back(Button(1, "icons/back-button.png", 0, 1, 1, 1, (1 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
 
         auto offset_x = 0;
@@ -3689,6 +3689,15 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
 
                 auto zoomw = (int)(0.40 * (double)(marginw - 2 * offset_x));
                 auto zoomh = (int)(0.40 * (double)text_bounds);
+
+                if (zoomw > zoomh)
+                {
+                    zoomw = zoomh;
+                }
+                else
+                {
+                    zoomh = zoomw;
+                }
 
                 if (current_map == 1)
                 {
@@ -3768,7 +3777,7 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
             {
                 break;
             }
-            else if (selected && current >= 0 && current < controls.size() && controls[current].Type == Control::Type::NEXT)
+            else if (selected && current >= 0 && current < controls.size() && controls[current].Type == Control::Type::MAP)
             {
                 current_map = 1 - current_map;
             }
