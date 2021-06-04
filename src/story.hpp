@@ -569,7 +569,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText = "Ejada responds with a cry of rage and sorcerous gesture. Immediately a hail of red-hot stones pour down out of the sky to pelt you as you flee. \"Craven mortals, \" she thunders. \"I gave you the chance to leave with honour, but you spurned my kindness. Now suffer the consequences.\"\n\n\"Kindness, she calls it?\" gasps Blutz as he struggles to keep up through the battering rain of stones. \"She's killing us with her kindness!\n\n";
+        PreText = "Ejada responds with a cry of rage and sorcerous gesture. Immediately a hail of red-hot stones pour down out of the sky to pelt you as you flee. \"Craven mortals, \" she thunders. \"I gave you the chance to leave with honour, but you spurned my kindness. Now suffer the consequences.\"\n\n\"Kindness, she calls it?\" gasps Blutz as he struggles to keep up through the battering rain of stones. \"She's killing us with her kindness!\"\n\n";
 
         auto DAMAGE = -6;
 
@@ -767,7 +767,7 @@ public:
         Choices.push_back(Choice::Base("Listen for rumours", 88));
         Choices.push_back(Choice::Base("Apply for a LETTER OF MARQUE", 409));
         Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
-        Choices.push_back(Choice::Base("You have now completed all your business in Leshand", 107));
+        Choices.push_back(Choice::Base("You have completed all your business in Leshand", 107));
 
         Controls = Story::Controls::SHOP;
     }
@@ -3518,7 +3518,7 @@ public:
     {
         Type = Story::Type::NORMAL;
 
-        PreText = "The days and nights become a flickering blur as you sink deeper into exhausted delirium. Arising from a fever, your eyes aching in your sockets, you behold a beautiful woman gliding across the dead calm of the sea. Her hair is the colour of honey and her skin is so white that it makes her lips blaze like rubies. Reaching you, she bends down and lifts you out of the boat as though you're weightless. Indeed, after your long ordeal your body has now become little more than skin stretched taught over bone. Borne higher and higher into the air, you realise with a curious detachment that you are not in a woman's arms at all, but in a kind of rope sling...\n\nNow you come properly awake, opening your eyes to find yourself on the deck of a ship. You are surrounded by sailors. One of them bends down and cradles your head, putting a cup of water to your lips.\n\n\"Where...? you croak feebly.\n\n\"On board the Jewel of Heaven,\" he replies. \"Now drink.\"\n\nThe water stings your shrivelled lips, runs like acid in your throat. After a few sips a wave of weakness enfolds you and you pass out.";
+        PreText = "The days and nights become a flickering blur as you sink deeper into exhausted delirium. Arising from a fever, your eyes aching in your sockets, you behold a beautiful woman gliding across the dead calm of the sea. Her hair is the colour of honey and her skin is so white that it makes her lips blaze like rubies. Reaching you, she bends down and lifts you out of the boat as though you're weightless. Indeed, after your long ordeal your body has now become little more than skin stretched taught over bone. Borne higher and higher into the air, you realise with a curious detachment that you are not in a woman's arms at all, but in a kind of rope sling...\n\nNow you come properly awake, opening your eyes to find yourself on the deck of a ship. You are surrounded by sailors. One of them bends down and cradles your head, putting a cup of water to your lips.\n\n\"Where...?\" you croak feebly.\n\n\"On board the Jewel of Heaven,\" he replies. \"Now drink.\"\n\nThe water stings your shrivelled lips, runs like acid in your throat. After a few sips a wave of weakness enfolds you and you pass out.";
 
         if (player.Life < 3)
         {
@@ -3647,7 +3647,7 @@ public:
         Choices.push_back(Choice::Base("Look for someone who can identify unusual items", 31));
         Choices.push_back(Choice::Base("[ROGUERY] Apply a LETTER OF MARQUE", 409, Skill::Type::ROGUERY));
         Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
-        Choices.push_back(Choice::Base("You have now completed all your business in Leshand", 107));
+        Choices.push_back(Choice::Base("You have completed all your business in Leshand", 107));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -5508,7 +5508,7 @@ public:
         Choices.push_back(Choice::Base("Get your magical treasures identified", 31));
         Choices.push_back(Choice::Base("Apply for a LETTER OF MARQUE", 409));
         Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
-        Choices.push_back(Choice::Base("You have now completed all your business in Leshand", 107));
+        Choices.push_back(Choice::Base("You have completed all your business in Leshand", 107));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -7035,6 +7035,269 @@ public:
     }
 };
 
+class Story270 : public Story::Base
+{
+public:
+    Story270()
+    {
+        ID = 270;
+
+        Text = "Drawing your PISTOL, you shoot one of the natives dead just as he is raising his spear to thrust at you.\n\nThe loud bang startles the other natives. They rush back a few paces, screeching in astonishment. When they see blood spreading from the corpse of the native you shot, they start to make a weird moaning sound and tremble with fright.\n\n\"It seems they've never seen firearms before,\" grunts Oakley. \"Trouble is, you just used your one shot.\"\n\n\"They don't know that, do they,\" you reply. \"Come on, everyone -- let's get down to the beach. Don't rush unduly, but don't dawdle either.\"\n\nYou gained the codeword FETISH.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::FETISH});
+    }
+
+    int Continue(Character::Base &player) { return 400; }
+};
+
+class Story271 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story271()
+    {
+        ID = 271;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SPELLS] Try using a WAND", 384, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 317, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("Make a run for it", 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your fist comes up and smashes into Ejada's jaw with agonizing force. Agonizing to you, that is. As you reel back, clutching your knuckles and groaning with pain, she laughs languidly and sweeps her arm out, dashing you to the ground without apparent effort.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
+        {
+            DAMAGE = -2;
+
+            PreText += "[Item: FEATHER SHIELD] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou take stock of your situation. Hand-to-hand combat with her is futile as punching an oak tree.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story272 : public Story::Base
+{
+public:
+    Story272()
+    {
+        ID = 272;
+
+        Text = "The natives bring you baked root-bread, fruit and gourds full of fresh water. You can TAKE enough PROVISIONS for two meals.\n\nThey also take a look at your battered craft and help to patch up any damage, demonstrating amazing skill with no tools other than bamboo and wooden leaves.\n\nWith the help of sign language, the chief explains to you that not many ocean-going vessels visit this island. If you were to stay here you might be marooned for months. On the other hand, he offers to escort you southwards to the main shipping-lane, where you might meet up with a ship bound for civilization. You soon realise that this would not be a free service, however. He expects a gift of some kind.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Give the chief a gift in return for being escorted south", 310));
+        Choices.push_back(Choice::Base("Head on towards Leshand without his help", 177));
+        Choices.push_back(Choice::Base("Stay on the island and wait for rescue", 348));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::PROVISIONS, Item::PROVISIONS};
+
+        Limit = 2;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::BOOK_OF_CHARTS}))
+        {
+            Choices[2].Destination = 329;
+        }
+        else
+        {
+            Choices[2].Destination = 348;
+        }
+    }
+};
+
+class Story273 : public Story::Base
+{
+public:
+    Story273()
+    {
+        ID = 273;
+
+        Text = "Towards sunset the storm finally blows over, leaving the clouds in the west lying like blots of blood across the steel rim of the sea.\n\nThe four of you are by now slumped in the bottom of the boat, as limp as corpses on a trestle. Your lips are black and blistered, your flesh fish-white and swollen with sores. Blutz gnaws his knuckle until it bleeds, jut to feel moisture on his tongue. After looking up at the sky Grimes starts to shiver, either from dread of the onrushing night or because he is in the first stages for fever.\n\nA shadow shimmers against the last light of day. A ship's sails show purple-black against the red haze. \"We're saved!\" gasps Oakley, raising his hands to hail the ship. \"Ahoy there!\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            Choices.push_back(Choice::Base("Call out to the ship through the gathering dusk", 311));
+            Choices.push_back(Choice::Base("Advise Oakley to keep quiet until she's passed", 330));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 292; }
+};
+
+class Story274 : public Story::Base
+{
+public:
+    Story274()
+    {
+        ID = 274;
+
+        Image = "images/filler2-green.png";
+
+        Text = "You select a number of DIAMONDs, each the size of a walnut.\n\n\"They're worth a queen's ransom!\" gasps Blutz as he sees you gather the jewels together.\n\n\"Perhaps that's what we should call the ship we're going to buy them with,\" you reply smiling. \"THE QUEEN's RANSOM.\"\n\nLeaving Mandrigard to sleep over his still-lavish treasure hoard, you tiptoe out of the cabin and ascend to the deck.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::DIAMOND, Item::DIAMOND, Item::DIAMOND};
+
+        Limit = 3;
+    }
+
+    int Continue(Character::Base &player) { return 217; }
+};
+
+class Story275 : public Story::Base
+{
+public:
+    Story275()
+    {
+        ID = 275;
+
+        Text = "Hunger saps your strength. You spend the night half in slumber and half in a dead faint. Cold sweat soaks your clothes. Even sunrise fails to warm the chill out of your bones, and as you crouch at the back of the boat shivering you realise you are running a fever.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 256; }
+};
+
+class Story276 : public Story::Base
+{
+public:
+    Story276()
+    {
+        ID = 276;
+
+        Text = "Casting off, you row away from the raft with all haste. It dwindles into the distance until it is visible only as a moonlit speck far to stern. Mortice is still to be seen jumping in rage, appearing like a guttering candle-flame in the distant darkness. His last curse comes like a sight of wind across the water: \"El Draque drink your blood, you swabs...\" and then there is silence and unbroken night.\n\nAt last you deem it safe to sleep. Tomorrow you pray you will sight another vessel. How much longer can you survive otherwise?";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 332; }
+};
+
+class Story277 : public Story::Base
+{
+public:
+    Story277()
+    {
+        ID = 277;
+
+        Text = "\"A pretty sunrise,\" says Oakley painfully through swollen lips. \"It'll likely be the last we see in this life.\"\n\nGrimes nods. \"It's warm enough where we're going, my merry lads.\"\n\nYou give a grunt of disapproval. \"Don't tempt the Devil with your grim jokes, Mister Grimes. He might think you're wishing out loud, and come to collect you personally. We're bound for a better harbour than that, I think. Hellfire isn't for honest scoundrels like us, but for rank fiends of Skarvench's cut.\"\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+
+    int Continue(Character::Base &player) { return 120; }
+};
+
+class Story278 : public Story::Base
+{
+public:
+    Story278()
+    {
+        ID = 278;
+
+        Text = "You have always made sure of nurturing a network of paid informers in large towns such as Leshand, and now your foresight reaps dividends. You soon discover that Skarvench recently collected all outstanding debts and redeemed his treasures for hard cash. The evidence points to some sort of ambitious project for which he will need every bit of finance that he can muster.\n\n\"I've heard he's engaged a shipwright in Port Selenice,\" one of your informants tells you. \"A special commission it was, for a ship to be called the Moon Dog. Got a lot of odd features.\"\n\n\"Such as?\"\n\nHe leans closer, dropping his voice to a whisper. \"Gun ports along the keel! And other things, even weirder than that. Perhaps ol' Skarvench has gone mad -- but heaven help us all if so, for a mad dog is no nicer than a sane one.\"\n\nAs you turn away, the informant snatches at your sleeve. \"Here, what about my pay?\"\n\nYou tug away from his grip. \"For that tittle-tattle you've just told me? It's common knowledge that I could've had from any gossip in town. That's not what I pay you for, and you know it.\"\n\nIgnoring his grumbles, you walk away. There are other rumours you might look into.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Look into rumours concerning El Draque", 164));
+        Choices.push_back(Choice::Base("Look into rumours concerning Queen Titania", 202));
+        Choices.push_back(Choice::Base("Go shopping", 12));
+        Choices.push_back(Choice::Base("Find someone who can identify magical items", 31));
+        Choices.push_back(Choice::Base("Apply for a LETTER OF MARQUE", 409));
+        Choices.push_back(Choice::Base("(Marathon) Pay a visit to Master Capstick", 69, Codeword::Type::MARATHON));
+        Choices.push_back(Choice::Base("You have completed all your business in Leshand", 107));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Choices[4].Destination = 50;
+        }
+        else
+        {
+            Choices[4].Destination = 409;
+        }
+    }
+};
+
+class Story279 : public Story::Base
+{
+public:
+    Story279()
+    {
+        ID = 279;
+
+        Text = "\"I got it fair and square, by the law of the sea,\" snorts Mandrigard. \"Took it from a marble hall atop an island cliff, and no hand was raised against me and my merry lads. But as we went -- not a man Jack of us able to straighten his back under the weight of loot, mind you -- and old fool of a priest called after us with a curse. He told us we'd know no rest sailing the ocean's breadth for ever more, and never able to find port nor set foot ashore so long as our hands were tainted with the theft of sacred treasures.\"\n\nHe pauses draining his wine-cup yet again. It occurs to you that you have not seen him refill it from the jug, but it never seems empty.\n\nRain rattles on the shutters across the cabin window. The ship's timbers groan and sigh as she sails on before the wind.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask Mandrigard anything else", 46));
+        Choices.push_back(Choice::Base("Explore the rest of his ship", 65));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -7309,6 +7572,16 @@ auto story266 = Story266();
 auto story267 = Story267();
 auto story268 = Story268();
 auto story269 = Story269();
+auto story270 = Story270();
+auto story271 = Story271();
+auto story272 = Story272();
+auto story273 = Story273();
+auto story274 = Story274();
+auto story275 = Story275();
+auto story276 = Story276();
+auto story277 = Story277();
+auto story278 = Story278();
+auto story279 = Story279();
 
 void InitializeStories()
 {
@@ -7340,7 +7613,8 @@ void InitializeStories()
         &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
         &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
         &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
-        &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269};
+        &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
+        &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279};
 }
 
 #endif
