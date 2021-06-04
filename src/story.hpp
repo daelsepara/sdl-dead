@@ -7796,6 +7796,195 @@ public:
     }
 };
 
+class Story300 : public Story::Base
+{
+public:
+    Story300()
+    {
+        ID = 300;
+
+        Text = "Somehow you have to get a bigger ship, as your current one is no match for Skarvench's heavily-armed galleon. Sitting in your cabin aboard the LADY OF SHALOTT, you mull over the options open to you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("(Raven) Look for El Draque's treasure", 319, Codeword::Type::RAVEN));
+        Choices.push_back(Choice::Base("(August) Sail in search of the ship frozen in ice", 338, Codeword::Type::AUGUST));
+        Choices.push_back(Choice::Base("Make some money from plain dishonest piracy", 357));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story301 : public Story::Base
+{
+public:
+    Story301()
+    {
+        ID = 301;
+
+        Text = "On returning to Port Selenice you go straight to Master Kemp's shipyard, where your treasure secures you a fair-sized galleon in place of your small sloop. You check her out from stern to stern, and despite finding a few faults you have a good instinct about her. Patting one of the cannons, you say. \"This is the ship for us. \"What's she called, Master Kemp?\"\n\n\"My friend,\" he replies, \"she is the SHIVERED TIMBER.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::SHIVERED_TIMBER);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story302 : public Story::Base
+{
+public:
+    Story302()
+    {
+        ID = 302;
+
+        Text = "He looks you long and hard in the eyes, then turns away with a snarl and a muttered oath. \"Davy Jones's teeth! This one's will is too strong.\" He glances back up at you, but the earlier mask of pleasantry is now entirely peeled away to reveal a look of pure murderous hatred. \"Very well. We cannot come up uninvited. But be warned, you frail thing of daylight and warm blood: do not touch my treasure. For if you do, I promise you a curse that will harry you into the grave and haunt you even beyond it. This I swear, or my name's not El Draque\"\n\nThey melt away into the mist -- the tall figure, the boat, and the two oarsmen, all faded to nothing. By dawn you're not even sure it ever happened. But when you start to order the treasure brought aboard, you remember El Draque's parting words. Maybe it was a dream -- but can't a ghost in a dream lay curses just as easily?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Load the treasure aboard first before sailing", 16, Choice::Type::GET_CODEWORD, Codeword::Type::MALEFIC));
+        Choices.push_back(Choice::Base("Sail without taking the treasure", 396));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story303 : public Story::Base
+{
+public:
+    Story303()
+    {
+        ID = 303;
+
+        Text = "\"The Rose is at the centre of Skarvench's web,\" you realise. \"That's where we'll find him.\"\n\nYou cannot safely take your ship on into the fog. Instead, you take a small party in one of the cutters and begin to row as quickly as possible towards the centre of the fogbank. \"It seems to be issuing from the Rose herself,\" says Oakley. \"And I've never seen fog so thick. I can barely see Blutz sitting in the stern back there, and he's not easy to miss!\"\n\n\"Stow that personal talk, if you please, Mister Oakley!\" protests Blutz from the back of the boat. Despite the grim danger you are facing, every man in the cutter allows himself a chuckle.\n\n\"Mister Blutz's girth is entirely a natural phenomenon,\" says the ever sober-minded Grimes. \"I can't say the same for this fog. And moonlight is returning: the Moon Dog will be airborne again by now. Let's hope we're in time.\"\n\nThe Rose looms ahead. You catch hold of her access ladder and secure your cutter, then lead the way up.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use the BRONZE HELMET", 190, {Item::BRONZE_HELMET}));
+        Choices.push_back(Choice::Base("Go without wearing the BRONZE HELMET", 209));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story304 : public Story::Base
+{
+public:
+    Story304()
+    {
+        ID = 304;
+
+        Text = "A shot cracks out through the mist-shrouded deck, splintering the wand in Wild's hand. You and he both turn, equally amazed, as a tall figure steps out of the companion-way hatch. He holds a smoking pistol, and from his aristocratic manner you guess he must be Admiral Lord Calidor, commander of the Queen's navy. \"Wild,\" he says curtly, \"your twig's split.\" He must know he's just made the luckiest shot in history, but with typical Gloriannic aplomb he shows no sign of it.\n\n\"Admiral,\" begins Wild in a wheedling voice, \"this pirate villain --\"\n\n\"Forget it, Wild,\" says Calidor, reloading his pistol. \"I'm wise to your game.\" A squad of marines pour past him onto the deck. \"Sergeant, Dr Wild is to be placed under arrest on a charge of high treason.\"\n\nSudden Wild's facade of genteel urbanity crumbles. Howling in rage, he whips out a dagger and throws it. It catches you in the arm and you stagger back with a grunt of surprise rather than pain.\n\nYou LOSE 1 Life Point.";
+
+        Bye = "Wild turns and leaps overboard into the leas. Whether it is suicide or whether he has a plan of escape, you may never know. You have more pressing concerns. Swarming down the rope from the Moon Dog, baying like phantoms taking human form out of the mist, come Skarvench and his men. Calidor and his marines stand ready for a battle-royal, but you press ahead of them, lunging towards Skarvench as he lands on the deck. Now you will settle your feud once and for all.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story305 : public Story::Base
+{
+public:
+    Story305()
+    {
+        ID = 305;
+
+        Text = "You step forward smartly and take him by the elbow. \"Ah, Mister Fitzhugh,\" you say. \"Come along, the cap'n wants us on deck. We're to steer a course for Glorianne.\"\n\nHe starts to follow you up the companion-way steps, but casts a dubious look back towards Skarvench's cabin. \"Eh? Glorianne? But that's a journey of months! He said nothing to me of this.\"\n\nYou shrug. \"We've got to get the Queen, haven't we?\"\n\nFitzhugh hesitates. He's not sure what to think. As he starts back towards Skarvench's cabin to check your story, you settle the matter by coshing him over the back of the neck. He slumps to the floor, and you hurry away to join your comrades.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
+class Story306 : public Story::Base
+{
+public:
+    Story306()
+    {
+        ID = 306;
+
+        Text = "You need to venture only a little way into the jungle to collect armfuls of fruit and nuts. You also drink from a freshwater stream until your bellies are stretched like topgallants in a high wind. \"Phew!\" says Oakley, rolling back on the grass. \"That was the sweetest drop I ever tasted, mates. But now I reckon we ought to be getting on our way.\"\n\nYou RECEIVE three meals' worth of PROVISIONS.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::PROVISIONS, Item::PROVISIONS, Item::PROVISIONS});
+    }
+
+    int Continue(Character::Base &player) { return 344; }
+};
+
+class Story307 : public Story::Base
+{
+public:
+    Story307()
+    {
+        ID = 307;
+
+        Text = "Clouds cover the sharp silver horns of the moon as, with muffled oars, you pull out of the cove and row beneath the black bows of Skarvench's anchored vessel.\n\n\"Like tiptoeing past the face of a sleeping dragon,\" whispers Oakley with characteristic grim humour.\n\n\"Oh no,\" says Blutz suddenly, \"I'm going to -- ACHOOOO!\"\n\nSilently cursing this stroke of bad luck, the four of you crouch low in the boat and pray that the lookout on deck didn't hear the sneeze. But those prayers go unheeded. You can see the man's face appear at the rail, peering out into the darkness. A glance up at the sky assures you that fate really has no mercy: the moon is about to emerge from behind a cloud. When it does, the lookout cannot miss spotting you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SWORDPLAY] Try something", 364, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("Otherwise", 383));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story308 : public Story::Base
+{
+public:
+    Story308()
+    {
+        ID = 308;
+
+        Text = "With the help of others you put together a makeshift raft, even rigging a rough sail from interwoven palm leaves. You have to work fast, knowing that you have only the space of a single night, and you are not sure the raft will hold together long enough for you to reach the next island.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Put to sea on the raft", 137));
+        Choices.push_back(Choice::Base("Hide in the jungle", 346));
+        Choices.push_back(Choice::Base("Go to the witch's place at dawn", 327));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story309 : public Story::Base
+{
+public:
+    Story309()
+    {
+        ID = 309;
+
+        Text = "Ejada twists in your grasp, fighting back with a strength that seems incredible for a person with her slimly supple frame. It is like holding on a python. But at last you succeed in getting her in a firm grip and dragging her off her feet. As you lift her up above your head, you are surprised to notice green roots trailing from the soles of her bare feet. Now that those roots have been tugged out of the ground they are withering fast -- and at the same time you can feel Ejada getting weaker. Her mightily pounding blows fade to soft slaps, her roars of anger become faint moans as she cries for quarter.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 157; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -8100,6 +8289,16 @@ auto story296 = Story296();
 auto story297 = Story297();
 auto story298 = Story298();
 auto story299 = Story299();
+auto story300 = Story300();
+auto story301 = Story301();
+auto story302 = Story302();
+auto story303 = Story303();
+auto story304 = Story304();
+auto story305 = Story305();
+auto story306 = Story306();
+auto story307 = Story307();
+auto story308 = Story308();
+auto story309 = Story309();
 
 void InitializeStories()
 {
@@ -8134,7 +8333,8 @@ void InitializeStories()
         &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
         &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
         &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
-        &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299};
+        &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
+        &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309};
 }
 
 #endif
