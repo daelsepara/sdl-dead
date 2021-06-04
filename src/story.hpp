@@ -7458,6 +7458,8 @@ public:
     {
         ID = 288;
 
+        Image = "images/filler3-green.png";
+
         Choices.clear();
 
         Controls = Story::Controls::STANDARD;
@@ -7504,6 +7506,8 @@ public:
     Story289()
     {
         ID = 289;
+
+        Image = "images/filler4-green.png";
 
         Text = "In the glimmering predawn, as your little boat drifts gently on across the still ocean, you have your first chance to take stock of your situation. You must judge every factor with great care from now on: even the smallest mistake could spell disaster, and you will need every scrap of luck and cleverness if you are to make it to civilized lands alive.\n\nFirst, your companions on the voyage. Grimes, lanky and lantern-jawed, is a lugubrious fellow but despite his habit of expecting the worst he is a good man to have aboard, being neither timid nor quarrelsome. Oakley is tough and smart but abrasive -- a possible challenge to your leadership, if you fail to assert yourself. All the same, you have been in enough tough scrapes together in the past to know that you can count on him too. Blutz is the weak link of the group; a timid, clumsy little scuttlebutt of a man. But you know that he can be clever and resourceful when he has to be.\n\nThe three of them look at you and Oakley says, \"Well, where shall we point our prow?\"\n\n(You can take look at the MAP 'The Voyage of the Jollyboat')";
 
