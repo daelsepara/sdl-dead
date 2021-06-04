@@ -7298,6 +7298,224 @@ public:
     }
 };
 
+class Story280 : public Story::Base
+{
+public:
+    Story280()
+    {
+        ID = 280;
+
+        Text = "Leading your comrades out of town, you walk to a secluded cove along the beach. \"What have we come here for?\" asks Blutz. \"Is it a smugglers' cove?\"\n\nGrimes nods approvingly. \"A good idea, if so. Any smugglers who try to avoid the port levy in Selenice can hardly go whining to the Brethren if we seize their contraband.\"\n\n\"No, there aren't any smugglers,\" you say. \"But if I'm right, it's here we'll get our ship.\" You wait at the fringe of the beach with sea foam at your feet. Sunset first sets the sky afire, then drains it of colour. Finally, raising the conch-shell horn to your lips, you blow a low note. It resounds out into the velvet dusk, rolling eerily across the water.\n\nYou lower the horn, but it continues to sound. The note gets deeper and louder. It is throbbing in your hands now, pulsing with magical energy. \"It's going to explode!\" shrieks Blutz in sudden alarm. \"Get rid of it, skipper!\" Before you can stop him, he has snatched the horn and lobbed it far out into the waves.\n\nThe sound continues to build under the water, like the deepest rumbling note of a submerged organ. You avert your eyes, hands pressed to your ears, as a titanic blast sends a waterspout gushing into the air. Droplets of brine shower down around you. You look back out to sea. Something has bobbed up from the sea bed and is coming towards you: a coracle formed of a giant half-shell drawn by a shark and a dolphin. These strange steeds are tethered to the coracle with seaweed fronds, like horses pulling a carriage. \"Climb aboard,\" says the shark in a sharp voice. \"We'll take you to Neptune's harbour.\"\n\nThe dolphin has a softer tone: \"But beware, as you must find your own vessel for the journey back.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Board the coracle", 233));
+        Choices.push_back(Choice::Base("Refuse", 203));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story281 : public Story::Base
+{
+public:
+    Story281()
+    {
+        ID = 281;
+
+        Text = "Despite Grimes' earnest entreaties, you decide to call upon the power of Leviathan. The decision alone is enough. As you raise the hand bearing the ring -- even before you can speak the serpent's name -- you sense something dark and monstrous rising from the illimitable depths. Waves rear like mountains to blot out the sky. The wind shrieks in fear and flees in all directions.\n\nLeviathan rises out of the water. His body is a tower of bronze scales, each the size of a shield, green with brine stain. Phosphorescent venom drips from his gaping jaws in a torrent of liquid white fire. Dank poisonous vapour curls up from the black caves of his nostrils.\n\nYou realise your mistake at once -- you could never hope to command an entity so fearsome. As you cower in the boat, you see one more thing that strikes you full of mortal terror; on the face of the colossus there is now a look of fear. Even he will be hard-pressed to stand against Leviathan, and in their titanic battle four tiny mortals will be trodden underfoot, sent plunging into the ocean depths. You have brought your own doom upon you.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story282 : public Story::Base
+{
+public:
+    Story282()
+    {
+        ID = 282;
+
+        Text = "The instant you place the HELMET on your brow, your mind becomes a maelstrom of bloody battle-images. All manner of martial tricks, tactics and harsh killing-lore are now second nature to you. You are as tough, wily and fearless as any Spartan warrior.\n\nFor the duration of just one battle you acquire the [BRAWLING] and [SWORDPLAY] skills.\n\nDon't give up the ship!";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.TemporarySkills.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        {
+            player.TemporarySkills.push_back(Skill::BRAWLING);
+        }
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            player.TemporarySkills.push_back(Skill::SWORDPLAY);
+        }
+    }
+
+    int Continue(Character::Base &player) { return 73; }
+};
+
+class Story283 : public Story::Base
+{
+public:
+    Story283()
+    {
+        ID = 283;
+
+        Image = "images/filler3-green.png";
+
+        Text = "The words have hardly left your lips when he gives an exultant shriek of laughter and launches himself up the side, scaling towards the rail with the speed of a spider running up a wall. Behind him, the two oarsmen throw off their cowls and also begin to climb. You see faces pale as candlewax gleaming in the lantern-light, and long sharp teeth bared in naked bloodlust.\n\nThen an even more horrific sight at last draws a cry of fear from your lips, as a dozen other figures erupt out of the black water and start to make their way up the side of the ship. These are more grotesque than the first three, with ravaged faces of bare bone and grave-mould- Barnacles crust their tarnished breastplates and their once-fine coats hang about them like tattered shrouds.\n\n\"All hands on deck!\" you manage to call out, at last freeing yourself from the paralysis of terror as the first of the monsters reaches the rail. \"We're being boarded by vampires!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 321; }
+};
+
+class Story284 : public Story::Base
+{
+public:
+    Story284()
+    {
+        ID = 284;
+
+        Text = "A steady wind arises quickly in answer to your magical summons. It is not so strong -- you dare not tamper with elements too much -- but it is enough for your purposes. The fog swirls nd breaks apart, swiftly dispersing into wispy tendrils. You now have a clear view of both the crippled Rose and, nearer to you, Skarvench's ship the Moon Dog. She is standing at two o'clock off your starboard bow, just within cannon range. You have the weather gauge, meaning that the wind is blowing from behind you towards the Moon Dog -- the ideal position for a sea battle.\n\n\"Now we have a choice,\" says Oakley. \"We can sail in for boarding, or stand off and rake her with our guns. What's it to be skipper?\"\n\nA snap decision is needed.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Steer in towards the Moon Dog", 322));
+        Choices.push_back(Choice::Base("Unlimber your cannons", 341));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story285 : public Story::Base
+{
+public:
+    Story285()
+    {
+        ID = 285;
+
+        Text = "\"You would match your magic against mine?\" sneers Wild. \"You fool -- didn't the hurricane I summoned give you any inkling of my power?\"\n\n\"It was impressive,\" you admit. \"More than I could achieve at least with any hope of controlling it. But I think you're bluffing, Doctor; I think that hurricane took most of your power. That and the fog. Now we're evenly matched.\"\n\nA web of fiery tendrils shoots from your wand, igniting Wild's robes. As the flames lick up to engulf him, he gives a single scream like nothing you've ever heard from a human throat, then stumbles back against the rail and falls into the sea.\n\n\"Don't congratulate yourself too soon.\" You whirl to see an elderly aristocratic-looking man standing in the companion-way with sword and pistol. It can only be Admiral Calidor, commander of the Queen's navy. \"Well, don't just stand there,\" he continues. \"I heard enough to guess you're on our side, whoever you are; now's your chance to prove it. Stand by to repel boarders!\"\n\nHe gestures, and you look up to see Skarvench and his pirates sliding down out of the mist like spiders on their webs. Marines rush up on deck to give battle. Calidor himself closes with the lumbering figure of Porbuck.\n\nThe fight rages all around you, but you stride oblivious across the deck. There is only one foe you must face -- and now you see him, looming out of the eerie mist, and all your hatred wells up in a mighty roar: \"Skarvench\"\n\n\"Ah, mate,\" he says with a strange smile. \"Ready to die, are ye?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 171; }
+};
+
+class Story286 : public Story::Base
+{
+public:
+    Story286()
+    {
+        ID = 286;
+
+        Text = "Your SWORD flashes out, taking his life before he knows it. With hands pressed to his pierced heart, mouth opening and closing like a fish out of water, he sinks to the floor and expires in silence. You waste no pity on him. He has done the evil Skarvench's every bidding without a qualm for all these years, happy to collude in wickedness even if not bold enough to do wicked deeds of his own. You turn away from the body and hurry up on deck.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 172; }
+};
+
+class Story287 : public Story::Base
+{
+public:
+    Story287()
+    {
+        ID = 287;
+
+        Text = "You decide to let Blutz eat the crabs. He is the least sturdy of the four of you, and even a meagre meal will help keep his spirits up. As Blutz tucks in, deftly cracking the shells on a rock and shredding the tough flesh with his teeth, Grimes catches your eye and nods sagely. He agrees with your judgement.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go exploring", 211));
+        Choices.push_back(Choice::Base("Get back in the boat and head on to the next island", 116));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story288 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story288()
+    {
+        ID = 288;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You spend nearly a week on the island, sustained by nature's bounty and an ample supply of fresh rainwater draining down off the slopes of the volcano.\n\n";
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::WILDERNESS_LORE, Skill::Type::MARKSMANSHIP}))
+        {
+            if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                PreText += "[WILDERNESS LORE] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+            {
+                PreText += "[MARKSMANSHIP] ";
+            }
+
+            PreText += "You supplement your diet with game and make a full recovery.";
+
+            player.Life = player.MAX_LIFE_LIMIT;
+        }
+        else
+        {
+            PreText += "You are not able to supplement your diet with game but you still subsist comfortably enough as you are by gathering nuts and berries.";
+
+            Character::GAIN_LIFE(player, 1);
+        }
+
+        PreText += "\n\nAt last, by common consent, you decide if it is time to move on. The volcano is producing occasional ominous growls from deep in the earth, and you have no desire to still be here when it finally erupts. Climbing aboard your boat, the four of you resume your arduous voyage towards Port Leshand.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 135; }
+};
+
+class Story289 : public Story::Base
+{
+public:
+    Story289()
+    {
+        ID = 289;
+
+        Text = "In the glimmering predawn, as your little boat drifts gently on across the still ocean, you have your first chance to take stock of your situation. You must judge every factor with great care from now on: even the smallest mistake could spell disaster, and you will need every scrap of luck and cleverness if you are to make it to civilized lands alive.\n\nFirst, your companions on the voyage. Grimes, lanky and lantern-jawed, is a lugubrious fellow but despite his habit of expecting the worst he is a good man to have aboard, being neither timid nor quarrelsome. Oakley is tough and smart but abrasive -- a possible challenge to your leadership, if you fail to assert yourself. All the same, you have been in enough tough scrapes together in the past to know that you can count on him too. Blutz is the weak link of the group; a timid, clumsy little scuttlebutt of a man. But you know that he can be clever and resourceful when he has to be.\n\nThe three of them look at you and Oakley says, \"Well, where shall we point our prow?\"\n\n(You can take look at the MAP 'The Voyage of the Jollyboat')";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Steer straight for Port Leshand", 2));
+        Choices.push_back(Choice::Base("Steer a course through the Smoking Islands", 21));
+        Choices.push_back(Choice::Base("Steer south of the islands, keeping well clear of them", 40));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -7582,6 +7800,16 @@ auto story276 = Story276();
 auto story277 = Story277();
 auto story278 = Story278();
 auto story279 = Story279();
+auto story280 = Story280();
+auto story281 = Story281();
+auto story282 = Story282();
+auto story283 = Story283();
+auto story284 = Story284();
+auto story285 = Story285();
+auto story286 = Story286();
+auto story287 = Story287();
+auto story288 = Story288();
+auto story289 = Story289();
 
 void InitializeStories()
 {
@@ -7614,7 +7842,8 @@ void InitializeStories()
         &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
         &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
         &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
-        &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279};
+        &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
+        &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289};
 }
 
 #endif
