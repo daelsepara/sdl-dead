@@ -37,7 +37,8 @@ namespace Choice
         GIVE,
         BRIBE,
         TAKE,
-        PAY_WITH
+        PAY_WITH,
+        SELL
     };
 
     class Base
@@ -3381,7 +3382,7 @@ public:
 
         auto count = 0;
 
-        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::CRUCIFIX};
+        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::CRUCIFIX, Item::Type::TOOLKIT};
 
         for (auto i = 0; i < bribe.size(); i++)
         {
@@ -7985,6 +7986,301 @@ public:
     int Continue(Character::Base &player) { return 157; }
 };
 
+class Story310 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story310()
+    {
+        ID = 310;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "You must give the chief one of these items: a SWORD, a PISTOL, a MAGIC WAND, a MAGIC AMULET, a SHIP IN A BOTTLE, a CONCH-SHELL HORN, a BAT-SHAPED TALISMAN, a BLACK KITE or all your MONEY.";
+
+        auto count = 0;
+
+        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::CONCH_SHELL_HORN, Item::Type::BAT_SHAPED_TALISMAN, Item::Type::BLACK_KITE};
+
+        for (auto i = 0; i < bribe.size(); i++)
+        {
+            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+        }
+
+        if (count >= 1)
+        {
+            Choices.push_back(Choice::Base("Give the chief a gift", -310, bribe, 1));
+        }
+        else
+        {
+            PreText += "\n\nBut you are unable to part with such items.";
+        }
+
+        if (player.Money > 0)
+        {
+            Choices.push_back(Choice::Base("Give him ALL of Your MONEY", -310, Choice::Type::LOSE_MONEY, player.Money));
+        }
+
+        Choices.push_back(Choice::Base("You cannot or refuse to give anything: You must choose again", 272));
+
+        Text = PreText.c_str();
+    }
+};
+
+class Event310 : public Story::Base
+{
+public:
+    Event310()
+    {
+        Title = "Down Among the Dead Men: 310";
+
+        ID = -310;
+
+        Text = "Then, with two well-stocked canoes accompanying you, you strike south from Pandanus Island. After only a few days, you are delighted to see a ship appear on the eastern horizon. Gradually taking shape out of the morning haze, she draws closer until you can make out her comely gilded figurehead and the name painted across her bows: the Jewel of Heaven. Grimes is more interested in the colours she's flying. \"A Gloriannic ship, by God's grace! We're saved!\"\n\nBidding farewell to the islanders who have brought you this far, you are grateful to be taken aboard the Jewel of Heaven. Even so, Blutz speaks for you all as he watches your little craft, now abandoned, go drifting off across the swell. \"She brought us through it against all the odds, mates. You can never say more for any vessel.\"\n\nAnd, to the bewilderment of the sailors, you raise your arms to salute the ramshackle craft bobbing off into the distance.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 370; }
+};
+
+class Story311 : public Story::Base
+{
+public:
+    Story311()
+    {
+        ID = 311;
+
+        Image = "images/larnassos-green.png";
+
+        Text = "The ship's prow looms overhead, her tall sails standing like the shadows of midnight against the greying sky. After a long moment during which you begin to fear she is but a drifting ghost-ship, a figure appears at the rail and calls down to you, \"Come board, strangers.\"\n\nA rope ladder is flung down. You look at your companions. They seem to share your unease, but what choice is there? If you stay in the foundering jollyboat your chance of survival is scant. Grabbing the saying ladder, you ascend until you are level with the rail. The vessel's captain is standing there. He holds out his hand to help you aboard, but something in his eager haunted gaze makes you flinch.\n\n\"Come on deck!\" he insists. \"Here's my hand.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[AGILITY] Try some trickery", 353, Skill::Type::AGILITY));
+        Choices.push_back(Choice::Base("Go aboard", 422));
+        Choices.push_back(Choice::Base("Climb back down to the jollyboat and shove off", 330));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story312 : public Story::Base
+{
+public:
+    Story312()
+    {
+        ID = 312;
+
+        Image = "images/filler1-green.png";
+
+        Text = "A look of grim resignation comes into your eyes. You lift your wand to the sky as though about to conduct a symphony of the elements. The others see this and take a step back, suddenly alarmed at the aura of power surrounding their friend.\"Are are you going to do?\" asks Oakley.\n\n\"We're under a curse,\" you tell him simply. \"I mean to call the one who laid the curse.\"\n\nSo saying, you begin to chant the words of a summoning spell. Cold green light glows at the tip of your wand. As your incantation grows in strength, the heavens flash and growl in stern reply, discharging mighty thunderbolts through the turbid clouds. The masts are limned in a sharp unearthly glare. The deck pitches wildly as the ship is swirled and swung by a gale that dredges up waves thirty feet high. Roaring winds blast the rain down onto you in freezing sheets as the full fury of the storm writhes within the fetters of your spell. A pillar of lightning drops into the sea less than a cannon-shot away, sizzling white fire blazing through the wet darkness, prompting looks of panic on the faces of your friends.\n\n\"For God's sake, stop!\" screams Oakley above the noise of the storm. \"You're brining the wrath of Heaven down on us.\"\n\nSuddenly the wind drops. The thunderclouds, piled up like black fortresses in the sky, quieten their rumbling. The rain falls as before in a light gossamer spray. No not as before; this is not rain. It has a sweet heady taste and stains the deck with mauve rivulets. Blutz tilts up his face to the sky and gives a cry of wonder: \"Lads, 'tis raining wine!\"\n\nA throaty feral roar makes you whirl. Across the deck you behold an imposing robed figure, standing in an ivy-twined chariot drawn by four giant panthers. He has skin like gold and eyes of jewelled brilliance, and ringlets of blue hair frame his broad face. It was the panthers' roar you heard, but ow the figure speaks, and his voice is no less wild or daunting: \"You summoned me.\"\n\nYou drop to your knees, glancing back over your shoulder to hiss at the others. \"Bow down as if he was the father of all the ship's captains - and sharpish, shipmates. This is the god Dionysus.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 59; }
+};
+
+class Story313 : public Story::Base
+{
+public:
+    Story313()
+    {
+        ID = 313;
+
+        Text = "Muffling your oars, you row off under the cover of darkness. Even so, the man on the raft hears you. \"Avast there!\" he cries hoarsely. \"Don't leave me! Come back!\"\n\nAt long last these pleas are swallowed up by distance. You look around the boat. Each of your companions has a glum shamefaced look. \"What could we have done for him, anyhow?\" says Oakley.\n\nBlutz nods readily at this. \"That's right. He's probably no worse off than we are. The current is making most of our headway, not rowing -- a raft's almost as good as a boat in these waters.\"\n\"And in any case we had nothing to share with him but misfortune,\" mutters Grimes.\n\nYou too feel a twinge of regret, but not because you have any pity for the man on the raft. It is only that you just realised he might have had food and drink that he could share with the four of you.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 332; }
+};
+
+class Story314 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story314()
+    {
+        ID = 314;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Mortice's nails are sharp, ragged, and caked with grave-clod. He rakes them across your throat, drawing a spurt of blood.\n\nYou LOSE 2 Life Points.";
+
+        Character::GAIN_LIFE(player, -2);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nHe seizes you and hefts you off your feet. You are helpless in his grasp; he has the strength of six men. Giving vent to a spine-chilling roar, he swings you over his head and throws you into the sea.\n\nOakley has lost no time in cutting the rope that moored the raft to the jollyboat. Blutz meanwhile has grabbed one of the oars and now thrusts it towards you. Floundering to the surface, you spit out a mouthful of seawater and stretch your hands towards the oar.";
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+            {
+                PreText += "\n\n[SEAFARING] You get back aboard the jollyboat without letting go of your SWORD.";
+            }
+            else
+            {
+                PreText += "\n\nBut you are not that good a swimmer and are forced to drop the SWORD to save your life.";
+
+                Character::LOSE_ITEMS(player, {Item::Type::SWORD});
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 276; }
+};
+
+class Story315 : public Story::Base
+{
+public:
+    Story315()
+    {
+        ID = 315;
+
+        Text = "You draw the fan from your sleeve and wave it. Skarvench stares, a cruel laugh shivering his tall frame. \"Showin' yourself for the limp-wrist you are, eh, ye slippery swab? Or is it that you're finding things gettin' too hot for you? By Garn, I'll give you hot. I'll roast your gizzard before the sun rises on another day!\"\n\nYou lower the fan. There is a change in the air: a sudden taste of something on the wind. Skarvench senses it too. His seafaring instincts are second to none, and recognition freezes his ugly smirk. He turns, looking out to sea, sniffing the breeze. \"Hurricane!\" he whispers, aghast.\n\nThe sky turns from blue to a dingy sulphurous yellow, bruised by livid blotches of cloud. Out to sea, the waves froth and churn as a storm wind comes sweeping in like a giant's fist. You see it strike the Belle Dame where she lies at anchor, snapping her sails taut and bucking her to and fro like a toy.\n\n\"To the boat!\" screams Skarvench. \"This wind will reef us if we don't put out to sea.\" As he and his men scurry to their rowboat, he pauses just long enough to turn and shake his fist. \"You'll be sorry! Aye, you'll beg for death afore I'm through with ye!\"\n\nHis words are drowned out by the wind. As the storm sweeps on, bearing the Belle before it, you notice that the THUNDERCLOAD FAN has vanished. Deciding that you had better be long gone by the time Skarvench returns here, you put out to sea in your ramshackle vessel.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::THUNDERCLOUD_FAN});
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story316 : public Story::Base
+{
+public:
+    Story316()
+    {
+        ID = 316;
+
+        Text = "Doctor Scriptor chuckles softly to himself as he inspects the HORN. You cannot help thinking that he really is a rather weird old cove, but certainly no one can beat him when it comes to identifying magic treasures.\n\n\"Oh ho, this is a fine prize,\" he declares. \"The Horn of Poseidon. Go down to the shore and blow it, so the tale goes, and a phantom boat will arise out of the waves and take you to the god's gate. But it also said that no mortal can see or touch the key that will open that gate. Now, as to my fee...\n\nHe demands a doubloon for what he's told you so far. Alternatively you can also sell him the HORN for 20 doubloons.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Pay Scriptor 1 doubloon", -316, Choice::Type::LOSE_MONEY, 1));
+        Choices.push_back(Choice::Base("Sell him the CONCH-SHELL HORN", -316, Choice::Type::SELL, {Item::CONCH_SHELL_HORN}, 20));
+        Choices.push_back(Choice::Base("You refuse to pay or choose to leave", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Event316 : public Story::Base
+{
+public:
+    Event316()
+    {
+        ID = -316;
+
+        Text = "Ask Doctor Scriptor to identify some items for you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask to identify the DRAGON RING", 373, {Item::DRAGON_RING}));
+        Choices.push_back(Choice::Base("... the BRONZE HELMET", 354, {Item::BRONZE_HELMET}));
+        Choices.push_back(Choice::Base("... the BAT-SHAPED TALISMAN", 335, {Item::BAT_SHAPED_TALISMAN}));
+        Choices.push_back(Choice::Base("Leave", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story317 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story317()
+    {
+        ID = 317;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Now use [BRAWLING]", 241, Skill::Type::BRAWLING));
+        Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 384, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Turn and flee", 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The bullet hits Ejada square between the eyes but has no more effect than if you'd fired it into the bole of an oak tree. She winces and says with a confident smile, \"Your best shot? Try mine.\"\n\nShe lunges forward, her fingers driving up to the pit of your stomach with sickening force.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
+        {
+            PreText += "[Item:: FEATHER SHIELD] The SHIELD deflects some of the damage. ";
+
+            DAMAGE = -2;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s)";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story318 : public Story::Base
+{
+public:
+    Story318()
+    {
+        ID = 318;
+
+        Text = "You present the deed of ownership to the harbour master and he leads you along the quay in the direction of a sterling galleon whose proud figurine juts imposingly against the sun. \"Why, she's magnificent!\" says Blutz, starting up the gangplank- \"We'll soon blast Skarvench out of the water in this beauty, shipmates.\"\n\n\"Avast there, ye fat swab!\" snarls a man from the deck, shaking his fist. \"Get off me gangplank afore ye breaks it!\"\n\nThe harbour master had gone striding on ahead. Hearing the commotion, he comes back and tugs your sleeve, pointing to a much smaller vessel at the end of the dockside. \"No,\" he says, \"that is your ship.\"\n\nYou look her up and down without enthusiasm. She sits slightly lopsided in the water, and her few guns show patches of rust. You cannot imagine a small sloop like that tackling Skarvench's mighty galleon.\n\nOakley pats you on the shoulder. \"Buck up, skipper. We'll just have to make the best of her.\"\n\nYou nod in agreement and go aboard to inspect your first command: the LADY OF SHALLOT.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::LADY_OF_SHALOTT);
+    }
+
+    int Continue(Character::Base &player) { return 300; }
+};
+
+class Story319 : public Story::Base
+{
+public:
+    Story319()
+    {
+        ID = 319;
+
+        Text = "With your companions' help, you examine the sea charts and plot your course. Where will you steer?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Steer to Tortoise Island", 186));
+        Choices.push_back(Choice::Base("To Port Leshand", 339));
+        Choices.push_back(Choice::Base("To Crossbones Island", 358));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -8299,11 +8595,23 @@ auto story306 = Story306();
 auto story307 = Story307();
 auto story308 = Story308();
 auto story309 = Story309();
+auto story310 = Story310();
+auto event310 = Event310();
+auto story311 = Story311();
+auto story312 = Story312();
+auto story313 = Story313();
+auto story314 = Story314();
+auto story315 = Story315();
+auto story316 = Story316();
+auto event316 = Event316();
+auto story317 = Story317();
+auto story318 = Story318();
+auto story319 = Story319();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117, &event167, &event225,
+        &event059, &event117, &event167, &event225, &event310, &event316,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -8334,7 +8642,8 @@ void InitializeStories()
         &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
         &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
-        &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309};
+        &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
+        &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319};
 }
 
 #endif

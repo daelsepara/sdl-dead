@@ -4063,28 +4063,59 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                         }
                         else if (story->Choices[current].Type == Choice::Type::PAY_WITH)
                         {
-                            int count = Item::COUNT_TYPES(player.Items, story->Choices[current].Items[0].Type);
-
-                            if (count >= story->Choices[current].Value)
+                            if (story->Choices[current].Items.size() > 0)
                             {
-                                for (auto i = 0; i < story->Choices[current].Value; i++)
+                                int count = Item::COUNT_TYPES(player.Items, story->Choices[current].Items[0].Type);
+
+                                if (count >= story->Choices[current].Value)
+                                {
+                                    for (auto i = 0; i < story->Choices[current].Value; i++)
+                                    {
+                                        Character::LOSE_ITEMS(player, {story->Choices[current].Items[0].Type});
+                                    }
+
+                                    next = (Story::Base *)findStory(story->Choices[current].Destination);
+
+                                    done = true;
+
+                                    break;
+                                }
+                                else
+                                {
+                                    message = "You do not have the enough!";
+
+                                    start_ticks = SDL_GetTicks();
+
+                                    error = true;
+                                }
+                            }
+                        }
+                        else if (story->Choices[current].Type == Choice::Type::SELL)
+                        {
+                            if (story->Choices[current].Items.size() > 0)
+                            {
+                                int count = Item::COUNT_TYPES(player.Items, story->Choices[current].Items[0].Type);
+
+                                if (count > 0)
                                 {
                                     Character::LOSE_ITEMS(player, {story->Choices[current].Items[0].Type});
+
+                                    Character::GAIN_MONEY(player, story->Choices[current].Value);
+
+                                    next = (Story::Base *)findStory(story->Choices[current].Destination);
+
+                                    done = true;
+
+                                    break;
                                 }
-                                
-                                next = (Story::Base *)findStory(story->Choices[current].Destination);
+                                else
+                                {
+                                    message = "You do not have that!";
 
-                                done = true;
+                                    start_ticks = SDL_GetTicks();
 
-                                break;
-                            }
-                            else
-                            {
-                                message = "You do not have the enough!";
-
-                                start_ticks = SDL_GetTicks();
-
-                                error = true;
+                                    error = true;
+                                }
                             }
                         }
                         else if (story->Choices[current].Type == Choice::Type::LOSE_ITEMS)
