@@ -3624,7 +3624,7 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
     auto current_map = 0;
 
     // Render the image
-    if (window && renderer && map_colonies  && map_jollyboat && background)
+    if (window && renderer && map_colonies && map_jollyboat && background)
     {
         auto selected = false;
         auto current = -1;
@@ -4060,6 +4060,32 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                             done = true;
 
                             break;
+                        }
+                        else if (story->Choices[current].Type == Choice::Type::PAY_WITH)
+                        {
+                            int count = Item::COUNT_TYPES(player.Items, story->Choices[current].Items[0].Type);
+
+                            if (count >= story->Choices[current].Value)
+                            {
+                                for (auto i = 0; i < story->Choices[current].Value; i++)
+                                {
+                                    Character::LOSE_ITEMS(player, {story->Choices[current].Items[0].Type});
+                                }
+                                
+                                next = (Story::Base *)findStory(story->Choices[current].Destination);
+
+                                done = true;
+
+                                break;
+                            }
+                            else
+                            {
+                                message = "You do not have the enough!";
+
+                                start_ticks = SDL_GetTicks();
+
+                                error = true;
+                            }
                         }
                         else if (story->Choices[current].Type == Choice::Type::LOSE_ITEMS)
                         {

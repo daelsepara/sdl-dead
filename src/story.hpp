@@ -36,7 +36,8 @@ namespace Choice
         GAIN_MONEY,
         GIVE,
         BRIBE,
-        TAKE
+        TAKE,
+        PAY_WITH
     };
 
     class Base
@@ -7305,7 +7306,7 @@ public:
     {
         ID = 280;
 
-        Text = "Leading your comrades out of town, you walk to a secluded cove along the beach. \"What have we come here for?\" asks Blutz. \"Is it a smugglers' cove?\"\n\nGrimes nods approvingly. \"A good idea, if so. Any smugglers who try to avoid the port levy in Selenice can hardly go whining to the Brethren if we seize their contraband.\"\n\n\"No, there aren't any smugglers,\" you say. \"But if I'm right, it's here we'll get our ship.\" You wait at the fringe of the beach with sea foam at your feet. Sunset first sets the sky afire, then drains it of colour. Finally, raising the conch-shell horn to your lips, you blow a low note. It resounds out into the velvet dusk, rolling eerily across the water.\n\nYou lower the horn, but it continues to sound. The note gets deeper and louder. It is throbbing in your hands now, pulsing with magical energy. \"It's going to explode!\" shrieks Blutz in sudden alarm. \"Get rid of it, skipper!\" Before you can stop him, he has snatched the horn and lobbed it far out into the waves.\n\nThe sound continues to build under the water, like the deepest rumbling note of a submerged organ. You avert your eyes, hands pressed to your ears, as a titanic blast sends a waterspout gushing into the air. Droplets of brine shower down around you. You look back out to sea. Something has bobbed up from the sea bed and is coming towards you: a coracle formed of a giant half-shell drawn by a shark and a dolphin. These strange steeds are tethered to the coracle with seaweed fronds, like horses pulling a carriage. \"Climb aboard,\" says the shark in a sharp voice. \"We'll take you to Neptune's harbour.\"\n\nThe dolphin has a softer tone: \"But beware, as you must find your own vessel for the journey back.\"";
+        Text = "Leading your comrades out of town, you walk to a secluded cove along the beach. \"What have we come here for?\" asks Blutz. \"Is it a smugglers' cove?\"\n\nGrimes nods approvingly. \"A good idea, if so. Any smugglers who try to avoid the port levy in Selenice can hardly go whining to the Brethren if we seize their contraband.\"\n\n\"No, there aren't any smugglers,\" you say. \"But if I'm right, it's here we'll get our ship.\" You wait at the fringe of the beach with sea foam at your feet. Sunset first sets the sky afire, then drains it of colour. Finally, raising the CONCH-SHELL HORN to your lips, you blow a low note. It resounds out into the velvet dusk, rolling eerily across the water.\n\nYou lower the horn, but it continues to sound. The note gets deeper and louder. It is throbbing in your hands now, pulsing with magical energy. \"It's going to explode!\" shrieks Blutz in sudden alarm. \"Get rid of it, skipper!\" Before you can stop him, he has snatched the horn and lobbed it far out into the waves.\n\nThe sound continues to build under the water, like the deepest rumbling note of a submerged organ. You avert your eyes, hands pressed to your ears, as a titanic blast sends a waterspout gushing into the air. Droplets of brine shower down around you. You look back out to sea. Something has bobbed up from the sea bed and is coming towards you: a coracle formed of a giant half-shell drawn by a shark and a dolphin. These strange steeds are tethered to the coracle with seaweed fronds, like horses pulling a carriage. \"Climb aboard,\" says the shark in a sharp voice. \"We'll take you to Neptune's harbour.\"\n\nThe dolphin has a softer tone: \"But beware, as you must find your own vessel for the journey back.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Board the coracle", 233));
@@ -7517,6 +7518,281 @@ public:
         Choices.push_back(Choice::Base("Steer south of the islands, keeping well clear of them", 40));
 
         Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story290 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story290()
+    {
+        ID = 290;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try a straightforward punch", 271));
+        Choices.push_back(Choice::Base("... or a body slam", 309));
+        Choices.push_back(Choice::Base("Use [SPELLS]", 384, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Use [MARKSMANSHIP]", 317, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("Maybe you should just beat a hasty retreat", 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Closing with your foe, you seize her at wrist and elbow and try to bend her arm around behind her back. You have used the selfsame hold on some of the nastiest bullies to sail the seven seas, and you remember one fellow in particular -- a scar-faced gorilla called Gutshredder Turnbull -- weeping like a baby as he begged you to let go.\n\nAgainst Ejada, the armlock is useless. You might as well be trying to break the branch of an oak tree. After a brief tussle, she flings you to the ground with a painful jolt. She gives a scornful laugh.\n\nYou LOSE 2 Life Points.";
+
+        Character::GAIN_LIFE(player, -2);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou leap ready to renew the attack. But how can you overcome a foe with seemingly limitless strength?";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story291 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story291()
+    {
+        ID = 291;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "They will accept any of the following: a SWORD, a PISTOL, a MAGIC WAND, a MAGIC AMULET, a SHIP IN A BOTTLE, a CONCH-SHELL HORN, a BAT-SHAPED TALISMAN, or a BLACK KITE.";
+
+        auto count = 0;
+
+        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::SHIP_IN_BOTTLE, Item::Type::CONCH_SHELL_HORN, Item::Type::BAT_SHAPED_TALISMAN, Item::Type::BLACK_KITE};
+
+        for (auto i = 0; i < bribe.size(); i++)
+        {
+            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+        }
+
+        if (count >= 1)
+        {
+            Choices.push_back(Choice::Base("Give them a gift", 272, bribe, 1));
+        }
+        else
+        {
+            PreText += "\n\nBut you are unable to part with such items.";
+        }
+
+        Choices.push_back(Choice::Base("You cannot or refuse to give anything: Their mood starts to turn nasty", 215));
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story292 : public Story::Base
+{
+public:
+    Story292()
+    {
+        ID = 292;
+
+        Text = "A dim flicker of memory makes you shudder. Watching the tall black sails against the sunset, you are reminded of an ancient mariner's legend that tells of the doomed Captain Mandrigard, master of a vessel called the Larnassos. After stealing the sacred treasures of the Temple of Dionysus, he was cursed never to set foot on shore again \"while his hand was still sullied with theft.\". According to myth, his crew found some way to escape the curse but Mandrigard himself never did, and he still sails the seven seas to this day. Anyone who sets foot aboard the Larnassos now is cursed to stay on for ever.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Hail the ship", 311));
+        Choices.push_back(Choice::Base("Let her go by in the dusk", 330));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story293 : public Story::Base
+{
+public:
+    Story293()
+    {
+        ID = 293;
+
+        Image = "images/filler1-green.png";
+
+        Text = "You have soon gathered a small pile of items that catch your eye. These include a CONCH-SHELL HORN, an ancient BRONZE HELMET, a ring in the form of a dragon, a fan with the shape and colouring of a thunder cloud.\n\n\"Yes, any of this lot could well be magical,\" agrees Oakley, scrutinizing your selection. Like you, he has the practiced adventurer's instinct for such things. \"How many shall we take?\"\n\nAfter a brief conference, you decide to take only two items. By pirates' code you should not steal from the captain of a vessel that has shown you hospitality. But weighed against that is the fact that Mandrigard knowingly lured you into the same curse that has trapped him here.\n\n\"Sometimes I hanker for the old-fashioned days of piracy,\" complains Blutz, \"when we'd count plain wealth as treasure and didn't look for a patina of magic to tart it up.\" He is looking longingly at a DIAMOND the size of a walnut which lies on the captain's table.\n\nSo the items to choose from are: a DIAMOND, a CONCH-SHELL HORN, a BRONZE HELMET, a DRAGON RING, and a THUNDERCLOUD FAN.";
+
+        Bye = "Then you hurry out of the cabin before Mandrigard wakes up";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::DIAMOND, Item::CONCH_SHELL_HORN, Item::BRONZE_HELMET, Item::DRAGON_RING, Item::THUNDERCLOUD_FAN};
+
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            return 139;
+        }
+        else
+        {
+            return 217;
+        }
+    }
+};
+
+class Story294 : public Story::Base
+{
+public:
+    Story294()
+    {
+        ID = 294;
+
+        Text = "You row nearer, watching as the raft and its occupant slowly take shape out of the gloom. He is an old man, thin and wizened as a bent stick, whose eyes shine with a pale moon-coloured light. Dark crusted stains in his beard make you wonder if he has resorted to drinking salt water, until you notice the full bucket and long box of provisions beside him on the raft.\n\nHis mouth cracks open in a long-toothed cackle. \"The fates be praised! Here am I adrift, poor old Timmy Mortice, an' here come four stalwarts to rescue me. 'Tis a miracle! Come aboard and share my water, mates, an' let's swap our stories.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Start by telling him how you come be in your present state", 29));
+        Choices.push_back(Choice::Base("Begin by asking him about himself", 48));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story295 : public Story::Base
+{
+public:
+    Story295()
+    {
+        ID = 295;
+
+        Text = "The box is filled with yellow bones and tatters of wet rag. Choking back your disgust, you reach in to rummage amongst these until you discover a few items of treasure. There is a BAT-SHAPED TALISMAN, a RUSTY SWORD, and a DIAMOND almost as big as a walnut.\n\nBlutz is still staring around nervously. \"I don't get it,\" he says. \"What happened to the old codger?\"\n\nOakley lifts the skull out of the box and gazes at it for a moment, then throws it far off into the darkness. You see it gleam in the moonlight, then there is a splash. \"Gone for good, I reckon,\" says Oakley. \"Let's help ourselves to some of the food he had.\"\n\nGrimes shakes his head. \"It's gone off. The water too.\"\n\nYou push past him, but he is right. Mortice's provisions are now rancid and mould-covered, showing every sign of being months old. The water in the barrel is no more than stagnant green murk.\n\nReturning to your boat, you jettison the raft and row a good distance before finally settling down for the night.\n\n\"We're going to have to pray a ship comes along tomorrow,\" says Oakley as you drift off to sleep. \"I don't think we can hold out much longer.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::BAT_SHAPED_TALISMAN, Item::RUSTY_SWORD, Item::DIAMOND};
+
+        Limit = 3;
+    }
+
+    int Continue(Character::Base &player) { return 332; }
+};
+
+class Story296 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story296()
+    {
+        ID = 296;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Inspired by your example, your friends lay about them with gusto as the natives charge to the attack with spears and clubs. The fighting rages fiercely and, although sicked at the need for bloodshed, you soon realise that it must continue until you have defeated or driven off all the natives. If you tried to retreat down the ladder while there were still natives on the clifftops, they could easily pick you off by dropping rocks.\n\nAfter a short and brutal exchange of blows, most of the natives lie senseless and the remainder are fleeing in terror.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 116; }
+};
+
+class Story297 : public Story::Base
+{
+public:
+    Story297()
+    {
+        ID = 297;
+
+        Text = "You settle on a cheap dive close to the shanty town as the best place to find news of Skarvench. There, under a luridly painted sign depicting a man hung upside-down, the evil pirate captain has whiled away many an hour ashore in gambling and rum-soaked revelry.\n\nRaucous laughter issues through the open door, but the whole tavern goes silent for a moment as you step inside. Dozens of ugly faces turn to stare as you saunter across the sawdust-strewn planks of the floor.\n\n\"Like an angle passing,\" you remark to your friends, recalling the old superstition.\n\n\"Aye,\" mutters Grimes under his breath, \"the Angel of Death. Let's scarper, mates. This is no place to loiter in. It's a den of vicious sea-rats.\"\n\nSlowly the babble of drunken chatter returns, but many sullen eyes remain fixed on you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stay here despite the danger", 146));
+        Choices.push_back(Choice::Base("Leave to seek out rumours concerning El Draque", 183));
+        Choices.push_back(Choice::Base("Seek out rumours concerning Queen Titania", 221));
+        Choices.push_back(Choice::Base("You done listening to rumours", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story298 : public Story::Base
+{
+public:
+    Story298()
+    {
+        ID = 298;
+
+        Text = "There is nothing you can do to evade capture. Dragged back in hemp bonds to the Belle Dame, you are hauled up on deck and tossed like sacrificial offerings in front of Skarvench. In the stark moonlight, his black beard and white face make him look the very picture of Satan himself. \"Bilge-rotten blasted fiend!\" you yell at him. \"You can't force honest men to live a villain's life!\"\n\nHe scowls and spits. \"Aye, you're right mate. Honest toil's what you four thrive on, ain't it? You aren't buccaneer material -- I see that now. Well, I'll give you honest toil- How'd ye like scrape the barnacles off the hull, for starters?\"\n\nLashed to ropes, the four of you are swung overboard and dragged back and forth along the keel of the ship. Soon the flesh is ragged on your bruised bones, and brine floods into your anguished lungs. Darkness closes over you for the last time. It is the end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story299 : public Story::Base
+{
+public:
+    Story299()
+    {
+        ID = 299;
+
+        Text = "How many DIAMONDs are you willing to spend to buy a ship?";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        Choices.push_back(Choice::Base("Spend 3 DIAMONDs", 337, Choice::Type::PAY_WITH, {Item::DIAMOND}, 3));
+        Choices.push_back(Choice::Base("Spend 2 DIAMONDs", 356, Choice::Type::PAY_WITH, {Item::DIAMOND}, 2));
+
+        if (Item::COUNT_TYPES(player.Items, Item::Type::DIAMOND) < 1)
+        {
+            Choices.push_back(Choice::Base("You refuse or cannot pay", 375));
+        }
+        else
+        {
+            Choices.push_back(Choice::Base("Spend 1 DIAMOND", 375, Choice::Type::PAY_WITH, {Item::DIAMOND}, 1));
+        }
     }
 };
 
@@ -7814,6 +8090,16 @@ auto story286 = Story286();
 auto story287 = Story287();
 auto story288 = Story288();
 auto story289 = Story289();
+auto story290 = Story290();
+auto story291 = Story291();
+auto story292 = Story292();
+auto story293 = Story293();
+auto story294 = Story294();
+auto story295 = Story295();
+auto story296 = Story296();
+auto story297 = Story297();
+auto story298 = Story298();
+auto story299 = Story299();
 
 void InitializeStories()
 {
@@ -7847,7 +8133,8 @@ void InitializeStories()
         &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
         &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
         &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
-        &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289};
+        &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
+        &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299};
 }
 
 #endif

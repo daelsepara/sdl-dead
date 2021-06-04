@@ -39,8 +39,9 @@ namespace Item
         PROVISIONS,
         HORNPIPE,
         CLEAVER,
+        RUSTY_SWORD,
         First = MAGIC_AMULET,
-        Last = CLEAVER
+        Last = RUSTY_SWORD
     };
 
     class Base
@@ -107,6 +108,7 @@ namespace Item
     auto HORNPIPE = Item::Base("HORNPIPE", "HORNPIPE", Item::Type::HORNPIPE);
     auto COCONUT = Item::Base("COCONUT", "COCONUT", Item::Type::PROVISIONS);
     auto CLEAVER = Item::Base("CLEAVER", "CLEAVER", Item::Type::CLEAVER);
+    auto RUSTY_SWORD = Item::Base("RUSTY SWORD", "RUSTY SWORD", Item::Type::SWORD);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::DRAGON_RING,
