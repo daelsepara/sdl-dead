@@ -65,6 +65,7 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
 Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story);
 Story::Base *renderChoices(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story);
 
+void clipValue(int &val, int min, int max);
 void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font, Character::Base &player);
 
 SDL_Surface *createImage(const char *image)
@@ -3613,32 +3614,65 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
 {
     auto done = false;
 
-    auto splash = createImage("images/map-colonies.png");
+    auto map_colonies = createImage("images/map-colonies.png");
+    auto map_jollyboat = createImage("images/map-jollyboat.png");
     auto background = createImage("images/background.png");
 
-    // Render the image
-    if (window && renderer && splash && background)
-    {
-        SDL_SetWindowTitle(window, "Map: Colonies of the New World");
+    auto texture_colonies = SDL_CreateTextureFromSurface(renderer, map_colonies);
+    auto texture_jollyboat = SDL_CreateTextureFromSurface(renderer, map_jollyboat);
 
+    auto current_map = 0;
+
+    // Render the image
+    if (window && renderer && map_colonies  && map_jollyboat && background)
+    {
         auto selected = false;
         auto current = -1;
 
         auto marginw = (1.0 - 2.0 * Margin) * SCREEN_WIDTH;
 
-        std::vector<Button> controls = {Button(0, "icons/back-button.png", 0, 0, 0, 0, (1 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK)};
+        auto controls = std::vector<Button>();
+        controls.push_back(Button(0, "icons/next.png", 0, 1, 0, 0, startx, buttony, Control::Type::NEXT));
+        controls.push_back(Button(1, "icons/back-button.png", 0, 1, 1, 1, (1 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
 
-        int offset_x = (marginw - (double)text_bounds / splash->h * splash->w) / 2;
-        int offset_y = ((buttony - button_space) - (double)text_bounds / splash->h * splash->h) / 2;
+        auto offset_x = 0;
+        auto offset_y = 0;
 
         while (!done)
         {
+            if (current_map == 1)
+            {
+                SDL_SetWindowTitle(window, "Map: Colonies of the New World");
+            }
+            else
+            {
+                SDL_SetWindowTitle(window, "Map: The Voyage of the Jollyboat");
+            }
+
+            if (current_map == 1)
+            {
+                offset_x = (marginw - (double)text_bounds / map_colonies->h * map_colonies->w) / 2;
+                offset_y = ((buttony - button_space) - (double)text_bounds / map_colonies->h * map_colonies->h) / 2;
+            }
+            else
+            {
+                offset_x = (marginw - (double)text_bounds / map_jollyboat->h * map_jollyboat->w) / 2;
+                offset_y = ((buttony - button_space) - (double)text_bounds / map_jollyboat->h * map_jollyboat->h) / 2;
+            }
+
             // Fill the surface with background color
             fillWindow(renderer, intWH);
 
             stretchImage(renderer, background, 0, 0, SCREEN_WIDTH, buttony - button_space);
 
-            fitImage(renderer, splash, startx + offset_x, offset_y, marginw, text_bounds);
+            if (current_map == 1)
+            {
+                fitImage(renderer, map_colonies, startx + offset_x, offset_y, marginw, text_bounds);
+            }
+            else
+            {
+                fitImage(renderer, map_jollyboat, startx + offset_x, offset_y, marginw, text_bounds);
+            }
 
             renderButtons(renderer, controls, current, intGR, 8, 4);
 
@@ -3646,19 +3680,113 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
             bool scrollDown = false;
             bool hold = false;
 
+            if (map_colonies && map_jollyboat)
+            {
+                auto mousex = 0;
+                auto mousey = 0;
+
+                auto state = SDL_GetMouseState(&mousex, &mousey);
+
+                auto zoomw = (int)(0.40 * (double)(marginw - 2 * offset_x));
+                auto zoomh = (int)(0.40 * (double)text_bounds);
+
+                if (current_map == 1)
+                {
+                    clipValue(zoomw, 0, map_colonies->w);
+                    clipValue(zoomh, 0, map_colonies->h);
+                }
+                else
+                {
+                    clipValue(zoomw, 0, map_jollyboat->w);
+                    clipValue(zoomh, 0, map_jollyboat->h);
+                }
+
+                auto boundx = startx + offset_x + marginw;
+
+                if (current_map == 1)
+                {
+                    boundx = (int)((double)text_bounds / map_colonies->h * (double)map_colonies->w);
+                }
+                else
+                {
+                    boundx = (int)((double)text_bounds / map_jollyboat->h * (double)map_jollyboat->w);
+                }
+
+                if ((mousex >= startx + offset_x) && mousex <= (startx + offset_x + boundx) && mousey >= starty && mousey <= (starty + text_bounds))
+                {
+                    auto scalex = (double)(mousex - (startx + offset_x)) / boundx;
+                    auto scaley = (double)(mousey - starty) / text_bounds;
+
+                    auto centerx = (int)(scalex * (double)map_jollyboat->w);
+                    auto centery = (int)(scaley * (double)map_jollyboat->h);
+
+                    clipValue(centerx, zoomw / 2, map_jollyboat->w - zoomw / 2);
+                    clipValue(centery, zoomh / 2, map_jollyboat->h - zoomh / 2);
+
+                    if (current_map == 1)
+                    {
+                        centerx = (int)(scalex * (double)map_colonies->w);
+                        centery = (int)(scaley * (double)map_colonies->h);
+
+                        clipValue(centerx, zoomw / 2, map_colonies->w - zoomw / 2);
+                        clipValue(centery, zoomh / 2, map_colonies->h - zoomh / 2);
+                    }
+
+                    if ((current_map == 1 && texture_colonies) || (current_map == 0 && texture_jollyboat))
+                    {
+                        SDL_Rect src;
+
+                        src.w = zoomw;
+                        src.h = zoomh;
+                        src.x = centerx - zoomw / 2;
+                        src.y = centery - zoomh / 2;
+
+                        SDL_Rect dst;
+
+                        dst.w = zoomw;
+                        dst.h = zoomh;
+                        dst.x = startx / 2;
+                        dst.y = starty / 2;
+
+                        if (current_map == 1)
+                        {
+                            SDL_RenderCopy(renderer, texture_colonies, &src, &dst);
+                        }
+                        else
+                        {
+                            SDL_RenderCopy(renderer, texture_jollyboat, &src, &dst);
+                        }
+
+                        drawRect(renderer, dst.w, dst.h, dst.x, dst.y, intBK);
+                    }
+                }
+            }
+
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
             if (selected && current >= 0 && current < controls.size() && controls[current].Type == Control::Type::BACK)
             {
                 break;
             }
+            else if (selected && current >= 0 && current < controls.size() && controls[current].Type == Control::Type::NEXT)
+            {
+                current_map = 1 - current_map;
+            }
         }
 
-        SDL_FreeSurface(splash);
+        SDL_FreeSurface(map_colonies);
+        SDL_FreeSurface(map_jollyboat);
         SDL_FreeSurface(background);
 
-        splash = NULL;
+        SDL_DestroyTexture(texture_colonies);
+        SDL_DestroyTexture(texture_jollyboat);
+
+        map_colonies = NULL;
+        map_jollyboat = NULL;
         background = NULL;
+
+        texture_colonies = NULL;
+        texture_jollyboat = NULL;
     }
 
     return done;
