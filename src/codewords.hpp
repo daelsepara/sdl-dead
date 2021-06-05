@@ -21,7 +21,8 @@ namespace Codeword
         PROSPERO,
         RAVEN,
         SCRIP,
-        FLOAT
+        FLOAT,
+        COCONUTS
     };
 
     std::map<Codeword::Type, const char *> Descriptions = {
@@ -38,7 +39,27 @@ namespace Codeword
         {Codeword::Type::PROSPERO, "Prospero"},
         {Codeword::Type::RAVEN, "Raven"},
         {Codeword::Type::SCRIP, "Scrip"},
-        {Codeword::Type::FLOAT, "Float"}};
+        {Codeword::Type::FLOAT, "Float"},
+        {Codeword::Type::COCONUTS, "Coconuts"}};
+
+    std::vector<Codeword::Type> Invisible = {Codeword::Type::FLOAT, Codeword::Type::COCONUTS};
+
+    bool IsInvisible(Codeword::Type codeword)
+    {
+        auto invisible = false;
+
+        for (auto i = 0; i < Codeword::Invisible.size(); i++)
+        {
+            if (Codeword::Invisible[i] == codeword)
+            {
+                invisible = true;
+
+                break;
+            }
+        }
+
+        return invisible;
+    }
 
 } // namespace Codeword
 #endif

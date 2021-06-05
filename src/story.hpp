@@ -8867,6 +8867,8 @@ public:
     {
         ID = 343;
 
+        Image = "images/filler3-green.png";
+
         Choices.clear();
         Choices.push_back(Choice::Base("Use both CORKSCREW and SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
         Choices.push_back(Choice::Base("Use the CONCH-SHELL HORN", 280, {Item::CONCH_SHELL_HORN}));
@@ -9018,6 +9020,245 @@ public:
     {
         Character::GAIN_LIFE(player, -1);
     }
+};
+
+class Story350 : public Story::Base
+{
+public:
+    Story350()
+    {
+        ID = 350;
+
+        Text = "Your fervent prayers go unanswered. As the four of you kneel there on the deck, heads reverently bowed, Blutz gives a sudden sob. \"God's abandoned us, shipmates!\" he weeps. \"We're cursed.\"\n\n\"Aye,\" cracks a voice through the gusting wind. \"Cursed to sail adrift under a heedless heaven for all eternity!\"\n\nYou turn, shocked to see Mandrigard standing on the poopdeck, his turban lost, hair flying wildly and robes snapping about him. Rain streaks his colourless face. He stumps forward, his whalebone leg creaking the deck timbers under his weight. A grog bottle is in his hand, and he sloshes its contents as he laughs at you: \"Prayer, is it you're at? Ah, you poor fools, haven't you yet guessed the truth? This is purgatory, mates! There's no praying your way out of this mess. Here there's no living or dying, no rest, no atonement, nor answer to your orisons! This is how it'll be, now and forever, aboard the damned ship Larnassos!\n\nHis screaming laughter rises to the cloud-filled sky, and with a feeling of mounting horror you realise he is right. You have brought the curse upon your heads. Now you will sail the seas throughout eternity.";
+
+        Type = Story::Type::DOOM;
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story351 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story351()
+    {
+        ID = 351;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The sun stares balefully down from a sky of burnished steel, leeching your strength. To prevent your brains being cooked in your skulls, you soak strips of torn cloth in the sea and wrap them round your brows. The brine dries to hard salt which chafes your many sores, but by now you are past caring.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        Choices.clear();
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nAfter what seems an endless time, Oakley gives a surprised shout and lunges desperately for something floating in the water beside the boat. Fumbling in a frenzy of excitement, he finally gets a firm hold on the object and hefts it up for you all to see.\n\n\"A coconut!\" says Blutz. \"But is it safe to eat? Floating out here in mid-ocean, I mean. How did it get there?\"\n\n\"Jetsam,\" says Oakley with conviction.\n\nBlutz scratches his fat jowls. \"Er... but I heard this legend of Domdaniel, which is the place under the sea where the drowned sailors live. This coconut might have floated up from one of their groves. That would make it dead men's food, you see, and not for us.\"\n\n\"Pah! You fat fool!\" gasps Oakley.\n\nGrimes and Oakley intend to eat the coconut whether it is safe or not. Blutz protests that even if it was dropped off a ship, it might have gone rotten.";
+
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                Choices.push_back(Choice::Base("Eat some of the  cocunuts", 389, Choice::Type::GET_CODEWORD, Codeword::Type::COCONUTS));
+                Choices.push_back(Choice::Base("Leave it alone", 389));
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 158; }
+};
+
+class Story352 : public Story::Base
+{
+public:
+    Story352()
+    {
+        ID = 352;
+
+        Text = "The outlines of the ship become clearer as you approach the iceberg. She is a fine gilded galleon, her sails hanging like cerements, wreaths of frost along her flanks and spikes ice amid the rigging. Though apparently quite old and of exotic origin, it seems that the ice has kept the touch of time from harming her. You can even make out the name painted on the prow, the letters distorted and shimmering as though seen through a lens. Blutz (who is an educated man among pirates, having once drowned a school-teacher) reads it: \"The Octavius. Wonder how long she's been ice-bound, eh mates?\"\n\nComing alongside the ice-floe, Oakley leaps ashore and hammers a spike for the mooring roper. \"Years perhaps. But let's not linger here, it's chilly enough to make a brass monkey drop its balls. We'll just collect water and be off.\"\n\n\"But will it be safe?\" says Blutz again. \"Surely an iceberg is just frozen sea-water. You can't drink it.\"\n\nYou gained the codeword AUGUST.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Collect some ice", 425));
+        Choices.push_back(Choice::Base("Agree with Blutz", 371));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::AUGUST});
+    }
+};
+
+class Story353 : public Story::Base
+{
+public:
+    Story353()
+    {
+        ID = 353;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Perhaps it is the warning of a sixth sense, perhaps just a groundless fear, but you suddenly how that not all the riches of the Sidonian Main could tempt you to set foot on that eerily silent deck. Ignoring the captain's outstretched hand, you leap up onto the rail and from there jump to the rigging, making your way with catlike grace until you are astride the yardarm.\n\nCaptain Mandrigard takes out his sabre and shake it at you. \"Blast ye, come down from here, ye damned monkey!\" he roars. But you see that he won't be coming up in pursuit of you. Not with his wooden leg.\n\nSeizing the pulleys that support the ship's cutter, or sailing boat, you swing it out over the side and then sever the ropes. The cutter falls with a splash and, as your friends scramble aboard it, you give the captain a dashing salute. \"Thank you, sir, for the fine new boat; please keep our old jollyboat in exchange. But now I must bid you adieu.\"\n\nMandrigard spits curses that would bring a blush to the Devil himself, but there is nothing he can do. Scrambling down the side of the ship, you join the others in the cutter. \"This is more like it,\" says Blutz appreciatively, slapping the firm timbers. \"She won't sink under us in a hurry!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::PECCANT);
+        Character::REMOVE_CODEWORD(player, Codeword::Type::DETRUDE);
+    }
+
+    int Continue(Character::Base &player) { return 330; }
+};
+
+class Story354 : public Story::Base
+{
+public:
+    Story354()
+    {
+        ID = 354;
+
+        Text = "\"This was the helmet of Spartan king,\" decides Scriptor after turning the object over in his hands. \"Despite the millennia that have passed since Sparta's heyday, their name is still a byword for stern martial prowess. I would conclude, therefore, that donning the helm would confer some skill at arms.\"\n\nHe demands a doubloon for what he's told you so far. Alternatively you can sell the helmet to Scriptor for his collection -- he'll pay you 15 doubloons for it.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Pay Scriptor 1 doubloon", -354, Choice::Type::LOSE_MONEY, 1));
+        Choices.push_back(Choice::Base("Sell him the BRONZE HELMET", -354, Choice::Type::SELL, {Item::BRONZE_HELMET}, 15));
+        Choices.push_back(Choice::Base("You refuse to pay", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Event354 : public Story::Base
+{
+public:
+    Event354()
+    {
+        Title = "Down Among the Dead Men: 354";
+
+        ID = -354;
+
+        Text = "Ask Doctor Scriptor to identify some items for you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask to identify the DRAGON RING", 373, {Item::DRAGON_RING}));
+        Choices.push_back(Choice::Base("... the CONCH-SHELL HORN", 316, {Item::CONCH_SHELL_HORN}));
+        Choices.push_back(Choice::Base("... the BAT-SHAPED TALISMAN", 335, {Item::BAT_SHAPED_TALISMAN}));
+        Choices.push_back(Choice::Base("Leave", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story355 : public Story::Base
+{
+public:
+    Story355()
+    {
+        ID = 355;
+
+        Text = "Ducking under the low rafters, you cross the sawdust-strewn taproom and seat yourselves in an alcove. At a table nearby sits a blind old man sipping brandy from a wide saucer-shaped cup. Raucous laughter pulls your gaze to the bar, where three ruffians are amusing themselves at the expense of a gentleman in shabby scholastic robes. One of the ruffians has taken the man's spectacles and is jokingly trying them on, ignoring his short-sighted attempts to grab them back.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            Choices.push_back(Choice::Base("Talk to the blind man", 33));
+            Choices.push_back(Choice::Base("Step in to help the scholar", 52));
+            Choices.push_back(Choice::Base("Leave to visit the shipyard", 374));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 71; }
+};
+
+class Story356 : public Story::Base
+{
+public:
+    Story356()
+    {
+        ID = 356;
+
+        Text = "No sooner has he set eyes on your diamonds than the shipbuilder rushes out from his office to take care of your needs personally. Showing you around the shipyard, he points to a fine new vessel that is just in the last stages of caulking. \"She will be ready to float within a week,\" he declares. \"You have only to specify the name and figurehead of your choice.\"\n\nYou stand with hands on hips, beaming at the ship. It feels like love at first sight. \"Name her the QUEEN's RANSOM,\" you say exultantly.\n\nOakley nods. \"Aye, and make the figurehead a comely mermaid, if you will, Master Shipbuilder.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::QUEENS_RANSOM);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story357 : public Story::Base
+{
+public:
+    Story357()
+    {
+        ID = 357;
+
+        Text = "After signing up a small crew, you spend the next few weeks plying the main shipping.lanes in search of spoils. You succeed in waylaying a couple of Sidonian merchantmen, but they prove to have little of worth in their hold. After tallying the profits and deducting each crewman's share, Blutz comes to you. \"At this rate it'll take us months to earn enough for a decent warship, Cap'n,\" he says.\n\nYou gnaw your lip -- the only outward sign that you are concerned. Other than that, your face remains an impassive granite mask. Gazing dead ahead, you say, \"You've a suggestion, Mister Blutz?\"\n\n\"Aye, Cap'n. I know you won't like it, seein' as how you hail from Glorianne yourself, but if we didn't just confine ourselves to Sidonian ships -- that is, if we was to plunder Gloriannic vessels too -- we'd earn what we need in half the time.\"\n\nIt is your judgement call. What order will you give?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Give the order to continue preying only on Sidonian ships", 376));
+        Choices.push_back(Choice::Base("Order to attack both Sidonian and Gloriannic ships from now on", 395));
+        Choices.push_back(Choice::Base("Order to reduce the crew's share of the plunder", 412));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story358 : public Story::Base
+{
+public:
+    Story358()
+    {
+        ID = 358;
+
+        Text = "Signing on a small crew, you set sail. A strong following wind allows you to make good headway, and you reach the island in under three weeks. There your luck runs out, however, for there is no hint of treasure. Cursing blue fire, you have your men scour the beach and the hinterland for signs -carvings in the bark of a tree, piled stones, skeletons laid in a line, and all the other marks pirates use. But it is all in vain. At last Oakley and the others come to you in your cabin. \"The tide's against us, so to speak, skipper. If we don't put about and return to Selenice right away, Skarvench will have done the deed and we'll have lost our chance.\"\n\nYou swear under your breath, but you know Oakley is right. Reluctantly you sail the LADY OF SHALOTT back to Selenice.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 396; }
+};
+
+class Story359 : public Story::Base
+{
+public:
+    Story359()
+    {
+        ID = 359;
+
+        Text = "A combination of relentless determination and unsurpassed navigation skills drives you inexorably towards your goal. At any hour of the day or night you are to be seen upon the poopdeck, taking estimates of the wind and sea currents or using a cross-staff to measure the stars. The crew know of your near legendary status as a master mariner and dare not question your judgement, even though you are steering the ship far off familiar sailing routes.\n\nFinally your perseverance is rewarded with a cry of \"Ice ho!\" from the crow's nest. You race up from your cabin and give a great roar of triumph as you catch sight of the low blue hump of an iceberg dead ahead.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 414; }
 };
 
 auto prologue = Prologue();
@@ -9377,11 +9618,22 @@ auto story346 = Story346();
 auto story347 = Story347();
 auto story348 = Story348();
 auto story349 = Story349();
+auto story350 = Story350();
+auto story351 = Story351();
+auto story352 = Story352();
+auto story353 = Story353();
+auto story354 = Story354();
+auto event354 = Event354();
+auto story355 = Story355();
+auto story356 = Story356();
+auto story357 = Story357();
+auto story358 = Story358();
+auto story359 = Story359();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117, &event167, &event225, &event310, &event316, &event335,
+        &event059, &event117, &event167, &event225, &event310, &event316, &event335, &event354,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -9416,7 +9668,8 @@ void InitializeStories()
         &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
         &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
         &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
-        &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349};
+        &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
+        &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359};
 }
 
 #endif
