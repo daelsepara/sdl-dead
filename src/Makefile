@@ -1,6 +1,6 @@
 CC = clang++
-GAME_SOURCE = DeadMen.cpp
-GAME_OUTPUT = DeadMen.exe
+GAME_SOURCE = DownAmongTheDeadMen.cpp
+GAME_OUTPUT = DownAmongTheDeadMen.exe
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lstdc++fs -O3 -std=c++17
 INCLUDES = -I/usr/include/SDL2
 
