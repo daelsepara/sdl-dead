@@ -4238,7 +4238,14 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                         }
                         else if (story->Choices[current].Type == Choice::Type::BRIBE)
                         {
-                            loseItems(window, renderer, player, story->Choices[current].Accept, story->Choices[current].Value);
+                            auto items = std::vector<Item::Type>();
+
+                            for (auto i = 0; i < story->Choices[current].Items.size(); i++)
+                            {
+                                items.push_back(story->Choices[current].Items[i].Type);
+                            }
+
+                            loseItems(window, renderer, player, items, story->Choices[current].Value);
 
                             next = (Story::Base *)findStory(story->Choices[current].Destination);
 

@@ -54,21 +54,9 @@ namespace Choice
 
         Codeword::Type Codeword = Codeword::Type::NONE;
 
-        std::vector<Item::Type> Accept = std::vector<Item::Type>();
-
         int Value = 0;
 
         int Destination = -1;
-
-        Base(Choice::Type type, const char *text, int destination, Skill::Type skill, std::vector<Item::Base> items, int value)
-        {
-            Type = type;
-            Text = text;
-            Destination = destination;
-            Items = items;
-            Skill = skill;
-            Value = value;
-        }
 
         Base(const char *text, int destination)
         {
@@ -156,15 +144,6 @@ namespace Choice
             Destination = destination;
             Type = type;
             Codeword = codeword;
-        }
-
-        Base(const char *text, int destination, std::vector<Item::Type> bribe, int value)
-        {
-            Text = text;
-            Destination = destination;
-            Type = Choice::Type::BRIBE;
-            Accept = bribe;
-            Value = value;
         }
     };
 } // namespace Choice
@@ -2156,16 +2135,16 @@ public:
 
         auto count = 0;
 
-        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::SHIP_IN_BOTTLE, Item::Type::CONCH_SHELL_HORN, Item::Type::BAT_SHAPED_TALISMAN, Item::Type::BLACK_KITE, Item::Type::DIAMOND, Item::Type::TOOLKIT, Item::Type::HEALING_POTION, Item::Type::BRONZE_HELMET, Item::Type::CRUCIFIX, Item::Type::DRAGON_RING};
+        std::vector<Item::Base> bribe = {Item::SWORD, Item::PISTOL, Item::MAGIC_WAND, Item::MAGIC_AMULET, Item::SHIP_IN_BOTTLE, Item::CONCH_SHELL_HORN, Item::BAT_SHAPED_TALISMAN, Item::BLACK_KITE, Item::DIAMOND, Item::TOOLKIT, Item::HEALING_POTION, Item::BRONZE_HELMET, Item::CRUCIFIX, Item::DRAGON_RING};
 
         for (auto i = 0; i < bribe.size(); i++)
         {
-            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+            count += Item::COUNT_TYPES(player.Items, bribe[i].Type);
         }
 
         if (count >= 2)
         {
-            Choices.push_back(Choice::Base("Part with two such items", 144, bribe, 2));
+            Choices.push_back(Choice::Base("Part with two such items", 144, Choice::Type::BRIBE, bribe, 2));
         }
         else
         {
@@ -3382,16 +3361,16 @@ public:
 
         auto count = 0;
 
-        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::CRUCIFIX, Item::Type::TOOLKIT};
+        std::vector<Item::Base> bribe = {Item::SWORD, Item::PISTOL, Item::MAGIC_WAND, Item::MAGIC_AMULET, Item::CRUCIFIX, Item::TOOLKIT};
 
         for (auto i = 0; i < bribe.size(); i++)
         {
-            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+            count += Item::COUNT_TYPES(player.Items, bribe[i].Type);
         }
 
         if (count >= 1)
         {
-            Choices.push_back(Choice::Base("Give them a gift", -117, bribe, 1));
+            Choices.push_back(Choice::Base("Give them a gift", -117, Choice::Type::BRIBE, bribe, 1));
         }
         else
         {
@@ -7576,16 +7555,16 @@ public:
 
         auto count = 0;
 
-        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::SHIP_IN_BOTTLE, Item::Type::CONCH_SHELL_HORN, Item::Type::BAT_SHAPED_TALISMAN, Item::Type::BLACK_KITE};
+        std::vector<Item::Base> bribe = {Item::SWORD, Item::PISTOL, Item::MAGIC_WAND, Item::MAGIC_AMULET, Item::SHIP_IN_BOTTLE, Item::CONCH_SHELL_HORN, Item::BAT_SHAPED_TALISMAN, Item::BLACK_KITE};
 
         for (auto i = 0; i < bribe.size(); i++)
         {
-            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+            count += Item::COUNT_TYPES(player.Items, bribe[i].Type);
         }
 
         if (count >= 1)
         {
-            Choices.push_back(Choice::Base("Give them a gift", 272, bribe, 1));
+            Choices.push_back(Choice::Base("Give them a gift", 272, Choice::Type::BRIBE, bribe, 1));
         }
         else
         {
@@ -8006,16 +7985,16 @@ public:
 
         auto count = 0;
 
-        std::vector<Item::Type> bribe = {Item::Type::SWORD, Item::Type::PISTOL, Item::Type::MAGIC_WAND, Item::Type::MAGIC_AMULET, Item::Type::CONCH_SHELL_HORN, Item::Type::BAT_SHAPED_TALISMAN, Item::Type::BLACK_KITE};
+        std::vector<Item::Base> bribe = {Item::SWORD, Item::PISTOL, Item::MAGIC_WAND, Item::MAGIC_AMULET, Item::CONCH_SHELL_HORN, Item::BAT_SHAPED_TALISMAN, Item::BLACK_KITE};
 
         for (auto i = 0; i < bribe.size(); i++)
         {
-            count += Item::COUNT_TYPES(player.Items, bribe[i]);
+            count += Item::COUNT_TYPES(player.Items, bribe[i].Type);
         }
 
         if (count >= 1)
         {
-            Choices.push_back(Choice::Base("Give the chief a gift", -310, bribe, 1));
+            Choices.push_back(Choice::Base("Give the chief a gift", -310, Choice::Type::BRIBE, bribe, 1));
         }
         else
         {
@@ -8827,6 +8806,220 @@ public:
     }
 };
 
+class Story340 : public Story::Base
+{
+public:
+    Story340()
+    {
+        ID = 340;
+
+        Text = "Several limbs lie like dead fishes across the deck -- not just those of the vampires, but also some torn from their sockets of your poor sailors, who now lie screaming as their lifeblood gushes across the planks.\n\nThree of the vampires still stand, but your spirited defence of your vessel has cowed them. They crouch back against the rail. Then keeping their eyes fixed on you, they drop to their knees with a hideous mewling sound to lick up some of the spilled blood. \"Merciful God...\" croaks Grimes. Although not a squeamish man, he turns away and retches with disgust.\n\nThe remaining vampires rise and face you across the carnage. Of all the crew only yourself, Grimes, Oakley and Blutz are still standing -- and the fight has gone out of you at the sight of such horrors. For their part, the vampires make no move but only stare at you and lick their gore-spattered lips. At last their leader speaks. He is a pallid but unblemished creature with eyes like old ice. \"I am El Draque. Never have I been bested, but tonight I will concede you've fought me to a stand off. We'll go and leave you in peace, but I'll add this warning. Do not touch the treasure in our coffins, or you'll carry my curse for the rest of your days.\"\n\nHe drops back over the side with the other two. There is no splash, nor any sign of them when you go to the rail to look. There is just the swirling fog. The fallen vampires dissolve from the deck into a miasmic murk which only disperses with the sunrise. You take stock of the dead and injured among your crew, then hold a council with your officers to decide whether to take the treasure or not.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take the treasure", 16, Choice::Type::GET_CODEWORD, Codeword::Type::MALEFIC));
+        Choices.push_back(Choice::Base("Leave it alone", 396));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story341 : public Story::Base
+{
+public:
+    Story341()
+    {
+        ID = 341;
+
+        Text = "The Moon Dog manoeuvres slowly nearer, pushing against the wind. She is taking damage all the time from your cannons , but the wind causes your own ship to heel over slightly , so that most of your shots strike the enemy's hull rather than the sails. You have not yet crippled the Moon Dog, and now she is turning for a broadside.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stand and take it", 19));
+        Choices.push_back(Choice::Base("Pull astern of the enemy for boarding", 38));
+        Choices.push_back(Choice::Base("Move off out of range of their cannons", 57));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story342 : public Story::Base
+{
+public:
+    Story342()
+    {
+        ID = 342;
+
+        Image = "images/filler1-green.png";
+
+        Text = "Skarvench utters a single cry like the croak of a carrion bird, then goes plunging down to his death on the deck below. You climb back down not a moment too soon, for the rope is suddenly jerked out of your hands and goes coiling up into the mist.\n\n\"They've had enough, now their captain's dead,\" says Grimes as you watch the outlines of the Moon Dog recede up into the sky.\n\n\"I'd have liked to get that Curshaw -- and Porbuck as well,\" mutters Oakley. \"I've still got scores to settle with those two.\"\n\nYou clasp their arms and nod towards the broken body of Skarvench lying on the deck. \"Don't be downcast, lads. Tomorrow's another day, and no doubt we'll catch up with those villains sooner or later, but we've done sterling work tonight!\"\n\n\"Indeed you have,\" says an aristocratic voice. You turn to see a tall distinguished-looking Gloriannic gentleman who can only be Admiral Calidor, commander of the Queen's navy. Behind him are a squad of royal marines. \"If you hadn't shown up,\" he continues, \"who knows if we could have been able to cope with those pirates. We've only just managed to subdue their accomplice, the sorcerer William Wild.\"\n\n\"My lord,\" you say, bowing, \"they were after the Queen herself.\"\n\nCalidor smiles. \"I know. And, speaking of the Queen...\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 427; }
+};
+
+class Story343 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story343()
+    {
+        ID = 343;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use both CORKSCREW and SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
+        Choices.push_back(Choice::Base("Use the CONCH-SHELL HORN", 280, {Item::CONCH_SHELL_HORN}));
+        Choices.push_back(Choice::Base("Use DEED OF OWNERSHIP given to you by Master Capstick", 318, {Item::DEED_OF_OWNERSHIP}));
+        Choices.push_back(Choice::Base("Pay with DIAMONDs", 299, {Item::DIAMOND}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "You make your way outside, where there are more onlookers attracted by news of the shooting. \"Are you the one Skarvench shot?\" asks an old man, seeing the blood on your chest.\n\n\"Aye,\" you say, and you tell him the tale of your lucky escape. He looks at the article that saved your life. \"A valuable investment. I must buy one myself.\"\n\nBlutz chips in: \"Listen, old man, did you see where Skarvench went?\"\n\n\"Less of the 'old' if you please, fatty,\" says the old man bristling. \"And to answer your query, he and his men went of chortling their way down this very street in the direction of the waterfront.\"\n\nOakley cries out an oath. \"They'll have set sail! We need a ship of our own.\"";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::CORKSCREW, Item::Type::SHIP_IN_BOTTLE}) && !Character::VERIFY_ITEMS_ANY(player, {Item::CONCH_SHELL_HORN, Item::DEED_OF_OWNERSHIP, Item::DIAMOND}))
+        {
+            PreText += "\n\nYou have no hope of catching up with Skarvench. This is the end.";
+
+            Type = Story::Type::DOOM;
+        }
+        else
+        {
+            PreText += "\n\nNow you must look for another way to obtain a vessel.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story344 : public Story::Base
+{
+public:
+    Story344()
+    {
+        ID = 344;
+
+        Text = "You return to the cliffs to find a dozen islanders standing at the top of the vine ladder. They wear grass skirts and each has a red skull-like mask painted across his face. \"That's how the island got its name,\" mutters Oakley out of the corner of his mouth.\n\n\"Maybe so,\" whispers Grimes. \"Or maybe they're headhunters.\"\n\nYou approach cautiously, uncertain of the islanders' intentions. They watch you in silence and then one of them bares his lips in a ferocious grin. Blutz gives a small moan and goes weak at the knees, and you catch his arm to give him support. To your horror, the islander's front teeth are filed to sharp points!";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to fight your way past them", 363));
+        Choices.push_back(Choice::Base("Offer them gifts", 382));
+        Choices.push_back(Choice::Base("Ignore them and just start to descend the ladder", 400));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story345 : public Story::Base
+{
+public:
+    Story345()
+    {
+        ID = 345;
+
+        Text = "The cutters are hard on your stern, and your sorry little band are all too weakened by the privation to outrun them. Realising this, you tell your friends to steer in close to the shoreline -- where earlier, beneath the crystal-clear water, you noticed the jagged outline of submerged rocks.\n\nIt is a gamble. You might run onto the rocks yourselves. But to fall into Skarvench's hands would be even more certain disaster. Luckily your jollyboat passes safely over the reef, but when the pursuing cutters reach it there is a harsh scraping sound followed by a telltale splintering. The pirates' jeering shouts turn to cries of alarm.\n\nYou look back. As you guessed, the cutters were overladen. Lying lower in the water than your jollyboat, they have run aground. The pirates shake their fists, but they have no hope of catching you now. The Belle Dame must remain at anchor till the tide turns, while you row on throughout the night.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 135; }
+};
+
+class Story346 : public Story::Base
+{
+public:
+    Story346()
+    {
+        ID = 346;
+
+        Text = "You hide deep in the woods. As the silvery gleam of the predawn sky fills the shadows between the leaves, you suddenly hear an imperious command shouted from far off. It is the voice of the witch. At her order, the palm bend to seize the four of you and you are passed from branch to branch through the forest to be deposited roughly on the ground in front of the palace.\n\nYou LOSE 1 Life Point.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 327; }
+};
+
+class Story347 : public Story::Base
+{
+public:
+    Story347()
+    {
+        ID = 347;
+
+        Text = "No sooner has night fallen than an uncanny chill closes around you. An unspoken fear impels all of you to stagger back from the hole you have dug. You watch aghast as a shimmering mist forms in the air above the boxes. Then looming shadows are thrown against the mist -- as suddenly as if blinds had been thrown up on an open window -- and a host of pale ragged figures come shambling forward. Some have skin of tallow, others are ravaged by grave-mould. Spots of rust mark their armour, and their coats hang about them like decaying shrouds.\n\nThe foremost of this frightful throng steps forth. His face is the colour of clay, making his acid blue eyes all the more startling. Baring his sharp teeth in a macabre grin, he issues his greeting in a rasping voice. \"So there are still a few who'd dare to steal from El Draque. I admire your brass, my lads. And now, let's spill a little blood and drink a gory toast to the last day of your lives, and then mayhap I'll let you join my jolly band.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::CHARMS) && !Character::VERIFY_ITEMS(player, {Item::Type::CRUCIFIX}))
+        {
+            Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 245, Skill::Type::SWORDPLAY));
+            Choices.push_back(Choice::Base("Otherwise", 264));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 226; }
+};
+
+class Story348 : public Story::Base
+{
+public:
+    Story348()
+    {
+        ID = 348;
+
+        Text = "Each day the natives bring you food and water, treating you like honoured guests. By night you sing under the stars; by day you doze in warm sea breezes. Life is full of ease and contentment. Only one thought mars your pleasure at this regal luxury: that somewhere out there across the broad seas, Skarvench still lives to work his evil ways.\n\nAlmost a month goes by. At last a ship appears on the horizon. By now rest and good food have stored your strength and you leap to your feet, waving palm leaves and yelling at the top of your lungs. The ship diverts here course and a rowboat is sent to fetch you from ashore.\n\nThe captain, a Gloriannic merchant named Quintal, greets you heartily as you come board. Handing you mugs of ale, he tells you his ship is bound for Leshand. Although Leshand was your original objective, you know that time is now of the essence if you're to have nay chance of foiling Skarvench's scheme to abduct Queen Titania.\n\nYou RECOVER all lost Life Points.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Confide in Captain Quintal", 239));
+        Choices.push_back(Choice::Base("Keep quiet and allow him to take you to Leshand as planned", 258));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.Life = player.MAX_LIFE_LIMIT;
+    }
+};
+
+class Story349 : public Story::Base
+{
+public:
+    Story349()
+    {
+        ID = 349;
+
+        Text = "A shrieking gale rises out of the east to blow you onward, but at least there is an end to the numbing rain that has pestered you for so much of the voyage. Making good headway through high frothing waves, your worst hardship becomes nausea at being hurled up and down in your flimsy craft. Even so, hunger gnaws at your insides and your longing for food and water becomes overwhelming.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Eat the monkey (if you are heartless or desperate enough)", 368, {Item::MONKEY}));
+        Choices.push_back(Choice::Base("Leave it alone", 387));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -9174,6 +9367,16 @@ auto story336 = Story336();
 auto story337 = Story337();
 auto story338 = Story338();
 auto story339 = Story339();
+auto story340 = Story340();
+auto story341 = Story341();
+auto story342 = Story342();
+auto story343 = Story343();
+auto story344 = Story344();
+auto story345 = Story345();
+auto story346 = Story346();
+auto story347 = Story347();
+auto story348 = Story348();
+auto story349 = Story349();
 
 void InitializeStories()
 {
@@ -9212,7 +9415,8 @@ void InitializeStories()
         &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
         &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
         &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
-        &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339};
+        &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
+        &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349};
 }
 
 #endif
