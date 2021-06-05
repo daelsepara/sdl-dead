@@ -428,7 +428,7 @@ public:
 
         Title = "Prologue";
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "\"Pirates!\" The roar of cannonfire thunders across the waves as word leaves the captain's lips. Hurtling out of the billowing plumes of smoke come a barrage of iron shells. Each is larger than a man's fist, and strikes with a force that splinters the oak beams of your ship and shatters men's skulls like eggs. The mainmast takes a direct hit and topples, crushing the sailors standing under it.\n\nA grappling hook latches onto the rail. The pirates are getting ready to board you. Rushing to the side, you see their sinister vessel drawing alongside, black sails flapping in the breeze like a carrion-bird's wings. Her prow has the face of a medieval gargoyle. You read the name painted on her bows: the Belle Dame. But there is no look of beauty about her, nor hint of mercy on the faces of the eager brigands lining her rail.\n\nA crewman standing beside you utters a groan of fear. \"It's Skarvench's ship.\"\n\n\"Who's he?\" you ask, having to shout over the din of cannon shots and the pirates' battle-cries.\n\nHe stares at you as though you are a simpleton, and then remembers that this is your first voyage to the New World. \"The worst man that ever lived,\" is his blunt reply. And then the ships come together and the pirates are upon you.\n\nRushing headlong into the terrified crew, the pirates cleave a swathe of gory death across the ship's deck, their cutlasses rising and falling like scythes. You see the ship's officers fighting valiantly to defend the helm, but they are hopelessly outnumbered and soon butchered at their post. The fierce grins on the pirate's faces tell you that they expect easy pickings. You narrow your eyes as anger wells up inside you. You know that you will die today, but you feel no fear -- only a cold determination to sell your life dearly. Two pirates lunge at you. You duck the swing of the first, catch his arm and throw him against his crony. The sword intended for you ends up in a pirate's belly, and his knife comes up by reflex to slash at the man who has inadvertently impaled him.\n\n\"Two down...\" You turn, and then for the first time you clap eyes on Skarvench himself. He stands astride the rail, grasping a grappling-line in one hand and a pistol in the other, whipping his sea-dogs into a killing frenzy with his evil laughter. His broad back and gangling limbs make him look like a massive crow. His beard is as long and lank as seaweed, and a single eye blazes beneath his bald brow -- the other is covered by a leather patch.\n\nHe is raising his pistol. You are rooted to the spot under his baleful stare. It can't be fear you're feeling surely...\n\n\"Ah, matey,\" he says with a brown-toothed grin. \"Got to kill you again, 'ave I?\"\n\nAgain..? You have no time to ponder this enigma. In the next instant, he fires his pistol and your whole world goes black.\n\n--\n\nYou sit up with a gasp, sweat soaking your clothes.\n\n\"You've 'ad that dream again, eh?\"\n\nYou look around, memory trickling back as the dream recedes. The slow creaking of a ship's timbers, the unhurried heave of the waves... you are in the stuffy confines of the Belle Dame's bowels. Sailors snore fitfully around you, catching some sleep between chores. In the glimmer of an oil lamp sits Old Marshy, the ship's carpenter, whittling at a stick of wood. He glances across at you, shaking his head sadly. \"It was two years ago. Don't know why you can't stop 'aving the dreams.\"\n\n\"Dreams? Nightmares!\" you say, mopping the sweat away. As you do, you feel the scar across your forehead where Skarvench's bullet struck you. A finger's breadth to the right -- one less tot of rum for Skarvench's breakfast that fateful morning! -- and your brains would have been blown out. As it is the bullet only grazed you, leaving the visible mark on your head and the scar of hatred deep in your heart.\n\nNow that the nightmare has washed away, you recall the two years that have passed since that day. When you were first brought aboard the Belle Dame, Skarvench deemed you too insignificant to ransom and too close to death to be worth pressing into service. He would have cast you into the deep and never had a qualm -- that was the fate of most who survived the battle -- but Old Marshy undertook to nurse you back to health. You can well remember the weeks it took to get your strength back -- weeks experienced like glimpses in broken glass, because of fever. You remember Old Marshy holding the wooden spoons of gruel to your lips until his thin arms trembled with tiredness, urging you to eat. You remember the shouts of the pirates as they toiled in the rigging, and their drunken laughter under the stars at night. And most of all you remember Skarvench, looming through your thoughts like the embodiment of cruelty, striding the deck and waiting for you to die.\n\nYou did not die; thanks to Old Marshy you regained your strength. But death might have been better than the living hell you have had to endure these two years as an ordinary seaman aboard the cruellest ship to sail the Carab Sea. Skarvench metes out discipline as the whim takes him, revelling in the suffering of others; pain is his wine, and death his meat. Often you have had to stand by and watch a man whipped for the slightest mistake. Sometimes you have felt that whip yourself -- all to raucous laughter of Skarvench and his vicious pirate band.\n\n\"All hands on deck!\" Hearing the command, you shake the other sailors awake and hurry up out of the dingy confines of the orlop deck into the blaze of daylight.\n\nSkarvench stands on the poopdeck. The ox-like first mate, Porbuck gives you a shove and growls, \"You , get up in the rigging.\" As you climb, you glance out to sea. A small ship lies off the port bow and the Belle Dame is rapidly closing on her. You see a tall wooden crucifix standing amidships; she has no cannon. That is foolhardy. \"Go to sea on a prayer,\" as the adage goes, \"but take a keg of powder too.\"\n\nYou understand the reason for the other ship's lack of weaponry when you get a better view of the men lining her rail. They're all monks!\n\nSkarvench's voice goes snarling across the water. \"Heave to or be blown out o' the water!\" he calls. \"We'll be takin' your treasure, holy or not!\"\n\n\"We have no treasure,\" calls back one of the monks. \"We are poor brothers of the Saviour, travelling to the New World to spread His message to the heathen.\"\n\nSkarvench smiles -- always a sign of his bad temper -- and says, \"Is that so? Well, I know of no place more heathen than the ocean bed.\" He leans on the poopdeck rail and calls to the master gunner: \"Mister Borograve, prepare to give 'em a broadside. I want their shaved heads sent forty fathoms deep, where heaven can't hear their mealy-mouthed prayers!\"\n\nThe monks know they cannot outrun the Belle Dame. As Borograve orders the cannons primed, they begin to sing a hymn. It is a glorious and peaceful sound that reminds you of the meadows and villages of your homeland. Most of the sailors pause in their duties, overcome by the melancholy beauty of the song. Even one or two of the pirates look uneasy at what they are about to do.\n\n\"Prepare to fire,\" says Skarvench, keen as a hound at the scent of a kill.\n\n\"No!\" A carpenter's hammer goes flying through the air and strikes Skarvench's head with a crack loud enough to carry up to where you sit in the rigging. Skarvench remains as steady as a rock, his hand flashing out with the startling speed to snatch the hammer out of the air as it falls. then he turns. His face is a mask of white fury. The fact that there is a stream of blood flowing from his temple only makes him look all the more terrible. His gaze bores along the deck and finds:\n\n\"Mister Marsh! This your hammer, is it?\"\n\nOld Marshy quails, his one jot of boldness used up. \"B-but, Cap'n... they're holy men! I don't think...\n\nSkarvench tastes his own blood on his lip and savours it with his tongue. He gestures to a couple of pirates, and Old Marshy is seized and dragged up to the poopdeck. \"Lay his head on the rail there, lads,\" says Skarvench in a voice like honeyed venom. He raises the hammer. \"You're right, Mister Marsh; you don't think. That's the trouble with having nothin' in your brain-pan, see?\"\n\nFar too late, you realise what Skarvench is going to do. You give a gasp and start down through the rigging. But even as you act, you know there is nothing you can do...\n\nThe hammer smashes down. It sounds like a wineflask breaking. The ordinary seamen look away in horror. The pirates grin gleefully like their captain, excited by the grisly sight. The corpse slumps to the deck.\n\n\"God curse you, Skarvench,\" you mutter under your breath as you reach the foot of the mast. \"I'll see you dead for that.\"\n\n\"You're not alone in wishing that,\" whispers a voice, \"but I'd stow such talk unless you want your own skull under the hammer next.\"\n\nYou look around to see three of the crew -- Grimes, Oakley and Blutz -- men who, like you, were taken off plundered ships and force to work for the pirates. \"We've a plan,\" continues Grimes in a low voice. \"If we stay aboard this devil ship our days are surely numbered, so tonight we plan to jump ship. We're scheduled to take the evening watch. We'll lower the jollyboat with a few supplies, then strike out towards Port Leshand.\"\n\n\"Five hundred leagues of open ocean in a tiny boat like that!\" you gasp. \"It's near certain death.\"\n\n\"Better than certain death, which is what we can expect here,\" mutters Oakley. \"Look, you've got a reputation of being a handy customer to have along in a tight spot. To be honest, we haven't got much of a chance without you. Now, are you with us?\"\n\nYou glare back up at the tall stooped figure on the poopdeck. He stamps to and fro, the brain-smeared hammer still in his hand, annoyed that the monks made their getaway while he was distracted by Old Marshy. You'll make him pay for his crimes one day, but you know the moment is not yet right.\n\nYou turn to Grimes and the others and give a swift nod. \"I'm with you.\"";
 
@@ -447,7 +447,7 @@ public:
     {
         ID = 1;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "You know that you will need supplies to have any chance of survival on the open sea. It means taking a big risk, since you will have to go right past the officers' cabins, but there is no help for it. While your comrades keep a nervous vigil, fearing discovery at any moment, you creep aft and descend below decks. The only light in the passage is the glow of an oil-lamp shining from the half-open door of Skarvench's cabin. As you skulk forward through the shadows, you hear the voice of the pirate captain raised in typically drunken bluster:\n\n\"What, my merry lads, is the easiest route to fortune, would you say?\"\n\n\"Why, piracy, Cap'n,\" you hear one of the men answer hurriedly.\n\n\"Aye, piracy, right enough,\" roars Skarvench. \"but what's the most profitable form of piracy, I'm askin' you? Why, 'tis kidnap and ransom, that's what. There's no cargo takes up so little space nor fetches so high a price as live human baggage -- so long as you choose the right person. Even you daft lubbers must've heard how Toliver Crimp earned himself a thousand doubloons last summer when he ransomed the Viceroy's nephew -- \"\n\n\"A thousand doubloons!\" cry the pirates in unison.\n\n\"A spit in the ocean compared to what I've got planned! I'll be earning us a king's ransom -- or a queen's ransom, rather, if you wants to split hairs on it -- when I capture the best prize of all. I'm talking about that pretty young Queen Titania of Glorianne, my hearties, who'll soon be sailing here on a tour of the colonies!\"\n\nYou were just tiptoeing past the door, glad of Skarvench's ranting as it kept you from being overheard, but this news roots you to the spot. Can Skarvench really mean to set his sights so high? The kidnapping of a monarch is surely beyond the limits of even his voracious ambition. Everyone knows that the Queen Titania is well guarded by her loyal admiral, Lord Calidor, whose naval tactics have sent many a foe to the sea's bottom. And no trickery or poison can prevail against her while she is protected by her wizardly counsellor, Dr. Wild. Skarvench's plan seems impossible, and yet you have suffered enough harsh experience of the man aboard his ship to know that , although unmatched for cruelty and greed, he is nobody's fool. He must really think he has a chance of carrying off the Queen!\n\nYou glance across the passage to the sailmaster's cabin. No light shows under the door. The sailmaster must still be in the gallery with most of the other pirates. Now is your chance to sneak into the empty cabin and gather a few items for your voyage -- and God knows, your comrades must be getting anxious for you to return. At any moment one of the pirates might go up on deck and your bid for freedom would be discovered. But Skarvench is still boasting of his madcap scheme, and despite your best instincts you feel compelled to eavesdrop further.";
 
@@ -511,7 +511,7 @@ public:
     {
         ID = 4;
 
-        Image = "images/forest-green.png";
+        Image = "images/forest.png";
 
         Text = "Hidden among the lush ferns of the jungle, you watch as Skarvench locates a mark carved on the trunk of a tall tree and then paces off towards a clearing. Pointing to the ground, he directs the two sailors to start digging while he and his officers rest in the shade with a bottle of grog.\n\n\"Looks like he's come here to collect his buried loot,\" muses Blutz.\n\n\"I wonder why,\" whispers Oakley. \"I mean, it's not like he needs extra cash, is it? I'd give anything to be a fly on his face right now and hear what they're talking about.\"\n\n\"A fly?\" snorts Grimes. \"I'd sooner be a hornet and sting the cur!\"";
 
@@ -541,7 +541,7 @@ public:
     {
         ID = 5;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Choices.clear();
 
@@ -587,7 +587,7 @@ public:
     {
         ID = 6;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Choices.clear();
 
@@ -658,7 +658,7 @@ public:
     {
         ID = 8;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "\"Never heard of the place!\" cries Mandrigard, spilling ruby wine across his gold and gems as he brings the goblet banging down hard on the tabletop.\n\n\"Never heard of it?\" you repeat incredulously. \"Why, man, it's the richest and biggest port of all the Gloriannic colonies.\"\n\nHe snorts indifferently. \"It means nothing. I have sailed the world's waters longer than such places have had a name. And though it grieves me to say it, I'm resigned to sailing on long after those ports have sunk into the sea.\"";
 
@@ -826,7 +826,7 @@ public:
     {
         ID = 14;
 
-        Image = "images/skarvench-green.png";
+        Image = "images/skarvench.png";
 
         Text = "A look of thunder flickers behind Skarvench's eye. \"Still alive, eh? Come and drink with your old cap'n!\" He waves the rum bottle as if inviting you to take it, but you'd sooner put your hand in a wolf's mouth.\n\nBlutz's blood is up at the sight of your hated foe. \"God rot your one eye, villain!\" he screams. \"I'd like to take that bottle and --\"\n\nThere is a crash of breaking wood and Blutz falls with a groan. Glancing to one side, you see he has been hit over the head with a stool. Curshaw stands there grinning, then puts his boot into the unconscious Blutz's ribs. He drops the broken leg of the stool beside him.\n\nOakley and Grimes stand face to face with the closing circle of Skarvench's men. You whirl to face the pirate captain himself. \"Enough, Skarvench; your quarrel's with me, not them.\"\n\nHe crows with laughter. \"Ah, that's a right noble sentiment and no mistake! See here, though: my quarrel's with all who'd try'n scupper my plans. I'm aimin' to bag me a queen, no less, an' then sell her to the highest bidder. So I'm goin' to have to do away with you, mate -- which I should've done long ago, but I guess my old heart's just too soft.\"\n\nHis hand goes to his belt. You realise he's reaching for a weapon, and your own fingers close instinctively on something on the table beside you. You raise it, and Skarvench gives a screech of laughter. You're holding only a CORKSCREW. He has a musket. \"I'll be the wealthiest man on the seven seas,\" he boasts. \"And he who would that wealth deny, down among the dead men let him lie!\"\n\nThere is a flash as he fires. Smoke fills the air and the musket-ball thuds into your chest. You feel an instant of searing pain, then everything goes black.";
 
@@ -845,7 +845,7 @@ public:
     {
         ID = 15;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "Raising your arms to the heavens, you commence the incantation. At first the apparent gibberish coming from your lips gives your three companions cause to smile. But the smiles soon fade, to be replaced by wide-eyed awe, when they see black storm clouds piling up against the eastern sky at your command. The faint glow of sunrise is drowned in fresh darkness. Thunder cracks from far off like distant cannon-fire, sending a dull and ominous rumble across the world.\n\nA breeze ruffles your clothes. Finishing the spell, you glance down to see your friends crouching in the bottom of the jollyboat, faces drained of colour. \"Do not be afraid,\" you tell them. \"The full force of the storm will not reach us here. I have placed it athwart the Belle Dame's bows, and she'll have to run with the wind till it blows itself out. Skarvench will have a hard time following us now.\"\n\nA blossom of lightning flares beyond the sooty haze of the storm clouds. If only you felt as confident as you are trying to sound. But you know that such titanic elemental forces cannot be conjured lightly and indeed, even as you lower your MAGIC WAND, it explodes in a shower of crackling blue sparks!\n\nYou gained the codeword PROSPERO.";
 
@@ -991,7 +991,7 @@ public:
     {
         ID = 21;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Having sailed these waters often as an honest merchant before he was press-ganged into service on the Belle Dame, Oakley relates what he knows of the islands:\n\n\"Pandanus Island, the westernmost in the chain, has often been visited by ships,\" he says. \"The natives there are friendly enough. The next, known as Grimoire Island, is a mystery except I've heard the natives shun it out of fear for a hellish demon that lives there. Foolishness, of course. Next in the chain is Firepeak Island, which gets its name from the immense cone of a smouldering volcano that dominates its hinterland. I never met a man who went ashore there --\"\n\nBut what about the easternmost island?\" asks Blutz. \"That's the first one we'll come to.\"\n\nOakley shrugs. \"Red Skull Island. I've heard that too is inhabited, but it lies clear of the main shipping route and so the natives can have little contact with the outside world.\"";
 
@@ -1044,7 +1044,7 @@ public:
     {
         ID = 23;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "Who can say how long the carnage lasts? Amid explosive gunshots, hoarse yells and the clang of steel blades, your ragged but valiant band struggle to the death against Skarvench and his murderous henchmen.\n\nEventually the battle shrinks to just you and Skarvench. Crouching behind his cutlass, he weaves and lunges and parries -- cocksure and vicious at first, his sneering smile only gradually fading as he realises you are the better fighter. Then his taunts turn to weary gasps as he struggles desperately to defend himself.\n\nYou are exhausted too. You gulp at the air like a drowning man, each swing plumbing the last dregs of your strength. But at last the red rage fades. You r enemy lies dying at your feet. Looking up at you the evil light fades from his eyes, he musters a mad grin and shrieks with laughter. \"So that's your victory, is it mate?\" A bitter triumph, I'd say!\"\n\nYou look around, and now you see what he means. The forest floor is like a scene from a slaughterhouse, your friends lying dead along with the pirates. You stagger, sick at heart. You wanted revenge, but not at this high price.\n\nSkarvench gives a last laugh. \"See you in hell,\" he croaks.\n\nHe is dead.";
 
@@ -1122,7 +1122,7 @@ public:
     {
         ID = 26;
 
-        Image = "images/mermaid-green.png";
+        Image = "images/mermaid.png";
 
         Text = "Despite all hardships, you can at least console yourselves with that fact that you are making good headway. The same gales that threaten to swamp your boat are also driving you swiftly westwards.\n\n\"It's a race against time,\" says Oakley with a sour grin, his hair plastered down against his white face by the unceasing rain. \"Will we get out of this before our food or our strength runs out?\"\n\n\"Our our luck,\" mutters Grimes.\n\n\"Stop it!\" screeches Blutz. \"I can't stand it much longer, stuck out here on this tiny boat and the endless ocean around and beneath us waiting to swallow us up.\"\n\n\"Aye!\" says Oakley. He slaps the timbers of the boat. \"That's all we have keeping us from a watery grave, mates. Barely more wood in her than a coffin lid... \" His eyes blaze feverishly and he gives a sudden wild laugh. \"So let's christen her, then: to the good ship Coffin Lid and all who sail in her, whether it be to Leshand harbour -- or straight down to hell!\"\n\nBlutz turns away, and suddenly his eyes start with fright. He is staring at something over your shoulder, in the water off to starboard. You turn slowly, following his gaze, and see something that makes your heart miss a beat. For there swims a sea maiden, with pearl-white skin and hair the colour of coral, whose beauty and silent haunted look seem as terrible as the ocean depths.";
 
@@ -1265,7 +1265,7 @@ public:
     {
         ID = 32;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "You explode into a sudden flurry of dazzling action. Pushing your friends back out of danger, you dive nimbly to one side as the chief ruffian's knife whistles through the air just a hand's breath above your scalp. Then, springing up onto the bar, you launch yourself forward, tumbling in midair so as to go careening against the ruffian's legs with the force of a rolling barrel. They are bowled over like so many skittles.\n\nJumping to your feet, you pause just long enough to check that Blutz and the others have safely made their getaway. It is your one mistake. A clumsily thrown knife catches you in the thing, laying open a nasty gash.\n\nYou LOSE 1 Life Point.";
 
@@ -1328,7 +1328,7 @@ public:
     {
         ID = 35;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "\"Sidonian men-o'-war hard astern! Three of of 'em!\" cries your lookout. The Gloriannic warship sees them too and alters course to engage the enemy. Forgotten for the time being, your own ship is able to slip away.\n\nOakley joins you on the poopdeck. \"They're almost over the horizon,\" he says, glancing back. \"A nice bit of luck, those Sidonian ships turning up just when they did. But I'm a bit surprised at you making a run for it, skipper. I'd have thought you'd order us to muck in and help the Gloriannic captain.\"\n\nYou smile and pat the wand tucked into your belt. \"Help him, Mister Oakley? Against what -- those magical mirages I conjured? They'll be fading like a morning haze as soon as we're out of sight.\"\n\nHe laughs heartily to hear this.";
 
@@ -1498,7 +1498,7 @@ public:
     {
         ID = 41;
 
-        Image = "images/throwing-rocks-green.png";
+        Image = "images/throwing-rocks.png";
 
         Bye = "You slump down into the bottom of the boat with an exhausted sigh of relief as you finally get out to open sea beyond reach of the islander's bombardment.\n\n\"I think they wanted us to stay for dinner,\" jokes Oakley with grim humour. \"I hope the natives on the next island are more friendly.\"\n\nSo do you.";
 
@@ -1537,7 +1537,7 @@ public:
     {
         ID = 42;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "You tread on a twig and Skarvench and his cronies leap up with angry roars to do battle. Discovered, you have no recourse but to rush in on them.";
 
@@ -1792,7 +1792,7 @@ public:
     {
         ID = 53;
 
-        Image = "images/giant-green.png";
+        Image = "images/giant.png";
 
         Text = "He places his hand to his jaw and squints his eyes in thought, smiling as he considers your request.\n\n\"Will you ponder the matter until the stars go out and the moon cracks in two?\" you cry boldly. \"Our foe is mortal like ourselves, and does not unfold his plans at the testudineous pace you seem to favour.\"\n\n\"Have a care!\" pleads Blutz. \"You'll anger him. He might be the very god Neptune himself.\"\n\nYou round on him with a blaze of anger. \"God or not, I'm your skipper, Mister Blutz! Now keep your counsel while I parley with yon giant.\"\n\nThe giant rumbles with laughter, amused by this exchange. There is a sparkle in his green marble eyes as he says, \"Well spoken, mortal. At sea a man should respect neither god nor titan, but only his captain. I'll help you right enough, since I now see you deserve it, but what help is it you want? Will it be wealth to buy a ship -- or the wisdom to sail her well?\"";
 
@@ -1879,7 +1879,7 @@ public:
     {
         ID = 58;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "According to the stories you have heard, Grimoire Island is inhabited not by a demon, but by a powerful witch called Ejada the Green. She is thought to be more than a thousand years old, and one legend is that she sealed a pact with an ancient earth god which guarantees her invulnerability so long as her feet remain on solid ground.\n\nBut, whether true or false, these folk-tales are not your first concern. Now you must sail on towards the first of the islands -- the one Oakley believes to be inhabited by savages.";
 
@@ -2165,7 +2165,7 @@ public:
     {
         ID = 69;
 
-        Image = "images/capstick-green.png";
+        Image = "images/capstick.png";
 
         Text = "Capstick has a fine house on Halyard Street, in one of the richest parts of town. Smartening yourselves up to look as respectable as possible, you ignore the sidelong glances and haughty sniffs of the wealthy passers-by, marching straight up to present yourselves at the front door. The servant who answers the door at first mistakes you for beggars, but once you've corrected that small misunderstanding he shows you through his master's study.\n\nCapstick is sitting by the fire with a book. Seeing you, he gives his great belly-shaking laugh and leaps up to greet you, commanding the servant to bring a bottle of sherry.\n\n\"Freshly taken off a Sidonian merchantman,\" he says shortly, lifting his glass to savour the smoky gold liquid before drinking. \"And..\" he smacks his lips, refills your glasses \"all the better for being plundered off one of those rascals, eh?\"\n\nSoon the conversation turns to the matters you discussed aboard the Jewel of Heaven. At this, Capstick's face falls. \"I have sour news,\" he tells you. \"I must sail for Glorianne in two days' time, and so I'll be unable to partner you in your attack on that devil Skarvench. Moreover I've told the tale to several high officials, but no one believes it's true.\"\n\nYou give a glum nod. \"Who can blame them, given the source of your information? We are vagabond ex-pirates, which is not the best pedigree for reliable testimony.\"\n\n\"But I believe you, by God!\" He produces an envelope and hands it to you. \"This is a DEED OF OWNERSHIP for a sloop that I own in Port Selenice. She's just a small craft, but better than no ship at all. Go to Selenice, get together a crew, and see if you can't beat this Skarvench at his own game.\"\n\nThanking Capstick for his help, you take your leave. \"I'm only sorry not to be sailing with you,\" are his parting words.";
 
@@ -2206,7 +2206,7 @@ public:
     {
         ID = 71;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "The blind man is Greymalkin Smith. Once a pirate himself, he was blinded in powder keg explosion and now ekes out a living running errands around town and swapping gossip for drinks.\n\nYou have also seen the three ruffians before. In fact, just a few weeks ago you learned that the governor of Leshand has put a price on their heads.";
 
@@ -2226,7 +2226,7 @@ public:
     {
         ID = 72;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "His laughter is the peal of summer thunder. \"Scurry off then, little mice. I mistook you for a sea rats at least!\"\n\nThe dolphin and the shark convey you back to the beach where you blew the horn. In awed silence, still stunned by the uncanny adventure, you disembark uncertainly and stagger on weak knees up the shore.";
 
@@ -2351,7 +2351,7 @@ public:
     {
         ID = 77;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Skarvench gives a sharp cough as he swigs a shot of rum. \"Guarded?\" he snarls. \"Aye, she'll be guarded. But what if a storm scattered her escort fleet? What then, eh my lads?\n\n\"There'd still be her flagship to contend with, Cap'n\" objects the quartermaster. \"The Rose, I'm told it's called -- a ship of eighty cannon!\"\n\n\"It's possible to pluck a rose, me hearties!\" rejoins Skarvench with a peal of harsh laughter. \"Specially when she lies becalmed, shrouded in mist with no target for her guns.\"\n\n\"But what's this talk of mist and dead calm?\" queries Borograve the master gunner. \"I thought the plan rested on a storm?\"\n\n\"It all relies too much on chance, if you ask me,\" says the first mate.\n\nYou tend to agree -- although you never knew Skarvench to trust anything to luck before, not even when playing dice. You are itching to hear how he is going to justify his scheme, but every second you linger here increases the risk of discovery.";
 
@@ -2539,7 +2539,7 @@ public:
     {
         ID = 85;
 
-        Image = "images/giant-crab-green.png";
+        Image = "images/giant-crab.png";
 
         Text = "Before long the others call to you, saying they have collected a goodly share of barnacles and other succulent shellfish from the shore of the island. You have meanwhile been strolling around in search of fresh water, but every single pool that has formed in depressions in the rock has turned out to be full of brine.\n\nSuddenly there is a shuddering underfoot. The whole island begins to shake. Your companions utter cries of alarm and you see them run towards the boat, abandoning their pile of shellfish. \"It's sinking into the sea!\" screeches Blutz. \"Hurry or we'll be drowned!\"\n\nOut of the corner of your eye you see something break the surface of the sea. You turn watching aghast as it rises high up into the air. It is sharp and huge, its serrated edge casting an orange-red shadow across the sky. As it flexes open and closed, you stare at it dumbfounded. And then you realise what it is: a giant pincer.\n\nThe shock almost makes you pass out. This is no island. You're on the back of a gigantic crab.";
 
@@ -2702,7 +2702,7 @@ public:
     {
         ID = 91;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "A key that no-one can see or touch? A riddle set by an ocean god is a mere trifle for an artful trickster like yourself. Pursing your lips, you whistle a few bars of a jaunty tune. To the amazement of others, this causes the chain to unlock itself and fall aside, giving you admittance to the harbour.\n\nYou spread your hands and take a bow. \"It was the key of C,\" you explain with a smile.";
 
@@ -2790,7 +2790,7 @@ public:
     {
         ID = 95;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Calmly levelling your PISTOL, you shoot the end off the taper. \"By all that's unholy!\" sears Skarvench. \"I never seen such a shot!\"\n\nNeither have you, but you do not let surprise cost you your momentary advantage. You race in before Skarvench can relight the fuse, and in seconds the two of you are locked in a fight to death.\n\nYou were not able to reload your PISTOL in time. You will not be able use it again.";
 
@@ -3056,7 +3056,7 @@ public:
     {
         ID = 105;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "\"So,\" says Mortice as you settle down to sleep, \"are you going to invite me aboard your boat, or leave me here on my blessed raft all night?\"\n\nOakley smiles at him. \"Are you standing on ceremony, mate? Waiting for a bloody invite?\"\n\nMortice takes ill against this joking retort. \"Aye,\" he growls, spitting into his beard. \"An invite's just what I'm after. Well, haven't ye dined like lords at my expense until you're as full as farmyard geese? Call me over, damn your veins!\"\n\nBlutz is understandably not keen to sleep beside a lunatic, no matter how charitable. He turns to you and mutters under his breath, \"Well, our boat's pretty cramped already -- and no more comfortable than his raft, I'd say.\"\n\n\"What's that whispering?\" snarls Mortice, stamping his foot. \"Secrecy and distrust!\" Is this how you repay a bit o' kindness, eh? Come on, will you ask me aboard or not?\"\n\n\"Ask the skipper,\" says Grimes, nodding towards you.";
 
@@ -3084,7 +3084,7 @@ public:
     {
         ID = 106;
 
-        Image = "images/jewel-of-heaven-green.png";
+        Image = "images/jewel-of-heaven.png";
 
         Text = "The clouds are black banners across the scarlet of sunset when, gazing into the face of approaching night, you spy a billowing sail gleaming wanly in the dusk. A ship bound for Leshand! Jumping to your feet, shouting and waving, you wait anxiously until an answering hail tells you they've seen you. The ship comes nearer, her prow sliding though the twilit waters, her sails pinned like sheets of gold against the darkening sky. Faces look down from the rail, and a rope ladder is lowered. You climb rapidly despite your fatigue, gladdened by the friendly speech of the sailors.\n\nA hand grasps yours and helps you up. \"Welcome aboard the Jewel of Heaven,\" says a Gloriannic voice. You do not reply at once, but fall on your knees alongside Oakley and the others, thanking almighty God for deliverance from the brink of doom.";
 
@@ -3205,7 +3205,7 @@ public:
     {
         ID = 112;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "You have not long gone off watch, and are sitting in your cabin with a warming cup of grog, when there comes a stifled cry from up on deck. Bone weary, you throw on your cloak and grumpily stomp back up the companion-way. You are on the point of berating Blutz for calling out, certain that he has simply allowed the mist and the desolation of the spot to unnerve him, but the moment you emerge on deck those words choke off in your throat.\n\nEverything is swathed in the eerie greenish mist. Blutz stands amidships, backing away from the rail with little fluttering motions of his hands. You turn and behold the cause of his terror. Coming up over the side is a figure out of a nightmare -- a seaweed-draped corpse clad in robes sodden with sea water. As it climbs over the rail, its angular hunched stance and galvanic spasms of motion put you in mind of a spider's stalking gait. Patches of exposed bone show through the rotted flesh and it has only deep black sockets for eyes. In one hand it holds a rust-blotched sword; the other is rigid like a claw poised to strike.\n\n\"All hands on deck!\" Your voice is a thin reedy screech, strained by stark fear. Even as you hear the bustle of men rushing up from below, more of these ghastly apparitions appear at the rail, and you know that you are in for the toughest battle of your life.";
 
@@ -3658,7 +3658,7 @@ public:
     {
         ID = 129;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "Which of these possessions will you use?";
 
@@ -3694,7 +3694,7 @@ public:
     {
         ID = 131;
 
-        Image = "images/boat-in-fog-green.png";
+        Image = "images/boat-in-fog.png";
 
         Text = "You come on deck shortly before eight bells. The fog shrouds everything in a spectral pall. You look up at the rigging, which hangs like the shadow of a giant web. There is a rotting miasmal smell in the air, wafting from the swamps along the back of the bay. Blutz gives a rattling cough, mumbles something about yellow fever and wanting to be shot of this anchorage, and stumps below to get a cup of grog before turning in. You are left alone on the deck.\n\nGazing back towards the glow from the swamps, you hear the muffled sound of oars splashing far off in the darkness. A small boat appears, gradually taking solid form out of the fog, and in the light of the ship's lanterns you see a tall figure standing in the prow with two rowers hunched over the oars behind him. As the boat pulls alongside you have a clear view of the man -- tall and pale, with eyes of startling cobalt blue. His teeth flash in a smile as he hails you: \"Permission to come aboard?\"";
 
@@ -3841,7 +3841,7 @@ public:
     {
         ID = 137;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Choices.clear();
 
@@ -3982,7 +3982,7 @@ public:
     {
         ID = 142;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Choices.clear();
         Choices.push_back(Choice::Base("[SEAFARING] Try swimming to safety", 180, Skill::Type::SEAFARING));
@@ -4076,7 +4076,7 @@ public:
     {
         ID = 146;
 
-        Image = "images/ruffians-green.png";
+        Image = "images/ruffians.png";
 
         Text = "The innkeeper of The Hanged Man is a sour-faced man named Drood. You can see him at the bar polishing tankards with a filthy piece of rag. As you step up, he sets aside the tankard he's holding and gives you a long loury glare. \"Heard you were dead,\" he says. \"Seems the news hasn't reach you yet, though.\"\n\nYou ignore this. \"Skarvench been in?\" you ask.\n\n\"Not lately. Things are too hot for him in Leshand.\" Drood spits on the bar and starts wiping it.\n\nA beefy hand clamps on your shoulder and turns you around. Facing you are six burly ruffians. You vaguely recognise them as Skarvench's \"business associates\" -- men who act as his spies and assassins on shore.\n\nThere leader regards you with eyes like tiny beads of dull glass. \"Cap'n Skarvench is in Port Selenice takin' delivery of a new ship,\" he says, \"Why're you askin'?\"\n\n\"We're planning to meet him.\"\n\nYou start to move past the ruffians, then freeze as they draw knives. \"Tell you what,\" says the leader, \"you go straight to hell, and no doubt the cap'n will join you there when he's good and ready...\"\n\nIt's life or death.";
 
@@ -4176,7 +4176,7 @@ public:
     {
         ID = 152;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -4205,7 +4205,7 @@ public:
     {
         ID = 153;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Reaching up, you take a firm grip on the bulkhead beam running across the ceiling of the passage. Then you swing yourself up until you are braced across the beam. A moment later you see the sailmaster's distinctive bald head appear below where you're hiding, but he does not look up. As he vanishes into his cabin, you drop silently to the floor and hurry up the companion-way to join your comrades.";
 
@@ -4252,7 +4252,7 @@ public:
     {
         ID = 155;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -4304,7 +4304,7 @@ public:
     {
         ID = 157;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "Now you guess the truth. As daughter of the earth goddess, Ejada received unending strength and vitality as long as she remained in contact with the ground. Now she is like an uprooted flower wilting in the hot sunlight. \"Restore me to the earth,\" she begs, \"and all my treasures are yours.\"\n\n\"They are anyway.\" You learned never to trust a sorceress. Wedging her on a high cornice of the building, well clear of the soil that would regenerate her power, you go inside to explore. You soon find a hoard of magical treasures comprising a MAGIC WAND, a HEALING POTION, a SHIP IN A BOTTLE, and a BLACK KITE. The HEALING POTION can be drunk once at any time to restore your Life points to normal. The other items may or may not come in handy later.";
 
@@ -4644,7 +4644,7 @@ public:
     {
         ID = 170;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "Handing the kite to a sailor, you tell him to go up into the rigging and cast it towards the sky. \"What good will that do, skipper?\" asks Oakley as you watch the man climb.\n\n\"Call it a hunch, Mister Oakley. That witch Ejada wouldn't treasure anything so mundane as a kite unless it possessed some kind of magical power. Now we'll find out exactly what.\"\n\n\"It's a long shot,\" says Blutz, watching the Moon Dog dip lower in the night sky with silver sails gleaming.\n\nYou watch the sailor reach the top of the mast and throw the kite up into the heavens. Caught by some wind that the sails do not feel, it soars aloft higher and higher, seeming to grow larger as it goes so that it spreads like an inkblot against the moon.\n\n\"The dragon wing of night o'erspreads the world...\" breathes Grimes, his voice barely a whisper. And the last of the moonlight is blotted out, leaving only the gleam of ships' lanterns on the low bank of fog and the spangling of a million stars in the clear blackness above.";
 
@@ -4718,7 +4718,7 @@ public:
     {
         ID = 172;
 
-        Image = "images/belle-dame-green.png";
+        Image = "images/belle-dame.png";
 
         Text = "The others are waiting for you on deck. In the slanting rays of the setting moon you make out the furtive silhouettes of Grimes, tall and gaunt; Oakley, strong as a tar barrel; and fat little Blutz.\n\nThey have the jollyboat swung out over the side. Stealthily you lower it into the water, working in deep silence like four burglars intent on a night's business. From the below wafts the sound of a hornpipe and snatches of revelry as the crew sing sea shanties in the galley. Climbing down to the jollyboat, you shove off from the side and row with muffled oars away from the brooding bulk of Belle Dame. The moon slips below the western horizon, leaving the night studded with stars. There is no wind and the sea is as flat as a pane of glass. As the sounds of jollity fade into the distance, only the soft splash of your oars remains to disturb the eerie quiet.";
 
@@ -4778,7 +4778,7 @@ public:
     {
         ID = 174;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "Putting into a small cove, you moor the boat beside a large rock and then scramble ashore up a rocky moss-coated slope. Immediately you are confronted by lush jungle teeming with colour and life. Bright bulbous fruits dangle enticingly from the tree branches, yours for the taking. High up amid the emerald foliage, parrots in stained-glass hues peer down at you curiously, heads cocked to one side giving them a comical expression.\n\nYou and your friends have no difficulty in gathering food and fresh water. You RECEIVE two meals' worth of PROVISIONS for yourself.";
 
@@ -4814,7 +4814,7 @@ public:
     {
         ID = 175;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Choices.clear();
 
@@ -4950,7 +4950,7 @@ public:
     {
         ID = 180;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "The giant crab drops down into the murk of the ocean, sinking as rapidly as a rock, and you are being carried along with it in the strong undertow. Luckily you were able to get a good lungful of air before you went under, and now you make full use of your remaining strength to strike powerfully up towards the glimmering pane of light that marks the surface.\n\nThe water drags at you like liquid lead. Your pulse thunders in your ears and your chest is burning with the need for air, but you struggle on with desperate strokes, clawing your way upwards until at last you break the surface.\n\nGasping for air, you are barely aware of your friends hauling you into the jollyboat. \"Come on, lads!\" you hear Oakley's voice yelling. \"Let's get clear before it resurfaces.\"";
 
@@ -4988,7 +4988,7 @@ public:
     {
         ID = 182;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Fight on", 220));
@@ -5025,7 +5025,7 @@ public:
     {
         ID = 183;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "\"El Draque?\" whispers an old sea salt whom you get talking to. \"Have ye not heard? He was captured and hanged at sea barely a month ago. By one account, his body was thrown overboard, but then swam three times around the ship before it sank.\"\n\nGrimes peers into the sailor's tankard. \"What are you drinking mate?\"\n\n\"Why, are you buying a round?\" says the fellow briskly.\n\n\"No,\" Grimes replies. \"I was just going to advise you to drink a bit less of it.\" As you leave the tavern, he says, \"Enough of these taproom tales. It's time we shipped out after Skarvench.\"";
 
@@ -5152,7 +5152,7 @@ public:
     {
         ID = 188;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "This is grim work, but you cannot afford the luxury of hesitation. In moments the sunlight will be gone. Quickly dropping to your knees beside the open box, you raise the stake in both hands and plunge it down hard into the corpse's heart. A terrible gasping sigh escapes the dead lips, reminding you of the sound of autumn leaves scattering in a breeze. Then the body crumbles like ancient parchment.\n\nBlutz cries out. At the same moment, the sun is blotted out beyond the horizon and night rushes triumphantly across the world.";
 
@@ -5274,7 +5274,7 @@ public:
     {
         ID = 193;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "\"No, you're wrong,\" you tell Blutz. \"Look at most of the island. It's well covered in vegetation, right?\" That volcano has most likely been hissing and spitting for years, but if there had been any major eruption then the jungle wouldn't have grown up to that extent.\"\n\n\"All the same,\" says Grimes, \"let's not dally longer than we have to. The sight of those lava-covered slopes puts me in mind of Satan's brimstone fires!\"";
 
@@ -5298,7 +5298,7 @@ public:
     {
         ID = 194;
 
-        Image = "images/plaza-green.png";
+        Image = "images/plaza.png";
 
         Text = "Despite the thick jungle, you reach the tower quickly by following a stone pathway that leads through the undergrowth. You emerge into a wide grass-covered plaza and facing you is a white marble palace with a high tower. You move cautiously closer and Oakley runs his hand over the monumental carvings beside the entrance. They show a queen or priestess dispatching her enemies into luridly depicted hells.\n\n\"How was this stone brought here?\" Grimes wonders aloud. \"It's not local to the island, if I'm any judge.\"\n\n\"You're right,\" says a woman's voice. \"I brought it here by magic.\"";
 
@@ -5432,7 +5432,7 @@ public:
     {
         ID = 200;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -5576,7 +5576,7 @@ public:
     {
         ID = 205;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "The harbour is vast. You cannot see the wharfs, blurred by the distance and darkness. As your coracle proceeds, you pass a multitude of ships lying at anchor all around you. A huge hulk looms up, shaped rather like a massive cradle. \"What about that one?\" says Blutz, awestruck. \"You could fit an entire menagerie insider her!\"\n\n\"Too ponderous,\" you decide.\n\nNext you pass a sleek high-powered galley with notches for fifty deck-cannon. \"There's a ship built for heroes,\" avers Grimes. \"Notice the fine beam of the prow, carved to resemble a mouth. What wisdom might she utter, if that mouth could talk!\"\n\n\"A well-designed vessel, to be sure,\" you admit, \"but look at the timbers of the bowsprit. They are so weathered with age that they might give way, to the mortal detriment of any poor soul standing below when they fell.\"\n\n\"What about that one?\" suggests Oakley, pointing further across the bay.\n\n\"Bah, she is entirely clad in sheets of iron! She would be slow to turn -- and, see, despite those long spars of metal she has no masts on her deck! No, we must look further.\"\n\n\"There's our ship!\" yells Blutz in sudden excitement.\n\nYou look to see a tall-masted vessel painted all in black except for the blue lacquer adoring her prow. Her figurehead is a muscular stature in oak wearing a winged helmet on his brow. His arm, upraised with staff held high, seems to point to a destiny brimming with glory. You nod, reading the name blazoned in gold on the ship's escutcheon. \"Yes, she's the one for us. The CALYPSO.\n\nClimbing aboard, you raise the sails and take her out of the harbour under the watchful gaze of the colossus. Still standing astride the harbour mouth, he calls after you as you sail off: \"Mind you don't earn my ire like that other rogue that sailed her before you!\"\n\nThere's no telling what he means by that, but your only thought is for your new vessel. She cuts through the waves with matchless grace and speed, steady as a surgeon's saw. You stand proudly behind the mast, revelling in every wave and gust of salty spray. As dawn breaks, you see the familiar outline of Selenice harbour ahead.";
 
@@ -5602,7 +5602,7 @@ public:
     {
         ID = 206;
 
-        Image = "images/marine-sergeant-green.png";
+        Image = "images/marine-sergeant.png";
 
         Bye = "You survive to see victory.";
 
@@ -5991,7 +5991,7 @@ public:
     {
         ID = 221;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "A few judicious rounds bought in a dockside tavern soon sets tongues wagging. \"Aye, I've heard it's the Queen herself who'll be visiting next month,\" ventures a longshoreman. \"That's why security's been tightened up. It stands to reason, don't it. The governor don't want nothing to go wrong while she's here, or he might end up begging on the streets instead of living in splendour up at the fort.\"\n\nUnfortunately other ears have overheard your enquiries. As you leave the tavern, footsteps ring on the cobbled street behind you. Before you have time to turn, you feel the unpleasantly familiar touch of cold steel against your neck. \"I'm sure the governor will want to know about the keen interest you're taking in Her Majesty's visit,\" says a voice full of honeyed menace. \"Why don't you come and have a chat with him about it?\"\n\n\"Why bother the man?\" you reply. \"He has a lot to deal with at the moment.\"\n\nThe knife prices your skin. \"I wouldn't like to have to press the point,\" says the voice in the darkness behind you.\n\nYou give a gulp. \"In that case, lead on.\"";
 
@@ -6069,7 +6069,7 @@ public:
     {
         ID = 224;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "He said no man can use the key. Pointing to the lock in the middle of the chain, you try to make the MONKEY understand what you want it to do -- but to no avail. \"Go on, you little fleabag!\" you yell in exasperation, but its only reaction to this is to give itself a cursory scratch and go on squatting there on the edge of the coracle, blinking at you.\n\n\"Begging your pardon, skipper,\" says Blutz, \"but you can't order a MONKEY about like you would an ordinary seaman. You've got to talk more gentle, like.\"\n\n\"Gentle?\" you say, amazed.\n\n\"Aye,\" Blutz nods. \"It's a thing skippers know nothing about. Let me try.\" He turns to the MONKEY, \"Now then, Mister Chatter, be a good bloke and unlock the harbour chain so your shipmates can sail through.\"\n\nAnd blow you down if this doesn't do the trick. The MONKEY clambers along the chain and you hear the click of a key as its paws turn an invisible object in the lock. The chain falls aside and the MONKEY comes scurrying back, shrieking gleefully.\n\n\"Imagine if captains had to take such a tone with their crew,\" you mutter. \"A ship's deck would be as blooming genteel as a church!\"\n\n\"Don't worry, skipper,\" says Grimes as the coracle glides into the harbour. \"It might work a treat with MONKEYs, but sailors will always need a bit of yelling at.\"";
 
@@ -6169,7 +6169,7 @@ public:
     {
         ID = 229;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "You know well that the art of concealment rests on distracting the attention. Even as the door starts to swing open, you reach across and unlatch the cabin porthole. Then, scattering a few maps and charts onto the floor from the table where they were lying, you take cover in a heap of oilskins behind the door.\n\nNot a moment too soon. The bald stocky figure of the sailmaster stands in the doorway, lantern in his hand. Seeing the open porthole he gives a growl of annoyance and rushes to close it, worried that salt spray could damage his precious navigation charts. Then he gathers up some papers, puts them under his arm, and crosses to Skarvench's cabin.\n\nYou emerge from your hiding place and peek across the passage. The door of Skarvench's cabin stands ajar, and you can hear him going over the charts with the sailmaster. Now is your chance. Seeing a TOOLKIT beside the door, you take it: your rowing-boat may very well need repairs. There is no time to look for other items. You sneak back along the passage and up on deck.";
 
@@ -6322,7 +6322,7 @@ public:
     {
         ID = 236;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "Holding firm to your mystic AMULET, you pronounce the words of a blessing.\n\n\"Hey, it worked!\" exclaims Blutz, clambering cumbrously over the rail.\"Look, we're not trapped by the curse anymore.\"\n\nYou nod, allowing yourself a slight smile of self congratulation. \"Don't dawdle, though. The effect of the charm won't last forever.\"\n\nLowering yourselves down to the water, you get back into the jollyboat tethered there and row hastily away through the chopping waves. Behind you, the Larnassos fades until she is no more than a wavering patch of shadow, and then is swallowed entirely by the darkness. \"Good riddance!\" spits Grimes.";
 
@@ -6361,7 +6361,7 @@ public:
     {
         ID = 238;
 
-        Image = "images/vampire-green.png";
+        Image = "images/vampire.png";
 
         Text = "Raising your sword, you leap aboard the raft. You intended only to warn Mortice, but instead of backing off he gives a murderous snarl and runs straight onto the sword, impaling himself through the heart. You look away quickly with a grimace of dismay. Still gripping the blade, you glance back at the others and start to say, \"There wasn't anything I could do. He just --\"\n\n\"Look out!\" Blutz screeches in warning, pointing past you. \"He's not dead!\"\n\nYour eyes jerk back to Mortice, who you now see to your horror is still moving. Twitching galvanically, he grins a blood-rimmed smile and coughs gore, then starts to pull himself along the sword blade towards you.";
 
@@ -6380,7 +6380,7 @@ public:
     {
         ID = 239;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "The captain listens to your tale with equal measures of horror disbelief. \"It's a hard tale to swallow,\" he says at last, \"but I've heard this fellow Skarvench is full of hubris.\"\n\n\"It's no mere pipedream,\" says Grimes. \"Skarvench is cunning and ruthless. If he's set his sights on such a prize, you can be sure he has a good plan.\"\n\nThe captain scratches his head. \"It is true that the Queen's flagship is bound for the colonies,\" he admits. \"But I only heard the news myself as I was about to set sail from Glorianne, so Skarvench must have spies in high places. I'd help if I could, but my vessel is only a merchantman and would fare badly against a fully-armed pirate ship.\"\n\nHe finally agrees to set you off in Port Selenice, where you have your best chance of enlisting aid against Skarvench. Then, wishing you well, he resumes his journey towards Leshand.";
 
@@ -6637,7 +6637,7 @@ public:
     {
         ID = 252;
 
-        Image = "images/warship-green.png";
+        Image = "images/warship.png";
 
         Text = "The warship stands much taller than your own vessel, making your few cannon-shots largely ineffective. Your shells smack into the warship's strong oaken flanks with hardly more effect than grape-shot. If only you could score a hit on the enemy's rigging.\n\nThe warship does not return fire. Those mighty guns could easily blast you to kindling, but she is steering instead so as to pull alongside for a boarding action.";
 
@@ -6885,7 +6885,7 @@ public:
     {
         ID = 265;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "A single sweep of the fan summons a strong wind. The fog swirls and parts, swiftly dispersing into wispy tendrils. You now clearly sight both the crippled Rose and, closer to you, the Moon Dog. She is standing at two o'clock off your starboard bow, just in cannon range. You have the weather gauge, meaning that the wind is blowing from behind you towards the Moon Dog -- the ideal position for a sea battle.\n\n\"Now we have a choice,\" says Oakley. \"We can sail in to board her, or stand off and rake her with our guns. \"What's it to be, skipper?\"\n\nAs captain it is your decision.";
 
@@ -6905,7 +6905,7 @@ public:
     {
         ID = 266;
 
-        Image = "images/doctor-mirabilis-green.png";
+        Image = "images/doctor-mirabilis.png";
 
         Choices.clear();
 
@@ -7154,7 +7154,7 @@ public:
     {
         ID = 274;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "You select a number of DIAMONDs, each the size of a walnut.\n\n\"They're worth a queen's ransom!\" gasps Blutz as he sees you gather the jewels together.\n\n\"Perhaps that's what we should call the ship we're going to buy them with,\" you reply smiling. \"THE QUEEN's RANSOM.\"\n\nLeaving Mandrigard to sleep over his still-lavish treasure hoard, you tiptoe out of the cabin and ascend to the deck.";
 
@@ -7356,7 +7356,7 @@ public:
     {
         ID = 283;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "The words have hardly left your lips when he gives an exultant shriek of laughter and launches himself up the side, scaling towards the rail with the speed of a spider running up a wall. Behind him, the two oarsmen throw off their cowls and also begin to climb. You see faces pale as candlewax gleaming in the lantern-light, and long sharp teeth bared in naked bloodlust.\n\nThen an even more horrific sight at last draws a cry of fear from your lips, as a dozen other figures erupt out of the black water and start to make their way up the side of the ship. These are more grotesque than the first three, with ravaged faces of bare bone and grave-mould- Barnacles crust their tarnished breastplates and their once-fine coats hang about them like tattered shrouds.\n\n\"All hands on deck!\" you manage to call out, at last freeing yourself from the paralysis of terror as the first of the monsters reaches the rail. \"We're being boarded by vampires!\"";
 
@@ -7445,7 +7445,7 @@ public:
     {
         ID = 288;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Choices.clear();
 
@@ -7494,7 +7494,7 @@ public:
     {
         ID = 289;
 
-        Image = "images/map-jollyboat-green.png";
+        Image = "images/map-jollyboat.png";
 
         Text = "In the glimmering predawn, as your little boat drifts gently on across the still ocean, you have your first chance to take stock of your situation. You must judge every factor with great care from now on: even the smallest mistake could spell disaster, and you will need every scrap of luck and cleverness if you are to make it to civilized lands alive.\n\nFirst, your companions on the voyage. Grimes, lanky and lantern-jawed, is a lugubrious fellow but despite his habit of expecting the worst he is a good man to have aboard, being neither timid nor quarrelsome. Oakley is tough and smart but abrasive -- a possible challenge to your leadership, if you fail to assert yourself. All the same, you have been in enough tough scrapes together in the past to know that you can count on him too. Blutz is the weak link of the group; a timid, clumsy little scuttlebutt of a man. But you know that he can be clever and resourceful when he has to be.\n\nThe three of them look at you and Oakley says, \"Well, where shall we point our prow?\"\n\n(You can take look at the map 'The Voyage of the Jollyboat' on the MAP SCREEN)";
 
@@ -7607,7 +7607,7 @@ public:
     {
         ID = 293;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "You have soon gathered a small pile of items that catch your eye. These include a CONCH-SHELL HORN, an ancient BRONZE HELMET, a ring in the form of a dragon, a fan with the shape and colouring of a thunder cloud.\n\n\"Yes, any of this lot could well be magical,\" agrees Oakley, scrutinizing your selection. Like you, he has the practiced adventurer's instinct for such things. \"How many shall we take?\"\n\nAfter a brief conference, you decide to take only two items. By pirates' code you should not steal from the captain of a vessel that has shown you hospitality. But weighed against that is the fact that Mandrigard knowingly lured you into the same curse that has trapped him here.\n\n\"Sometimes I hanker for the old-fashioned days of piracy,\" complains Blutz, \"when we'd count plain wealth as treasure and didn't look for a patina of magic to tart it up.\" He is looking longingly at a DIAMOND the size of a walnut which lies on the captain's table.\n\nSo the items to choose from are: a DIAMOND, a CONCH-SHELL HORN, a BRONZE HELMET, a DRAGON RING, and a THUNDERCLOUD FAN.";
 
@@ -8056,7 +8056,7 @@ public:
     {
         ID = 311;
 
-        Image = "images/larnassos-green.png";
+        Image = "images/larnassos.png";
 
         Text = "The ship's prow looms overhead, her tall sails standing like the shadows of midnight against the greying sky. After a long moment during which you begin to fear she is but a drifting ghost-ship, a figure appears at the rail and calls down to you, \"Come board, strangers.\"\n\nA rope ladder is flung down. You look at your companions. They seem to share your unease, but what choice is there? If you stay in the foundering jollyboat your chance of survival is scant. Grabbing the saying ladder, you ascend until you are level with the rail. The vessel's captain is standing there. He holds out his hand to help you aboard, but something in his eager haunted gaze makes you flinch.\n\n\"Come on deck!\" he insists. \"Here's my hand.\"";
 
@@ -8076,7 +8076,7 @@ public:
     {
         ID = 312;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "A look of grim resignation comes into your eyes. You lift your wand to the sky as though about to conduct a symphony of the elements. The others see this and take a step back, suddenly alarmed at the aura of power surrounding their friend.\"Are are you going to do?\" asks Oakley.\n\n\"We're under a curse,\" you tell him simply. \"I mean to call the one who laid the curse.\"\n\nSo saying, you begin to chant the words of a summoning spell. Cold green light glows at the tip of your wand. As your incantation grows in strength, the heavens flash and growl in stern reply, discharging mighty thunderbolts through the turbid clouds. The masts are limned in a sharp unearthly glare. The deck pitches wildly as the ship is swirled and swung by a gale that dredges up waves thirty feet high. Roaring winds blast the rain down onto you in freezing sheets as the full fury of the storm writhes within the fetters of your spell. A pillar of lightning drops into the sea less than a cannon-shot away, sizzling white fire blazing through the wet darkness, prompting looks of panic on the faces of your friends.\n\n\"For God's sake, stop!\" screams Oakley above the noise of the storm. \"You're brining the wrath of Heaven down on us.\"\n\nSuddenly the wind drops. The thunderclouds, piled up like black fortresses in the sky, quieten their rumbling. The rain falls as before in a light gossamer spray. No not as before; this is not rain. It has a sweet heady taste and stains the deck with mauve rivulets. Blutz tilts up his face to the sky and gives a cry of wonder: \"Lads, 'tis raining wine!\"\n\nA throaty feral roar makes you whirl. Across the deck you behold an imposing robed figure, standing in an ivy-twined chariot drawn by four giant panthers. He has skin like gold and eyes of jewelled brilliance, and ringlets of blue hair frame his broad face. It was the panthers' roar you heard, but ow the figure speaks, and his voice is no less wild or daunting: \"You summoned me.\"\n\nYou drop to your knees, glancing back over your shoulder to hiss at the others. \"Bow down as if he was the father of all the ship's captains - and sharpish, shipmates. This is the god Dionysus.\"";
 
@@ -8213,7 +8213,7 @@ public:
     {
         ID = 317;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Now use [BRAWLING]", 241, Skill::Type::BRAWLING));
@@ -8457,7 +8457,7 @@ public:
     {
         ID = 325;
 
-        Image = "images/carvings-green.png";
+        Image = "images/carvings.png";
 
         Text = "Making your way towards the sound of running water, you push the thick undergrowth aside to discover a sparkling stream. After slaking your thirst you follow the stream inland until you come to a clearing where an ancient stone monolith stands surrounded by creepers and green-filtered sunlight. Tiny gnats flit about like motes of golden dust as you inquisitively scrape away the moss covering the monolith so as to examine its carvings. Although weathered, some of the carvings can still be made out, although none of you has any idea what they represent.\n\nThe forest is full of errie sounds. Blutz looks about nervously. \"Shouldn't we be getting back to the boat?\" he says.";
 
@@ -8476,7 +8476,7 @@ public:
     {
         ID = 326;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "You hide the jollyboat and lie in wait until the next morning, when Skarvench comes ashore in a rowboat with five other men: his quartermaster -- the whippet-thin villain named Curshaw, his lumbering first mate Porbuck, Borograve the master gunner, and two seamen carrying spades.\n\nYou crouch in the cover of the bushes and watch this sinister band making their way purposefully through the trees, with Skarvench striding ahead, pacing out distances and from time to time referring to a map he is carrying. Blutz gives a muffled gasp. \"They've come to dig up some treasure!\" he realises.\n\nOakley narrows his eyes. It is all he can do not to leap up from your hiding place and charge at Skarvench, so filled with hatred are his memories. But much as you year for revenge on the evil pirate captain, you know that to attack him now in your weakened state would mean almost certain death. It would be wiser to bide your time.";
 
@@ -8693,7 +8693,7 @@ public:
     {
         ID = 335;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Doctor Scriptor examines the TALISMAN for several minutes before giving his opinion. \"This is the likeness of the Bat of Night, a mythic creature. Under my spy-glass it displays a greenish tinge, indicating that some magic still remains. Possibly its power would work once. Twice at most.\"\n\n\"To do what?\" asks Blutz.\n\n\"Your guess is as good as mine,\" replies Scriptor blandly. \"Perhaps it helps you to see in the dark? Now, my fee for the assessment is one doubloon, as you very well know.\"\n\nHe hands you back the TALISMAN.";
 
@@ -8714,7 +8714,7 @@ public:
 
         ID = -335;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Ask Doctor Scriptor to identify some items for you.";
 
@@ -8735,7 +8735,7 @@ public:
     {
         ID = 336;
 
-        Image = "images/cutlass-green.png";
+        Image = "images/cutlass.png";
 
         Text = "The pedlar is a thin fellow with a pigtail and a silver ring on his ear. On his shoulder crouches a WEASEAL which is attached to wrist by a length of twine. As you approach, the pedlar whisks the tarpaulin off his cart and begins describing the jumble of items he has, tossing each aside and grabbing another almost as quickly as he can reel off the prices.\n\n\"Steady on, matey,\" grumbles Oakley. \"I can hardly keep up. What were you askin' for this here cutlass, now?\"";
 
@@ -8870,7 +8870,7 @@ public:
     {
         ID = 342;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "Skarvench utters a single cry like the croak of a carrion bird, then goes plunging down to his death on the deck below. You climb back down not a moment too soon, for the rope is suddenly jerked out of your hands and goes coiling up into the mist.\n\n\"They've had enough, now their captain's dead,\" says Grimes as you watch the outlines of the Moon Dog recede up into the sky.\n\n\"I'd have liked to get that Curshaw -- and Porbuck as well,\" mutters Oakley. \"I've still got scores to settle with those two.\"\n\nYou clasp their arms and nod towards the broken body of Skarvench lying on the deck. \"Don't be downcast, lads. Tomorrow's another day, and no doubt we'll catch up with those villains sooner or later, but we've done sterling work tonight!\"\n\n\"Indeed you have,\" says an aristocratic voice. You turn to see a tall distinguished-looking Gloriannic gentleman who can only be Admiral Calidor, commander of the Queen's navy. Behind him are a squad of royal marines. \"If you hadn't shown up,\" he continues, \"who knows if we could have been able to cope with those pirates. We've only just managed to subdue their accomplice, the sorcerer William Wild.\"\n\n\"My lord,\" you say, bowing, \"they were after the Queen herself.\"\n\nCalidor smiles. \"I know. And, speaking of the Queen...\"";
 
@@ -8889,7 +8889,7 @@ public:
     {
         ID = 343;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Use both CORKSCREW and SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
@@ -8928,7 +8928,7 @@ public:
     {
         ID = 344;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler3.png";
 
         Text = "You return to the cliffs to find a dozen islanders standing at the top of the vine ladder. They wear grass skirts and each has a red skull-like mask painted across his face. \"That's how the island got its name,\" mutters Oakley out of the corner of his mouth.\n\n\"Maybe so,\" whispers Grimes. \"Or maybe they're headhunters.\"\n\nYou approach cautiously, uncertain of the islanders' intentions. They watch you in silence and then one of them bares his lips in a ferocious grin. Blutz gives a small moan and goes weak at the knees, and you catch his arm to give him support. To your horror, the islander's front teeth are filed to sharp points!";
 
@@ -9127,7 +9127,7 @@ public:
     {
         ID = 353;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Perhaps it is the warning of a sixth sense, perhaps just a groundless fear, but you suddenly how that not all the riches of the Sidonian Main could tempt you to set foot on that eerily silent deck. Ignoring the captain's outstretched hand, you leap up onto the rail and from there jump to the rigging, making your way with catlike grace until you are astride the yardarm.\n\nCaptain Mandrigard takes out his sabre and shake it at you. \"Blast ye, come down from here, ye damned monkey!\" he roars. But you see that he won't be coming up in pursuit of you. Not with his wooden leg.\n\nSeizing the pulleys that support the ship's cutter, or sailing boat, you swing it out over the side and then sever the ropes. The cutter falls with a splash and, as your friends scramble aboard it, you give the captain a dashing salute. \"Thank you, sir, for the fine new boat; please keep our old jollyboat in exchange. But now I must bid you adieu.\"\n\nMandrigard spits curses that would bring a blush to the Devil himself, but there is nothing he can do. Scrambling down the side of the ship, you join the others in the cutter. \"This is more like it,\" says Blutz appreciatively, slapping the firm timbers. \"She won't sink under us in a hurry!\"";
 
@@ -9152,7 +9152,7 @@ public:
     {
         ID = 354;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "\"This was the helmet of Spartan king,\" decides Scriptor after turning the object over in his hands. \"Despite the millennia that have passed since Sparta's heyday, their name is still a byword for stern martial prowess. I would conclude, therefore, that donning the helm would confer some skill at arms.\"\n\nHe demands a doubloon for what he's told you so far. Alternatively you can sell the helmet to Scriptor for his collection -- he'll pay you 15 doubloons for it.";
 
@@ -9174,7 +9174,7 @@ public:
 
         ID = -354;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Ask Doctor Scriptor to identify some items for you.";
 
@@ -9298,7 +9298,7 @@ public:
     {
         ID = 360;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -9487,7 +9487,7 @@ public:
     {
         ID = 366;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "The fog thickens about the ship, smudging the outlines of the bay and covering the stars in a filmy veil. From the marshy ground of the shore comes a green unhealthy glow, just visible between the drifting palls of mist. Blutz gazes this eerie phosphorescence and says through chattering, \"Will o' wisps. Spirits of men who droned at sea and were washed up here.\"\n\nYou are due to take the first watch, with Blutz relieving you at eight bells. It strikes you that his nerves may not stand at midnight vigil, and maybe it would be better if he exchanged watches with you.";
 
@@ -9683,7 +9683,7 @@ public:
     {
         ID = 374;
 
-        Image = "images/master-kemp-green.png";
+        Image = "images/master-kemp.png";
 
         Text = "You make your way to the eastern edge of town and along the boardwalk into the shipyard. Labourers scurry to and from ignoring you, for it is their busiest season with the hurricane just a month away. A dozen ships lie here careened -- raised up on dry land and tilted on one side so that repairs or routine maintenance can be carried out. The new vessels stand in stocks further back from the water's edge, in varying degrees of construction. You see stacks of oak planks which are used for the hulls, and long straight pine poles that will become the masts.\n\nThe Master Shipbuilder, Kemp, emerges from his workshop and comes hurrying over. He is a spare-framed fellow with grey mutton-chop whiskers around a face coloured red by harsh coast winds and nips of brandy wine. \"Greetings,\" he says. He is on the point of shaking hands when he remembers that his fingers are tarry from caulking the new ships. \"Ah well. How can I help?\"";
 
@@ -9893,7 +9893,7 @@ public:
     {
         ID = 383;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "The moonlight shines down on you like the beam of a lantern. The lookout gapes in an amazement for only a second, then starts yelling at the top of his lungs. You start to row desperately away, but you are still very weak from your ordeal. Looking back, you see that the pirates have lost no time in lowering two cutters into the water and are now rowing hard to intercept you.";
 
@@ -9939,7 +9939,7 @@ public:
     {
         ID = 385;
 
-        Image = "images/filler4-green.png";
+        Image = "images/filler4.png";
 
         Text = "The basilisk: a gigantic bird with dracontine wings, scales instead of feathers, and a long serpentine tail. Its stare alone is enough to kill virtually any living thing. Of all animals, only the WEASEAL is immune to the basilisk's deadly gaze and is capable of killing it.";
 
@@ -10133,7 +10133,7 @@ public:
     {
         ID = 393;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "You recognise the man as Twitchy Pinque, a notorious petty thief who wouldn't hesitate to sell his own grandmother -- not that he would get much for her if he did, since she is a known witch with a soul of pure poison.\n\nSeizing him by the scruff of his grubby neck, you whisper into his ear, \"It's not stolen, this lot, is it, Twitchy? Not selling stolen goods that you've pilfered here in Selenice? That'd be nothing short of pig stupid, I'd say. I'd only have to give a whistle and some of the nastiest pirates in the Carab are going to fall on you like half a ton of ballast. I wonder what they'd do to you, eh, Twitchy?\"\n\nThis unorthodox bargaining technique quickly convinces Pinque to drop to rock-bottom prices.\n\nYou are dubious about the amulet, but Pinque swears blind it's genuine. \"Belonged to my dear old granny, guv. Still does technically, I suppose, since I never asked her if I could take it.";
 
@@ -10391,7 +10391,7 @@ public:
     {
         ID = 403;
 
-        Image = "images/filler1-green.png";
+        Image = "images/filler1.png";
 
         Text = "He pauses in the act of raising his cup to his lips and glares at you from under beetling brows. \"Eh?\" he demands. \"What do you know of that? It is supposed to be a secret, and you'd do well not to blab such delicate matters. A wagging tongue is a tongue worth cutting!\" He fingers his sword-hilt, glowering at you sidelong.";
 
@@ -10512,7 +10512,7 @@ public:
     {
         ID = 407;
 
-        Image = "images/frozen-ship-green.png";
+        Image = "images/frozen-ship.png";
 
         Text = "Striking southwards in search of icebergs, you enter cooler waters. The climate is still subtropical here, but ocean currents carry meltwater from the polar regions and there is always the possibility of finding icebergs. In a larger vessel they would be a hazard. Now they could be your one chance of survival.\n\nAfter hours of continually scanning the horizon you are half blind with the sea glare, but at last you catch sight of a great blue crag drifting majestically in the distance. Sunbeams make a thousand spangling stars on its surface. \"There's yer iceberg,\" says Blutz. \"But the thing is, will it be safe to drink?\"\n\nDrawing nearer, you begin to make out a darker outline within the blue-grey ice. Oakley is the first recognize it. \"It's a ship! A blooming ship -- frozen inside the iceberg!\"";
 
@@ -10540,7 +10540,7 @@ public:
     {
         ID = 408;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "Curshaw scowls as he sees you looking at him. \"I'll enjoy giving you a taste of the cat,\" he says, referring to the whip used to punish mutineers.\n\n\"You would, you mouse,\" you say, taunting him. \"You only squeak bravely when your victims have their hands tied.\"\n\nCurshaw leaps to his feet, hands bunched into fists. \"I'll cut out your tongue and swallow it whole! I'll fry your gizzard for breakfast!\"\n\nYou glance away nonchalantly. \"Big talk, small fry.\"\n\nThis is too much for him. Snatching up a paddle, he swings it at your head. It is your cue to explode into action. Still crouching, you duck under the swing and then, while Curshaw totters off-balance, you shoot to your feet and deliver a bone-cracking head butt that lays him flat.\n\nPorbuck lets go of the oars and lumbers towards you -- only to go reeling back as you lash out with two flying kicks in rapid succession. He shakes his head, growls and comes doggedly on to pummel you with his huge fists.\n\nIt is a hard fight, testing your skill to the limit. Porbuck is a brutal and powerful fighter who would be difficult to beat even if you didn't have your hands tied.\n\nYou LOSE 5 Life Points.";
 
@@ -10566,7 +10566,7 @@ public:
     {
         ID = 409;
 
-        Image = "images/filler2-green.png";
+        Image = "images/filler2.png";
 
         Text = "A LETTER OF MARQUE would allow you to indulge in a spot of honest piracy -- or rather privateering, as it is called. Such a letter licenses you to act as a private soldier of Her Majesty's navy, with full entitlement to plunder Sidonian treasure-ships.\n\n\"But we'll never be able to get one,\" sighs Blutz after you have all spent some time discussing the idea.\n\n\"That's right,\" growls Oakley. \"I hear it costs almost as much in bribes to get hold of a LETTER OF MARQUE as you're likely to bring in as profit!\"\n\n\"We may as well try, at least,\" you tell them, irritated yo hear such pessimism.\n\nYou make your way up the narrow streets to the fort, where you lose no time in applying to the Office of Prejudicial Trade for a LETTER OF MARQUE. A bland-faced fellow in a blue velvet doublet listens to your request, then government is very keen to see private enterprise flourish,\" he murmurs silkily. \"But drawing up a LETTER OF MARQUE is not just a simple matter of putting quill to paper. There are forms to be filled in, credentials to be established, the proper channels to go through, red tape...\" He pretends to stifle a yawn. \"It all takes time. And money.\"\n\nGrimes nudges you and mutters behind his hand. \"He's angling for a bribe skipper.\"";
 
@@ -10901,7 +10901,7 @@ public:
     {
         ID = 423;
 
-        Image = "images/leshand-green.png";
+        Image = "images/leshand.png";
 
         Text = "Leshand is busy port of narrow half-timbered houses with small leaded windows and peaked roofs of olive-green tiles. The town is overlooked by the massive stone garrison fort on the hill above the harbour. It is well known that the governor prefers to rule the colony with a light touch, exercising his authority in as leisurely a manner as possible, openly encouraging buccaneers to put into dock here and spend their loot. But things are different at the moment, and you are stuck by subtle but noticeable changes since your last visit. The buccaneers are here as usual, but in fewer numbers and on markedly better behaviour. The soldiers of the city militia are adorned in clean new tabards, which they wear with expressions of pride. There are even a handful of street-cleaners whom you pass scrubbing at the accumulated grime on the cobblestones.\n\nA good meal and a bath go a long way to refreshing you after weeks at sea.\n\nYou RECOVER 3 Life Points.";
 
