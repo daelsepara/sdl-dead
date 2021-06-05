@@ -2957,7 +2957,7 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
 
         std::vector<std::string> entries;
 
-        SDL_Surface *splash = createImage("images/filler1-green.png");
+        SDL_Surface *splash = createImage("images/filler1.png");
 
         auto saved_games = std::multimap<std::filesystem::file_time_type, std::string, std::greater<std::filesystem::file_time_type>>();
 
