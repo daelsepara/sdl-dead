@@ -9574,13 +9574,204 @@ public:
 
     void Event(Character::Base &player)
     {
-        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
-        {
-            Character::LOSE_SKILLS(player, {Skill::Type::ROGUERY});
-        }
+        Character::LOSE_SKILLS(player, {Skill::Type::ROGUERY});
     }
 
     int Continue(Character::Base &player) { return 136; }
+};
+
+class Story370 : public Story::Base
+{
+public:
+    Story370()
+    {
+        ID = 370;
+
+        Text = "The captain of the Jewel of Heaven is a bluff good-natured man who roars at his crew with gusto. For their part they seem devoted to him -- and perhaps a little overawed by his forceful nature and matchless knowledge of the sea. You spend several pleasant evenings sitting in his cabin, where the rum flows free after a good supper. \"Hark to that!\" he is wont to say, listening to the water lapping against the hull. \"Did you ever hear a mother with babe in arms sing such a sweet lullaby? Ah, the sweet sighing of the sea -- it's a sound to seal the hushed casket of a man's soul, my merry lads!\"\n\n\"Here aboard your fine ship, I'm happy to agree,\" laughs Oakley. \"When we were drifting in our boat, though, the sea sang us a more mournful tune!\"\n\nThe captain is glad to have educated company, and you can strike up conversations on various topics.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask for his opinion on pirates", 390));
+        Choices.push_back(Choice::Base("Ask about the war between Glorianne and Sidonia", 380));
+        Choices.push_back(Choice::Base("Ask about Queen Titania's visit to the New World colonies", 403));
+        Choices.push_back(Choice::Base("Ask for information about Port Leshand", 420));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story371 : public Story::Base
+{
+public:
+    Story371()
+    {
+        ID = 371;
+
+        Text = "What secrets, you muse to yourself, lie locked aboard the ice-bound vessel? It is a mystery that may never be answered. Even a full ship's company armed with picks would take weeks to hack her out of the ice.\n\nYou veer away from the iceberg, soon losing it far astern. The hideous incessant sun continues to sap your strength by day. By night you lie groaning in the gravid cold.\n\nYou LOSE 2 LIfe Points.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+
+    int Continue(Character::Base &player) { return 424; }
+};
+
+class Story372 : public Story::Base
+{
+public:
+    Story372()
+    {
+        ID = 372;
+
+        Text = "You are STRIPPED of ALL your POSSESSIONS and bundled into the ship's hold to await Skarvench's return. The hatch closes, leaving you in darkness. You can hear rats scurrying about. \"Help untie these bonds,\" you tell the others. \"Then we wait.\"\n\nAfter several hours you hear Skarvench come board. Feet clump down, creaking the timbers around the hatch over your heads. You hear a voice say, \"Does 'e want 'em up on deck now?\"\n\n\"Not yet,\" replies another man. \"We're to get under way first. Cap'n's keen to reach Selenice an' see if the moonsails 'ave arrived.\"\n\nThe ship moves slowly as the anchor cable is winched in. Then you hear the pirates break into song as they hoist the sails and begin to steer out of the bay.\n\nSuddenly there is a jolt and the ship lurches to one side. This is your chance. Hastily forcing the hatch, you emerge on deck to find that the ship has run aground on a reef. \"I knew those alterations I made to the charts would pay off,\" you tell the others with a crafty smile.\n\nSlipping over the side, you swim away unnoticed in the confusion.. Once back at the shore, you lose no time getting your little vessel and putting to sea under cover of the dusk.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_POSSESSIONS(player);
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story373 : public Story::Base
+{
+public:
+    Story373()
+    {
+        ID = 373;
+
+        Text = "Scriptor looks closely at the ring through his jeweller's lens, then hands it back to you with a frown. \"This is a very dangerous item indeed,\" he explains. \"It is cursed, and will bring disaster on anyone who tries to use it.\"\n\n\"How do you use it?\" wonders Blutz, reaching for the ring.\n\nYou snatch it back. \"We don't.\"\n\nOakley gives the doctor a shrewd look. \"This wouldn't just be your way of getting us to sell the ring cheap, would it, Doc?\" he mutters.\n\nScriptor splutters with outrage. \"Certainly not! I want nothing to do with it. In fact, I shall not even ask my usual fee of one doubloon for the consultation, since it is unlucky to seek profit from a cursed item.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask to identify the BAT-SHAPED TALISMAN", 335, {Item::BAT_SHAPED_TALISMAN}));
+        Choices.push_back(Choice::Base("... the BRONZE HELMET", 354, {Item::BRONZE_HELMET}));
+        Choices.push_back(Choice::Base("... the CONCH-SHELL HORN", 316, {Item::CONCH_SHELL_HORN}));
+        Choices.push_back(Choice::Base("It's time you were on your way", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story374 : public Story::Base
+{
+public:
+    Story374()
+    {
+        ID = 374;
+
+        Image = "images/master-kemp-green.png";
+
+        Text = "You make your way to the eastern edge of town and along the boardwalk into the shipyard. Labourers scurry to and from ignoring you, for it is their busiest season with the hurricane just a month away. A dozen ships lie here careened -- raised up on dry land and tilted on one side so that repairs or routine maintenance can be carried out. The new vessels stand in stocks further back from the water's edge, in varying degrees of construction. You see stacks of oak planks which are used for the hulls, and long straight pine poles that will become the masts.\n\nThe Master Shipbuilder, Kemp, emerges from his workshop and comes hurrying over. He is a spare-framed fellow with grey mutton-chop whiskers around a face coloured red by harsh coast winds and nips of brandy wine. \"Greetings,\" he says. He is on the point of shaking hands when he remembers that his fingers are tarry from caulking the new ships. \"Ah well. How can I help?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Tell him you want to buy a ship", 43));
+        Choices.push_back(Choice::Base("Enquire whether he has done any work for Skarvench recently", 63));
+        Choices.push_back(Choice::Base("Ask him about the ship Cold Grue", 82));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story375 : public Story::Base
+{
+public:
+    Story375()
+    {
+        ID = 375;
+
+        Text = "The shipbuilder shows you a small sloop with ten cannon. \"Is that all you can sell us?\" protests Grimes. \"She's hardly a suitable vessel for hard piracy.\"\n\nThe shipbuilder shrugs. \"This is the best I can offer for the price. Her previous owner ran her up and down the SIdonian Main trading in various goods -- the cannons were only installed as a defensive measure against piracy, ironically enough,\" Seeing your disgruntled expression, he adds, \"She does still have a small consignment of salt aboard. It was still in the hold when she came into my hands. I'll throw that in for free.\"\n\n\"Salt? Most generous of you. Still, she'll have to do.\" And, so saying, you take possession of the LADY OF SHALOTT.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::LADY_OF_SHALOTT);
+    }
+
+    int Continue(Character::Base &player) { return 300; }
+};
+
+class Story376 : public Story::Base
+{
+public:
+    Story376()
+    {
+        ID = 376;
+
+        Text = "The next few days see an upswing in your fortunes as treasure ships, anxious to be well clear of the region before the onset of the hurricane season, come sailing to your clutches like fish into a net. You board three well-laden galleons and carry off a fine haul in gold coins, jewelled trinkets and rich sea-coloured silks.\n\nYou pace to and fro as Blutz's quill scrapes on the pages of the account book, tracing the growth of your riches. At last he looks up with a sigh, sets aside his quill and cracks his knuckles. You, Grimes and Oakley leap forward like three expectant fathers waiting for midwife's news. \"Well?\"\n\n\"We've enough loot to buy us one of the finest warships on the Carab Sea,\" declares Blutz with a broad grin.\n\n\"Excellent news,\" You race up on deck. \"Hoist the mainsail! Helmsman, five points to starboard! We've bound for home.\"\n\nA cry from the crow's nest warns of a dark cloud on your horizon of hope. \"A Gloriannic warship in sight off the port bow!\" calls the lookout. \"She's raising signals. The order is for us to heave to and prepare to be boarded.\"\n\n\"Brandy and bilge-water!\" swears Grimes, joining you on the poopdeck. \"What's it to be, cap'n -- do we let those lubbers come aboard, or give 'em a run for their money?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Drop sail and allow the warship to come alongside", 24));
+        Choices.push_back(Choice::Base("Try outrunning her", 214));
+        Choices.push_back(Choice::Base("Turn and make a fight of it", 252));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story377 : public Story::Base
+{
+public:
+    Story377()
+    {
+        ID = 377;
+
+        Text = "The search for clues becomes an obsession, driving you to sleepless nights and foolhardy risks. You begin to frequent the roughest taverns of Leshand -- places where a careless word can get your throat cut. Hardened villains scowl at your urgent questioning, but you soon discover that the name of El Draque seals all lips. \"But he's dead,\" you protest, \"hanged at sea more than a month ago.\"\n\nThey watch you in silence until one old sailor summons the courage to speak. \"Then how come I seen him on the deck of his vessel not one week since, drenched in moonlight and shrieking fit to burst?\"\n\nAnother seizes you by the collar. \"The grave's not more than a temporary berth for El Draque. But no one will be saying that of you, if you keep on poking your nose about!\"\n\nYou are finally forced to set sail back to Selenice empty handed.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 396; }
+};
+
+class Story378 : public Story::Base
+{
+public:
+    Story378()
+    {
+        ID = 378;
+
+        Text = "Your obsessive search for the iceberg drives you to steer course far off the known shipping lanes. At first, in awe of your reputation as a mariner, the crew toil on without complaint. But then the days draw by with no sight of land or other ships, and the grumbling begins. To begin with it takes the form of simple discontent -- a spluttered curse when a man bites into an apple from the deck-barrel and finds it rotten, or a surly rejoinder when orders are given. Oakley, Grimes and Blutz do their best to keep discipline, but the sun beats down day after day until the pitch bubbles in the seams and the sails blaze too bright to look at. Water begins to run low, and it is then that the grumbling begins to veer towards outright mutiny.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Press on regardless to the west", 56));
+        Choices.push_back(Choice::Base("... or east of your current position", 93));
+        Choices.push_back(Choice::Base("Abandon the search and return to Selenice", 396));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story379 : public Story::Base
+{
+public:
+    Story379()
+    {
+        ID = 379;
+
+        Text = "More flashes show from the Moon Dog's guns, but these shells go booming harmlessly beyond your bows, hissing to the deep below. You are now almost within grappling distance of the enemy ship.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ram her at full sail", 25));
+        Choices.push_back(Choice::Base("Close alongside for boarding", 415));
+
+        Controls = Story::Controls::STANDARD;
+    }
 };
 
 auto prologue = Prologue();
@@ -9961,6 +10152,16 @@ auto story366 = Story366();
 auto story367 = Story367();
 auto story368 = Story368();
 auto story369 = Story369();
+auto story370 = Story370();
+auto story371 = Story371();
+auto story372 = Story372();
+auto story373 = Story373();
+auto story374 = Story374();
+auto story375 = Story375();
+auto story376 = Story376();
+auto story377 = Story377();
+auto story378 = Story378();
+auto story379 = Story379();
 
 void InitializeStories()
 {
@@ -10002,7 +10203,8 @@ void InitializeStories()
         &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
         &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
         &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
-        &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369};
+        &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
+        &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379};
 }
 
 #endif
