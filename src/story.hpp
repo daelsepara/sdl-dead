@@ -2334,7 +2334,7 @@ public:
     {
         ID = 76;
 
-        Text = "To your own amazement as much as your foe's, the weasel suddenly jumps out of your haversack and leaps across the deck to give him a painful bite on the hand. Skarvench drops the taper with a startled oath: \"Agh! Devil take the animal!\"\n\nHe seizes the weasel by its neck and casts it off over the side, but its attack has bought you the time you need to close in. Now you are face to face with Skarvench in a battle to the finish.";
+        Text = "To your own amazement as much as your foe's, the WEASEAL suddenly jumps out of your haversack and leaps across the deck to give him a painful bite on the hand. Skarvench drops the taper with a startled oath: \"Agh! Devil take the animal!\"\n\nHe seizes the WEASEAL by its neck and casts it off over the side, but its attack has bought you the time you need to close in. Now you are face to face with Skarvench in a battle to the finish.";
 
         Choices.clear();
 
@@ -7939,11 +7939,11 @@ public:
 class Story308 : public Story::Base
 {
 public:
+    std::string PreText = "";
+
     Story308()
     {
         ID = 308;
-
-        Text = "With the help of others you put together a makeshift raft, even rigging a rough sail from interwoven palm leaves. You have to work fast, knowing that you have only the space of a single night, and you are not sure the raft will hold together long enough for you to reach the next island.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Put to sea on the raft", 137));
@@ -7951,6 +7951,20 @@ public:
         Choices.push_back(Choice::Base("Go to the witch's place at dawn", 327));
 
         Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "With the help of others you put together a makeshift raft, even rigging a rough sail from interwoven palm leaves. You have to work fast, knowing that you have only the space of a single night, and you are not sure the raft will hold together long enough for you to reach the next island.";
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            Character::GET_CODEWORDS(player, {Codeword::Type::FLOAT});
+
+            PreText += "\n\n[CHARMS] You used your AMULET to make the raft seaworthy.";
+        }
+
+        Text = PreText.c_str();
     }
 };
 
@@ -8723,7 +8737,7 @@ public:
 
         Image = "images/cutlass-green.png";
 
-        Text = "The pedlar is a thin fellow with a pigtail and a silver ring on his ear. On his shoulder crouches a weasel which is attached to wrist by a length of twine. As you approach, the pedlar whisks the tarpaulin off his cart and begins describing the jumble of items he has, tossing each aside and grabbing another almost as quickly as he can reel off the prices.\n\n\"Steady on, matey,\" grumbles Oakley. \"I can hardly keep up. What were you askin' for this here cutlass, now?\"";
+        Text = "The pedlar is a thin fellow with a pigtail and a silver ring on his ear. On his shoulder crouches a WEASEAL which is attached to wrist by a length of twine. As you approach, the pedlar whisks the tarpaulin off his cart and begins describing the jumble of items he has, tossing each aside and grabbing another almost as quickly as he can reel off the prices.\n\n\"Steady on, matey,\" grumbles Oakley. \"I can hardly keep up. What were you askin' for this here cutlass, now?\"";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -9774,6 +9788,278 @@ public:
     }
 };
 
+class Story380 : public Story::Base
+{
+public:
+    Story380()
+    {
+        ID = 380;
+
+        Text = "\"It is expected to get worse,\" is the captain's view. \"The Sidonians rapaciously claim ownership of the whole of the New World; Glorianne and some other smaller nations dispute this. There is great wealth in the New World -- why should we not share it? But the Sidonians continue to act like selfish schoolyard bullies, and in the meantime we have a hard time keeping our few colonies safe. Why I have even heard that the King of Sidonia has put a price on Queen Titania's head: a million doubloons if she's delivered to him alive. The arrogance of the man!\"\n\nIt makes sense. If the King of Sidonia could force Titania into marriage, he would thereby add Glorianne to his empire without firing a shot. But first he would have to capture her, of course, and now you begin to see the scope of Skarvench's plan. If he succeeds in kidnapping the Queen, he can ransom her to the highest bidder -- either back to Glorianne, or for Sidonia's million doubloon reward.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Divulge what you know about Skarvench's plan to the captain", 11));
+        Choices.push_back(Choice::Base("Ask him about pirates", 390));
+        Choices.push_back(Choice::Base("... about Queen Titania's tour of her colonies", 403));
+        Choices.push_back(Choice::Base("... about Port Leshand", 420));
+        Choices.push_back(Choice::Base("There is nothing else you wish to discuss", 148));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story381 : public Story::Base
+{
+public:
+    Story381()
+    {
+        ID = 381;
+
+        Text = "Your next goal is to reach civilization, and now you weigh up the advantages of each route. The direct westerly course to Port Leshand lies through stormy seas that might easily capsize a small boat like yours. Alternatively, diverting far south would take you into a region where the prevailing ocean currents flow westward, so you could be carried to Leshand faster than if you steered a direct course. The drawback is that your supplies might not last out. One solution to that problem would be to steer the middle course, island-hopping as you head generally west towards Leshand. Then your only worry would be the risk of attack from hostile natives.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            return 399;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::SPELLS))
+        {
+            return 416;
+        }
+        else
+        {
+            return 289;
+        }
+    }
+};
+
+class Story382 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story382()
+    {
+        ID = 382;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "They cluster round eagerly to see what items you have. You must give them one of the following: a SWORD, a PISTOL, an AMULET, a WAND, a CRUCIFIX, a TOOLKIT, or ALL your MONEY.";
+
+        auto count = 0;
+
+        std::vector<Item::Base> bribe = {Item::SWORD, Item::PISTOL, Item::MAGIC_WAND, Item::MAGIC_AMULET, Item::CRUCIFIX, Item::TOOLKIT};
+
+        for (auto i = 0; i < bribe.size(); i++)
+        {
+            count += Item::COUNT_TYPES(player.Items, bribe[i].Type);
+        }
+
+        if (count >= 1)
+        {
+            Choices.push_back(Choice::Base("Give them a gift", 417, Choice::Type::BRIBE, bribe, 1));
+        }
+        else
+        {
+            PreText += "\n\nBut you are unable to part with such items.";
+        }
+
+        if (player.Money > 0)
+        {
+            Choices.push_back(Choice::Base("Give them ALL of Your MONEY", 417, Choice::Type::LOSE_MONEY, player.Money));
+        }
+
+        Choices.push_back(Choice::Base("You cannot or refuse to give anything: the natives begin to get angry and you will have a fight on your hands", 363));
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story383 : public Story::Base
+{
+public:
+    Story383()
+    {
+        ID = 383;
+
+        Image = "images/filler1-green.png";
+
+        Text = "The moonlight shines down on you like the beam of a lantern. The lookout gapes in an amazement for only a second, then starts yelling at the top of his lungs. You start to row desperately away, but you are still very weak from your ordeal. Looking back, you see that the pirates have lost no time in lowering two cutters into the water and are now rowing hard to intercept you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 345;
+        }
+        else
+        {
+            return 401;
+        }
+    }
+};
+
+class Story384 : public Story::Base
+{
+public:
+    Story384()
+    {
+        ID = 384;
+
+        Text = "Ejada throws back her glossy green hair and laughs. \"A wizardly duel? So be it -- centuries have passed since any mortal mage dared to pit his sorcery against mine!\" So saying, she raises her hands and begins the incantation of a spell.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Summon a gust of wind to lift her off her feet", 62));
+        Choices.push_back(Choice::Base("Unleash a blast of flame to burn her up", 81));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story385 : public Story::Base
+{
+public:
+    Story385()
+    {
+        ID = 385;
+
+        Image = "images/filler4-green.png";
+
+        Text = "The basilisk: a gigantic bird with dracontine wings, scales instead of feathers, and a long serpentine tail. Its stare alone is enough to kill virtually any living thing. Of all animals, only the WEASEAL is immune to the basilisk's deadly gaze and is capable of killing it.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            Choices.push_back(Choice::Base("Head straight to the shipyard", 374));
+            Choices.push_back(Choice::Base("Step in to save the scholar from the three bullies", 52));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 109; }
+};
+
+class Story386 : public Story::Base
+{
+public:
+    Story386()
+    {
+        ID = 386;
+
+        Text = "Your craft is rocked by churning waves and rattled by incessant storm winds. Finally it can take no more. The timbers break apart with a shudder, plunging your sorry little band into the wine-dark waters of the sea. Your last sight is of Blutz, gasping as he claws for a handhold in thin air, calling to you for help. But you cannot help him. You cannot even save yourself.";
+
+        Type = Story::Type::DOOM;
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story387 : public Story::Base
+{
+public:
+    Story387()
+    {
+        ID = 387;
+
+        Text = "By now your throat feels as though you have been choked with soot. \"Ah, if only the rain would start falling again -- just a light drizzle,\" moans Grimes. \"I'd give my right hand to taste a drop of water.\"\n\nBlutz stares at the heaving sea. His lolling swollen tongue makes him look like a parched dog. \"Perhaps a handful of brine would do no harm?\" he ventures.\n\n\"Don't try it,\" Oakley grunts. \"You'd wither your tongue to the root.\"\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+
+    int Continue(Character::Base &player) { return 405; }
+};
+
+class Story388 : public Story::Base
+{
+public:
+    Story388()
+    {
+        ID = 388;
+
+        Text = "Each attempt you make at leaving the ship is thwarted by a powerful force which drags you back to the deck. It is as though invisible spirits were hovering around you and conspiring to prevent your escape. Your efforts become increasingly desperate, until at last you even try jumping overboard into the churning sea. But even this is to no avail -- you are just jerked back to the deck like an iron filing in the pull of a magnet.\n\n\"Well, that's that,\" groans Blutz, flopping back against the rail in a pose of exhaustion and defeat. \"We're doomed never to get off this ship.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SPELLS))
+        {
+            return 312;
+        }
+        else
+        {
+            return 350;
+        }
+    }
+};
+
+class Story389 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story389()
+    {
+        ID = 389;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree to Grimes' plan to veer south", 407));
+        Choices.push_back(Choice::Base("Stick to your current course", 424));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "By wrapping the coconut in his shirt and banging it against the side of the boat, Oakley succeeds in breaking it open without losing any of the precious contents. He laughs delightedly as coconut milk dribbles down his chin. \"As sweet as any nectar of the gods!\" he declares.";
+
+        if (!Character::VERIFY_CODEWORD(player, Codeword::Type::COCONUTS))
+        {
+            Character::GAIN_LIFE(player, -1);
+
+            PreText += "\n\nYou LOSE 1 Life Point.";
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nIt proves to be a meager banquet in any case, and everyone is soon complaining that their thirst has returned worse than before.\n\nBlazing heat holds you like a vice as the afternoon wears on. At last the sun sinks into the furthest reaches of the sea. As the cool of approaching night revives your sorry band, Grimes sits up and grabs your arm. \"Look, shipmate,\" he says with sudden urgency, \"here's the way I see it. We're not long for this world if something ain't done. I say we should steer further south still. At this time of year you can often find icebergs that have cracked off he pack ice in the thaw.\"\n\n\"So what?\" groans Oakley, rousing himself irritably.\n\nGrimes turns to him. \"Where there's an iceberg there'll be fresh water. Penguins too, if luck's with use.\"\n\nOakley gives a bleak laugh to hear this. \"Luck? Luck lost sight of our boat long ago, matey!\"";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -10162,6 +10448,16 @@ auto story376 = Story376();
 auto story377 = Story377();
 auto story378 = Story378();
 auto story379 = Story379();
+auto story380 = Story380();
+auto story381 = Story381();
+auto story382 = Story382();
+auto story383 = Story383();
+auto story384 = Story384();
+auto story385 = Story385();
+auto story386 = Story386();
+auto story387 = Story387();
+auto story388 = Story388();
+auto story389 = Story389();
 
 void InitializeStories()
 {
@@ -10204,7 +10500,8 @@ void InitializeStories()
         &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
         &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
         &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
-        &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379};
+        &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
+        &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389};
 }
 
 #endif
