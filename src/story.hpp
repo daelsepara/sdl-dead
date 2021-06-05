@@ -4178,7 +4178,7 @@ public:
     {
         ID = 151;
 
-        Text = "Clutching the talisman, you appeal to whatever ancient god or demon it depicts to use its power now. For a long instant nothing happens, and you fear that the talisman's magic has worn off with age, but then you see a black shadow spreading across the face of the moon. It has the outline of a bat's wing.\n\n\"The bat was the symbol of night in ancient times,\" says Grimes, his voice hushed in awe as the last moonlight vanishes like a shuttered lantern-beam and the world is plunged into starlit darkness.";
+        Text = "Clutching the TALISMAN, you appeal to whatever ancient god or demon it depicts to use its power now. For a long instant nothing happens, and you fear that the TALISMAN's magic has worn off with age, but then you see a black shadow spreading across the face of the moon. It has the outline of a bat's wing.\n\n\"The bat was the symbol of night in ancient times,\" says Grimes, his voice hushed in awe as the last moonlight vanishes like a shuttered lantern-beam and the world is plunged into starlit darkness.";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -8178,7 +8178,7 @@ public:
         Choices.clear();
         Choices.push_back(Choice::Base("Pay Scriptor 1 doubloon", -316, Choice::Type::LOSE_MONEY, 1));
         Choices.push_back(Choice::Base("Sell him the CONCH-SHELL HORN", -316, Choice::Type::SELL, {Item::CONCH_SHELL_HORN}, 20));
-        Choices.push_back(Choice::Base("You refuse to pay or choose to leave", 392));
+        Choices.push_back(Choice::Base("You refuse to pay", 392));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -8189,6 +8189,8 @@ class Event316 : public Story::Base
 public:
     Event316()
     {
+        Title = "Down Among the Dead Men: 316";
+
         ID = -316;
 
         Text = "Ask Doctor Scriptor to identify some items for you.";
@@ -8562,6 +8564,269 @@ public:
     }
 };
 
+class Story330 : public Story::Base
+{
+public:
+    Story330()
+    {
+        ID = 330;
+
+        Text = "With sails towering against the darkling sky, the ship sails past on her endless voyage. Seemingly she casts a deep bone-racking chill in her wake, and all of you shiver as you watch her fade into the night.\n\n\"A backwards blessing on this cold,\" mutters Grimes through chattering teeth. \"Let's head south, mates. Better a slow journey in warmer waters than to be flung up to scrape the icy hull of heaven.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree with the plan to turn south", 135));
+        Choices.push_back(Choice::Base("Insist on pressing westwards", 349));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORD(player, Codeword::Type::PECCANT))
+        {
+            Choices[1].Destination = 386;
+        }
+        else
+        {
+            Choices[1].Destination = 349;
+        }
+    }
+};
+
+class Story331 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story331()
+    {
+        ID = 331;
+
+        Bye = "Don't look so sick, mate,\" says Oakley to Blutz. \"All the best pirates are wearing hooks these days.\"\n\nChuckling bleakly at this, you clamber back down to the jollyboat tethered alongside and start to row away.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You raise the CLEAVER, a grim look setting your features like stone. \"Who's to be first?\" you ask.\n\nBlutz's lip trembles. He looks like a large timid hamster when he says, \"Eh? What do you mean?\"\n\n\"It's obvious mate,\" puts i Grimes, nodding towards the water tank full of decomposed hands. \"The only way off this island is to sacrifice a hand.\"\n\nOakley nods. \"That's what the sailors must've done. I don't know if it was the pain and loss that cancelled out their guilt. Maybe it was just a way of getting around the letter of the curse - y'know, chopping off the hand that did the fateful deed. Who's to say? But I see a tank full o' hands and no bodies to go with them, so they must've got away, mustn't they\"\n\nEach of you in turn submits to the CLEAVER, depositing your severed hand in the water tank with the others. It is a gruesome sacrifice, but your only way of circumventing the curse.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+            {
+                Character::LOSE_SKILLS(player, {Skill::Type::AGILITY});
+
+                PreText += "\n\nYour [AGILITY] skill is LOST.";
+            }
+        }
+
+        Text = PreText.c_str();
+
+        player.TemporarySkills.clear();
+    }
+
+    int Continue(Character::Base &player) { return 136; }
+};
+
+class Story332 : public Story::Base
+{
+public:
+    Story332()
+    {
+        ID = 332;
+
+        Text = "After so long at sea you would have expected to sight a ship by now. A nasty suspicion begins to obsess your thoughts: that you have drifted far south of the main trade route, and that you now have no hope of being picked up. Talking it over the others, you find that Grimes and Oakley are for turning north, possibly in the hope of reaching the Smoking Islands. There you could forage for food and water. Blutz thinks you should stick to your present course. \"Ships are scarce because the hurricane season starts in a month or so\", he reasons, \"but I still say that if we keep heading west we'll be picked up soon.\"\n\nOakley snorts impatiently. \"The hurricane isn't due for at least eight weeks! No, the reason we've not seen a ship is because we're too far south.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Steer northwards", 135));
+        Choices.push_back(Choice::Base("Stay on a westbound course", 351));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story333 : public Story::Base
+{
+public:
+    Story333()
+    {
+        ID = 333;
+
+        Text = "The smooth steely outlines and the cloudy blue colour of the iceberg tell you that it is old ice, which will have lost its salt content over the years and should be safe to drink.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 352; }
+};
+
+class Story334 : public Story::Base
+{
+public:
+    Story334()
+    {
+        ID = 334;
+
+        Text = "Is it sixth sense or wishful thinking that guides your fingers to the TALISMAN? You can only guess at its power, but you mutter a silent plea, invoking the TALISMAN's magic to come to your aid now.\n\nA shadow falls across the beach, as though a cloud covered the sun. The shadow deepens. The sailors -- all of them hardened veterans of the sea -- lookup up at the sky with faces like frightened children. The sound that escapes their lips is the voice of fear, born of the most primitive terror of all. The dark.\n\nA black wing of shadow draws across the face of the sun. The day is plunged into night. In the confusion, you race off along the beach and put out to sea in your small vessel. Skarvench's bellows of rage roll across the water behind you, but his men are too terrified to follow his orders. Knowing that the pirates will search for you between here and Leshand, you set a southerly course. As the eclipse passes and the daylight comes trickling back, the island is already far behind.\n\nYou notice that the BAT-SHAPED TALISMAN has vanished.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::BAT_SHAPED_TALISMAN});
+    }
+
+    int Continue(Character::Base &player) { return 367; }
+};
+
+class Story335 : public Story::Base
+{
+public:
+    Story335()
+    {
+        ID = 335;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Doctor Scriptor examines the TALISMAN for several minutes before giving his opinion. \"This is the likeness of the Bat of Night, a mythic creature. Under my spy-glass it displays a greenish tinge, indicating that some magic still remains. Possibly its power would work once. Twice at most.\"\n\n\"To do what?\" asks Blutz.\n\n\"Your guess is as good as mine,\" replies Scriptor blandly. \"Perhaps it helps you to see in the dark? Now, my fee for the assessment is one doubloon, as you very well know.\"\n\nHe hands you back the TALISMAN.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Pay Scriptor 1 doubloon", -335, Choice::Type::LOSE_MONEY, 1));
+        Choices.push_back(Choice::Base("You refuse to pay", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Event335 : public Story::Base
+{
+public:
+    Event335()
+    {
+        Title = "Down Among the Dead Men: 335";
+
+        ID = -335;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Ask Doctor Scriptor to identify some items for you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask to identify the DRAGON RING", 373, {Item::DRAGON_RING}));
+        Choices.push_back(Choice::Base("... the BRONZE HELMET", 354, {Item::BRONZE_HELMET}));
+        Choices.push_back(Choice::Base("... the CONCH-SHELL HORN", 316, {Item::CONCH_SHELL_HORN}));
+        Choices.push_back(Choice::Base("Leave", 392));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story336 : public Story::Base
+{
+public:
+    Story336()
+    {
+        ID = 336;
+
+        Image = "images/cutlass-green.png";
+
+        Text = "The pedlar is a thin fellow with a pigtail and a silver ring on his ear. On his shoulder crouches a weasel which is attached to wrist by a length of twine. As you approach, the pedlar whisks the tarpaulin off his cart and begins describing the jumble of items he has, tossing each aside and grabbing another almost as quickly as he can reel off the prices.\n\n\"Steady on, matey,\" grumbles Oakley. \"I can hardly keep up. What were you askin' for this here cutlass, now?\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            return 393;
+        }
+        else
+        {
+            return 410;
+        }
+    }
+};
+
+class Story337 : public Story::Base
+{
+public:
+    Story337()
+    {
+        ID = 337;
+
+        Text = "Master Kemp the shipbuilder is delighted to provide you with a magnificent warship fitted with eighty cannons. \"She is the METEOR,\" he says. \"I built her for a customer some months ago, but sadly he was apprehended in Port Worshen before he could take delivery. Now he's to be seen on Execution dock -- food for rooks, God help his soul -- and his fine is yours.\"\n\n\"Perhaps we should change the name?\" suggests Oakley. \"METEOR was the original owner's choice, not ours.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::METEOR);
+
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            Choices.push_back(Choice::Base("Change the vessel's name", 411));
+            Choices.push_back(Choice::Base("Leave it as it is", 184));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 394; }
+};
+
+class Story338 : public Story::Base
+{
+public:
+    Story338()
+    {
+        ID = 338;
+
+        Text = "You have little enough to go on -- just a hazarded guess at the iceberg's last position, and your best estimate of how far the prevailing current might have carried it by now. It is going to be like looking for a needle in a haystack, as your comrades are swift to point out.\n\n\"But when that proverbial needle is made of gold, so to speak, and has a diamond set into it,\" you reply to their objections, \"surely then the task's worth attempting?\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            Choices.push_back(Choice::Base("Steer due south", 378));
+            Choices.push_back(Choice::Base("Steer towards the south-west", 56));
+            Choices.push_back(Choice::Base("... or south-east", 207));
+            Choices.push_back(Choice::Base("Abandon your plan to search for the iceberg and try your hand at piracy instead", 357));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 359; }
+};
+
+class Story339 : public Story::Base
+{
+public:
+    Story339()
+    {
+        ID = 339;
+
+        Text = "You sign on a small crew. A good following wind carries you to Leshand in six days. Disappointment awaits you there, however, as no-one has any idea where El Draque's treasure lies buried. \"Sure, an' if I knew,\" says one old tar you speak to, \"would I not be after fetchin' it meself?\"\n\nAt these words, his drinking companions all cross themselves, and mouths that are more accustomed to hard swearing mumble a swift prayer. \"Don't pay any heed to old Bunratty's talk!\" cries another man. \"Anyone who went seeking El Draque's treasure might as well pawn their souls to the Devil on the day they set sail.\" ´Blutz is quite discomfited by all this, and you are surprised to see as you leave the inn that even Grimes and Oakley are wide-eyed and pale. \"Come on, skipper,\" urges Oakley. \"It's pretty clear there's something eerie about this El Draque. Why, he's supposed to be dead and gone but a lot of folk still seem mortally afraid of him for all that!\"\n\n\"Let's put to sea and try a little piracy,\" suggests Grimes. \"We'd soon have enough put by to get ourselves a decent warship.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Insist on continuing the hunt for El Draque's treasure", 377));
+        Choices.push_back(Choice::Base("Agree to Grimes' suggestion", 357));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -8898,11 +9163,22 @@ auto story326 = Story326();
 auto story327 = Story327();
 auto story328 = Story328();
 auto story329 = Story329();
+auto story330 = Story330();
+auto story331 = Story331();
+auto story332 = Story332();
+auto story333 = Story333();
+auto story334 = Story334();
+auto event335 = Event335();
+auto story335 = Story335();
+auto story336 = Story336();
+auto story337 = Story337();
+auto story338 = Story338();
+auto story339 = Story339();
 
 void InitializeStories()
 {
     Stories = {
-        &event059, &event117, &event167, &event225, &event310, &event316,
+        &event059, &event117, &event167, &event225, &event310, &event316, &event335,
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
@@ -8935,7 +9211,8 @@ void InitializeStories()
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
         &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
         &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
-        &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329};
+        &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
+        &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339};
 }
 
 #endif
