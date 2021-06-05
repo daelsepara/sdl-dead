@@ -9105,7 +9105,7 @@ public:
     {
         ID = 352;
 
-        Text = "The outlines of the ship become clearer as you approach the iceberg. She is a fine gilded galleon, her sails hanging like cerements, wreaths of frost along her flanks and spikes ice amid the rigging. Though apparently quite old and of exotic origin, it seems that the ice has kept the touch of time from harming her. You can even make out the name painted on the prow, the letters distorted and shimmering as though seen through a lens. Blutz (who is an educated man among pirates, having once drowned a school-teacher) reads it: \"The Octavius. Wonder how long she's been ice-bound, eh mates?\"\n\nComing alongside the ice-floe, Oakley leaps ashore and hammers a spike for the mooring roper. \"Years perhaps. But let's not linger here, it's chilly enough to make a brass monkey drop its balls. We'll just collect water and be off.\"\n\n\"But will it be safe?\" says Blutz again. \"Surely an iceberg is just frozen sea-water. You can't drink it.\"\n\nYou gained the codeword AUGUST.";
+        Text = "The outlines of the ship become clearer as you approach the iceberg. She is a fine gilded galleon, her sails hanging like cerements, wreaths of frost along her flanks and spikes ice amid the rigging. Though apparently quite old and of exotic origin, it seems that the ice has kept the touch of time from harming her. You can even make out the name painted on the prow, the letters distorted and shimmering as though seen through a lens. Blutz (who is an educated man among pirates, having once drowned a school-teacher) reads it: \"The OCTAVIUS. Wonder how long she's been ice-bound, eh mates?\"\n\nComing alongside the ice-floe, Oakley leaps ashore and hammers a spike for the mooring roper. \"Years perhaps. But let's not linger here, it's chilly enough to make a brass monkey drop its balls. We'll just collect water and be off.\"\n\n\"But will it be safe?\" says Blutz again. \"Surely an iceberg is just frozen sea-water. You can't drink it.\"\n\nYou gained the codeword AUGUST.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Collect some ice", 425));
@@ -10544,7 +10544,7 @@ public:
 
         Text = "Curshaw scowls as he sees you looking at him. \"I'll enjoy giving you a taste of the cat,\" he says, referring to the whip used to punish mutineers.\n\n\"You would, you mouse,\" you say, taunting him. \"You only squeak bravely when your victims have their hands tied.\"\n\nCurshaw leaps to his feet, hands bunched into fists. \"I'll cut out your tongue and swallow it whole! I'll fry your gizzard for breakfast!\"\n\nYou glance away nonchalantly. \"Big talk, small fry.\"\n\nThis is too much for him. Snatching up a paddle, he swings it at your head. It is your cue to explode into action. Still crouching, you duck under the swing and then, while Curshaw totters off-balance, you shoot to your feet and deliver a bone-cracking head butt that lays him flat.\n\nPorbuck lets go of the oars and lumbers towards you -- only to go reeling back as you lash out with two flying kicks in rapid succession. He shakes his head, growls and comes doggedly on to pummel you with his huge fists.\n\nIt is a hard fight, testing your skill to the limit. Porbuck is a brutal and powerful fighter who would be difficult to beat even if you didn't have your hands tied.\n\nYou LOSE 5 Life Points.";
 
-        Bye = "You finally flatten Porbuck with a knee to the solar plexus. The others help you tip him and Curshaw overboard. Then the four of you quickly untie one another's bonds and start rowing away";
+        Bye = "You finally flatten Porbuck with a knee to the solar plexus. The others help you tip him and Curshaw overboard. Then the four of you quickly untie one another's bonds and start rowing away.";
 
         Choices.clear();
 
@@ -10577,6 +10577,242 @@ public:
         Choices.push_back(Choice::Base("Weigh up your remaining options", 107));
 
         Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story410 : public Story::Base
+{
+public:
+    Story410()
+    {
+        ID = 410;
+
+        Text = "After a brief bout of haggling you settle on the prices.\n\nYou are dubious about the amulet, but the pedlar swears blind it is the genuine article. \"Belonged to my dear old granny, guv. Still does technically, I suppose, since I never asked her if I could take it.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Enter the tavern", 355));
+        Choices.push_back(Choice::Base("Go off to see the shipbuilder", 374));
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop = {{Item::POCKET_WATCH, 8}, {Item::PISTOL, 12}, {Item::SWORD, 11}, {Item::HORNPIPE, 4}, {Item::WEASEL, 2}, {Item::MAGIC_AMULET, 15}};
+    }
+};
+
+class Story411 : public Story::Base
+{
+public:
+    Story411()
+    {
+        ID = 411;
+
+        Text = "You are struck by sudden inspiration. \"Remember what I said when we found that treasure-haul lads? A queen's ransom, it was, and so that's what we'll call her.\"\n\nOakley directs the shipbuilder's attention to the bows. \"We'll take her, Master Kemp -- only paint in a new name, will you. She's to be called the QUEEN's RANSOM.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::QUEENS_RANSOM);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story412 : public Story::Base
+{
+public:
+    Story412()
+    {
+        ID = 412;
+
+        Text = "Blutz reluctantly goes to inform the crew of their captain's decree: that their own share of spoils will be reduced from now on. It is hardly surprising that they greet this news with a chorus of jeers and snarls. However, your desire for revenge on Skarvench blinds you to more immediate dangers until it is too late. In the dead of night, you are suddenly woken by a hand across your mouth and a knife at your throat. A voice says harshly, \"Up on deck with ye!\" and you are dragged from your cabin.\n\nThe moonlight reveals a throng of grim faces, pales as ghosts at the thought of the dread deed they are about to do. But you see they are determined. Grimes and your other stalwart friends are shoved forward, bound head to foot.\n\n\"You broke the Brethren's code,\" hisses the ringleader of the mutineers. \"We're entitled to our just share of treasure, see\"\n\n\"You damned fools,\" you growl back at them. \"Release me now: that's an order.\"\n\n\"Give yer orders to the sharks!\" they say, pushing you out along a plank. Prodded with cutlasses, you have nowhere to go but to the end of the plank -- and then far down, into the fathomless depths.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story413 : public Story::Base
+{
+public:
+    Story413()
+    {
+        ID = 413;
+
+        Text = "You take the shore-boat back to the Lady of Shalott but, with hardly any breeze, she has to be sculled towards the opening of the bay. By now the sun has set and the stars are glittering in a clear sky. Grimes sniffs the air and grimaces, remarking on the foulness of the region. \"That'll be the swamps fringing the bay,\" he mutters. \"A rank and fever-ridden place, this is.\"\n\nBlutz comes hurrying back to the poop deck to report to you. \"A bank of fog is rolling in. It'll be hard getting to open sea, and even when we do there's no wind for the sails.\"\n\nWhat is to be done?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[CHARMS] Use an AMULET", 17, Skill::Type::CHARMS));
+        Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 36, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Drop anchor and wait until daybreak", 366));
+        Choices.push_back(Choice::Base("[SEAFARING] Persist in manoeuvring out of the bay", 55, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("Otherwise", 74));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story414 : public Story::Base
+{
+public:
+    Story414()
+    {
+        ID = 414;
+
+        Text = "Now that the current has carried the iceberg into warmer latitudes, it is rather smaller than when you last clapped eyes on it. The ship frozen inside is clearly visible now, her gilt and paintwork shimmering mirage-like beyond the pane of ice that entraps her. You can make out the guns ranged along her flanks silent, eternally watchful sentinels. How many years since they last thundered forth their fury, you wonder? How long since wind filled those lank hoarfrosted sails? Since that fine prow last proudly split the waves?\n\n\"The OCTAVIUS,\" you murmur, half to yourself, as you draw alongside the iceberg. \"But how will we ever get her out of that ice?\"\n\n\"It would take the whole crew digging with picks from now till the moon goes blue,\" say Grimes.\n\nYou nod. The comment is unhelpful, but quite true. You had been counting on the iceberg being more reduced by sun and warm waters by this time. Now that you see it, excavating the OCTAVIUS seems an impossible task.\n\nBlutz steps forward. \"Begging your pardon, skipper, but I've got an idea.\" You turn and give him a long dubious look. \"Er.. well, it might take a while, but I think there's a way we can get the ship out of the ice.\"\n\nOakley interrupts with an exasperated gasp. We're wasting time! The OCTAVIUS might as well be thirty fathoms deep for all the chance we've got of sailing her. Let's set to filling our coffers with a spot of good old-fashioned piracy. Then we can sail back and trade in this old tub for a decent warship.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree with Oakley", 376));
+        Choices.push_back(Choice::Base("It's worth trying Blutz's plan", 44));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story415 : public Story::Base
+{
+public:
+    std::string PreText = "";
+    Story415()
+    {
+        ID = 415;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "All the pent-up emotion of your crew explodes in an excited roar as they go leaping onto the deck of the enemy ship with you at their head. The pirates stand ready to meet your boarding party, armed with muskets and draw sword, and the fighting is hard and fierce. You are all but deafened by the gunshots going off all around you, half blinded by the thick clouds of smoke and sprays of blood, but you struggle onwards.\n\nA musket shot catches you in the side.\n\nYou LOSE 3 Life Points.";
+
+        Character::GAIN_LIFE(player, -3);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou ignore the pain and look around. The battle rages back and forth across the deck. Pirates come running at you but you smash them aside. Your only thought now is to find your foe and slay him yourself: you do not want him to die mercifully from a stray bullet.\n\nThe moment you catch sight of him, you realize your anxiety was misplaced. The bullets go whistling past his ears, but he stands untouched by fear, arms spread out and laughing like a fiend from the pit. You begin to wonder if he can be killed, or are his hate and madness stronger than death itself?\n\nHis single eye fixes on you through the haze of gunsmoke. \"Ah, matey,\" he says. \"Come to see your old cap'n one last time, eh?\"";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 89; }
+};
+
+class Story416 : public Story::Base
+{
+public:
+    Story416()
+    {
+        ID = 416;
+
+        Text = "Grimes gazes back into the east, where a pale gold glimmer heralds the approach of dawn. \"God curse that Skarvench!\" he declares suddenly. \"I wish I'd had the chance to slice open his foul heart as he slept.\"\n\nOakley nods. \"Even that might not have been enough to stop the fiend from coming after us.\"\n\n\"Coming after us?\" says Blutz nervously. \"Do you think he will?\"\n\nYou have to agree with Oakley. Skarvench is not the kind of man to let others cross him. The fact that you four have got free of his clutches will enrage him as much as the theft of the jollyboat. He might well give chase -- and if he catches up with you, your fate will not bear thinking about.\n\n\"What about your magic?\" Blutz asks you. \"Can't you keep him off our stern? Conjure up a tempest to blow the Belle Dame far out to sea!\"\n\nYou mull it over. You could cast such a spell, but is mighty magic indeed. It could all too easily get out of control, and even if it works it might leave you too weakened for further sorcery later.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Attempt it all the same", 15));
+        Choices.push_back(Choice::Base("Do not make any attempt", 289));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story417 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story417()
+    {
+        ID = 417;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [BRAWLING]", 241, Skill::Type::BRAWLING));
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 317, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 384, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Flee", 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The grisly sharpened-tooth grins on their faces as they accept your gift leave you uncertain of how you stand. While the gift is passed around for inspection, Oakley says: \"Quick now, lands -- let's get back to the jollyboat before these savages turn nasty.\"\n\nYou make a hasty descent of the cliffs, but before you are even halfway down a rock comes sailing past your head. \"Move it,\" you shout to the others, \"or we're all done for!\"\n\nMore rocks come dashing down, and you can now hear a horrid chortling from the natives as they watch their missiles bruise and buffet you. Somehow you manage to keep your hold on the ladder despite this fearful barrage but by the time you reach the bottom you have blood from a dozen cuts.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::CHARMS))
+        {
+            DAMAGE = -1;
+
+            PreText += "[CHARMS] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story418 : public Story::Base
+{
+public:
+    Story418()
+    {
+        ID = 418;
+
+        Text = "Waiting until the two cutters are alongside, you suddenly jump to your feet and leap across the nearest one, landing on the side with all your weight. As the cutter lists sickeningly , taking on water, the pirates aboard start to panic. Fearing the cutter is about to capsize, they lurch back over towards the other side. Several fall overboard, abandoning their weapons as they flounder about in the sea. One lunges at you angrily, but you jump over his clutches and he too pitches over the side. The crew of the other cutter meanwhile are forced to veer away sharply to avoid a collision.\n\nThe scene degenerates quickly into utter confusion. Some of the pirates in the water try to get aboard the second cutter, their own shipmates clubbing them back from the sides for fear they will sink the already overloaded boat. The first cutter is now drifting in a circle, half the oars floating off in the waves and with a good deal of water sloshing in the bottom of the hull. You are satisfied that the pirates will be too busy for a while to give chase, so you jump nimbly back into the jollyboat and tell your friends to row for all they are worth.\n\nA confused bedlam of yells and curses echoes out over the water after you, but soon you have left the island far behind. The Belle Dame cannot safely manoeuvre clear of the island until daybreak. By that time you intend to have put many leagues between you and your former captain.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 135; }
+};
+
+class Story419 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story419()
+    {
+        ID = 419;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You drive your sword-point against Ejada's breast in a lunge which is swift, merciless and deadly. But when you step aside waiting for her to fall, you see to your horror that the blade has barely scratched her skin.\n\n\"All bark and no bite, eh?\" she says with a soft cold laugh. \"My turn now.\"\n\nAnd so saying she raises her arm, swiping at you with languid grace. The blow seems effortless but carries the force of a cudgel-stroke; you are flung back dazed.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
+        {
+            DAMAGE = -2;
+
+            PreText += "[Item: FEATHER SHIELD] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+        
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
     }
 };
 
@@ -10998,6 +11234,16 @@ auto story406 = Story406();
 auto story407 = Story407();
 auto story408 = Story408();
 auto story409 = Story409();
+auto story410 = Story410();
+auto story411 = Story411();
+auto story412 = Story412();
+auto story413 = Story413();
+auto story414 = Story414();
+auto story415 = Story415();
+auto story416 = Story416();
+auto story417 = Story417();
+auto story418 = Story418();
+auto story419 = Story419();
 
 void InitializeStories()
 {
@@ -11043,7 +11289,8 @@ void InitializeStories()
         &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
         &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
         &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
-        &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409};
+        &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409,
+        &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419};
 }
 
 #endif
