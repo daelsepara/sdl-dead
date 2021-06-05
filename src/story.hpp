@@ -10734,11 +10734,9 @@ public:
     {
         ID = 417;
 
+        Bye = "You race back as your weary limbs will allow.\n\n\"Let's hope we have more luck on the next island,\" says Grimes";
+
         Choices.clear();
-        Choices.push_back(Choice::Base("Use [BRAWLING]", 241, Skill::Type::BRAWLING));
-        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 317, Skill::Type::MARKSMANSHIP));
-        Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 384, Skill::Type::SPELLS));
-        Choices.push_back(Choice::Base("Flee", 5));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10762,6 +10760,8 @@ public:
 
         Text = PreText.c_str();
     }
+
+    int Continue(Character::Base &player) { return 116; }
 };
 
 class Story418 : public Story::Base
@@ -10791,6 +10791,10 @@ public:
         ID = 419;
 
         Choices.clear();
+        Choices.push_back(Choice::Base("Use [BRAWLING]", 241, Skill::Type::BRAWLING));
+        Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 317, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 384, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Flee", 5));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10809,8 +10813,13 @@ public:
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
-        
+
         PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "";
+        }
 
         Text = PreText.c_str();
     }
