@@ -802,7 +802,7 @@ public:
             DAMAGE = -2;
         }
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             PreText += "[SWORDPLAY] ";
 
@@ -1777,7 +1777,7 @@ public:
         Choices.clear();
         Choices.push_back(Choice::Base("Try [CUNNING]", 128, Skill::Type::CUNNING));
         Choices.push_back(Choice::Base("Use [STREETWISE]", 147, Skill::Type::STREETWISE));
-        Choices.push_back(Choice::Base("[SWORDPLAY] Fight with a SWORD", 166, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Fight with a SWORD", 166, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
         Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 185, Skill::Type::MARKSMANSHIP));
         Choices.push_back(Choice::Base("Fight with your bare hands", 204));
 
@@ -1909,11 +1909,11 @@ public:
     {
         Choices.clear();
 
-        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::ROGUERY, Skill::Type::BRAWLING}))
+        if (Character::HAS_SKILL(player, Skill::Type::ROGUERY) && Character::HAS_SKILL(player, Skill::Type::BRAWLING))
         {
             Choices.push_back(Choice::Base("You already have these skills", 9));
         }
-        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        else if (Character::HAS_SKILL(player, Skill::Type::BRAWLING))
         {
             player.SKILLS_LIMIT = 3;
 
@@ -1921,7 +1921,7 @@ public:
 
             Choices.push_back(Choice::Base("Make room for [ROGUERY]", -59, Choice::Type::LOSE_SKILLS, 2));
         }
-        else if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        else if (Character::HAS_SKILL(player, Skill::Type::ROGUERY))
         {
             player.SKILLS_LIMIT = 3;
 
@@ -2264,19 +2264,21 @@ public:
 
             DAMAGE = -3;
         }
-
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        else
         {
-            PreText += "[SWORDPLAY] ";
+            if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
+            {
+                PreText += "[SWORDPLAY] ";
 
-            DAMAGE = -2;
-        }
+                DAMAGE = -2;
+            }
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
-        {
-            PreText += "[MARKSMANSHIP] ";
+            if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+            {
+                PreText += "[MARKSMANSHIP] ";
 
-            DAMAGE = -2;
+                DAMAGE = -2;
+            }
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -2448,7 +2450,7 @@ public:
 
         if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
         {
-            PreText += "[Item:: FEATHER SHIELD] ";
+            PreText += "[Item: FEATHER SHIELD] ";
 
             DAMAGE += 3;
         }
@@ -2911,7 +2913,7 @@ public:
     {
         PreText = "Recognizing its former master, the little animal suddenly slips out of your grasp, bursts from the undergrowth and goes scampering towards him. Skarvench and his men leap up and seize their weapons, instantly alert. Standing rigid with a snarl stamped on this cruel face, Skarvench scans the jungle and then his eyes lock on yours despite the cover of foliage. You realise the game is up -- he's spotted you. You rise to your feet with a defiant battle-cry as he levels his pistol. Thirty paces separate you -- a distance you might cover in six seconds, from a standing start. A bullet can cross it in an instant...\n\nJust as Skarvench squeezes the trigger, the MONKEY leaps up and gives his wrist a painful nip. He bellows in range and the shot goes wide, whistling past your ear to embed itself in the bole of a tree. But you have no time to give thanks; within moments the pirates have closed in. The battle is joined, and you and your comrades are fighting for your lives.\n\n";
 
-        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}) && Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
         {
             Character::GAIN_LIFE(player, -7);
 
@@ -4414,7 +4416,7 @@ public:
 
         Choices.clear();
         Choices.push_back(Choice::Base("Attack Mortice with bare hands", 219));
-        Choices.push_back(Choice::Base("[SWORDPLAY] Attack with a sword", 238, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Attack with a sword", 238, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
         Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 257, Skill::Type::MARKSMANSHIP));
         Choices.push_back(Choice::Base("Cut the raft adrift", 276));
 
@@ -4545,7 +4547,7 @@ public:
     {
         Choices.clear();
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        if (Character::HAS_SKILL(player, Skill::Type::SEAFARING))
         {
             Choices.push_back(Choice::Base("You already have [SEAFARING] skill", -167));
         }
@@ -4581,7 +4583,7 @@ public:
 
         PreText = "Returning to town ";
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        if (!Character::HAS_SKILL(player, Skill::Type::SEAFARING))
         {
             player.Skills.push_back(Skill::SEAFARING);
         }
@@ -4674,25 +4676,27 @@ public:
 
         auto DAMAGE = -5;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
-        {
-            DAMAGE = -2;
-
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                PreText += "[SWORDPLAY] ";
-            }
-
-            if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
-            {
-                PreText += "[MARKSMANSHIP] ";
-            }
-        }
-        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
         {
             DAMAGE = -3;
 
             PreText += "[BRAWLING] ";
+        }
+        else
+        {
+            if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+            {
+                DAMAGE = -2;
+
+                PreText += "[MARKSMANSHIP] ";
+            }
+
+            if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
+            {
+                DAMAGE = -2;
+
+                PreText += "[SWORDPLAY] ";
+            }
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -4997,7 +5001,7 @@ public:
     {
         PreText = "Skarvench and his men are not the sort to be taken unawares. With savagery shining from their eager faces, they close to surround you. The clash of steel and the sharp crack of musket shots ring out, startling the constant jungle murmur into silence. Gunpowder smoke and the abattoir stink of blood clog your nostrils. You are heavily outnumbered, and the struggle grows ever more desperate.";
 
-        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP) && Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             Character::GAIN_LIFE(player, -5);
 
@@ -5193,12 +5197,12 @@ public:
     {
         player.TemporarySkills.clear();
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        if (!Character::HAS_SKILL(player, Skill::Type::BRAWLING))
         {
             player.TemporarySkills.push_back(Skill::BRAWLING);
         }
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (!Character::HAS_SKILL(player, Skill::Type::SWORDPLAY))
         {
             player.TemporarySkills.push_back(Skill::SWORDPLAY);
         }
@@ -5217,7 +5221,7 @@ public:
         ID = 191;
 
         Choices.clear();
-        Choices.push_back(Choice::Base("[SWORDPLAY] Attack him before he can sound the alarm", 286, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Attack him before he can sound the alarm", 286, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
         Choices.push_back(Choice::Base("[BRAWLING] Fight him", 248, Skill::Type::BRAWLING));
         Choices.push_back(Choice::Base("[CUNNING] Fall back", 305, Skill::Type::CUNNING));
 
@@ -5230,7 +5234,7 @@ public:
 
         PreText = "You come face to face with the sailmaster. For a moment he stands there in simple perplexity. As an ordinary seaman you are not supposed to be in this part of the ship. \"What are you doing..?\" he starts to say.";
 
-        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::BRAWLING, Skill::Type::CUNNING}))
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::BRAWLING, Skill::Type::CUNNING}) && !Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             Type = Story::Type::DOOM;
 
@@ -5613,25 +5617,27 @@ public:
 
         auto DAMAGE = -8;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
         {
-            DAMAGE = -2;
+            DAMAGE = -3;
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            PreText += "[BRAWLING] ";
+        }
+        else
+        {
+            if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
             {
+                DAMAGE = -2;
+
                 PreText += "[SWORDPLAY] ";
             }
 
             if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
             {
+                DAMAGE = -2;
+
                 PreText += "[MARKSMANSHIP] ";
             }
-        }
-        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
-        {
-            DAMAGE = -3;
-
-            PreText += "[BRAWLING] ";
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -5829,7 +5835,7 @@ public:
 
         auto DAMAGE = -6;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             DAMAGE = -2;
 
@@ -6732,7 +6738,7 @@ public:
         Text = "The shot rings out in the night and a puff of gunsmoke drifts like silver fog in the moonlight. As the smoke clears you see to your astonishment has not fallen. He is just standing there with a ghastly bloodless grin, eyes blazing like a ship's lanterns. Then you notice something else -- the bullet didn't miss him. There is a gaping hole through his chest. For a long moment no-one moves a muscle. Silence gives the scene an air of unreality.\n\n\"He's not a living man!\" gasps Blutz at last. \"He's one of the undead!\"";
 
         Choices.push_back(Choice::Base("Launch a barehanded assault on Mortice", 219));
-        Choices.push_back(Choice::Base("[SWORDPLAY] Attack him with a SWORD", 238, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Attack him with a SWORD", 238, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
         Choices.push_back(Choice::Base("Avoid a confrontation: Cut the line mooring his raft to the jollyboat", 276));
 
         Controls = Story::Controls::STANDARD;
@@ -6957,7 +6963,7 @@ public:
 
         PreText = "\"Well, if it ain't me prodigal orphans!\" chortles Skarvench, drawing his sword and pistol as he sees you break from the undergrowth. \"You ran off without collectin' your back pay, mates, so he's a little something on account, like.\" So saying, he levels his pistol and pulls the trigger.\n\nPain lances through your shoulder as the shot tears flesh and splinters bone. But sheer hatred of your foe drives you on. A red haze sparkles across your vision, and Skarvench's grinning face is like a painting in blood on the back of your eyes as you race forward with a savage snarl.";
 
-        if (Character::VERIFY_ALL_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
+        if (Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP) && Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             Character::GAIN_LIFE(player, -8);
 
@@ -7329,12 +7335,12 @@ public:
     {
         player.TemporarySkills.clear();
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        if (!Character::HAS_SKILL(player, Skill::Type::BRAWLING))
         {
             player.TemporarySkills.push_back(Skill::BRAWLING);
         }
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (!Character::HAS_SKILL(player, Skill::Type::SWORDPLAY))
         {
             player.TemporarySkills.push_back(Skill::SWORDPLAY);
         }
@@ -7693,7 +7699,7 @@ public:
 
         auto DAMAGE = -4;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             DAMAGE = -2;
 
@@ -7923,7 +7929,7 @@ public:
         Text = "Clouds cover the sharp silver horns of the moon as, with muffled oars, you pull out of the cove and row beneath the black bows of Skarvench's anchored vessel.\n\n\"Like tiptoeing past the face of a sleeping dragon,\" whispers Oakley with characteristic grim humour.\n\n\"Oh no,\" says Blutz suddenly, \"I'm going to -- ACHOOOO!\"\n\nSilently cursing this stroke of bad luck, the four of you crouch low in the boat and pray that the lookout on deck didn't hear the sneeze. But those prayers go unheeded. You can see the man's face appear at the rail, peering out into the darkness. A glance up at the sky assures you that fate really has no mercy: the moon is about to emerge from behind a cloud. When it does, the lookout cannot miss spotting you.";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("[SWORDPLAY] Try something", 364, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Try something", 364, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
         Choices.push_back(Choice::Base("Otherwise", 383));
 
         Controls = Story::Controls::STANDARD;
@@ -8211,7 +8217,7 @@ public:
 
         if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
         {
-            PreText += "[Item:: FEATHER SHIELD] The SHIELD deflects some of the damage. ";
+            PreText += "[Item: FEATHER SHIELD] The SHIELD deflects some of the damage. ";
 
             DAMAGE = -2;
         }
@@ -8301,7 +8307,7 @@ public:
 
         auto DAMAGE = -8;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
         {
             DAMAGE = -4;
 
@@ -8379,24 +8385,26 @@ public:
 
         auto DAMAGE = -5;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::MARKSMANSHIP}))
-        {
-            DAMAGE = -2;
-
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                PreText += "[SWORDPLAY] ";
-            }
-            else
-            {
-                PreText += "[MARKSMANSHIP] ";
-            }
-        }
-        else if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
+        if (Character::VERIFY_SKILL(player, Skill::Type::BRAWLING))
         {
             DAMAGE = -3;
 
             PreText += "[BRAWLING] ";
+        }
+        else
+        {
+            if (Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::RUSTY_SWORD, Item::Type::CLEAVER, Item::Type::SHARKS_TOOTH_SWORD}))
+            {
+                DAMAGE = -2;
+
+                PreText += "[SWORDPLAY] ";
+            }
+            else
+            {
+                DAMAGE = -2;
+
+                PreText += "[MARKSMANSHIP] ";
+            }
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -8867,7 +8875,7 @@ public:
     {
         ID = 343;
 
-        Image = "images/filler3-green.png";
+        Image = "images/filler2-green.png";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Use both CORKSCREW and SHIP IN A BOTTLE", 261, {Item::CORKSCREW, Item::SHIP_IN_BOTTLE}));
@@ -8905,6 +8913,8 @@ public:
     Story344()
     {
         ID = 344;
+
+        Image = "images/filler3-green.png";
 
         Text = "You return to the cliffs to find a dozen islanders standing at the top of the vine ladder. They wear grass skirts and each has a red skull-like mask painted across his face. \"That's how the island got its name,\" mutters Oakley out of the corner of his mouth.\n\n\"Maybe so,\" whispers Grimes. \"Or maybe they're headhunters.\"\n\nYou approach cautiously, uncertain of the islanders' intentions. They watch you in silence and then one of them bares his lips in a ferocious grin. Blutz gives a small moan and goes weak at the knees, and you catch his arm to give him support. To your horror, the islander's front teeth are filed to sharp points!";
 
@@ -8970,7 +8980,7 @@ public:
 
         if (!Character::VERIFY_SKILL(player, Skill::Type::CHARMS) && !Character::VERIFY_ITEMS(player, {Item::Type::CRUCIFIX}))
         {
-            Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 245, Skill::Type::SWORDPLAY));
+            Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 245, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
             Choices.push_back(Choice::Base("Otherwise", 264));
         }
     }
@@ -9010,7 +9020,7 @@ public:
         Text = "A shrieking gale rises out of the east to blow you onward, but at least there is an end to the numbing rain that has pestered you for so much of the voyage. Making good headway through high frothing waves, your worst hardship becomes nausea at being hurled up and down in your flimsy craft. Even so, hunger gnaws at your insides and your longing for food and water becomes overwhelming.\n\nYou LOSE 1 Life Point.";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Eat the monkey (if you are heartless or desperate enough)", 368, {Item::MONKEY}));
+        Choices.push_back(Choice::Base("Eat the monkey (if you are heartless or desperate enough)", 368, Choice::Type::LOSE_ITEMS, {Item::MONKEY}));
         Choices.push_back(Choice::Base("Leave it alone", 387));
 
         Controls = Story::Controls::STANDARD;
@@ -9063,7 +9073,7 @@ public:
 
             if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
             {
-                Choices.push_back(Choice::Base("Eat some of the  cocunuts", 389, Choice::Type::GET_CODEWORD, Codeword::Type::COCONUTS));
+                Choices.push_back(Choice::Base("Eat some of the cocunuts", 389, Choice::Type::GET_CODEWORD, Codeword::Type::COCONUTS));
                 Choices.push_back(Choice::Base("Leave it alone", 389));
             }
         }
@@ -9128,6 +9138,8 @@ public:
     {
         ID = 354;
 
+        Image = "images/filler2-green.png";
+
         Text = "\"This was the helmet of Spartan king,\" decides Scriptor after turning the object over in his hands. \"Despite the millennia that have passed since Sparta's heyday, their name is still a byword for stern martial prowess. I would conclude, therefore, that donning the helm would confer some skill at arms.\"\n\nHe demands a doubloon for what he's told you so far. Alternatively you can sell the helmet to Scriptor for his collection -- he'll pay you 15 doubloons for it.";
 
         Choices.clear();
@@ -9147,6 +9159,8 @@ public:
         Title = "Down Among the Dead Men: 354";
 
         ID = -354;
+
+        Image = "images/filler2-green.png";
 
         Text = "Ask Doctor Scriptor to identify some items for you.";
 
@@ -9259,6 +9273,314 @@ public:
     }
 
     int Continue(Character::Base &player) { return 414; }
+};
+
+class Story360 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story360()
+    {
+        ID = 360;
+
+        Image = "images/filler1-green.png";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            PreText = "[SEAFARING] You managed to avoid the cannon-fire.";
+        }
+        else
+        {
+            PreText = "You are clipped by cannon-fire.\n\nYour ship SUFFERS 1 damage.";
+
+            Character::DAMAGE_SHIP(player, 1);
+        }
+
+        Choices.clear();
+
+        if (Character::CHECK_SHIP(player))
+        {
+            PreText += " Decide what to do next.";
+
+            Choices.push_back(Choice::Base("Steer directly in towards the Moon Dog", 398));
+            Choices.push_back(Choice::Base("Heave to and let the wind carry her past you", 415));
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 227; }
+};
+
+class Story361 : public Story::Base
+{
+public:
+    Story361()
+    {
+        ID = 361;
+
+        Text = "Skarvench opens his mouth, but the only sound that issues forth is a stifled croak. Teetering from a mortal wound, he falls to the deck and lies still.\n\nSeeing the death of their leader, the pirates lose heart for the battle and are soon rounded up. As their muskets are confiscated, Oakley comes over and takes you by the arm. \"You all right, skipper?\" he asks with a look of concern. \"You look in a bad way.\"\n\n\"If you think I look bad, Mister Oakley,\" you reply with a smile of weary triumph, \"you ought to take a look at the other bloke.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 427; }
+};
+
+class Story362 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story362()
+    {
+        ID = 362;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (!Character::VERIFY_ITEMS_ANY(player, {Item::POCKET_WATCH, Item::CRUCIFIX, Item::MAGIC_AMULET}))
+        {
+            return 324;
+        }
+        else
+        {
+
+            return -1;
+        }
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "";
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::POCKET_WATCH}))
+        {
+            PreText += "[Item: POCKET-WATCH] ";
+        }
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::CRUCIFIX}))
+        {
+            PreText += "[Item: CRUCIFIX] ";
+        }
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::MAGIC_AMULET}))
+        {
+            PreText += "[Item: MAGIC AMULET] ";
+        }
+
+        Character::GAIN_LIFE(player, -3);
+
+        PreText += "You LOSE 3 Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 242; }
+};
+
+class Story363 : public Story::Base
+{
+public:
+    Story363()
+    {
+        ID = 363;
+
+        Text = "Decide what to do next";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Employ [SWORDPLAY]", 296, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER, Item::SHARKS_TOOTH_SWORD}));
+        Choices.push_back(Choice::Base("... or [BRAWLING]", 296, Skill::Type::BRAWLING));
+        Choices.push_back(Choice::Base("Use [MARKSMANSHIP]", 270, Skill::Type::MARKSMANSHIP));
+        Choices.push_back(Choice::Base("Otherwise", 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story364 : public Story::Base
+{
+public:
+    Story364()
+    {
+        ID = 364;
+
+        Text = "Drastic situations call for drastic remedies. Using a last-ditch trick taught to you years ago by your father, you hurl your sword at the lookout. It strikes true, penetrating his heart and killing him instantly. He tumbles from the deck without a sound, hitting the water with a limp splash.\"Well aimed,\" says Grimes in a hushed tone of admiration. \"You got him before he could raise the alarm.\"\n\nYou nod, regretting the loss of your sword.\n\nRowing on, you do not relax until the ship has dropped out of sight over the horizon to your stern.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 135; }
+};
+
+class Story365 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story365()
+    {
+        ID = 365;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL_ANY(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::CLEAVER, Item::Type::RUSTY_SWORD, Item::Type::SHARKS_TOOTH_SWORD}) && !Character::VERIFY_SKILL(player, Skill::Type::MARKSMANSHIP))
+        {
+            PreText = "You cannot defend yourself from her strong blows. You LOSE 3 Life Points.";
+
+            Character::GAIN_LIFE(player, -3);
+
+            Choices.push_back(Choice::Base("[SPELLS] Use a WAND", 384));
+            Choices.push_back(Choice::Base("Make a run for it", 5));
+        }
+        else
+        {
+            PreText = "You are able to defend yourself against her strong blows.";
+
+            Choices.push_back(Choice::Base("[SWORDPLAY] Use a SHARK's TOOTH SWORD", 402, Skill::Type::SWORDPLAY, {Item::SHARKS_TOOTH_SWORD}));
+            Choices.push_back(Choice::Base("[SWORDPLAY] Use an ordinary SWORD", 419, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::RUSTY_SWORD, Item::CLEAVER}));
+            Choices.push_back(Choice::Base("[MARKSMANSHIP] Use a PISTOL", 317, Skill::Type::MARKSMANSHIP));
+            Choices.push_back(Choice::Base("Resort to [BRAWLING]", 241, Skill::Type::MARKSMANSHIP));
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story366 : public Story::Base
+{
+public:
+    Story366()
+    {
+        ID = 366;
+
+        Image = "images/filler4-green.png";
+
+        Text = "The fog thickens about the ship, smudging the outlines of the bay and covering the stars in a filmy veil. From the marshy ground of the shore comes a green unhealthy glow, just visible between the drifting palls of mist. Blutz gazes this eerie phosphorescence and says through chattering, \"Will o' wisps. Spirits of men who droned at sea and were washed up here.\"\n\nYou are due to take the first watch, with Blutz relieving you at eight bells. It strikes you that his nerves may not stand at midnight vigil, and maybe it would be better if he exchanged watches with you.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Let Blutz take the midnight watch", 112));
+        Choices.push_back(Choice::Base("Take the midnight watch yourself", 131));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story367 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    bool HAS_FOOD = false;
+
+    Story367()
+    {
+        ID = 367;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        HAS_FOOD = false;
+
+        PreText = "As you go south you begin to strike the warm east current marking the main shipping lane. \"Here we have a chance of rescue,\" declares Oakley. His tone is confident enough -- an attempt to inspire good cheer -- but the rigors of the voyage are again taking their toll.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            if (Character::HAS_FOOD(player, 0))
+            {
+                PreText += "\n\nYour supply of PROVISIONS DECREASED by 1.";
+
+                Character::CONSUME_FOOD(player, 1);
+
+                HAS_FOOD = true;
+            }
+            else
+            {
+                PreText += "\n\nYou've exhausted your supply of PROVISIONS.";
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (HAS_FOOD)
+        {
+            return 106;
+        }
+        else
+        {
+            return 125;
+        }
+    }
+};
+
+class Story368 : public Story::Base
+{
+public:
+    Story368()
+    {
+        ID = 368;
+
+        Text = "\"Poor little fellow, it seems unfair after he's been with us so long,\" bleats Blutz.\n\nYou agree in principle, but seamen soon learn that practical necessities must outweigh sentiment. \"We could eat you instead if you'd rather spare the MONKEY, Mister Blutz.\"\n\n\"Aye,\" says Grimes, jabbing him good-naturedly in the ribs. \"And you'd make a better meal too. Wouldn't he, mates?\"\n\nIn the event, despite the shedding of a maudlin tear or two, it is the MONKEY who ends up on your plates. The meal is cold and gristly, but better than nothing.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 405; }
+};
+
+class Story369 : public Story::Base
+{
+public:
+    Story369()
+    {
+        ID = 369;
+
+        Text = "You reach into the toolkit and rummage around for a hacksaw. Your reasoning is that the curse prevents you from leaving the deck of the Larnassos. Very well, then you'll take the deck with you when you go -- or part of it, at any rate. Sawing around the outline of your footprints, you give your astonished companions a knowing wink and then climb over the rail. The foot-shaped pieces of plank which you've cut out remain clinging to the soles of your shoes, stuck fast by the magic of the curse.\n\n\"Well, blow me!\" mutters Grimes. Taking the hacksaw, he too saws out his patch of the deck, and the others follow suit. Soon the four of you are climbing back down to the jollyboat tethered alongside.\n\nYou may have cleverly circumvented the exact letter of the curse, but do not be too quick to pat yourself on the back. The wooden soles will stay on your feet for ever as an uncanny reminder of your narrow escape. They make a noisy clattering when you walk which will hinder any attempt you might make at stealth.\n\nYou row away from the Larnassos until she is swallowed by distance and darkness.\n\nYour [ROGUERY] skill is LOST.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Character::LOSE_SKILLS(player, {Skill::Type::ROGUERY});
+        }
+    }
+
+    int Continue(Character::Base &player) { return 136; }
 };
 
 auto prologue = Prologue();
@@ -9629,6 +9951,16 @@ auto story356 = Story356();
 auto story357 = Story357();
 auto story358 = Story358();
 auto story359 = Story359();
+auto story360 = Story360();
+auto story361 = Story361();
+auto story362 = Story362();
+auto story363 = Story363();
+auto story364 = Story364();
+auto story365 = Story365();
+auto story366 = Story366();
+auto story367 = Story367();
+auto story368 = Story368();
+auto story369 = Story369();
 
 void InitializeStories()
 {
@@ -9669,7 +10001,8 @@ void InitializeStories()
         &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
         &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
         &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
-        &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359};
+        &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
+        &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369};
 }
 
 #endif
