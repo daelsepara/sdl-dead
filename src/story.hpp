@@ -10825,6 +10825,194 @@ public:
     }
 };
 
+class Story420 : public Story::Base
+{
+public:
+    Story420()
+    {
+        ID = 420;
+
+        Text = "The captain chuckles. \"Nominally it is a Gloriannic colony, though I daresay there's a half-dozen rogues and ruffians for every honest merchant. The governor of Leshand encourages buccaneers to drop their anchors there, for as a rule they have a lot of gold to spend and this makes the port grow richer. But never show your face in Leshand if you've preyed on Gloriannic ships -- then you'd be seized and hung in chains on the waterfront, see.\"\n\n\"For how long?\" asks Blutz naively.\n\n\"Till you turn soft and drop, like venison,\" laughs the captain.\n\n\"Not for plundering Sidonian ships?\" prompts Oakley.\n\n\"Of course not! They'd like as give you a model for that. Glorianne rejoices at each act of piracy the Sidonians suffer, and the governor of Leshand is happy to hand out letters of marque sanctioning such.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Turn the conversation to piracy", 390));
+        Choices.push_back(Choice::Base("... or the war", 380));
+        Choices.push_back(Choice::Base("... or Queen Titania's tour of her colonies", 403));
+        Choices.push_back(Choice::Base("You've heard enough of the captain's views", 108));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story421 : public Story::Base
+{
+public:
+    Story421()
+    {
+        ID = 421;
+
+        Text = "With no way to keep dry, you see that there is at least a means of staving off the terrible chill. \"Strip off your clothes and soak them in the sea,\" you advise your companions. Since the sea water is warmer than the rain, this help you to avoid the worst discomforts of exposure. Even so, the hardship takes its toll.\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 259;
+        }
+        else
+        {
+            return 7;
+        }
+    }
+};
+
+class Story422 : public Story::Base
+{
+public:
+    Story422()
+    {
+        ID = 422;
+
+        Text = "You have never known such an uncanny hush aboard a ship. The deck, shrouded in a mist of fine drizzle, is silent apart from the creak of the ship's timbers and the rustling of wet sails in the gusting wind.\n\nBlutz is the last to climb aboard, puffing as he hauls his rotund body over the rail. He looks around, blinking uncertain, and then voices the question that is in all your minds: \"where are your crew?\"\n\nCaptain Mandrigard gives a twisted smile when he hears this. He is a long lanky stick of a man, with one leg of flesh and one of carved whalebone. Dressed in silk robes out of another era, he has an emerald-pinned turban wound around his head and a naked sabre hanging at his belt. His skin is the colour of wrought iron, his brow high and wrinkled. When he speaks, you are reminded of the rumbling of a church organ: \"Gone -- deserted, the dogs! I am alone aboard my ship now.\"\n\nHe takes you below to his cabin, where you are confronted by a breathtaking wealth of treasure. Gold, silver and sparkling jewels are strewn carelessly across the table. Mandrigard sweeps them contemptuously to the floor and pours goblets of wine for you all, drinking deep without proposing any toast. His own goblet is especially fine: pale yellow onyx with a border of gold around the rim. When he sees you admiring it, he slurps more wine and says, \"Cast your eyes on my treasure if you like. It's a fine haul for any corsair, is it not? Oh, but what a price I paid for it!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask him to tell you more about the treasure", 279));
+        Choices.push_back(Choice::Base("Discuss passage to Port Leshand", 8));
+        Choices.push_back(Choice::Base("Ask about the crew", 27));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story423 : public Story::Base
+{
+public:
+    Story423()
+    {
+        ID = 423;
+
+        Image = "images/leshand-green.png";
+
+        Text = "Leshand is busy port of narrow half-timbered houses with small leaded windows and peaked roofs of olive-green tiles. The town is overlooked by the massive stone garrison fort on the hill above the harbour. It is well known that the governor prefers to rule the colony with a light touch, exercising his authority in as leisurely a manner as possible, openly encouraging buccaneers to put into dock here and spend their loot. But things are different at the moment, and you are stuck by subtle but noticeable changes since your last visit. The buccaneers are here as usual, but in fewer numbers and on markedly better behaviour. The soldiers of the city militia are adorned in clean new tabards, which they wear with expressions of pride. There are even a handful of street-cleaners whom you pass scrubbing at the accumulated grime on the cobblestones.\n\nA good meal and a bath go a long way to refreshing you after weeks at sea.\n\nYou RECOVER 3 Life Points.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 3);
+
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            Choices.push_back(Choice::Base("(Marathon) Visit Master Capstick's house now", 69, Codeword::Type::MARATHON));
+            Choices.push_back(Choice::Base("Visit a chandler's for supplies", 12));
+            Choices.push_back(Choice::Base("Seek out someone who can identify strange items", 31));
+            Choices.push_back(Choice::Base("Apply for a letter of marque", 409));
+            Choices.push_back(Choice::Base("Listen for rumours", 88));
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+            {
+                Choices[3].Destination = 50;
+            }
+            else
+            {
+                Choices[3].Destination = 409;
+            }
+        }
+    }
+
+    int Continue(Character::Base &player) { return 127; }
+};
+
+class Story424 : public Story::Base
+{
+public:
+    Story424()
+    {
+        ID = 424;
+
+        Text = "You awaken cramped and sore, your limbs locked stiff after an uncomfortable and chilly night. Each of your friends gives a weak groan as he wakes, almost as though stricken with grief at having to face another terrible day of scorching heat. No sooner has the sun risen than waves of heat come rolling over the flat mirror of the sea, making you gasp for water. \"I'd give my soul for one drop...\" moans Grimes. \"Half a drop!\"\n\n\"Your soul?\" Oakley manages a short bark of laughter. \"Who'd want your black soul, you old sea dog?\"\n\nThey cling together, shaking with gallows humour at this, wheezing between their teeth because belly laughter would crack their desiccated throats.\n\n\"They're hysterical -- half mad!\" snaps Blutz. He stares at you hopelessly. \"Do something, or we'll all die. I don't want to end my days in an open boat, unshriven and unmourned, never to lie in the fresh soil of home!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SPELLS] Try something", 101, Skill::Type::SPELLS));
+        Choices.push_back(Choice::Base("Otherwise", 120));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story425 : public Story::Base
+{
+public:
+    Story425()
+    {
+        ID = 425;
+
+        Text = "As it turns out, the sun has melted small pools on the iceberg's surface, saving you the effort of chipping blocks of ice to get water. The taste is slightly brackish, but it seems otherwise drinkable. You fill your bellies before heading back to the jollyboat and casting off.\n\nYou head west, watching the sun slide down the sky. Then Blutz gives an excited shout and points astern. You all turn, rubbing your eyes when you see a fleck of gold against the indigo eastern sky. To your disbelief and delight, the fleck grows until you can clearly see that it is a topsails of a brigantine bearing directly for you.\n\nLeaping to your feet, you wave and stamp and shout until you see the faces of sailors appear at the rail. They drop sail, steering towards you. \"Ahoy there,\" you hear a voice call as the brigantine draws level with your boat, \"we'll throw down a rope.\" \"Why, this is a glad day!\" says Oakley as you climb up to the deck. \"First a good drink of water, and now a ride home into the bargain!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 370; }
+};
+
+class Story426 : public Story::Base
+{
+public:
+    Story426()
+    {
+        ID = 426;
+
+        Text = "The second of the four islands comes in sight: a verdant jungle-clad shoreline dominated by the immense hump of a smouldering volcano. High up on the volcano's slops you can see the dull red gleam of lava. Grey sulphurous smoke sits in a wreath around the cone.\n\n\"We'd be foolhardy to put ashore here,\" maintains Blutz. \"That volcano could erupt and bury us all!\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            Choices.push_back(Choice::Base("Land", 174));
+            Choices.push_back(Choice::Base("Continue going west", 135));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 193; }
+};
+
+class Story427 : public Story::Base
+{
+public:
+    Story427()
+    {
+        ID = 427;
+
+        Text = "You are taken to Queen Titania's cabin in the aft gallery of the Rose. You are amazed at the sight of such luxury aboard a ship: there is a thick carpet, velvet drapes and even a gilded throne.\n\nThe Queen is younger than you expected, slim as a colt and palely pretty, with hair of autumn flame. But there is the ring of purebred royalty in her voice as she greet you. \"You have saved us from a fate that does not bear contemplation,\" she says. \"You have our thanks -- and not not only thanks, but also material reward. Such a valiant mariner should not live a pirate's cruel life. Will you accept a title and a grant of land in Glorianne?\"\n\n\"And there's a commission in the navy waiting for you, too, if you want it,\" puts in Admiral Calidor. He turns and bows to the Queen with his hand to his chest. \"Your pardon, Majesty.\"\n\n\"Not at all, Calidor.\" The Queen smiles -- a vivacious radiant smile, quite at odds with the stuffy panoply of courtly etiquette that surrounds her. Turning back to you, she adds: \"Our esteemed admiral is quite right. You would make a welcome addition to our navy. Well?\"\n\nYou are momentarily lost in a private reverie. The offer is tempting, but you have got used to a life of exhilarating adventure. Did you run up against El Draque? You may not have seen the last of him if so. Did you make other enemies along your way? And are there mysteries still for you to explore on the Carab Sea?\n\nYou look up at the Queen Titania. She is waiting for your answer.";
+
+        Type = Story::Type::GOOD;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -11253,6 +11441,14 @@ auto story416 = Story416();
 auto story417 = Story417();
 auto story418 = Story418();
 auto story419 = Story419();
+auto story420 = Story420();
+auto story421 = Story421();
+auto story422 = Story422();
+auto story423 = Story423();
+auto story424 = Story424();
+auto story425 = Story425();
+auto story426 = Story426();
+auto story427 = Story427();
 
 void InitializeStories()
 {
@@ -11299,7 +11495,8 @@ void InitializeStories()
         &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
         &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
         &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409,
-        &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419};
+        &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419,
+        &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427};
 }
 
 #endif
