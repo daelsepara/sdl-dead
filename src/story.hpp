@@ -10067,7 +10067,7 @@ public:
     {
         ID = 390;
 
-        Text = "After hearing some of your experiences aboard the Belle Dame, he nods sagely. \"Aye, that Skarvench is a scurvy pitch-hearted fiend sure enough,\" he agrees. \"One of the worst pirates on the seas, since he cares not which ships he plunders -- those of the accursed Sidonians, or those loyal to Her Gloriannic Majesty. Yet there are other pirates just as greedy, bloodthirsty and full of wickedness. One such is the Sidonian corsair El Draque, who captains the galleon Cold Grue. Bloodthirsty is indeed the word for him, I'm told. It's said he hangs his victims like slaughtered pigs from the yardarm, collecting their lifeblood in a silver goblet to drink by moonlight!\"\n\nThe captain pauses, regards his own cup thoughtfully for a moment, then refills it. \"Piracy's not a bad business,\" he continues, \"so long as you have a clear sense of where your loyalties lie. My advice is to first obtain a letter of marque. Letters of marque are issued by the governors of Gloriannic colonies. Possession of one authorizes you to attack Sidonian ships, in effect enabling you to act as private soldiers of Her Majesty. A fine arrangement which benefits everyone.\"\n\n\"Except the Sidonians, of course,\" you say with a smile.\n\nThe captain roars with laughter. \"Aye, the God-cursed bilge suckers\"";
+        Text = "After hearing some of your experiences aboard the Belle Dame, he nods sagely. \"Aye, that Skarvench is a scurvy pitch-hearted fiend sure enough,\" he agrees. \"One of the worst pirates on the seas, since he cares not which ships he plunders -- those of the accursed Sidonians, or those loyal to Her Gloriannic Majesty. Yet there are other pirates just as greedy, bloodthirsty and full of wickedness. One such is the Sidonian corsair El Draque, who captains the galleon Cold Grue. Bloodthirsty is indeed the word for him, I'm told. It's said he hangs his victims like slaughtered pigs from the yardarm, collecting their lifeblood in a silver goblet to drink by moonlight!\"\n\nThe captain pauses, regards his own cup thoughtfully for a moment, then refills it. \"Piracy's not a bad business,\" he continues, \"so long as you have a clear sense of where your loyalties lie. My advice is to first obtain a LETTER OF MARQUE. Letters of marque are issued by the governors of Gloriannic colonies. Possession of one authorizes you to attack Sidonian ships, in effect enabling you to act as private soldiers of Her Majesty. A fine arrangement which benefits everyone.\"\n\n\"Except the Sidonians, of course,\" you say with a smile.\n\nThe captain roars with laughter. \"Aye, the God-cursed bilge suckers\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Ask him about the war", 380));
@@ -10289,6 +10289,294 @@ public:
         {
             return 289;
         }
+    }
+};
+
+class Story400 : public Story::Base
+{
+public:
+    Story400()
+    {
+        ID = 400;
+
+        Text = "The natives watch in unfathomable silence while you smartly descend the ladder of knotted vines. Apparently they are not ready to launch any assault as yet, since no boulders or spears come hurtling down at you from above. Then you see another group of natives striding along the beach towards you. There are also daubed in blood-red war paint and carry spears and clubs studded with splinters of volcanic rock. There are far too many of them for you to have any hope of fighting your way past to the boat. As they draw nearer, they begin to utter a low chant which is full of ominous intent.\n\n\"Cannibals, or my bones are bleached wood,\" mutters Grimes. \"They mean to stuff us in their cookpot.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_CODEWORD(player, Codeword::Type::FETISH))
+        {
+            Choices.push_back(Choice::Base("Offer them a gift", 117));
+            Choices.push_back(Choice::Base("Use [CUNNING]", 79, Skill::Type::CUNNING));
+            Choices.push_back(Choice::Base("Use [SPELLS]", 60, Skill::Type::SPELLS));
+            Choices.push_back(Choice::Base("Make a dash for the boat", 41));
+        }
+        else
+        {
+            Character::REMOVE_CODEWORD(player, Codeword::Type::FETISH);
+        }
+    }
+
+    int Continue(Character::Base &player) { return 22; }
+};
+
+class Story401 : public Story::Base
+{
+public:
+    Story401()
+    {
+        ID = 401;
+
+        Text = "Jeers and snarling shouts fill your ears. They sound like a pack of mad dogs. You glance back to see the cutters bearing down on you, crowded with grinning pirates whose cutlasses gleam menacingly in the colourless moonlight. Weakened as you are, you cannot hope to outrun them.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 418;
+        }
+        else
+        {
+            return 298;
+        }
+    }
+};
+
+class Story402 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story402()
+    {
+        ID = 402;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "As soon as she lays eyes on your strange sword, Ejada's scornful confidence dissolves into uncertainty. \"The prophecy!\" she gasps to herself. \"A sword not mined not from any rock nor forged on any anvil!\"\n\nYou lunge in, scoring a bloody gash across her cheek. \"Defend yourself, witch or die.\"\n\nRaising her knife, she strides forward and matches you blow for blow.\n\n";
+
+        auto DAMAGE = -7;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::FEATHER_SHIELD}))
+        {
+            DAMAGE = -3;
+
+            PreText += "[Item: FEATHER SHIELD] ";
+        }
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story403 : public Story::Base
+{
+public:
+    Story403()
+    {
+        ID = 403;
+
+        Image = "images/filler1-green.png";
+
+        Text = "He pauses in the act of raising his cup to his lips and glares at you from under beetling brows. \"Eh?\" he demands. \"What do you know of that? It is supposed to be a secret, and you'd do well not to blab such delicate matters. A wagging tongue is a tongue worth cutting!\" He fingers his sword-hilt, glowering at you sidelong.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Explain about overhearing Skarvench's plan to kidnap the Queen", 11));
+        Choices.push_back(Choice::Base("You can keep quiet about the matter", 108));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story404 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    bool HAS_FOOD = false;
+    int CONSUMED = 0;
+
+    Story404()
+    {
+        ID = 404;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        HAS_FOOD = false;
+        CONSUMED = 0;
+
+        PreText = "A storm overtakes you, closing its teeth on your vessel with a screech of cracking timbers. Under a sky the colour of brimstone, you cling to the sides and crouch low, teeth bared in terror as you watch the foaming billows race past. The gale lasts half the night, sporadically spitting rails of icy rain down on your heads until your joints feel as stiff as a day-old corpse. When the sun finally rises, you greet it without cheer, knowing that within hours it will have baked you half out of your wits.\n\nYou LOSE 2 Life Point.";
+
+        Character::GAIN_LIFE(player, -2);
+
+        if (player.Life > 0)
+        {
+            if (Character::HAS_FOOD(player, 0))
+            {
+                HAS_FOOD = true;
+
+                if (Character::HAS_FOOD(player, 1))
+                {
+                    CONSUMED = Character::CONSUME_FOOD(player, 2);
+                }
+                else
+                {
+                    CONSUMED = Character::CONSUME_FOOD(player, 1);
+                }
+
+                PreText += "\n\nYour supply of PROVISIONS has decresed by " + std::to_string(CONSUMED);
+            }
+            else
+            {
+                PreText += "\n\nYou've exhausted your supply of PROVISIONS.";
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (HAS_FOOD)
+        {
+            if (CONSUMED > 1)
+            {
+                return 106;
+            }
+            else
+            {
+                return 120;
+            }
+        }
+        else
+        {
+            return 277;
+        }
+    }
+};
+
+class Story405 : public Story::Base
+{
+public:
+    Story405()
+    {
+        ID = 405;
+
+        Text = "To the delighted surprise of you all, dawn outlines the shape of high cliffs dead ahead. As gulls wheel idly in the sky above, Blutz cannot contain himself. Weeping with joy, he shouts, \"Land ho! We're home, mates. Thank God and all His blessed saints, we've come through it and we're home!\" He falls to his knees and clasps his hands together. \"Oh, I'll never do wickedness again, not me! I'll say my prayers and do only good deeds for the rest of my days.\"\n\nOakley leans to you with a grin and speaks behind his hand: \"I'll lay you twenty doubloons to a twist of rope that he forgets that resolution as soon as he claps eyes on a tavern.\"\n\nFollowing the coast south a short way, you soon come to the familiar and welcome sight of the harbour mouth. You have reached Port Leshand at last!\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 9; }
+};
+
+class Story406 : public Story::Base
+{
+public:
+    Story406()
+    {
+        ID = 406;
+
+        Text = "You are back in civilization. Now you have time to take stock of your harrowing ordeal. The memory of how you behaved at times gives you little cause for pride, and the dour looks of your companions reflect your inner sense of shame. Nor do you have what it takes to be a leader of men; you know that now. Grimes cannot meet your gaze as he shakes hands with you. \"Best we go our separate ways for a while,\" he mutters. \"Maybe we'll meet again.\"\n\nBlutz is more forthright. \"None of us has come through this business with flying colours, mate. But if we aren't even masters of our own worse nature, how could we ever hope to overcome Skarvench?\"\n\nYou are reluctantly forced to agree. Skarvench's soul may be as black as the devil's pitch, but your own is hardly spotlessly pure. Perhaps his baleful influence has made you what you are today: no valiant hero, just a fallible adventurer with a sadly chequered past.";
+
+        Type = Story::Type::DOOM;
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story407 : public Story::Base
+{
+public:
+    Story407()
+    {
+        ID = 407;
+
+        Image = "images/frozen-ship-green.png";
+
+        Text = "Striking southwards in search of icebergs, you enter cooler waters. The climate is still subtropical here, but ocean currents carry meltwater from the polar regions and there is always the possibility of finding icebergs. In a larger vessel they would be a hazard. Now they could be your one chance of survival.\n\nAfter hours of continually scanning the horizon you are half blind with the sea glare, but at last you catch sight of a great blue crag drifting majestically in the distance. Sunbeams make a thousand spangling stars on its surface. \"There's yer iceberg,\" says Blutz. \"But the thing is, will it be safe to drink?\"\n\nDrawing nearer, you begin to make out a darker outline within the blue-grey ice. Oakley is the first recognize it. \"It's a ship! A blooming ship -- frozen inside the iceberg!\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::WILDERNESS_LORE, Skill::Type::SEAFARING}))
+        {
+            Choices.push_back(Choice::Base("Decide to row over to the iceberg", 352));
+            Choices.push_back(Choice::Base("Carry on west towards Port Leshand", 371));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 333; }
+};
+
+class Story408 : public Story::Base
+{
+public:
+    Story408()
+    {
+        ID = 408;
+
+        Image = "images/filler2-green.png";
+
+        Text = "Curshaw scowls as he sees you looking at him. \"I'll enjoy giving you a taste of the cat,\" he says, referring to the whip used to punish mutineers.\n\n\"You would, you mouse,\" you say, taunting him. \"You only squeak bravely when your victims have their hands tied.\"\n\nCurshaw leaps to his feet, hands bunched into fists. \"I'll cut out your tongue and swallow it whole! I'll fry your gizzard for breakfast!\"\n\nYou glance away nonchalantly. \"Big talk, small fry.\"\n\nThis is too much for him. Snatching up a paddle, he swings it at your head. It is your cue to explode into action. Still crouching, you duck under the swing and then, while Curshaw totters off-balance, you shoot to your feet and deliver a bone-cracking head butt that lays him flat.\n\nPorbuck lets go of the oars and lumbers towards you -- only to go reeling back as you lash out with two flying kicks in rapid succession. He shakes his head, growls and comes doggedly on to pummel you with his huge fists.\n\nIt is a hard fight, testing your skill to the limit. Porbuck is a brutal and powerful fighter who would be difficult to beat even if you didn't have your hands tied.\n\nYou LOSE 5 Life Points.";
+
+        Bye = "You finally flatten Porbuck with a knee to the solar plexus. The others help you tip him and Curshaw overboard. Then the four of you quickly untie one another's bonds and start rowing away";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -5);
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story409 : public Story::Base
+{
+public:
+    Story409()
+    {
+        ID = 409;
+
+        Image = "images/filler2-green.png";
+
+        Text = "A LETTER OF MARQUE would allow you to indulge in a spot of honest piracy -- or rather privateering, as it is called. Such a letter licenses you to act as a private soldier of Her Majesty's navy, with full entitlement to plunder Sidonian treasure-ships.\n\n\"But we'll never be able to get one,\" sighs Blutz after you have all spent some time discussing the idea.\n\n\"That's right,\" growls Oakley. \"I hear it costs almost as much in bribes to get hold of a LETTER OF MARQUE as you're likely to bring in as profit!\"\n\n\"We may as well try, at least,\" you tell them, irritated yo hear such pessimism.\n\nYou make your way up the narrow streets to the fort, where you lose no time in applying to the Office of Prejudicial Trade for a LETTER OF MARQUE. A bland-faced fellow in a blue velvet doublet listens to your request, then government is very keen to see private enterprise flourish,\" he murmurs silkily. \"But drawing up a LETTER OF MARQUE is not just a simple matter of putting quill to paper. There are forms to be filled in, credentials to be established, the proper channels to go through, red tape...\" He pretends to stifle a yawn. \"It all takes time. And money.\"\n\nGrimes nudges you and mutters behind his hand. \"He's angling for a bribe skipper.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Bribe official (DIAMOND)", 244, Choice::Type::LOSE_ITEMS, {Item::DIAMOND}));
+        Choices.push_back(Choice::Base("Resort to [CUNNING]", 260, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("(Marathon) Take your leave to all on Master Capstick", 69, Codeword::Type::MARATHON));
+        Choices.push_back(Choice::Base("Weigh up your remaining options", 107));
+
+        Controls = Story::Controls::STANDARD;
     }
 };
 
@@ -10700,6 +10988,16 @@ auto story396 = Story396();
 auto story397 = Story397();
 auto story398 = Story398();
 auto story399 = Story399();
+auto story400 = Story400();
+auto story401 = Story401();
+auto story402 = Story402();
+auto story403 = Story403();
+auto story404 = Story404();
+auto story405 = Story405();
+auto story406 = Story406();
+auto story407 = Story407();
+auto story408 = Story408();
+auto story409 = Story409();
 
 void InitializeStories()
 {
@@ -10744,7 +11042,8 @@ void InitializeStories()
         &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
         &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
         &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
-        &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399};
+        &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
+        &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409};
 }
 
 #endif
