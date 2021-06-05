@@ -10060,6 +10060,238 @@ public:
     }
 };
 
+class Story390 : public Story::Base
+{
+public:
+    Story390()
+    {
+        ID = 390;
+
+        Text = "After hearing some of your experiences aboard the Belle Dame, he nods sagely. \"Aye, that Skarvench is a scurvy pitch-hearted fiend sure enough,\" he agrees. \"One of the worst pirates on the seas, since he cares not which ships he plunders -- those of the accursed Sidonians, or those loyal to Her Gloriannic Majesty. Yet there are other pirates just as greedy, bloodthirsty and full of wickedness. One such is the Sidonian corsair El Draque, who captains the galleon Cold Grue. Bloodthirsty is indeed the word for him, I'm told. It's said he hangs his victims like slaughtered pigs from the yardarm, collecting their lifeblood in a silver goblet to drink by moonlight!\"\n\nThe captain pauses, regards his own cup thoughtfully for a moment, then refills it. \"Piracy's not a bad business,\" he continues, \"so long as you have a clear sense of where your loyalties lie. My advice is to first obtain a letter of marque. Letters of marque are issued by the governors of Gloriannic colonies. Possession of one authorizes you to attack Sidonian ships, in effect enabling you to act as private soldiers of Her Majesty. A fine arrangement which benefits everyone.\"\n\n\"Except the Sidonians, of course,\" you say with a smile.\n\nThe captain roars with laughter. \"Aye, the God-cursed bilge suckers\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Ask him about the war", 380));
+        Choices.push_back(Choice::Base("... Queen Titania's tour of her colonies", 403));
+        Choices.push_back(Choice::Base("... Port Leshand", 420));
+        Choices.push_back(Choice::Base("You are done with talking", 108));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story391 : public Story::Base
+{
+public:
+    Story391()
+    {
+        ID = 391;
+
+        Text = "The pirates have forgotten to allow for your special talents. As they row towards the Belle Dame, you slip your bonds but hold the ropes up behind you as though still tied. As the rowboat is tying up alongside the ship, you contrive to stumble against Curshaw. \"Satan boil your gums!\" he snaps. \"Watch where you're going.\"\n\nYou drop the loose ropes and show him the barrel of the pistol you've just taken out of his belt. \"Watch where you're going, Curshaw,\" you say with deliberate menace. \"If you aren't careful it might be five fathoms straight down.\"\n\nHe puts up his hands. So does Porbuck, the slow-witted mate. Waving the pistol, you usher them out of the boat. Clinging to the rope ladder, they glower as you row off.\n\n\"It won't be long before Skarvench gets back aboard and gives chase,\" says Grimes. \"Our best bet to shake him off is to head south.\"\n\nYou agree.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 367; }
+};
+
+class Story392 : public Story::Base
+{
+public:
+    Story392()
+    {
+        ID = 392;
+
+        Text = "\"We should not spend too long here in Leshand,\" is Oakley's opinion as the four of you walk along the waterfront. \"While we dally, Skarvench advances insidiously towards his final goal.\"\n\nGrimes is of like mind. \"Let's obtain a LETTER OF MARQUE first, though,\" he maintains. \"That way we can earn some money on the high seas. We will need finance to tackle Skarvench, as warships cost money!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Get a LETTER OF MARQUE", 409));
+        Choices.push_back(Choice::Base("(Marathon) Call on Master Capstick", 69, Codeword::Type::MARATHON));
+        Choices.push_back(Choice::Base("You are ready to ship out of Leshand", 107));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Choices[0].Destination = 50;
+        }
+        else
+        {
+            Choices[0].Destination = 409;
+        }
+    }
+};
+
+class Story393 : public Story::Base
+{
+public:
+    Story393()
+    {
+        ID = 393;
+
+        Image = "images/filler2-green.png";
+
+        Text = "You recognise the man as Twitchy Pinque, a notorious petty thief who wouldn't hesitate to sell his own grandmother -- not that he would get much for her if he did, since she is a known witch with a soul of pure poison.\n\nSeizing him by the scruff of his grubby neck, you whisper into his ear, \"It's not stolen, this lot, is it, Twitchy? Not selling stolen goods that you've pilfered here in Selenice? That'd be nothing short of pig stupid, I'd say. I'd only have to give a whistle and some of the nastiest pirates in the Carab are going to fall on you like half a ton of ballast. I wonder what they'd do to you, eh, Twitchy?\"\n\nThis unorthodox bargaining technique quickly convinces Pinque to drop to rock-bottom prices.\n\nYou are dubious about the amulet, but Pinque swears blind it's genuine. \"Belonged to my dear old granny, guv. Still does technically, I suppose, since I never asked her if I could take it.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Enter the tavern", 355));
+        Choices.push_back(Choice::Base("Go off to see the shipbuilder", 374));
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop = {{Item::POCKET_WATCH, 7}, {Item::PISTOL, 8}, {Item::SWORD, 7}, {Item::HORNPIPE, 3}, {Item::WEASEL, 2}, {Item::MAGIC_AMULET, 12}};
+    }
+};
+
+class Story394 : public Story::Base
+{
+public:
+    Story394()
+    {
+        ID = 394;
+
+        Text = "You are reminded of the Pelican, a high-castled galleon which was renamed the Saint Christopher. Not long after, she heeled over making a sharp turn in strong crosswinds, took in water through her gun ports, and sank with the loss of two hundred crewmen. Since Christopher is usually an auspicious patron saint to name a ship after, the disaster, tin this case can only have been caused by changing the ship's name. When you tell the story to your friends they agree with you. \"She stays the METEOR,\" says Oakley, nodding.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::METEOR);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story395 : public Story::Base
+{
+public:
+    Story395()
+    {
+        ID = 395;
+
+        Text = "You have embarked on a fateful course -- pray that it leads you to fortune, not a rope's end.\n\nYou gained the codeword ICARUS.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::ICARUS});
+    }
+
+    int Continue(Character::Base &player) { return 376; }
+};
+
+class Story396 : public Story::Base
+{
+public:
+    Story396()
+    {
+        ID = 396;
+
+        Text = "You sail the LADY OF SHALOTT back into Selenice harbour no richer than when you left -- a run of bad luck which hardly bodes well for your chances against Skarvench.\n\n\"We're a laughing stock,\" bemoans Oakley. \"Everyone's talking about the pirates who couldn't find a doubloon to save their lives. The only sailors who'll sign on with us now are old men, cripples and drunks.\"\n\nYou receive this news with a grim heart, but do your best to appear confident for the sake of your loyal lieutenants. \"Courage, my lads!\" you cry, brandishing your fist to the heavens. \"Skarvench cannot hide from us, and now we have the advantage of surprise, for what trouble can be possibly expect from a little sloop like this?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::TAKE_SHIP(player, Ship::LADY_OF_SHALOTT);
+    }
+
+    int Continue(Character::Base &player) { return 184; }
+};
+
+class Story397 : public Story::Base
+{
+public:
+    Story397()
+    {
+        ID = 397;
+
+        Text = "Heavy sheets of rain sweep across the deck, accompanied by a howling wind, as the sky turns blacker than midnight. The unearthly pallor of St Elmo's Fire tickles along the topgallants, mirroring flickers of sheet lightning behind the coal-coloured clouds. The sails snap and strain as if a hundred invisible demons were trying to uproot the masts, and colossal waves break around the ship's bows.\n\nThe sailors are clinging to the rail for dear life as the ship goes pitching and yawing in the gale's grip. Even on the faces of your brave lieutenants you see the frozen grin of stark terror. You leap down onto the deck yourself, hauling yourself along the lines to trim the topsails, then seizing the whipstaff and steering the prow deftly against the oncoming wind. Inspired by your example, the crew resume their duties. The familiar routing helps to banish their worst fears. They no longer feel helpless in the face of the unknown, and they put their trust in you, their peerless captain, to bring them safely through the storm.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 94; }
+};
+
+class Story398 : public Story::Base
+{
+public:
+    Story398()
+    {
+        ID = 398;
+
+        Text = "The crack of cannon-fire signals another broadside from the Moon Dog. The fo'c'sle takes a direct hit, smashing apart like a matchwood toy. You hear the screams of men who are struck by shells, but you must steel yourself to ignore their suffering. This is the crucial moment, as you close into mortal combat with your foe.\n\nYour ship SUFFERS 1 damage.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::DAMAGE_SHIP(player, 1);
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::CHECK_SHIP(player))
+        {
+            return 415;
+        }
+        else
+        {
+            return 227;
+        }
+    }
+};
+
+class Story399 : public Story::Base
+{
+public:
+    Story399()
+    {
+        ID = 399;
+
+        Text = "Your small boat is in a sorry condition, weatherbeaten from lying unused and untended on the ship's deck for so long. Worms have made tiny holes in the wood, and the timbers are sun-dried and warped.\n\nGrimes sees you looking at the planking and gives a wry chuckle. \"Aye, not much is she? A sorry little vessel for us to pin our hopes on.\"\n\n\"Our hopes?\" says Oakley with a snort. \"Our lives, man!\"\n\nYou touch your amulet and utter the words of an incantation. \"That will help keep us safe from disaster on the high seas,\" you explain to the others. \"It's an old charm to keep the boat seaworthy. Never fails.\"\n\n\"And have you a charm to keep us from dying of thirst?\" grumbles Blutz. But no, there is no such charm.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SPELLS))
+        {
+            return 416;
+        }
+        else
+        {
+            return 289;
+        }
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -10458,6 +10690,16 @@ auto story386 = Story386();
 auto story387 = Story387();
 auto story388 = Story388();
 auto story389 = Story389();
+auto story390 = Story390();
+auto story391 = Story391();
+auto story392 = Story392();
+auto story393 = Story393();
+auto story394 = Story394();
+auto story395 = Story395();
+auto story396 = Story396();
+auto story397 = Story397();
+auto story398 = Story398();
+auto story399 = Story399();
 
 void InitializeStories()
 {
@@ -10501,7 +10743,8 @@ void InitializeStories()
         &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
         &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
         &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
-        &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389};
+        &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
+        &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399};
 }
 
 #endif
