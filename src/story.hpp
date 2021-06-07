@@ -625,7 +625,7 @@ public:
         Controls = Story::Controls::STANDARD;
     }
 
-    int Backround(Character::Base &player)
+    int Background(Character::Base &player)
     {
         if (Character::VERIFY_CODEWORD(player, Codeword::Type::FLOAT))
         {
@@ -682,7 +682,7 @@ public:
         Controls = Story::Controls::NONE;
     }
 
-    int Backround(Character::Base &player)
+    int Background(Character::Base &player)
     {
         if (Character::VERIFY_CODEWORD(player, Codeword::Type::CHANCERY))
         {
