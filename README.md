@@ -11,7 +11,7 @@ This is an implementation of the **Down Among the Dead Men** game book (Critical
 - Sound
 - Multiplatform Linux/Windows/OSX (**PARTIAL**)
 
- Current Progress (Screenshots)
+# Current Progress (Screenshots)
 
 **Title screen**
 
@@ -56,3 +56,4 @@ Feel free to report any bugs, issues, and/or suggestions. Thanks!
 
 - [Necklace of Skulls](https://www.github.com/daelsepara/sdl-skulls)
 - [Heart of Ice](https://www.github.com/daelsepara/sdl-heart)
+- [Green Blood](https://www.github.com/daelsepara/sdl-green)
