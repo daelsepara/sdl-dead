@@ -419,6 +419,8 @@ void renderButtons(SDL_Renderer *renderer, std::vector<Button> controls, int cur
         {
             SDL_Rect rect;
 
+            renderImage(renderer, controls[i].Surface, controls[i].X, controls[i].Y);
+
             for (auto size = pts; size >= 0; size--)
             {
                 rect.w = controls[i].W + 2 * (space - size);
@@ -432,8 +434,44 @@ void renderButtons(SDL_Renderer *renderer, std::vector<Button> controls, int cur
                     SDL_RenderDrawRect(renderer, &rect);
                 }
             }
+        }
+    }
+}
 
-            renderImage(renderer, controls[i].Surface, controls[i].X, controls[i].Y);
+void renderButtons(SDL_Renderer *renderer, std::vector<Button> controls, int current, int fg, int space, int pts, bool scroll_up, bool scroll_dn)
+{
+    if (controls.size() > 0)
+    {
+        for (auto i = 0; i < controls.size(); i++)
+        {
+            SDL_Rect rect;
+
+            if ((controls[i].Type == Control::Type::SCROLL_UP && scroll_up) || (controls[i].Type == Control::Type::SCROLL_DOWN && scroll_dn) || (controls[i].Type != Control::Type::SCROLL_UP && controls[i].Type != Control::Type::SCROLL_DOWN))
+            {
+                if (controls[i].Type == Control::Type::SCROLL_UP || controls[i].Type == Control::Type::SCROLL_DOWN)
+                {
+                    fillRect(renderer, controls[i].W + 2 * border_space, controls[i].H + 2 * border_space, controls[i].X - border_space, controls[i].Y - border_space, intWH);
+                }
+
+                renderImage(renderer, controls[i].Surface, controls[i].X, controls[i].Y);
+            }
+
+            if (i == current)
+            {
+                if ((controls[i].Type == Control::Type::SCROLL_UP && scroll_up) || (controls[i].Type == Control::Type::SCROLL_DOWN && scroll_dn) || (controls[i].Type != Control::Type::SCROLL_UP && controls[i].Type != Control::Type::SCROLL_DOWN))
+                {
+                    for (auto size = pts; size >= 0; size--)
+                    {
+                        rect.w = controls[i].W + 2 * (space - size);
+                        rect.h = controls[i].H + 2 * (space - size);
+                        rect.x = controls[i].X - space + size;
+                        rect.y = controls[i].Y - space + size;
+
+                        SDL_SetRenderDrawColor(renderer, R(fg), G(fg), B(fg), A(fg));
+                        SDL_RenderDrawRect(renderer, &rect);
+                    }
+                }
+            }
         }
     }
 }
@@ -615,11 +653,8 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
 
         auto boxh = headerh;
 
-        auto skills = createHeaderButton(window, "Skills", clrWH, intGN, headerw, headerh, space);
-        auto possessions = createHeaderButton(window, "Possessions", clrWH, intGN, headerw, headerh, space);
-
-        controls.push_back(Button(0, skills, 0, 1, 0, 1, startx, starty + profileh + headerh + marginh, Control::Type::GLOSSARY));
-        controls.push_back(Button(1, possessions, 0, 2, 0, 2, startx, starty + profileh + 3 * headerh + 3 * marginh + 2 * boxh, Control::Type::ACTION));
+        controls.push_back(Button(0, createHeaderButton(window, "Skills", clrWH, intGN, headerw, headerh, space), 0, 1, 0, 1, startx, starty + profileh + headerh + marginh, Control::Type::GLOSSARY));
+        controls.push_back(Button(1, createHeaderButton(window, "Possessions", clrWH, intGN, headerw, headerh, space), 0, 2, 0, 2, startx, starty + profileh + 3 * headerh + 3 * marginh + 2 * boxh, Control::Type::ACTION));
         controls.push_back(Button(2, "icons/back-button.png", 1, 2, 1, 2, (1 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
 
         std::string codewords = "";
@@ -692,20 +727,6 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
             }
         }
 
-        if (skills)
-        {
-            SDL_FreeSurface(skills);
-
-            skills = NULL;
-        }
-
-        if (possessions)
-        {
-            SDL_FreeSurface(possessions);
-
-            possessions = NULL;
-        }
-
         if (font)
         {
             TTF_CloseFont(font);
@@ -768,9 +789,10 @@ bool glossaryScreen(SDL_Window *window, SDL_Renderer *renderer, std::vector<Skil
             fillWindow(renderer, intWH);
 
             fillRect(renderer, glossary_width, text_bounds, startx, starty, intBE);
+            
             renderText(renderer, glossary, intBE, startx + space, starty + space, text_bounds - 2 * space, offset);
 
-            renderButtons(renderer, controls, current, intGR, border_space, border_pts);
+            renderButtons(renderer, controls, current, intGR, border_space, border_pts, (offset > 0), glossary && offset < (glossary->h - text_bounds + 2 * space));
 
             bool scrollUp = false;
             bool scrollDown = false;
@@ -964,8 +986,6 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                             last = Items.size();
                         }
 
-                        controls.clear();
-
                         controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
                         SDL_Delay(50);
@@ -998,8 +1018,6 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                         {
                             last = Items.size();
                         }
-
-                        controls.clear();
 
                         controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
@@ -1042,8 +1060,6 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                             {
                                 last = Items.size();
                             }
-
-                            controls.clear();
 
                             controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
@@ -1098,8 +1114,6 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                                 {
                                     last = Items.size();
                                 }
-
-                                controls.clear();
 
                                 controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
@@ -1157,8 +1171,6 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                                     {
                                         last = Items.size();
                                     }
-
-                                    controls.clear();
 
                                     controls = createItemList(window, renderer, Items, offset, last, display_limit, false, true);
 
@@ -1383,8 +1395,6 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                             last = items.size();
                         }
 
-                        controls.clear();
-
                         controls = createItemList(window, renderer, items, offset, last, limit, true, back_button);
 
                         SDL_Delay(50);
@@ -1417,8 +1427,6 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                         {
                             last = items.size();
                         }
-
-                        controls.clear();
 
                         controls = createItemList(window, renderer, items, offset, last, limit, true, back_button);
 
@@ -1670,8 +1678,6 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
                             last = item_types.size();
                         }
 
-                        controls.clear();
-
                         controls = createItemList(window, renderer, player.Items, offset, last, limit, true, false);
 
                         SDL_Delay(50);
@@ -1704,8 +1710,6 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
                         {
                             last = item_types.size();
                         }
-
-                        controls.clear();
 
                         controls = createItemList(window, renderer, player.Items, offset, last, limit, true, false);
 
@@ -2143,8 +2147,6 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
                             last = Skill::ALL.size();
                         }
 
-                        controls.clear();
-
                         controls = skillsList(window, renderer, offset, last, Limit);
 
                         SDL_Delay(50);
@@ -2177,8 +2179,6 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
                         {
                             last = Skill::ALL.size();
                         }
-
-                        controls.clear();
 
                         controls = skillsList(window, renderer, offset, last, Limit);
 
@@ -4022,13 +4022,41 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                             }
                             else
                             {
-                                if (Item::VERIFY(player.Items, story->Choices[current].Items[0]))
+                                bool loaded = true;
+                                int weapons = 0;
+
+                                for (auto i = 0; i < story->Choices[current].Items.size(); i++)
                                 {
-                                    message = "The weapon you are carrying is not loaded!";
+                                    // Check if items (weapons) are loaded
+                                    if (Item::VERIFY(player.Items, story->Choices[current].Items[i]))
+                                    {
+                                        weapons++;
+
+                                        loaded = false;
+                                    }
+                                }
+
+                                if (!loaded && weapons > 0)
+                                {
+                                    if (weapons > 1)
+                                    {
+                                        message = "The weapons you are carrying are not loaded!";
+                                    }
+                                    else
+                                    {
+                                        message = "The weapon you are carrying is not loaded!";
+                                    }
                                 }
                                 else
                                 {
-                                    message = "You do not have the required item!";
+                                    if (story->Choices[current].Items.size() > 1)
+                                    {
+                                        message = "You do not have the required items!";
+                                    }
+                                    else
+                                    {
+                                        message = "You do not have the required item!";
+                                    }
                                 }
 
                                 start_ticks = SDL_GetTicks();
@@ -4588,8 +4616,6 @@ std::vector<Button> createSkillControls(std::vector<Skill::Base> Skills)
 
     auto controls = std::vector<Button>();
 
-    controls.clear();
-
     for (auto idx = 0; idx < Skills.size(); idx++)
     {
         auto text = createText(Skills[idx].Name, FONT_FILE, font_size, clrBK, textwidth + button_space, TTF_STYLE_NORMAL);
@@ -4993,16 +5019,10 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                 }
 
-                if (!compact)
-                {
-                    fillRect(renderer, controls[0].W + 2 * border_space, controls[0].H + 2 * border_space, controls[0].X - border_space, controls[0].Y - border_space, intWH);
-                    fillRect(renderer, controls[1].W + 2 * border_space, controls[1].H + 2 * border_space, controls[1].X - border_space, controls[1].Y - border_space, intWH);
-                }
-
                 bool scrollUp = false;
                 bool scrollDown = false;
 
-                renderButtons(renderer, controls, current, intGR, border_space, border_pts);
+                renderButtons(renderer, controls, current, intGR, border_space, border_pts, (offset > 0), text && offset < (text->h - text_bounds + 2 * space));
 
                 if (splash)
                 {
