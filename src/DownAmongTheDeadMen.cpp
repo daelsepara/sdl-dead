@@ -789,7 +789,7 @@ bool glossaryScreen(SDL_Window *window, SDL_Renderer *renderer, std::vector<Skil
             fillWindow(renderer, intWH);
 
             fillRect(renderer, glossary_width, text_bounds, startx, starty, intBE);
-            
+
             renderText(renderer, glossary, intBE, startx + space, starty + space, text_bounds - 2 * space, offset);
 
             renderButtons(renderer, controls, current, intGR, border_space, border_pts, (offset > 0), glossary && offset < (glossary->h - text_bounds + 2 * space));
