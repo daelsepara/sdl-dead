@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>com.games.DownAmongTheDeadMen</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0</project_license>
+	<name>com.games.DownAmongTheDeadMen</name>
+	<summary>Down Among the Dead Men (SDL)</summary>
+	<description>
+		<p>This is an Implementation of Down Among the Dead Men gamebook in C++ and SDL.</p>
+	</description>
+	<url type="homepage">https://github.com/daelsepara/sdl-dead/</url>
+	<screenshots>
+		<screenshot typegi="default">
+			<image>https://raw.githubusercontent.com/daelsepara/sdl-dead/main/src/icons/pirate-ship.png</image>
+		</screenshot>
+	</screenshots>
+	<provides>
+		<id>com.games.DownAmongTheDeadMen.desktop</id>
+	</provides>
+</component>

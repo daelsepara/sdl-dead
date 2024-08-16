@@ -122,14 +122,6 @@ void createWindow(Uint32 flags, SDL_Window **window, SDL_Renderer **renderer, co
 
             surface = NULL;
         }
-
-        SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);
-        SDL_RenderClear(*renderer);
-        SDL_RenderPresent(*renderer);
-
-        SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);
-        SDL_RenderClear(*renderer);
-        SDL_RenderPresent(*renderer);
     }
 }
 
@@ -688,9 +680,9 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
 
                 renderButtons(renderer, controls, current, intGR, space, space / 2);
 
-                bool scrollUp = false;
-                bool scrollDown = false;
-                bool hold = false;
+                auto scrollUp = false;
+                auto scrollDown = false;
+                auto hold = false;
 
                 done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -787,8 +779,8 @@ bool glossaryScreen(SDL_Window *window, SDL_Renderer *renderer, std::vector<Skil
 
             renderButtons(renderer, controls, current, intGR, border_space, border_pts, (offset > 0), glossary && offset < (glossary->h - text_bounds + 2 * space));
 
-            bool scrollUp = false;
-            bool scrollDown = false;
+            auto scrollUp = false;
+            auto scrollDown = false;
 
             quit = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -2030,9 +2022,9 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
 
         auto font = TTF_OpenFont(FONT_FILE, font_size);
 
-        bool scrollUp = false;
-        bool scrollDown = false;
-        bool hold = false;
+        auto scrollUp = false;
+        auto scrollDown = false;
+        auto hold = false;
         auto scrollSpeed = 1;
         auto selection = std::vector<int>();
         auto infoh = 0.07 * SCREEN_HEIGHT;
@@ -2348,9 +2340,9 @@ Character::Base selectCharacter(SDL_Window *window, SDL_Renderer *renderer)
 
             renderTextButtons(renderer, controls, FONT_FILE, current, clrWH, intBK, intRD, font20, TTF_STYLE_NORMAL);
 
-            bool scrollUp = false;
-            bool scrollDown = false;
-            bool hold = false;
+            auto scrollUp = false;
+            auto scrollDown = false;
+            auto hold = false;
 
             Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -2472,9 +2464,9 @@ bool aboutScreen(SDL_Window *window, SDL_Renderer *renderer)
             renderText(renderer, text, intGN, startx * 2 + splashw, starty, SCREEN_HEIGHT * (1.0 - 2 * Margin), 0);
             renderTextButtons(renderer, controls, FONT_FILE, current, clrWH, intBK, intRD, font_size, TTF_STYLE_NORMAL);
 
-            bool scrollUp = false;
-            bool scrollDown = false;
-            bool hold = false;
+            auto scrollUp = false;
+            auto scrollDown = false;
+            auto hold = false;
 
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -3723,9 +3715,9 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
 
             renderButtons(renderer, controls, current, intGR, 8, 4);
 
-            bool scrollUp = false;
-            bool scrollDown = false;
-            bool hold = false;
+            auto scrollUp = false;
+            auto scrollDown = false;
+            auto hold = false;
 
             if (map_colonies && map_jollyboat)
             {
@@ -4015,8 +4007,8 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                             }
                             else
                             {
-                                bool loaded = true;
-                                int weapons = 0;
+                                auto loaded = true;
+                                auto weapons = 0;
 
                                 for (auto i = 0; i < story->Choices[current].Items.size(); i++)
                                 {
@@ -5012,8 +5004,8 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     }
                 }
 
-                bool scrollUp = false;
-                bool scrollDown = false;
+                auto scrollUp = false;
+                auto scrollDown = false;
 
                 renderButtons(renderer, controls, current, intGR, border_space, border_pts, (offset > 0), text && offset < (text->h - text_bounds + 2 * space));
 
@@ -5394,6 +5386,8 @@ bool mainScreen(SDL_Window *window, SDL_Renderer *renderer, int storyID)
 
         auto done = false;
 
+        auto first = true;
+
         while (!done)
         {
             // Fill the surface with background
@@ -5403,11 +5397,32 @@ bool mainScreen(SDL_Window *window, SDL_Renderer *renderer, int storyID)
             renderText(renderer, text, intGN, startx * 2 + splashw, starty, SCREEN_HEIGHT * (1.0 - 2 * Margin), 0);
             renderTextButtons(renderer, controls, FONT_FILE, current, clrWH, intBK, intRD, font_size, TTF_STYLE_NORMAL);
 
-            bool scrollUp = false;
-            bool scrollDown = false;
-            bool hold = false;
+            auto scrollUp = false;
+            auto scrollDown = false;
+            auto hold = false;
 
             Control::Type result;
+
+            if (first)
+            {
+                SDL_Event user_event;
+
+                user_event.type = SDL_MOUSEMOTION;
+
+                user_event.motion.x = controls[0].X;
+
+                user_event.motion.y = controls[0].Y;
+
+                user_event.motion.xrel = controls[0].W / 2;
+
+                user_event.motion.yrel = controls[0].H / 2;
+
+                SDL_PushEvent(&user_event);
+
+                SDL_PumpEvents();
+
+                first = false;
+            }
 
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 

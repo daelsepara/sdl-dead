@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Down Among the Dead Men
+Exec=DownAmongTheDeadMen.exe
+TryExec=DownAmongTheDeadMen.exe
+Icon=pirate-ship
+Terminal=false
+Categories=Game;
+Type=Application
+Name[en_DK]=Down Among the Dead Men
+Name[en_US]=Down Among the Dead Men

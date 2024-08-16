@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Down Among the Dead Men
 Comment=Down Among the Dead Men
-Version=1.0.3
+Version=1.0.4
 TryExec=/usr/local/games/DownAmongTheDeadMen/DownAmongTheDeadMen.exe
 Exec=/usr/local/games/DownAmongTheDeadMen/DownAmongTheDeadMen.exe
 Icon=/usr/local/games/DownAmongTheDeadMen/icons/pirate-ship.png
